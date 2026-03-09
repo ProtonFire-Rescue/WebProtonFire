@@ -1,0 +1,219 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Menu from '../../components/Menu.astro';
+import Footer from '../../components/Footer.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+	title="F-500 - Sistema de Extinción Eficaz | PROTON Fire & Rescue"
+	description="F-500 es el sistema de extinción eficaz para combatir fuegos de clase A, B, C, D y K. Sistema versátil y biodegradable, seguro para equipos y medio ambiente."
+	url="https://protonfire.com/productos/f-500"
+>
+	<Menu currentPath={currentPath} />
+	
+	<main>
+		<!-- Hero Section -->
+		<section class="bg-[#f8f9fa] py-20">
+			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div>
+						<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-[#2f2f3b] leading-tight mb-6">
+							F-500
+						</h1>
+						<p class="text-lg text-[#6b7280] leading-relaxed mb-8">
+							Es un sistema de extinción de incendios altamente eficaz que ofrece una solución versátil y segura para combatir fuegos de diversas clases. Su fórmula biodegradable y no tóxica lo hace ideal para proteger tanto a los equipos de emergencia como al medio ambiente.
+						</p>
+						<a 
+							href="/contactanos"
+							class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
+						>
+							Contactanos
+						</a>
+					</div>
+					<div class="relative">
+						<img 
+							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+							alt="F-500 Sistema de extinción" 
+							class="w-full h-auto rounded-2xl shadow-2xl"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Info Control Flame Section -->
+		<section class="py-20 bg-white">
+			<div class="max-w-[1232px] mx-auto px-4">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div class="relative">
+						<img 
+							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+							alt="F-500 Control de fuegos" 
+							class="w-full h-[337px] object-cover rounded-2xl"
+						/>
+					</div>
+					<div>
+						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
+							¿Qué tipos de fuego controla?
+						</h2>
+						<p class="text-lg text-[#6b7280] mb-6">
+							Controla diferente tipo de fuegos, tales como:
+						</p>
+						<ul class="space-y-3">
+							<li class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+								<span class="text-[#2f2f3b]"><strong>Clase A:</strong> Sólidos combustibles (cartón, papel, etc.)</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+								<span class="text-[#2f2f3b]"><strong>Clase B:</strong> Líquidos inflamables (hidrocarburos, pintura, etc.)</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+								<span class="text-[#2f2f3b]"><strong>Clase C:</strong> Eléctricos (transformadores desenergizados)</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+								<span class="text-[#2f2f3b]"><strong>Clase D:</strong> Metales combustibles (magnesio, aluminio, litio, etc.)</span>
+							</li>
+							<li class="flex items-center gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+								<span class="text-[#2f2f3b]"><strong>Clase K:</strong> Aceites y grasas (en cocinas, calderos, etc.)</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product Gallery Section -->
+		<section class="py-20 bg-[#f8f9fa]">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<div class="grid md:grid-cols-2 gap-8">
+					<img 
+						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+						alt="F-500 Aplicación" 
+						class="w-full h-[268px] object-cover rounded-2xl"
+					/>
+					<img 
+						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+						alt="F-500 Equipo" 
+						class="w-full h-[125px] object-cover rounded-2xl"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product Details Section -->
+		<section class="py-20 bg-white">
+			<div class="max-w-[1180px] mx-auto px-4">
+				<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+					<div class="grid lg:grid-cols-2">
+						<!-- Product Gallery -->
+						<div class="p-6">
+							<div class="relative h-[552px] rounded-2xl overflow-hidden mb-4">
+								<img 
+									src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+									alt="F-500 Producto" 
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div class="grid grid-cols-4 gap-2">
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 1" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 2" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 3" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 4" class="h-[136px] w-full object-cover rounded-lg" />
+							</div>
+						</div>
+						
+						<!-- Product Info -->
+						<div class="p-8 lg:p-12">
+							<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-2">
+								F-500
+							</h2>
+							<p class="text-lg text-[#504aff] font-semibold mb-6">Sistema de extinción eficaz</p>
+							
+							<div class="mb-8">
+								<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Especificaciones</h3>
+								<p class="text-[#6b7280] leading-relaxed mb-4">
+									F-500 es un aditivo líquido, biodegradable y no tóxico que se mezcla con agua para combatir incendios. Su fórmula única reduce la tensión superficial del agua, permitiendo una penetración más profunda y una extinción más rápida.
+								</p>
+								<ul class="space-y-2">
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">Biodegradable y amigable con el medio ambiente</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">No tóxico para humanos ni animales</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">No corrosivo para equipos</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">Versátil para múltiples clases de fuego</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">Reduce el tiempo de extinción</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">Disminuye el consumo de agua</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">Prevents re-ignición</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]">No deja residuos pegajosos</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="py-20 bg-[#504aff]">
+			<div class="max-w-[1440px] mx-auto px-4 text-center">
+				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+					¿Interesado en F-500?
+				</h2>
+				<p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+					Contáctanos para obtener más información sobre F-500 y cómo puede ayudar a proteger tus instalaciones.
+				</p>
+				<a 
+					href="/contactanos"
+					class="inline-flex items-center bg-white text-[#504aff] font-semibold px-8 py-4 rounded-[25px] hover:bg-gray-100 transition-colors"
+				>
+					Contactanos
+				</a>
+			</div>
+		</section>
+
+		<!-- Back Link -->
+		<div class="bg-white py-4 border-b border-gray-100">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<a 
+					href="/productos"
+					class="inline-flex items-center text-[#504aff] font-semibold hover:underline"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+					</svg>
+					Regresar al catálogo
+				</a>
+			</div>
+		</div>
+	</main>
+	
+	<Footer />
+</Layout>

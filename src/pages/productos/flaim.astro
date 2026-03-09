@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Menu from '../../components/Menu.astro';
+import Footer from '../../components/Footer.astro';
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout 
+	title="FLAIM - Sistema de Entrenamiento VR | PROTON Fire & Rescue"
+	description="FLAIM es el sistema de entrenamiento inmersivo para bomberos con realidad virtual. Incluye FLAIM Trainer, FLAIM Extinguisher y plataforma FLAIM Capture para análisis de desempeño."
+	url="https://protonfire.com/productos/flaim"
+>
+	<Menu currentPath={currentPath} />
+	
+	<main>
+		<!-- Hero Section -->
+		<section class="bg-[#f8f9fa] py-20">
+			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div>
+						<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-[#2f2f3b] leading-tight mb-6">
+							FLAIM FTS
+						</h1>
+						<p class="text-lg text-[#6b7280] leading-relaxed mb-8">
+							El sistema proporciona a los bomberos las habilidades esenciales para mejorar la calidad del entrenamiento contra incendios en vivo y mejorar el conocimiento de la situación durante la extinción de incendios en la vida real.
+						</p>
+						<a 
+							href="/contactanos"
+							class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
+						>
+							Contactanos
+						</a>
+					</div>
+					<div class="relative">
+						<img 
+							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+							alt="FLAIM Sistema de entrenamiento VR" 
+							class="w-full h-auto rounded-2xl shadow-2xl"
+						/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FLAIM Trainer System Section -->
+		<section class="py-20 bg-white">
+			<div class="max-w-[1232px] mx-auto px-4">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div class="relative">
+						<img 
+							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+							alt="FLAIM Trainer VR" 
+							class="w-full h-[337px] object-cover rounded-2xl"
+						/>
+					</div>
+					<div>
+						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
+							FLAIM Trainer System
+						</h2>
+						<p class="text-lg text-[#6b7280] mb-6">
+							Capacitación y entrenamiento mediante realidad virtual ahora en Ecuador, ofrece:
+						</p>
+						<ul class="space-y-3">
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Entrenamiento virtual ideal para bomberos</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Escenarios 3D hiperrealistas</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Entorno seguro y sin riesgos</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Experiencia real con calor y respiración</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Menos costoso que una práctica real</span>
+							</li>
+							<li class="flex items-start gap-3">
+								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+								<span class="text-[#2f2f3b]">Proceso de aprendizaje y retroalimentación</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="py-20 bg-[#f8f9fa]">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<h2 class="text-3xl md:text-4xl lg:text-[52px] font-bold text-[#2f2f3b] text-center mb-12">
+					Características principales
+				</h2>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1000px] mx-auto">
+					<!-- Entrenamiento inmersivo -->
+					<div class="bg-white rounded-2xl p-8 shadow-lg">
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Entrenamiento inmersivo</h3>
+						<p class="text-[#6b7280]">
+							Utiliza visores de RV, mangueras y extintores reales, ofreciendo experiencias de entrenamiento que se sienten reales.
+						</p>
+					</div>
+					
+					<!-- FLAIM Trainer -->
+					<div class="bg-white rounded-2xl p-8 shadow-lg">
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">FLAIM Trainer</h3>
+						<p class="text-[#6b7280]">
+							Sistema integral que recrea incendios con alta fidelidad, permitiendo a los bomberos sentir el calor radiante, la fuerza de la manguera y gestionar su propio suministro de aire (SCBA).
+						</p>
+					</div>
+					
+					<!-- FLAIM Extinguisher -->
+					<div class="bg-white rounded-2xl p-8 shadow-lg">
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">FLAIM Extinguisher</h3>
+						<p class="text-[#6b7280]">
+							Solución específica para entrenar en el uso correcto de extintores contra diversos tipos de fuego en entornos seguros.
+						</p>
+					</div>
+					
+					<!-- Datos y Analítica -->
+					<div class="bg-white rounded-2xl p-8 shadow-lg">
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Datos y Analítica</h3>
+						<p class="text-[#6b7280]">
+							Incluye FLAIM Capture, una plataforma para registrar el desempeño, analizar habilidades y mejorar la toma de decisiones basada en datos.
+						</p>
+					</div>
+					
+					<!-- Aplicaciones -->
+					<div class="bg-white rounded-2xl p-8 shadow-lg">
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Aplicaciones</h3>
+						<p class="text-[#6b7280]">
+							Utilizado por equipos de emergencia, defensa y sectores industriales para formación inicial y continua.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product Gallery Section -->
+		<section class="py-20 bg-white">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<div class="grid md:grid-cols-3 gap-6">
+					<img 
+						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+						alt="FLAIM Entrenamiento 1" 
+						class="w-full h-[210px] object-cover rounded-2xl"
+					/>
+					<img 
+						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+						alt="FLAIM Entrenamiento 2" 
+						class="w-full h-[210px] object-cover rounded-2xl"
+					/>
+					<img 
+						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+						alt="FLAIM Entrenamiento 3" 
+						class="w-full h-[210px] object-cover rounded-2xl"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product Details Section -->
+		<section class="py-20 bg-[#f8f9fa]">
+			<div class="max-w-[1180px] mx-auto px-4">
+				<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+					<div class="grid lg:grid-cols-2">
+						<!-- Product Gallery -->
+						<div class="p-6">
+							<div class="relative h-[552px] rounded-2xl overflow-hidden mb-4">
+								<img 
+									src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
+									alt="FLAIM Producto" 
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div class="grid grid-cols-4 gap-2">
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="FLAIM 1" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="FLAIM 2" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="FLAIM 3" class="h-[136px] w-full object-cover rounded-lg" />
+								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="FLAIM 4" class="h-[136px] w-full object-cover rounded-lg" />
+							</div>
+						</div>
+						
+						<!-- Product Info -->
+						<div class="p-8 lg:p-12">
+							<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-2">
+								FLAIM FTS
+							</h2>
+							<p class="text-lg text-[#504aff] font-semibold mb-2">Sistema de formación de bomberos MR</p>
+							<p class="text-[#6b7280] mb-6">FLAIM Systems</p>
+							
+							<div class="mb-8">
+								<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Especificaciones Técnicas</h3>
+								<p class="text-[#6b7280] leading-relaxed mb-4">
+									Diseñado para profesionales. Permite entrenar en más de 80 escenarios (aeropuertos, barcos, túneles, entornos industriales) utilizando el equipo de protección completo.
+								</p>
+								
+								<h4 class="text-lg font-semibold text-[#2f2f3b] mb-3">Materiales y Componentes:</h4>
+								<ul class="space-y-2">
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Visor VR:</strong> Utiliza cascos de alta gama como el HTC Vive Pro o visores específicos de grado empresarial.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Manguera con Retroalimentación:</strong> Sistema de carrete de manguera que simula la fuerza y presión del agua mediante tecnología háptica.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Traje de Calor:</strong> Chaleco con elementos térmicos que simulan la proximidad al fuego.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Equipo SCBA:</strong> Mochila con computadora integrada y sensores de respiración que miden el consumo de aire del aprendiz.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Resolución:</strong> Pantallas LCD duales de 2.88", con resolución combinada de 4,896 x 2,448 píxeles.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Rendimiento:</strong> Tasa de refresco de 90Hz y campo de visión de hasta 120 grados.</span>
+									</li>
+									<li class="flex items-start gap-3">
+										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
+										<span class="text-[#6b7280]"><strong>Procesamiento:</strong> Equipado con procesadores Intel Core i7 y gráficos de alto rendimiento para renderizar incendios realistas.</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="py-20 bg-[#504aff]">
+			<div class="max-w-[1440px] mx-auto px-4 text-center">
+				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+					¿Interesado en FLAIM?
+				</h2>
+				<p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
+					Contáctanos para obtener más información sobre FLAIM y cómo puede revolucionar el entrenamiento de tu equipo de bomberos.
+				</p>
+				<a 
+					href="/contactanos"
+					class="inline-flex items-center bg-white text-[#504aff] font-semibold px-8 py-4 rounded-[25px] hover:bg-gray-100 transition-colors"
+				>
+					Contactanos
+				</a>
+			</div>
+		</section>
+
+		<!-- Back Link -->
+		<div class="bg-white py-4 border-b border-gray-100">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<a 
+					href="/productos"
+					class="inline-flex items-center text-[#504aff] font-semibold hover:underline"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+					</svg>
+					Regresar al catálogo
+				</a>
+			</div>
+		</div>
+	</main>
+	
+	<Footer />
+</Layout>

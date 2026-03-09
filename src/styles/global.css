@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* PROTON Fire & Rescue Theme */
+@layer theme {
+  :root {
+    /* Primary Colors */
+    --pf-primary: #504aff;
+    --pf-primary-hover: #3f3bcc;
+    --pf-secondary: #ff0501;
+    --pf-accent: #ff0511;
+    
+    /* Neutral Colors */
+    --pf-dark: #2f2f3b;
+    --pf-gray: #6b7280;
+    --pf-light: #f3f4f6;
+    --pf-white: #ffffff;
+    
+    /* DaisyUI Mapping */
+    --p: #504aff;
+    --pc: #ffffff;
+    --s: #ff0501;
+    --sc: #ffffff;
+    --a: #ff0511;
+    --ac: #ffffff;
+    --n: #2f2f3b;
+    --nc: #ffffff;
+    --b1: #ffffff;
+    --b2: #f3f4f6;
+    --b3: #e5e7eb;
+    --bc: #2f2f3b;
+    --in: #504aff;
+    --su: #10b981;
+    --wa: #f59e0b;
+    --er: #ff0501;
+  }
+}
+
+/* Font Family */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    line-height: 1.6;
+    color: var(--pf-dark);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Custom Utility Classes */
+@layer utilities {  
+  .text-primary-proton {
+    color: var(--pf-primary);
+  }
+  
+  .bg-primary-proton {
+    background-color: var(--pf-primary);
+  }
+  
+  .text-dark-proton {
+    color: var(--pf-dark);
+  }
+  
+  .bg-dark-proton {
+    background-color: var(--pf-dark);
+  }
+}
