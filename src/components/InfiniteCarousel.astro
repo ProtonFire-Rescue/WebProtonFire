@@ -1,0 +1,75 @@
+---
+export interface Props {
+	images: {
+		src: string;
+		alt: string;
+	}[];
+	speed?: number; // en segundos
+	direction?: 'left' | 'right';
+}
+
+const { 
+	images, 
+	speed = 20, 
+	direction = 'left' 
+} = Astro.props;
+
+// Duplicar imágenes para efecto infinito
+const duplicatedImages = [...images, ...images];
+---
+
+<div class="relative w-full overflow-hidden bg-transparent">
+	<!-- Contenedor del carousel -->
+	<div 
+		class={`flex items-center ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'}`}
+		style={`animation-duration: ${speed}s`}
+	>
+		{duplicatedImages.map((image, index) => (
+			<div class="shrink-0 px-4" id={`image-${index}`}>
+				<img 
+					src={image.src} 
+					alt={image.alt}
+					class="h-32 md:h-40 lg:h-28 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+					loading="lazy"
+				/>
+			</div>
+		))}
+	</div>
+	
+	<!-- Gradientes para efecto de desvanecimiento -->
+	<div class="absolute left-0 top-0 bottom-0 w-110 bg-linear-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
+	<div class="absolute right-0 top-0 bottom-0 w-110 bg-linear-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
+</div>
+
+<style>
+	@keyframes scroll-left {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+	
+	@keyframes scroll-right {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+	
+	.animate-scroll-left {
+		animation: scroll-left linear infinite;
+	}
+	
+	.animate-scroll-right {
+		animation: scroll-right linear infinite;
+	}
+	
+	/* Pausar animación al hover */
+	.flex:hover {
+		animation-play-state: paused;
+	}
+</style>
