@@ -1,44 +1,55 @@
 ---
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 export interface Props {
 	images: {
 		src: string;
 		alt: string;
 	}[];
 	speed?: number; // en segundos
-	direction?: 'left' | 'right';
+	direction?: "left" | "right";
+	imageClass?: string;
+	contentClass?: string;
+	blur?: boolean;
 }
 
-const { 
-	images, 
-	speed = 20, 
-	direction = 'left' 
+const {
+	images,
+	speed = 20,
+	contentClass = "relative w-full overflow-hidden bg-transparent",
+	imageClass = "h-10 md:h-40 lg:h-28 w-auto object-contain md:grayscale hover:grayscale-0 transition-all duration-300",
+	direction = "left",
+	blur = true,
 } = Astro.props;
 
 // Duplicar imágenes para efecto infinito
 const duplicatedImages = [...images, ...images];
 ---
 
-<div class="relative w-full overflow-hidden bg-transparent">
+<div class={contentClass}>
 	<!-- Contenedor del carousel -->
-	<div 
-		class={`flex items-center ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'}`}
+	<div
+		class={`scroll-item flex items-center ${direction === "left" ? "animate-scroll-left" : "animate-scroll-right"}`}
 		style={`animation-duration: ${speed}s`}
 	>
-		{duplicatedImages.map((image, index) => (
-			<div class="shrink-0 px-4" id={`image-${index}`}>
-				<img 
-					src={image.src} 
-					alt={image.alt}
-					class="h-32 md:h-40 lg:h-28 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-					loading="lazy"
-				/>
-			</div>
-		))}
+		{
+			duplicatedImages.map((image, index) => (
+				<div class="shrink-0 px-4" id={`image-${index}`}>
+					<img src={image.src} alt={image.alt} class={imageClass} loading="lazy"/>
+				</div>
+			))
+		}
 	</div>
-	
+
 	<!-- Gradientes para efecto de desvanecimiento -->
-	<div class="absolute left-0 top-0 bottom-0 w-110 bg-linear-to-r from-white via-white/80 to-transparent pointer-events-none"></div>
-	<div class="absolute right-0 top-0 bottom-0 w-110 bg-linear-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
+	{
+		blur && (
+			<>
+				<div class="absolute left-0 top-0 bottom-0 w-110 md:bg-linear-to-r from-white via-white/80 to-transparent pointer-events-none" />
+				<div class="absolute right-0 top-0 bottom-0 w-110 md:bg-linear-to-l from-white via-white/80 to-transparent pointer-events-none" />
+			</>
+		)
+	}
 </div>
 
 <style>
@@ -50,7 +61,7 @@ const duplicatedImages = [...images, ...images];
 			transform: translateX(-50%);
 		}
 	}
-	
+
 	@keyframes scroll-right {
 		0% {
 			transform: translateX(-50%);
@@ -59,15 +70,15 @@ const duplicatedImages = [...images, ...images];
 			transform: translateX(0);
 		}
 	}
-	
+
 	.animate-scroll-left {
 		animation: scroll-left linear infinite;
 	}
-	
+
 	.animate-scroll-right {
 		animation: scroll-right linear infinite;
 	}
-	
+
 	/* Pausar animación al hover */
 	.flex:hover {
 		animation-play-state: paused;

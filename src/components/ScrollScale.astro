@@ -1,0 +1,110 @@
+---
+interface Props {
+  images: string[];
+  speed?: number;
+  activeEvent?: boolean;
+  startEvent?: boolean;
+}
+const { images, speed = 20, startEvent = false } = Astro.props;
+
+// Triplicamos para asegurar que no haya "huecos" blancos en pantallas 4K
+const displayImages = [...images, ...images, ...images];
+---
+
+<section class="absolute -z-1 left-1/2 top-0 -translate-x-1/2 w-full h-100 overflow-hidden pointer-events-none">
+  <div 
+    id="carousel-track" 
+    class="flex gap-10 px-10 py-10 will-change-transform"
+  >
+    {displayImages.map((src, index) => (
+      <div class="carousel-item relative border-white/10 flex-none md:w-auto md:h-auto rounded-3xl overflow-hidden shadow-2xl origin-center">
+        <img 
+          src={src} 
+          alt={`Imagen ${index}`} 
+          class="h-50 md:h-60 w-auto brightness-60 object-contain transition-all duration-300"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  function setupCarousel() {
+    const track = document.getElementById('carousel-track');
+    if (!track) return;
+
+    const items = gsap.utils.toArray('.carousel-item') as HTMLElement[];
+    if (items.length === 0) return;
+
+    // 1. Limpiar cualquier rastro de animaciones previas
+    gsap.killTweensOf(track);
+
+    // 2. Lógica de Bucle Infinito (Seamless Loop)
+    // Calculamos el ancho de un tercio (el set original de imágenes)
+    const totalItems = items.length;
+    const itemWithGap = items[1].offsetLeft - items[0].offsetLeft;
+    const loopWidth = itemWithGap * (totalItems / 3);
+
+    // 3. Animación de movimiento
+    const tl = gsap.to(track, {
+      x: -loopWidth,
+      duration: 30, // Puedes ajustar la velocidad aquí manualmente si prefieres
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: gsap.utils.unitize(x => parseFloat(x) % loopWidth)
+      }
+    });
+
+    // 4. Efecto de Escalado Central
+    gsap.ticker.add(() => {
+      const centerX = window.innerWidth / 2;
+      
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.left + rect.width / 2;
+        const distance = Math.abs(centerX - itemCenter);
+        
+        // Zona de influencia: 400px desde el centro
+        const proximity = 400; 
+        
+        if (distance < proximity) {
+          // Mapeo: escala de 1.3 (centro) a 0.8 (lejos)
+          const scale = gsap.utils.mapRange(0, proximity, 1.3, 0.8, distance);
+          const opacity = gsap.utils.mapRange(0, proximity, 1, 0.3, distance);
+          
+          gsap.set(item, { 
+            scale: scale,
+            opacity: opacity,
+            zIndex: Math.round(scale * 100)
+          });
+        } else {
+          gsap.set(item, { scale: 0.8, opacity: 0.3, zIndex: 1 });
+        }
+      });
+    });
+
+    // Pausa al pasar el mouse
+    track.addEventListener('mouseenter', () => {
+      tl.pause();
+    });
+    track.addEventListener('mouseleave', () => {
+      tl.play();
+    });
+  }
+
+  // DISPARADORES CRÍTICOS (Aseguran que corra en Astro)
+  // 1. Cuando la página carga por primera vez
+  window.addEventListener('load', setupCarousel);
+  
+  // 2. Si usas View Transitions de Astro
+  document.addEventListener('astro:after-swap', setupCarousel);
+  
+  // 3. Ejecución inmediata por si el DOM ya está listo
+  if (document.readyState === 'complete') {
+    setupCarousel();
+  }
+</script>

@@ -1,185 +1,337 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import InfiniteCarousel from "../components/InfiniteCarousel.astro";
+import ScrollScale from "../components/ScrollScale.astro";
+import UserCarousel from "../components/UserCarousel.astro";
 
 const currentPath = Astro.url.pathname;
+
+// Ejemplo de imágenes para el carousel
+const carouselImages = [
+	{ src: "/images/carusel_1.png", alt: "Carusel imagen 1" },
+	{ src: "/images/carusel_2.png", alt: "Carusel imagen 2" },
+	{ src: "/images/carusel_3.png", alt: "Carusel imagen 3" },
+	{ src: "/images/carusel_4.png", alt: "Carusel imagen 4" },
+];
+
+// Imágenes para carousel de marcas
+const brandImages = [
+	{ src: "/brands/f500.png", alt: "F500" },
+	{ src: "/brands/sicor.png", alt: "Sicor" },
+	{ src: "/brands/viking.png", alt: "Viking" },
+	{ src: "/brands/task.png", alt: "Task" },
+	{ src: "/brands/hystec.png", alt: "Hystec" },
+	{ src: "/brands/gvs.png", alt: "GVS" },
+];
 ---
 
-<Layout 
+<Layout
 	title="Nosotros - PROTON Fire & Rescue"
 	description="Conoce PROTON Fire & Rescue, empresa ecuatoriana con más de 2 décadas de trayectoria en equipos de seguridad para bomberos, rescate e industria."
 	url="https://protonfire.com/nosotros"
 >
 	<Menu currentPath={currentPath} />
-	
+
 	<main>
 		<!-- Hero Section -->
-		<section class="bg-[#504aff] py-20">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-white mb-6">
-					Sobre Nosotros
-				</h1>
-				<p class="text-xl text-white/90 max-w-3xl mx-auto">
-					Más de 20 años de experiencia protegiendo vidas y propiedades en Ecuador
-				</p>
+		<section
+			class="relative py-30 md:py-65 md:mx-5 md:rounded-[55px] bg-gradient-to-b from-white from-5% to-black overflow-hidden"
+		>
+			<div class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<ScrollScale
+					images={carouselImages.map((image) => image.src)}
+					speed={30}
+				/>
+				<div class="text-center text-white">
+					<h1
+						class="text-4xl max-w-4xl mx-auto md:text-5xl lg:text-[52px] font-bold mb-6"
+					>
+						Líderes en soluciones bomberiles, rescate e
+						industriales.
+					</h1>
+					<p class="text-base md:text-xl max-w-3xl mx-auto">
+						En Proton Fire & Rescue, la calidad técnica se une a un
+						servicio humano excepcional. Nos mantenemos a la
+						vanguardia tecnológica para ofrecerte productos
+						certificados y un acompañamiento posventa permanente.
+						Nuestra meta es clara: cumplir tus expectativas con
+						seriedad y soporte técnico de élite a nivel nacional.
+					</p>
+				</div>
 			</div>
 		</section>
 
 		<!-- History Section -->
 		<section class="py-20 bg-white">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid lg:grid-cols-2 gap-12 items-center">
+			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+				<div
+					class="flex flex-col-reverse md:grid md:grid-cols-2 gap-12 items-center"
+				>
 					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6">
-							Nuestra Historia
+						<h2
+							class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6"
+						>
+							Quienes somos
 						</h2>
-						<p class="text-lg text-[#6b7280] mb-6 leading-relaxed">
-							PROTON Fire & Rescue nació hace más de dos décadas con una misión clara: proporcionar equipos de seguridad de la más alta calidad para proteger a quienes arriesgan sus vidas por la seguridad de otros. Desde nuestros inicios, nos hemos consolidado como un referente de confianza en el mercado ecuatoriano.
+						<p
+							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+						>
+							Somos un grupo humano alegre, honesto, trabajador y
+							dedicado a dar el mejor producto y/o servicio a
+							nuestros clientes a los cuales nos debemos día a
+							día; nos capacitamos constantemente y buscamos estar
+							vigentes con las nuevas tecnologías para que la
+							calidad de nuestra atención esté acorde a sus
+							expectativas.
 						</p>
-						<p class="text-lg text-[#6b7280] mb-6 leading-relaxed">
-							Nos especializamos en la importación y comercialización de equipos de seguridad para los sectores bomberil, de rescate e industrial, trabajando exclusivamente con las mejores marcas internacionales certificadas.
+						<p
+							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+						>
+							Nos enfocamos en que nuestro servicio posventa sea
+							genuino y damos un seguimiento personalizado a cada
+							caso de venta exitosa, con el afán de que nuestros
+							compradores palpen nuestro respaldo técnico y
+							soporte permanente.
+						</p>
+						<p
+							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+						>
+							Tenemos el privilegio de contar con técnicos
+							altamente calificados, que hacen de nuestro equipo
+							uno de los mejores a nivel nacional en el ambito
+							bomberil e industrial. Cuando requiera asistencia
+							técnica de calidad, productos certificados, pero
+							ante todo, seriedad y cumplimiento, piense en
+							<strong>Proton Fire & Rescue</strong>
 						</p>
 						<div class="grid grid-cols-3 gap-6 mt-8">
 							<div class="text-center">
-								<div class="text-4xl font-bold text-[#504aff] mb-2">20+</div>
-								<div class="text-[#6b7280]">Años de experiencia</div>
+								<div
+									class="text-4xl font-bold text-[#504aff] mb-2"
+								>
+									20+
+								</div>
+								<div class="text-[#6b7280]">
+									Años de experiencia
+								</div>
 							</div>
 							<div class="text-center">
-								<div class="text-4xl font-bold text-[#504aff] mb-2">1000+</div>
-								<div class="text-[#6b7280]">Clientes satisfechos</div>
+								<div
+									class="text-4xl font-bold text-[#504aff] mb-2"
+								>
+									1000+
+								</div>
+								<div class="text-[#6b7280]">
+									Clientes satisfechos
+								</div>
 							</div>
 							<div class="text-center">
-								<div class="text-4xl font-bold text-[#504aff] mb-2">50+</div>
-								<div class="text-[#6b7280]">Marcas internacionales</div>
+								<div
+									class="text-4xl font-bold text-[#504aff] mb-2"
+								>
+									50+
+								</div>
+								<div class="text-[#6b7280]">
+									Marcas internacionales
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/d19e133f-fc2c-4145-9ac8-483489df4730" 
-							alt="PROTON Fire & Rescue" 
+						<img
+							src="/images/hero-home.png"
+							alt="PROTON Fire & Rescue"
 							class="w-full h-auto rounded-2xl shadow-xl"
+							loading="lazy"
 						/>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Mission & Vision Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid md:grid-cols-2 gap-8">
-					<div class="bg-white rounded-2xl p-8 shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mb-6">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-							</svg>
-						</div>
-						<h3 class="text-2xl font-bold text-[#2f2f3b] mb-4">Nuestra Misión</h3>
-						<p class="text-[#6b7280] leading-relaxed">
-							Proporcionar equipos de seguridad de la más alta calidad y servicios especializados para proteger la vida de los profesionales que enfrentan situaciones de riesgo, contribuyendo a un Ecuador más seguro.
-						</p>
-					</div>
-					
-					<div class="bg-white rounded-2xl p-8 shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mb-6">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-							</svg>
-						</div>
-						<h3 class="text-2xl font-bold text-[#2f2f3b] mb-4">Nuestra Visión</h3>
-						<p class="text-[#6b7280] leading-relaxed">
-							Ser la empresa líder en Ecuador en equipos de seguridad para bomberos, rescate e industria, reconocida por la calidad de nuestros productos, servicio al cliente y compromiso con la seguridad.
-						</p>
-					</div>
+		<!-- Team Company Section -->
+		<section class="py-30 bg-gradient-to-b from-white via-zinc-200 to-white">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center mb-12">
+					<h2
+						class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-4"
+					>
+						Nuestro equipo
+					</h2>
+					<p class="text-[#6b7280] max-w-2xl mx-auto">
+						Detrás de cada solución en PROTON Fire & Rescue, hay un
+						equipo de profesionales apasionados por tu éxito.
+						Nuestros asesores no solo conocen el catálogo; entienden
+						tus desafíos. Con una combinación de honestidad, alegría
+						y rigor técnico, cada integrante de nuestro equipo de
+						ventas está aquí para escucharte y guiarte hacia la
+						decisión que mejor proteja tu inversión y tu seguridad.
+					</p>
 				</div>
+				<UserCarousel users={[
+					{ name: 'John Doe', bio: 'Técnico con experiencia en instalaciones de bombeo', image: 'https://randomuser.me/api/portraits/men/1.jpg' },
+					{ name: 'Jane Smith', bio: 'Técnico con experiencia en sistemas de iluminación', image: 'https://randomuser.me/api/portraits/women/1.jpg' },
+					{ name: 'Thomas Anderson', bio: 'Técnico con experiencia en sistemas de protección incendios', image: 'https://randomuser.me/api/portraits/men/2.jpg' },
+					{ name: 'Alice Johnson', bio: 'Técnico con experiencia en sistemas de ventilación', image: 'https://randomuser.me/api/portraits/women/2.jpg' },
+					{ name: 'Bob Davis', bio: 'Técnico con experiencia en sistemas de seguridad', image: 'https://randomuser.me/api/portraits/men/3.jpg' },
+					{ name: 'Emily Taylor', bio: 'Técnico con experiencia en sistemas de protección aerosol', image: 'https://randomuser.me/api/portraits/women/3.jpg' },
+					{ name: 'Charlie Wilson', bio: 'Técnico con experiencia en sistemas de extinción de incendios', image: 'https://randomuser.me/api/portraits/men/4.jpg' },
+					{ name: 'Sarah Rodriguez', bio: 'Técnico con experiencia en sistemas de calefacción', image: 'https://randomuser.me/api/portraits/women/4.jpg' },
+					{ name: 'David Lee', bio: 'Técnico con experiencia en sistemas de protección contra incendios químicos', image: 'https://randomuser.me/api/portraits/men/5.jpg' },
+					{ name: 'Michelle Hernandez', bio: 'Técnico con experiencia en sistemas de acción de gravedad', image: 'https://randomuser.me/api/portraits/women/5.jpg' },
+				]} />
 			</div>
 		</section>
 
-		<!-- Global Presence Section -->
-		<section class="py-20 bg-white">
-			<div class="max-w-[1414px] mx-auto px-4">
-				<div class="bg-[#f8f9fa] rounded-2xl p-8 md:p-12 lg:p-16">
-					<h2 class="text-3xl md:text-4xl lg:text-[52px] font-bold text-[#2f2f3b] text-center mb-8">
-						Presencia global
+		<!-- Partners Carousel Section -->
+		<section class="py-16 bg-white">
+			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center mb-12">
+					<h2
+						class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-4"
+					>
+						Nuestros Partners y Productos
 					</h2>
-					<p class="text-lg text-[#6b7280] text-center max-w-[989px] mx-auto mb-8">
-						Con una visión abierta al mundo, PROTON Fire & Rescue participa activamente en los eventos de seguridad más importantes del planeta, como la FDIC en Estados Unidos y la INTERSCHUTZ en Alemania.
+					<p class="text-[#6b7280] max-w-2xl mx-auto">
+						Trabajamos con las mejores marcas internacionales y
+						ofrecemos productos de la más alta calidad
 					</p>
-					
-					<div class="bg-[#504aff] rounded-xl p-6 md:p-8 mb-8 max-w-[1059px] mx-auto">
-						<p class="text-white text-lg text-center">
-							Nuestro compromiso con la seriedad y la innovación nos lleva a estar presentes en las ferias comerciales más grandes del mundo para seguir contribuyendo al éxito de las organizaciones locales.
-						</p>
-					</div>
-					
-					<div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-						<div class="bg-white rounded-xl p-6 shadow-md">
-							<h4 class="text-xl font-bold text-[#2f2f3b] mb-2">FDIC International</h4>
-							<p class="text-[#6b7280]">Indianapolis, Estados Unidos - La feria de bomberos más grande de América</p>
-						</div>
-						<div class="bg-white rounded-xl p-6 shadow-md">
-							<h4 class="text-xl font-bold text-[#2f2f3b] mb-2">INTERSCHUTZ</h4>
-							<p class="text-[#6b7280]">Hannover, Alemania - La feria líder mundial de protección contra incendios</p>
-						</div>
-					</div>
 				</div>
+
+				<InfiniteCarousel
+					images={brandImages}
+					speed={25}
+					direction="left"
+				/>
 			</div>
 		</section>
 
 		<!-- Values Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] text-center mb-12">
+		<section class="py-20">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<h2
+					class="text-3xl md:text-4xl font-bold text-[#2f2f3b] text-center mb-12"
+				>
 					Nuestros Valores
 				</h2>
-				
+
 				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-					<div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+						<div
+							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-[#504aff]"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">Calidad</h3>
-						<p class="text-[#6b7280]">Productos certificados de las mejores marcas internacionales</p>
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+							Calidad
+						</h3>
+						<p class="text-[#6b7280]">
+							Productos certificados de las mejores marcas
+							internacionales
+						</p>
 					</div>
-					
-					<div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+
+					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+						<div
+							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-[#504aff]"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">Compromiso</h3>
-						<p class="text-[#6b7280]">Dedicación total a la seguridad de nuestros clientes</p>
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+							Compromiso
+						</h3>
+						<p class="text-[#6b7280]">
+							Dedicación total a la seguridad de nuestros clientes
+						</p>
 					</div>
-					
-					<div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+
+					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+						<div
+							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-[#504aff]"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">Innovación</h3>
-						<p class="text-[#6b7280]">Siempre a la vanguardia de la tecnología en seguridad</p>
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+							Innovación
+						</h3>
+						<p class="text-[#6b7280]">
+							Siempre a la vanguardia de la tecnología en
+							seguridad
+						</p>
 					</div>
-					
-					<div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-						<div class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#504aff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+
+					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+						<div
+							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-8 w-8 text-[#504aff]"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">Servicio</h3>
-						<p class="text-[#6b7280]">Atención personalizada y soporte técnico especializado</p>
+						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+							Servicio
+						</h3>
+						<p class="text-[#6b7280]">
+							Atención personalizada y soporte técnico
+							especializado
+						</p>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		<Footer />
 	</main>
-	
-	<Footer />
 </Layout>

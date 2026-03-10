@@ -1,236 +1,292 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
 
 const currentPath = Astro.url.pathname;
 
 const services = [
 	{
-		title: 'SERVICIOS DE CAPACITACIÓN',
-		description: 'PROTON Fire & Rescue ofrece capacitación especializada y formación de brigadas en rescate, primeros auxilios y trabajos de alto riesgo. Somos expertos en la gestión de materiales peligrosos (Hazmat) y seguridad en altura, brindando soluciones técnicas integrales para que su industria opere bajo los más altos estándares de seguridad.',
-		icon: 'https://www.figma.com/api/mcp/asset/78d63496-ec01-4fea-a557-ef50b92e2b96'
+		title: "SERVICIOS DE CAPACITACIÓN",
+		description:
+			"PROTON Fire & Rescue ofrece capacitación especializada y formación de brigadas en rescate, primeros auxilios y trabajos de alto riesgo. Somos expertos en la gestión de materiales peligrosos (Hazmat) y seguridad en altura, brindando soluciones técnicas integrales para que su industria opere bajo los más altos estándares de seguridad.",
+		icon: "/icons/capacitacion.png",
 	},
 	{
-		title: 'SERVICIOS DE CONFECCIÓN',
-		description: 'Confeccionamos prendas técnicas de alta protección (ignífugas, dieléctricas y antidesgarro) utilizando insumos 100% certificados. Nuestras soluciones textiles garantizan seguridad avanzada contra riesgos específicos, combinando materiales especializados con componentes de alta durabilidad para entornos industriales exigentes.',
-		icon: 'https://www.figma.com/api/mcp/asset/6074ec98-a2d3-43e5-b513-5ef39cf70797'
+		title: "SERVICIOS DE CONFECCIÓN",
+		description:
+			"Confeccionamos prendas técnicas de alta protección (ignífugas, dieléctricas y antidesgarro) utilizando insumos 100% certificados. Nuestras soluciones textiles garantizan seguridad avanzada contra riesgos específicos, combinando materiales especializados con componentes de alta durabilidad para entornos industriales exigentes.",
+		icon: "/icons/confeccion.png",
 	},
 	{
-		title: 'SERVICIOS DE MANTENIMIENTO',
-		description: 'Ofrecemos un servicio técnico integral y mantenimiento especializado para equipos de protección crítica. Realizamos pruebas hidrostáticas, recarga de aire respirable tipo D y reparación certificada de equipos SCBA y sistemas para trabajos en altura, garantizando siempre la máxima operatividad y seguridad de su equipamiento.',
-		icon: 'https://www.figma.com/api/mcp/asset/6074ec98-a2d3-43e5-b513-5ef39cf70797'
-	}
+		title: "SERVICIOS DE MANTENIMIENTO",
+		description:
+			"Ofrecemos un servicio técnico integral y mantenimiento especializado para equipos de protección crítica. Realizamos pruebas hidrostáticas, recarga de aire respirable tipo D y reparación certificada de equipos SCBA y sistemas para trabajos en altura, garantizando siempre la máxima operatividad y seguridad de su equipamiento.",
+		icon: "/icons/mantenimiento.png",
+	},
+];
+
+const trainingServices = [
+	{
+		name: "Emergencias, Rescate y Verticalismo",
+		description:
+			"Entrenamiento completo para crear brigadas de emergencia eficientes",
+	},
+	{
+		name: "Rescate Marítimo",
+		description: "Técnicas de rescate en ambientes acuáticos y costeros",
+	},
+	{
+		name: "Piloto de Vehículos, Desensores y Extinción",
+		description:
+			"Capacitación en manejo de vehículos de emergencia y equipos de extinción",
+	},
+	{
+		name: "Sistema y Cosepción de Iluminación",
+		description:
+			"Diseño e implementación de sistemas de iluminación de emergencia",
+	},
+	{
+		name: "Gestión de Químicos y Material Peligrosos (Hazmat)",
+		description:
+			"Manejo seguro de sustancias peligrosas y materiales tóxicos",
+	},
+	{
+		name: "Trabajos en Altura",
+		description: "Seguridad y técnicas para operaciones en altura",
+	},
+];
+
+const maintenanceServices = [
+	{
+		name: "Gestión Integral de Extintores",
+		description:
+			"Mantenimiento completo de sistemas de extinción de incendios",
+	},
+	{
+		name: "Cuidado de Equipos de Aire (SCBA)",
+		description:
+			"Servicio certificado para equipos de respiración autónoma",
+	},
+	{
+		name: "Reparación de Equipos de Altura",
+		description:
+			"Mantenimiento de sistemas anticaídas y equipos de seguridad en altura",
+	},
+	{
+		name: "Certificación de Arandelas Especiales",
+		description: "Certificaciones oficiales para componentes de seguridad",
+	},
 ];
 ---
 
-<Layout 
+<Layout
 	title="Servicios - PROTON Fire & Rescue"
 	description="Descubre nuestros servicios de capacitación, confección y mantenimiento para equipos de seguridad de bomberos, rescate e industria en Ecuador."
 	url="https://protonfire.com/servicios"
 >
 	<Menu currentPath={currentPath} />
-	
-	<main>
-		<!-- Hero Section -->
-		<section class="bg-[#504aff] py-20">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-white mb-6">
-					Nuestros Servicios
-				</h1>
-				<p class="text-xl text-white/90 max-w-3xl mx-auto">
-					Además de ofrecer productos, PROTON Fire & Rescue ofrece un catálogo de servicios especializados para tu institución o empresa.
-				</p>
-			</div>
-		</section>
 
-		<!-- Services Tags Section -->
-		<section class="py-8 bg-white border-b border-gray-100">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="flex flex-wrap justify-center gap-4">
-					<span class="bg-[#504aff] text-white px-6 py-3 rounded-lg font-semibold">Capacita</span>
-					<span class="bg-[#504aff] text-white px-6 py-3 rounded-lg font-semibold">Confecciona</span>
-					<span class="bg-[#504aff] text-white px-6 py-3 rounded-lg font-semibold">Mantiene</span>
+	<main>
+		<!-- Hero Section - Dark with gradient like index -->
+		<section
+			class="relative min-h-150 md:min-h-200 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
+		>
+			<!-- Background Image with overlay -->
+			<div class="absolute inset-0 bg-black/50">
+				<video
+					src="/videos/home.mp4"
+					class="w-full h-full object-cover"
+					autoplay
+					muted
+					loop
+					playsinline></video>
+				<div
+					class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"
+				>
+				</div>
+			</div>
+
+			<div
+				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-30 md:pt-10 pb-20"
+			>
+				<div class="max-w-3xl">
+					<h1
+						class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
+					>
+						Nuestros Servicios
+					</h1>
+					<p
+						class="text-base md:text-xl text-white/90 leading-relaxed mb-8"
+					>
+						Además de ofrecer productos, PROTON Fire & Rescue ofrece
+						un catálogo de servicios especializados para tu
+						institución o empresa. Capacitamos, confeccionamos y
+						mantenemos tus equipos de seguridad.
+					</p>
 				</div>
 			</div>
 		</section>
-
-		<!-- Services Cards Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1414px] mx-auto px-4">
-				<div class="grid md:grid-cols-3 gap-8">
-					{services.map((service) => (
-						<div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-							<div class="w-[136px] h-[136px] bg-[#f8f9fa] rounded-full flex items-center justify-center mx-auto mb-6">
-								<img 
-									src={service.icon}
-									alt={service.title}
-									class="w-[83px] h-[83px] object-contain"
-								/>
-							</div>
-							<h3 class="text-lg font-bold text-[#2f2f3b] mb-4 text-center">{service.title}</h3>
-							<p class="text-[#6b7280] text-sm leading-relaxed text-center">
-								{service.description}
+		<!-- Capacitación y Formación Section - Two Column Layout -->
+		<section
+			class="py-20 bg-gradient-to-b from-white via-zinc-100 to-white"
+		>
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid gap-12 items-start">
+					<!-- Left Column: Capacitación y Formación -->
+					<div class="grid md:grid-cols-3 gap-8 md:pl-20">
+						<div>
+							<h2
+								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+							>
+								Capacitación y Formación
+							</h2>
+							<p class="text-[#6b7280] mb-8 leading-relaxed">
+								En nuestra división académica, impulsamos la
+								excelencia operativa a través de programas de
+								formación diseñados por instructores con
+								experiencia real en campo. Desde la creación de
+								brigadas interinstitucionales hasta técnicas de
+								rescate avanzado, preparamos a tu equipo para
+								responder con precisión bajo presión.
 							</p>
 						</div>
-					))}
+
+						<div class="space-y-4">
+							{
+								trainingServices.map((item) => (
+									<div class="border-b border-gray-200 pb-4 last:border-0">
+										<h2 class=" text-xl font-bold text-[#2f2f3b] mb-1">
+											{item.name}
+										</h2>
+										<p class="text-sm text-[#6b7280]">
+											{item.description}
+										</p>
+									</div>
+								))
+							}
+						</div>
+					</div>
+					<hr
+						class="border-gray-200 border-dashed my-8 w-full border"
+					/>
+
+					<!-- Right Column: Maintenance Services -->
+					<div
+						class="flex flex-col-reverse md:grid md:grid-cols-3 gap-8 pr-20"
+					>
+						<div></div>
+
+						<div class="space-y-4">
+							{
+								maintenanceServices.map((item) => (
+									<div class="border-b border-gray-200 pb-4 last:border-0">
+										<h3 class="text-xl font-bold text-[#2f2f3b] mb-1">
+											{item.name}
+										</h3>
+										<p class="text-sm text-[#6b7280]">
+											{item.description}
+										</p>
+									</div>
+								))
+							}
+						</div>
+
+						<div>
+							<h2
+								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+							>
+								Soporte Técnico, Mantenimiento y Confección
+							</h2>
+							<p class="text-[#6b7280] mb-8 leading-relaxed">
+								El rendimiento de tus equipos de seguridad
+								depende de su estado. Nuestro laboratorio
+								técnico ofrece mantenimiento preventivo y
+								correctivo para extintores, equipos de aire
+								respirable y sistemas de protección en altura.
+								Además, nuestra planta de confección elabora
+								prendas técnicas ignífugas y dieléctricas con
+								insumos certificados, garantizando protección
+								real contra riesgos laborales.
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Capacitación Details -->
+		<!-- Images Section -->
 		<section class="py-20 bg-white">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6">
-							Capacitación Especializada
-						</h2>
-						<p class="text-lg text-[#6b7280] mb-6 leading-relaxed">
-							Nuestros programas de capacitación están diseñados para formar brigadistas profesionales y equipos de respuesta de emergencia con los más altos estándares internacionales.
-						</p>
-						<ul class="space-y-4">
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Formación de brigadas</strong> - Entrenamiento completo para crear brigadas de emergencia eficientes</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Rescate</strong> - Técnicas de rescate en espacios confinados, altura y estructuras colapsadas</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Primeros auxilios</strong> - Certificaciones en primeros auxilios, RCP y uso de DEA</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Hazmat</strong> - Gestión de materiales peligrosos y sustancias tóxicas</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Trabajos en altura</strong> - Seguridad y técnicas para operaciones en altura</span>
-							</li>
-						</ul>
-					</div>
-					<div class="relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/d19e133f-fc2c-4145-9ac8-483489df4730" 
-							alt="Capacitación PROTON" 
-							class="w-full h-auto rounded-2xl shadow-xl"
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid md:grid-cols-2 gap-8">
+					<div
+						class="relative rounded-3xl overflow-hidden shadow-2xl"
+					>
+						<img
+							src="/images/carusel_2.png"
+							alt="Capacitación PROTON"
+							class="w-full h-80 object-cover"
+							loading="lazy"
 						/>
+						<div
+							class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent"
+						>
+							<p class="text-white font-semibold">
+								Capacitación en campo
+							</p>
+						</div>
+					</div>
+					<div
+						class="relative rounded-3xl overflow-hidden shadow-2xl"
+					>
+						<img
+							src="/images/carusel_3.png"
+							alt="Equipos PROTON"
+							class="w-full h-80 object-cover"
+							loading="lazy"
+						/>
+						<div
+							class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent"
+						>
+							<p class="text-white font-semibold">
+								Equipos de protección
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Confección Details -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div class="order-2 lg:order-1 relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/d59921bb-a034-47c7-a905-f2b5a6c3829d" 
-							alt="Confección PROTON" 
-							class="w-full h-auto rounded-2xl shadow-xl"
-						/>
-					</div>
-					<div class="order-1 lg:order-2">
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6">
-							Confección Técnica
-						</h2>
-						<p class="text-lg text-[#6b7280] mb-6 leading-relaxed">
-							Fabricamos prendas de protección personal con los más altos estándares de calidad y certificaciones internacionales, utilizando materiales especializados para cada tipo de riesgo.
-						</p>
-						<ul class="space-y-4">
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Ropa ignífuga</strong> - Protección contra llamas y altas temperaturas</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Ropa dieléctrica</strong> - Protección contra riesgos eléctricos</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Ropa antidesgarro</strong> - Alta resistencia a cortes y abrasiones</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Insumos certificados</strong> - 100% materiales certificados internacionalmente</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Personalización</strong> - Diseños a medida según necesidades específicas</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- Mantenimiento Details -->
-		<section class="py-20 bg-white">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6">
-							Mantenimiento Especializado
-						</h2>
-						<p class="text-lg text-[#6b7280] mb-6 leading-relaxed">
-							Servicio técnico integral para mantener tus equipos de protección en óptimas condiciones, garantizando su funcionamiento cuando más los necesitas.
-						</p>
-						<ul class="space-y-4">
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Pruebas hidrostáticas</strong> - Verificación de integridad de equipos de respiración</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Recarga de aire respirable</strong> - Tipo D con certificación</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Reparación SCBA</strong> - Servicio certificado para equipos de respiración autónoma</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Trabajos en altura</strong> - Mantenimiento de sistemas anticaídas</span>
-							</li>
-							<li class="flex items-start gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-								<span class="text-[#2f2f3b]"><strong>Certificaciones</strong> - Todos los servicios con certificación oficial</span>
-							</li>
-						</ul>
-					</div>
-					<div class="relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/d59921bb-a034-47c7-a905-f2b5a6c3829d" 
-							alt="Mantenimiento PROTON" 
-							class="w-full h-auto rounded-2xl shadow-xl"
-						/>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- CTA Section -->
-		<section class="py-20 bg-[#504aff]">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-					¿Necesitas más información?
-				</h2>
-				<p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-					Contáctanos para conocer más detalles sobre nuestros servicios y cómo podemos ayudarte.
-				</p>
-				<a 
-					href="/contactanos"
-					class="inline-flex items-center bg-white text-[#504aff] font-semibold px-8 py-4 rounded-[25px] hover:bg-gray-100 transition-colors"
+		<!-- CTA Section - Dark Card Style -->
+		<section
+			class="py-20 bg-gradient-to-b from-white via-zinc-200 to-zinc-100"
+		>
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div
+					class="bg-[#2f2f3b] rounded-[40px] p-8 md:p-16 text-center"
 				>
-					Contactanos
-				</a>
+					<h2
+						class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4"
+					>
+						¿Por qué elegir nuestros servicios?
+					</h2>
+					<p class="text-white/80 max-w-2xl mx-auto mb-8">
+						Cada uno de nuestros servicios cuenta con el respaldo de
+						técnicos calificados y está diseñado para superar las
+						expectativas de cumplimiento y seguridad. En PROTON Fire
+						& Rescue, no solo cumplimos con la norma, elevamos el
+						estándar de protección para tu empresa.
+					</p>
+					<a
+						href="/contactanos"
+						class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
+					>
+						Contactanos
+					</a>
+				</div>
 			</div>
 		</section>
 	</main>
-	
+
 	<Footer />
 </Layout>

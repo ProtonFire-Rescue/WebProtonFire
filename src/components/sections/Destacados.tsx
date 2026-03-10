@@ -22,13 +22,13 @@
         const [selectedProduct, setSelectedProduct] = useState(0);
         
         return (
-            <section className="flex flex-col gap-10 items-start justify-between w-full md:w-350 mx-auto h-auto md:h-full">
+            <section className="flex flex-col gap-0 md:gap-10 items-start justify-between w-full md:w-350 mx-auto h-auto md:h-full">
                 {/*CTA change destacados*/}
                 <div className="flex gap-4 p-5 bg-[#B1B1B6] w-86.5 h-14.75 rounded-[66px] justify-center items-center mx-auto">
                     <button className="btn btn-white w-32.5 h-11.70 rounded-[66px]" onClick={() => setSelectedProduct(0)}>f-500</button>
                     <button className="btn btn-white w-32.5 h-11.70 rounded-[66px]" onClick={() => setSelectedProduct(1)}>Flaim</button>
                 </div>
-                <div className="flex flex-col justify-center items-center md:flex-row gap-9 p-5 my-10 w-auto md:w-250 lg:w-350 md:h-87.5 mx-auto">
+                <div className="flex flex-col-reverse justify-center items-center md:flex-row gap-9 p-5 my-10 w-auto md:w-250 lg:w-350 md:h-87.5 mx-auto">
                     {/* Description */}
                     <div className="flex flex-col gap-9 justify-center">
                         <h2 className="text-3xl font-bold">{destacados[selectedProduct].title}</h2>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     {/* Image */}
-                    <div className="w-full md:w-117.5 h-110.5 rounded-[66px] overflow-hidden">
+                    <div className="w-full md:w-117.5 h-50 md:h-110.5 rounded-[40px] md:rounded-[66px] overflow-hidden">
                         <img src={destacados[selectedProduct].image} alt={destacados[selectedProduct].name} className="object-cover w-full h-full" loading="lazy"/>
                     </div>
                 </div>

@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Menu from '../components/Menu.astro';
 import Footer from '../components/Footer.astro';
-import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -16,13 +15,13 @@ const currentPath = Astro.url.pathname;
 	
 	<main>
 		<!-- WhatsApp Hero Section -->
-		<section class="relative py-5 bg-white overflow-hidden">
+		<section class="relative py-5 bg-gradient-to-t from-white to-zinc-600 overflow-hidden">
 			<div class="max-w-360 mx-auto px-6 sm:px-6 lg:px-5 md:pb-20">
-				<div class="gap-8 items-center p-0 sm:px-20 md:px-32 lg:px-30">
+				<div class="flex flex-col lg:flex-row justify-center lg:gap-8 items-center p-0 sm:px-20 md:px-32 lg:px-30">
 					<!-- Image Side -->
-					<div class="relative w-full md:w-[200px] lg:w-[500px] xl:w-[900px] rounded-3xl overflow-hidden shadow-xl">
+					<div class="relative w-full md:w-125 md:h-125 overflow-hidden my-5 md:my-20 pt-20 bg-linear-to-t from-white to-zinc-600 drop-shadow-xl rounded-full">
 						<img 
-							src="/images/contact-head.png" 
+							src="/images/Contactanos.png" 
 							alt="Contact PROTON" 
 							class="w-full h-auto object-cover"
 							loading="lazy"
@@ -30,7 +29,7 @@ const currentPath = Astro.url.pathname;
 					</div>
 					
 					<!-- Content Side -->
-					<div class="md:absolute md:bottom-10 md:right-40 bg-white rounded-3xl p-8 md:p-16 shadow-xl w-full md:w-75 xl:w-125 mt-10">
+					<div class=" bg-white rounded-3xl p-8 lg:p-16 shadow-xl w-full md:w-110 lg:w-125 lg:mt-10">
 						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
 							Contáctanos
 						</h2>
