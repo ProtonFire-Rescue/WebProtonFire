@@ -26,56 +26,64 @@ const services = [
 	},
 ];
 
-const trainingServices = [
-	{
-		name: "Emergencias, Rescate y Verticalismo",
-		description:
-			"Entrenamiento completo para crear brigadas de emergencia eficientes",
-	},
-	{
-		name: "Rescate Marítimo",
-		description: "Técnicas de rescate en ambientes acuáticos y costeros",
-	},
-	{
-		name: "Piloto de Vehículos, Desensores y Extinción",
-		description:
-			"Capacitación en manejo de vehículos de emergencia y equipos de extinción",
-	},
-	{
-		name: "Sistema y Cosepción de Iluminación",
-		description:
-			"Diseño e implementación de sistemas de iluminación de emergencia",
-	},
-	{
-		name: "Gestión de Químicos y Material Peligrosos (Hazmat)",
-		description:
-			"Manejo seguro de sustancias peligrosas y materiales tóxicos",
-	},
-	{
-		name: "Trabajos en Altura",
-		description: "Seguridad y técnicas para operaciones en altura",
-	},
-];
-
 const maintenanceServices = [
 	{
 		name: "Gestión Integral de Extintores",
 		description:
-			"Mantenimiento completo de sistemas de extinción de incendios",
+			"Aseguramos la potencia de tu primera respuesta. Realizamos recarga, mantenimiento y presurización de equipos PQS, CO2 y Púrpura K, bajo los más estrictos estándares de calidad.",
 	},
 	{
 		name: "Cuidado de Equipos de Aire (SCBA)",
 		description:
-			"Servicio certificado para equipos de respiración autónoma",
+			"Tu respiración es nuestra prioridad. Ofrecemos mantenimiento multimarca, pruebas hidrostáticas, sanitización y recarga de aire respirable Grado D, garantizando aire puro en cada intervención.",
 	},
 	{
 		name: "Reparación de Equipos de Altura",
 		description:
-			"Mantenimiento de sistemas anticaídas y equipos de seguridad en altura",
+			"Alargamos la vida útil de tu inversión. Somos expertos en la reparación de retráctiles y equipos normados para trabajo en alturas, asegurando que cada componente funcione a la perfección.",
 	},
 	{
-		name: "Certificación de Arandelas Especiales",
-		description: "Certificaciones oficiales para componentes de seguridad",
+		name: "Confección de Prendas Especiales",
+		description:
+			"Protección a medida para riesgos específicos. Diseñamos y fabricamos indumentaria técnica: ignífuga, antiabrasiva, dieléctrica y repelente a mosquitos, fusionando comodidad con máxima resistencia industrial.",
+	},
+];
+
+const trainingServices = [
+	{
+		name: "Gestión Integral de Extintores",
+		description:
+			"Formación técnica avanzada para escenarios críticos. Capacitamos a tu personal en maniobras de rescate seguras y eficientes, dominando el entorno vertical con equipo especializado.",
+	},
+	{
+		name: "Formación de Brigadas Industriales",
+		description:
+			"Transformamos a tus colaboradores en la primera línea de defensa. Diseñamos programas integrales para que tus brigadas actúen con liderazgo y eficacia ante cualquier incidente en planta.",
+	},
+	{
+		name: "Primeros Auxilios",
+		description:
+			"Conocimiento vital para salvar vidas. Brindamos las herramientas teóricas y prácticas necesarias para estabilizar pacientes y reaccionar correctamente ante emergencias médicas.",
+	},
+	{
+		name: "Alertas Volcánicas, Desastres y Evacuación",
+		description:
+			"Especialistas en prevención. Desarrollamos planes de respuesta y protocolos de evacuación ante fenómenos naturales, garantizando el resguardo de todo tu personal.",
+	},
+	{
+		name: "Derrame y Contención de Hidrocarburos",
+		description:
+			"Protegemos tu operación y el entorno. Instruimos en técnicas de respuesta rápida y uso de materiales absorbentes para mitigar impactos ambientales y riesgos operativos.",
+	},
+	{
+		name: "Gestión de Químicos y HAZMAT (Espacios Confinados)",
+		description:
+			"Seguridad máxima en entornos peligrosos. Certificamos a tu equipo en el manejo de sustancias tóxicas y operaciones seguras en espacios confinados bajo normativas internacionales.",
+	},
+	{
+		name: "Trabajos en Altura",
+		description:
+			"Seguridad vertical para sectores clave. Capacitación específica para la industria eléctrica, telecomunicaciones y construcción, enfocada en la prevención de caídas y el uso correcto de equipos certificados.",
 	},
 ];
 ---
@@ -130,6 +138,7 @@ const maintenanceServices = [
 		<!-- Capacitación y Formación Section - Two Column Layout -->
 		<section
 			class="py-20 bg-gradient-to-b from-white via-zinc-100 to-white"
+			id="servicios"
 		>
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid gap-12 items-start">
@@ -142,13 +151,8 @@ const maintenanceServices = [
 								Capacitación y Formación
 							</h2>
 							<p class="text-[#6b7280] mb-8 leading-relaxed">
-								En nuestra división académica, impulsamos la
-								excelencia operativa a través de programas de
-								formación diseñados por instructores con
-								experiencia real en campo. Desde la creación de
-								brigadas interinstitucionales hasta técnicas de
-								rescate avanzado, preparamos a tu equipo para
-								responder con precisión bajo presión.
+								Preparamos a tu equipo para responder con
+								precisión cuando cada segundo cuenta.
 							</p>
 						</div>
 
@@ -166,6 +170,15 @@ const maintenanceServices = [
 								))
 							}
 						</div>
+						<div>
+							<script
+								type="module"
+								src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"
+							></script>
+							<spline-viewer
+								url="https://prod.spline.design/fJ2ptJKzT-sDkpfO/scene.splinecode"
+							></spline-viewer>
+						</div>
 					</div>
 					<hr
 						class="border-gray-200 border-dashed my-8 w-full border"
@@ -175,7 +188,10 @@ const maintenanceServices = [
 					<div
 						class="flex flex-col-reverse md:grid md:grid-cols-3 gap-8 pr-20"
 					>
-						<div></div>
+						<div>
+							<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.68/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/A56zIEDDB5atzknT/scene.splinecode"></spline-viewer>
+						</div>
 
 						<div class="space-y-4">
 							{
@@ -199,15 +215,8 @@ const maintenanceServices = [
 								Soporte Técnico, Mantenimiento y Confección
 							</h2>
 							<p class="text-[#6b7280] mb-8 leading-relaxed">
-								El rendimiento de tus equipos de seguridad
-								depende de su estado. Nuestro laboratorio
-								técnico ofrece mantenimiento preventivo y
-								correctivo para extintores, equipos de aire
-								respirable y sistemas de protección en altura.
-								Además, nuestra planta de confección elabora
-								prendas técnicas ignífugas y dieléctricas con
-								insumos certificados, garantizando protección
-								real contra riesgos laborales.
+								Tecnología y respaldo técnico para garantizar la
+								operatividad de tus equipos.
 							</p>
 						</div>
 					</div>
@@ -219,8 +228,9 @@ const maintenanceServices = [
 		<section class="py-20 bg-white">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid md:grid-cols-2 gap-8">
-					<div
+					<a
 						class="relative rounded-3xl overflow-hidden shadow-2xl"
+						href="#servicios"
 					>
 						<img
 							src="/images/carusel_2.png"
@@ -235,9 +245,10 @@ const maintenanceServices = [
 								Capacitación en campo
 							</p>
 						</div>
-					</div>
-					<div
+					</a>
+					<a
 						class="relative rounded-3xl overflow-hidden shadow-2xl"
+						href="/productos"
 					>
 						<img
 							src="/images/carusel_3.png"
@@ -252,18 +263,18 @@ const maintenanceServices = [
 								Equipos de protección
 							</p>
 						</div>
-					</div>
+					</a>
 				</div>
 			</div>
 		</section>
 
 		<!-- CTA Section - Dark Card Style -->
 		<section
-			class="py-20 bg-gradient-to-b from-white via-zinc-200 to-zinc-100"
+			class="py-20 bg-linear-to-b from-white via-zinc-200 to-zinc-100"
 		>
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div
-					class="bg-[#2f2f3b] rounded-[40px] p-8 md:p-16 text-center"
+					class="bg-[#2f2f3b] rounded-[40px] p-8 md:p-50 text-center"
 				>
 					<h2
 						class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4"

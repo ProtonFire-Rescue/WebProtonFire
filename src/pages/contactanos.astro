@@ -2,8 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import Menu from '../components/Menu.astro';
 import Footer from '../components/Footer.astro';
+import { actions } from 'astro:actions';
 
 const currentPath = Astro.url.pathname;
+const result = Astro.getActionResult(actions.send);
+
+if(result?.data) {
+	return Astro.redirect('/contactanos')
+}
+
+if(result?.error) {
+	
+}
 ---
 
 <Layout 

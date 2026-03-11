@@ -1,190 +1,410 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import InfiniteCarousel from "../components/InfiniteCarousel.astro";
 
 const currentPath = Astro.url.pathname;
 
-const productCategories = [
-	{
-		name: 'Línea Fuego',
-		description: 'Equipos especializados para la extinción de incendios y protección contra fuego',
-		image: 'https://www.figma.com/api/mcp/asset/d59921bb-a034-47c7-a905-f2b5a6c3829d',
-		products: ['Extintores', 'Mangueras', 'Equipos de respiración', 'Trajes de bombero']
-	},
-	{
-		name: 'Línea Rescate',
-		description: 'Equipos para operaciones de rescate y salvamento en emergencias',
-		image: 'https://www.figma.com/api/mcp/asset/d59921bb-a034-47c7-a905-f2b5a6c3829d',
-		products: ['Cuerdas', 'Arnés', 'Poleas', 'Herramientas de rescate']
-	},
-	{
-		name: 'Línea Tecnología',
-		description: 'Soluciones tecnológicas avanzadas para entrenamiento y operaciones',
-		image: 'https://www.figma.com/api/mcp/asset/d59921bb-a034-47c7-a905-f2b5a6c3829d',
-		products: ['F-500', 'FLAIM VR', 'Sistemas de monitoreo']
-	}
+// Marcas para el carousel
+const brandImages = [
+	{ src: "/brands/f500.png", alt: "F500" },
+	{ src: "/brands/sicor.png", alt: "Sicor" },
+	{ src: "/brands/viking.png", alt: "Viking" },
+	{ src: "/brands/task.png", alt: "Task" },
+	{ src: "/brands/hystec.png", alt: "Hystec" },
+	{ src: "/brands/gvs.png", alt: "GVS" },
 ];
 
-const featuredProducts = [
+// Productos estructurales
+const structuralProducts = [
 	{
-		name: 'F-500',
-		description: 'Sistema de extinción eficaz',
-		image: 'https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3',
-		href: '/productos/f-500'
+		id: "TT-001",
+		name: "Traje Estructural Básico",
+		image: "/images/linea-fuego.png",
+		category: "Estructurales",
 	},
 	{
-		name: 'FLAIM',
-		description: 'Sistema de entrenamiento VR',
-		image: 'https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3',
-		href: '/productos/flaim'
-	}
+		id: "TT-002",
+		name: "Traje Estructural Avanzado",
+		image: "/images/linea-fuego.png",
+		category: "Estructurales",
+	},
+	{
+		id: "TT-003",
+		name: "Traje Estructural Premium",
+		image: "/images/linea-fuego.png",
+		category: "Estructurales",
+	},
+	{
+		id: "TT-004",
+		name: "Traje Estructural Elite",
+		image: "/images/linea-fuego.png",
+		category: "Estructurales",
+	},
 ];
 
-const brands = [
-	{ name: 'F500', image: 'https://www.figma.com/api/mcp/asset/1925dca6-a831-4e10-8a6b-bf854cf0c01d' },
-	{ name: 'Sicor', image: 'https://www.figma.com/api/mcp/asset/6eb7b505-adb5-46e1-a310-245958325d51' },
-	{ name: 'Viking', image: 'https://www.figma.com/api/mcp/asset/98436151-63a9-40ef-87a1-75c2fb7f88a0' },
-	{ name: 'Task', image: 'https://www.figma.com/api/mcp/asset/93f5eb13-5674-4a0c-a160-b5bd4d99d509' },
-	{ name: 'Hystec', image: 'https://www.figma.com/api/mcp/asset/1b6440ea-a134-4c54-afe4-45578a62d954' },
-	{ name: 'GVS', image: 'https://www.figma.com/api/mcp/asset/6cfba094-b3b1-40df-adc2-24efe10eade2' }
+// Productos adicionales para mostrar variedad
+const additionalProducts = [
+	{
+		id: "TR-001",
+		name: "Traje Rescate Básico",
+		image: "/images/linea-rescate.png",
+		category: "Rescate",
+	},
+	{
+		id: "TR-002",
+		name: "Traje Rescate Avanzado",
+		image: "/images/linea-rescate.png",
+		category: "Rescate",
+	},
+	{
+		id: "TR-003",
+		name: "Traje Rescate Premium",
+		image: "/images/linea-rescate.png",
+		category: "Rescate",
+	},
+	{
+		id: "TR-004",
+		name: "Traje Rescate Elite",
+		image: "/images/linea-rescate.png",
+		category: "Rescate",
+	},
+];
+
+// Certificaciones
+const certifications = [
+	{ name: "NFPA", icon: "nfpa" },
+	{ name: "CE", icon: "ce" },
+	{ name: "ISO", icon: "iso" },
+	{ name: "UL", icon: "ul" },
+	{ name: "EN", icon: "en" },
+	{ name: "ANSI", icon: "ansi" },
 ];
 ---
 
-<Layout 
+<Layout
 	title="Productos - PROTON Fire & Rescue"
 	description="Descubre nuestro catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales."
 	url="https://protonfire.com/productos"
 >
 	<Menu currentPath={currentPath} />
-	
+
 	<main>
-		<!-- Hero Section -->
-		<section class="bg-[#504aff] py-20">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-white mb-6">
-					Nuestros Productos
-				</h1>
-				<p class="text-xl text-white/90 max-w-3xl mx-auto">
-					Equipos de seguridad de las mejores marcas internacionales para bomberos, rescate e industria
-				</p>
+		<!-- Hero Section - Dark with gradient -->
+		<section
+			class="relative min-h-150 md:min-h-200 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
+		>
+			<!-- Background Image with overlay -->
+			<div class="absolute inset-0">
+				<img
+					src="/images/hero-home.png"
+					alt="Productos PROTON"
+					class="w-full h-full object-cover"
+					loading="lazy"
+				/>
+				<div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90"></div>
 			</div>
-		</section>
 
-		<!-- Featured Products Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1414px] mx-auto px-4">
-				<h2 class="text-3xl md:text-4xl lg:text-[52px] font-bold text-[#2f2f3b] text-center mb-4">
-					Productos Destacados
-				</h2>
-				<p class="text-lg text-[#6b7280] text-center max-w-[692px] mx-auto mb-12">
-					Te presentamos los productos que más llaman la atención de nuestros clientes
-				</p>
-				
-				<div class="grid md:grid-cols-2 gap-8 max-w-[1185px] mx-auto">
-					{featuredProducts.map((product) => (
-						<div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-							<div class="relative h-[552px] overflow-hidden">
-								<img 
-									src={product.image}
-									alt={product.name}
-									class="w-full h-full object-cover"
-								/>
-							</div>
-							<div class="p-6">
-								<h3 class="text-2xl font-bold text-[#2f2f3b] mb-2">{product.name}</h3>
-								<p class="text-[#6b7280] mb-4">{product.description}</p>
-								<a href={product.href} class="text-[#504aff] font-semibold hover:underline">
-									Ver detalles del producto →
-								</a>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-
-		<!-- Categories Section -->
-		<section class="py-20 bg-white">
-			<div class="max-w-[1414px] mx-auto px-4">
-				<h2 class="text-3xl md:text-4xl lg:text-[52px] font-bold text-[#2f2f3b] text-center mb-12">
-					Nuestras Líneas de Especialidad
-				</h2>
-				
-				<div class="grid md:grid-cols-3 gap-8">
-					{productCategories.map((category) => (
-						<div class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-shadow">
-							<div class="relative h-[413px] overflow-hidden">
-								<img 
-									src={category.image}
-									alt={category.name}
-									class="w-full h-full object-cover"
-								/>
-								<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-								<div class="absolute bottom-0 left-0 right-0 p-6">
-									<h3 class="text-2xl font-bold text-white mb-2">{category.name}</h3>
-									<p class="text-white/80 text-sm">{category.description}</p>
-								</div>
-							</div>
-							<div class="p-6">
-								<ul class="space-y-2 mb-4">
-									{category.products.map((product) => (
-										<li class="flex items-center gap-2 text-[#6b7280]">
-											<span class="w-1.5 h-1.5 bg-[#504aff] rounded-full"></span>
-											{product}
-										</li>
-										))}
-									</ul>
-								<a 
-									href={`/productos/category/${category.name.toLowerCase().replace(' ', '-')}`}
-									class="text-[#504aff] font-semibold hover:underline"
-								>
-									Ver todos los productos →
-								</a>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-
-		<!-- Brands Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] text-center mb-12">
-					Trabajamos con las mejores marcas del mercado
-				</h2>
-				
-				<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-					{brands.map((brand) => (
-						<img 
-							src={brand.image}
-							alt={`${brand.name} Logo`}
-							class="h-12 w-auto opacity-70 hover:opacity-100 transition-opacity"
-						/>
-					))}
-				</div>
-			</div>
-		</section>
-
-		<!-- CTA Section -->
-		<section class="py-20 bg-[#504aff]">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-					¿Necesitas más información?
-				</h2>
-				<p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-					Contáctanos para conocer nuestro catálogo completo y recibir asesoría personalizada
-				</p>
-				<a 
-					href="/contactanos"
-					class="inline-flex items-center bg-white text-[#504aff] font-semibold px-8 py-4 rounded-[25px] hover:bg-gray-100 transition-colors"
+			<div
+				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-30 md:pt-10 pb-20 text-center"
+			>
+				<h1
+					class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
 				>
-					Contactanos
+					Equipamiento de clase mundial<br />al alcance de tu mano
+				</h1>
+				<p class="text-base md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
+					La protección y seguridad que usted necesita, con la representación de las
+					mejores marcas y líderes, consolidando cada día nuestra oferta técnica
+					para el gremio bomberil, de rescate e industrial.
+				</p>
+				<a
+					href="#productos"
+					class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
+				>
+					Ver Catálogo
 				</a>
 			</div>
 		</section>
+
+		<!-- Brands Carousel Section -->
+		<section class="py-16 bg-white">
+			<div class="max-w-360 mx-auto px-4">
+				<InfiniteCarousel
+					images={brandImages}
+					speed={25}
+					direction="left"
+					imageClass="h-12 md:h-16 lg:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+					blur={false}
+				/>
+			</div>
+		</section>
+
+		<!-- Products Area Section -->
+		<section id="productos" class="py-20 bg-white">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center mb-16">
+					<h2
+						class="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] mb-4"
+					>
+						Área de productos
+					</h2>
+					<p class="text-lg text-[#6b7280] max-w-3xl mx-auto">
+						La mejor calidad, diseño y precio, representados con los mejores
+					
+distribuidores y representantes de las líderes empresas nacionales
+						en equipos de protección contra incendios.
+					</p>
+				</div>
+
+				<!-- Estructurales Category -->
+				<div class="mb-16">
+					<h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
+						<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+						Estructurales
+					</h3>
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+						{
+							structuralProducts.map((product) => (
+								<div class="group">
+									<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+										<div class="relative aspect-[3/4] overflow-hidden bg-gray-50 p-4">
+											<img
+												src={product.image}
+												alt={product.name}
+												class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+												loading="lazy"
+											/>
+										</div>
+										<div class="p-4">
+											<h4 class="font-semibold text-[#2f2f3b] text-sm mb-1">
+												{product.name}
+											</h4>
+											<p class="text-xs text-[#6b7280] mb-3">
+												Modelo: {product.id}
+											</p>
+											<button class="w-full bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors">
+												Agregar al carrito
+											</button>
+										</div>
+									</div>
+								</div>
+								))
+							}
+						</div>
+						<div class="flex justify-end mt-6">
+							<a
+								href="#"
+								class="inline-flex items-center gap-2 bg-[#2f2f3b] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#504aff] transition-colors"
+							>
+								Ver más
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="m9 18 6-6-6-6" />
+								</svg>
+							</a>
+						</div>
+					</div>
+
+				<!-- Rescate Category -->
+				<div class="mb-16">
+					<h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
+						<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+						Rescate
+					</h3>
+					<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+						{
+							additionalProducts.map((product) => (
+								<div class="group">
+									<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+										<div class="relative aspect-[3/4] overflow-hidden bg-gray-50 p-4">
+											<img
+												src={product.image}
+												alt={product.name}
+												class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+												loading="lazy"
+											/>
+										</div>
+										<div class="p-4">
+											<h4 class="font-semibold text-[#2f2f3b] text-sm mb-1">
+												{product.name}
+											</h4>
+											<p class="text-xs text-[#6b7280] mb-3">
+												Modelo: {product.id}
+											</p>
+											<button class="w-full bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors">
+												Agregar al carrito
+											</button>
+										</div>
+									</div>
+								</div>
+								))
+							}
+						</div>
+						<div class="flex justify-end mt-6">
+							<a
+								href="#"
+								class="inline-flex items-center gap-2 bg-[#2f2f3b] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#504aff] transition-colors"
+							>
+								Ver más
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="m9 18 6-6-6-6" />
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+		</section>
+
+		<!-- Certifications Section -->
+		<section class="py-20 bg-[#f8f9fa]">
+			<div class="max-w-360 mx-auto px-4 text-center">
+				<p class="text-lg text-[#6b7280] max-w-3xl mx-auto mb-12">
+					Estos productos fueron previamente elegidos mediante excelentes
+					y certificaciones internacionales.
+				</p>
+
+				<div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+					<!-- Certification placeholders - using text badges -->
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+							<path d="m9 12 2 2 4-4" />
+						</svg>
+						<span class="font-semibold">NFPA</span>
+					</div>
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<circle cx="12" cy="12" r="10" />
+							<path d="m9 12 2 2 4-4" />
+						</svg>
+						<span class="font-semibold">CE</span>
+					</div>
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<path d="M12 2v4" />
+							<path d="m5 5 2.8 2.8" />
+							<path d="m19 5-2.8 2.8" />
+							<circle cx="12" cy="12" r="4" />
+							<path d="M12 16v4" />
+							<path d="m5 19 2.8-2.8" />
+							<path d="m19 19-2.8-2.8" />
+						</svg>
+						<span class="font-semibold">ISO</span>
+					</div>
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+							<polyline points="14 2 14 8 20 8" />
+							<path d="m9 15 2 2 4-4" />
+						</svg>
+						<span class="font-semibold">UL</span>
+					</div>
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+							<path d="m9 12 2 2 4-4" />
+						</svg>
+						<span class="font-semibold">EN</span>
+					</div>
+					<div class="flex items-center gap-2 text-[#6b7280]">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="text-[#504aff]"
+						>
+							<circle cx="12" cy="12" r="10" />
+							<path d="M8 12h8" />
+							<path d="M12 8v8" />
+						</svg>
+						<span class="font-semibold">ANSI</span>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
-	
+
 	<Footer />
 </Layout>
