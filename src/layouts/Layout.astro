@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 import { fade } from 'astro/virtual-modules/transitions.js';
+import { Toaster } from 'sonner';
 
 export interface Props {
 	title: string;
@@ -74,8 +75,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		</script>
 		<ClientRouter/>
 	</head>
-	<body class="font-sans antialiased" transition:animate={fade({duration: 500})}>
-		
+	<body class="font-sans antialiased" transition:animate="fade">
+		<Toaster client:load transition:persist richColors={true}/>
 		<slot />
 	</body>
 </html>

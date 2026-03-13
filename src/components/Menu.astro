@@ -91,16 +91,26 @@ const menuItems = [
 </header>
 
 <script>
-	const mobileMenuButton = document.getElementById('mobile-menu-button');
-	const mobileMenu = document.getElementById('mobile-menu');
-	
-	if (mobileMenuButton && mobileMenu) {
-		mobileMenuButton.addEventListener('click', () => {
-			const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-			mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
-			mobileMenu.classList.toggle('hidden');
-		});
+	function initMobileMenu() {
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+		
+		if (mobileMenuButton && mobileMenu) {
+			// Remove existing listener to prevent duplicates
+			const newButton = mobileMenuButton.cloneNode(true);
+			mobileMenuButton.parentNode?.replaceChild(newButton, mobileMenuButton);
+			
+			newButton.addEventListener('click', () => {
+				const isExpanded = newButton.getAttribute('aria-expanded') === 'true';
+				newButton.setAttribute('aria-expanded', String(!isExpanded));
+				mobileMenu.classList.toggle('hidden');
+			});
+		}
 	}
-
 	
+	// Initialize on first load
+	initMobileMenu();
+	
+	// Re-initialize after view transitions (ClientRouter)
+	document.addEventListener('astro:page-load', initMobileMenu);
 </script>

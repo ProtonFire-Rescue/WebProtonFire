@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+* {
+  font-family: 'Kodchasan', system-ui, -apple-system, sans-serif;
+}
+
 /* PROTON Fire & Rescue Theme */
 @layer theme {
   :root {

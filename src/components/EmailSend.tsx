@@ -1,21 +1,21 @@
 import { Body, Button, Container, Head, Heading, Html, Img, Preview, Section, Tailwind, Text } from '@react-email/components';
 
 interface WelcomeEmailProps {
-  name?: string;
-  company?: string;
-  email?: string;
-  asunto?: string;
-  message?: string;
+  name: string;
+  email: string;
+  asunto: string;
+  message: string;
+  phone: string
 }
 
 const WelcomeEmail = ({
   name = 'Nicole',
-  company = 'Proton Fire',
-  email,
-  asunto,
-  message,
+  email = 'nicole@example.com',
+  asunto = 'Nuevo mensaje',
+  message = 'Nuevo mensaje',
+  phone = '1xxxxxxxxx'
 }: WelcomeEmailProps) => {
-  const previewText = `Welcome to ${company}, ${name}!`;
+  const previewText = `!Haz recibido un nuevo mensaje de ${name}!`;
 
   return (
     <Html>
@@ -34,28 +34,26 @@ const WelcomeEmail = ({
               />
             </Section>
             <Heading className="text-2xl text-white font-normal text-center p-0 my-8 mx-0">
-              Welcome to <strong>{company}</strong>, {name}!
+              ¡Haz recibido un nuevo mensaje de {name}!
             </Heading>
             <Text className="text-start text-sm text-white">
               Hello {name},
             </Text>
             <Text className="text-start text-sm text-white leading-relaxed">
-              We're excited to have you onboard at <strong>{company}</strong>.
-              We hope you enjoy your journey with us. If you have any questions
-              or need assistance, feel free to reach out.
+              {message}
             </Text>
-            <Section className="text-center mt-[32px] mb-[32px]">
+            <Section className="text-center mt-8 mb-8">
               <Button
                 className="py-2.5 px-5 bg-white rounded-md text-black text-sm font-semibold no-underline text-center"
-                href={`https://example.com/get-started`}
+                href={`https://wa.me/${phone}`}
               >
-                Get Started
+                Ver mensaje
               </Button>
             </Section>
             <Text className="text-start text-sm text-white">
               Cheers,
               <br />
-              The {company} Team
+              Contacto ProtonFire Web
             </Text>
           </Container>
         </Body>

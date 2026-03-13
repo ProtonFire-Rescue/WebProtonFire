@@ -1,34 +1,35 @@
-import { ActionError, defineAction } from 'astro:actions';
-import { Resend } from 'resend';
-import { z } from 'astro:schema';
-import EmailSend from '../components/EmailSend';
+import { defineAction, ActionError } from "astro:actions";
+import { z } from "zod";
+import { Resend } from "resend";
+import EmailSend from "../components/EmailSend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 export const server = {
   send: defineAction({
-    accept: 'form',
+    accept: "form",
     input: z.object({
-      name: z.string().min(1, 'Name is required'),
-      email: z.string().email('Invalid email'),
-      asunto: z.string().min(1, 'Subject is required'),
-      message: z.string().min(1, 'Message is required'),
+      name: z.string(),
+      email: z.string().email(),
+      asunto: z.string(),
+      message: z.string(),
+      phone: z.string()
     }),
-    handler: async ({name, email, asunto, message}) => {
+    handler: async ({name, email, asunto, message, phone}) => {
       const { data, error } = await resend.emails.send({
-        from: 'Acme <onboarding@resend.dev>',
-        to: ['tecnologia@protonfire.com'],
+        from: "ProtonFire <onboarding@resend.dev>",
+        to: ["tecnologia@protonfire.com"],
         subject: asunto,
-        react: EmailSend({ name, email, asunto, message }),
+        react: EmailSend({ name, email, asunto, message, phone }),
       });
-
       if (error) {
+        console.error(error)
         throw new ActionError({
-          code: 'BAD_REQUEST',
+          code: "INTERNAL_SERVER_ERROR",
           message: error.message,
         });
+        
       }
-
       return data;
     },
   }),

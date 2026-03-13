@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import InfiniteCarousel from "../components/InfiniteCarousel.astro";
 
 const currentPath = Astro.url.pathname;
-
+	
 // Marcas para el carousel
 const brandImages = [
 	{ src: "/brands/f500.png", alt: "F500" },
@@ -93,21 +93,17 @@ const certifications = [
 	<main>
 		<!-- Hero Section - Dark with gradient -->
 		<section
-			class="relative min-h-150 md:min-h-200 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
+			class="relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-[600px] md:min-h-[700px] py-20 md:py-32 overflow-hidden md:mx-5 md:rounded-b-[55px]"
 		>
-			<!-- Background Image with overlay -->
-			<div class="absolute inset-0">
-				<img
-					src="/images/hero-home.png"
-					alt="Productos PROTON"
-					class="w-full h-full object-cover"
-					loading="lazy"
-				/>
-				<div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/90"></div>
+			<!-- Large rounded gradient circle background -->
+			<div class="hidden md:absolute inset-x-1 bottom-20 flex items-center justify-center pointer-events-none">
+				<div 
+					class="w-[140%] md:w-[120%] aspect-square rounded-full bg-linear-to-b from-60% from-black to-white"
+				></div>
 			</div>
 
 			<div
-				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-30 md:pt-10 pb-20 text-center"
+				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 md:pt-10 pb-20 text-center"
 			>
 				<h1
 					class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
@@ -253,7 +249,7 @@ distribuidores y representantes de las líderes empresas nacionales
 						</div>
 						<div class="flex justify-end mt-6">
 							<a
-								href="#"
+								href="/catalogo"
 								class="inline-flex items-center gap-2 bg-[#2f2f3b] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#504aff] transition-colors"
 							>
 								Ver más
