@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import ProductCatalog from "../components/ProductCatalog";
+import { BACKEND_URL } from "../utils/contants";
+import { getProducts } from "../utils/server";
+
+const currentPath = Astro.url.pathname;
+const productsData = await getProducts();
+const allProducts = productsData.data.map((product: any) => {
+  const {id, product_name: name, images, category: {categoryName: category}, brand: {modelName: brand}} = product;
+  return {id, name, image: `${BACKEND_URL}${images[0].formats.small.url}`, category, brand};
+});
+
+
+---
+
+<Layout
+	title="Catálogo de Productos - PROTON Fire & Rescue"
+	description="Explora nuestro catálogo completo de equipos de seguridad. Filtra por categoría, marca y precio."
+	url="https://protonfire.com/productos-categoria"
+>
+	<Menu currentPath={currentPath} />
+
+	<main>
+		<!-- Header Section -->
+		<section class="py-16 bg-white">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center mt-16">
+					<h1 class="text-3xl md:text-4xl lg:text-[40px] font-bold text-[#2f2f3b] mb-3">
+						Busca el producto de tu interés
+					</h1>
+					<p class="text-gray-500 max-w-xl mx-auto">
+						Explora nuestro catálogo completo y encuentra el equipo perfecto para tus necesidades
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Product Catalog Section -->
+		<section class="pb-20 bg-white">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<ProductCatalog initialProducts={allProducts} client:load/>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>

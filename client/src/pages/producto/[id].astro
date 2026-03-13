@@ -1,0 +1,62 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Menu from "../../components/Menu.astro";
+import Footer from "../../components/Footer.astro";
+import ProductDetail from "../../components/ProductDetail";
+import { getProductById, getRelatedProducts } from "../../utils/server";
+import { BACKEND_URL } from "../../utils/contants";
+
+const { id } = Astro.params;
+
+// Productos de ejemplo - en producción vendrían de una API o base de datos
+const {data: product} = await getProductById(id);
+const {data: relatedProducts} = await getRelatedProducts(product[0].category.categoryName);
+
+
+const relatedProductsFilter = relatedProducts.map((product: any) => ({
+  id: product.id,
+  name: product.product_name,
+  images: product.images,
+  category: product.category.categoryName,
+  brand: product.brand.modelName,
+  description: product.description
+}));
+
+const productFilter = {
+  id: product[0].id,
+  name: product[0].product_name,
+  images: product[0].images.map((image: any) => ({
+    id: image.id,
+    url: `${BACKEND_URL}${image.url}`,
+    alt: image.alternativeText
+  })),
+  category: product[0].category.categoryName,
+  brand: product[0].brand.modelName,
+  description: product[0].description
+};
+
+
+
+
+// Si el producto no existe, redirigir al catálogo
+if (!product) {
+  return Astro.redirect("/catalogo");
+}
+const currentPath = Astro.url.pathname;
+---
+
+<Layout
+  title={`${product.name} - PROTON Fire & Rescue`}
+  description={`${product.name} - Equipos de seguridad profesional para bomberos y rescate.`}
+  url={`https://protonfire.com/producto/${product.id}`}
+>
+  <Menu currentPath={currentPath} />
+  
+  <ProductDetail 
+    product={productFilter} 
+    relatedProducts={relatedProductsFilter}
+    client:load
+  />
+  
+  <Footer />
+</Layout>
