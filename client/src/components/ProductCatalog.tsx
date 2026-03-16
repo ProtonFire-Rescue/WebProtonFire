@@ -272,7 +272,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                   <a
                     href={`/producto/${product.id}`}
                     data-astro-prefetch="hover"
-                    className="w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors"
+                    className="w-full bg-[#2f2f3b] text-white text-sm font-medium p-2 rounded-lg hover:bg-[#504aff] transition-colors"
                   >
                     Ver más
                   </a>
