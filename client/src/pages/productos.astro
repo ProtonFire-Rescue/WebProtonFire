@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import InfiniteCarousel from "../components/InfiniteCarousel.astro";
+import ProductsAreaData from "../components/ProductsAreaData.astro";
 
 const currentPath = Astro.url.pathname;
 	
@@ -16,71 +17,6 @@ const brandImages = [
 	{ src: "/brands/gvs.png", alt: "GVS" },
 ];
 
-// Productos estructurales
-const structuralProducts = [
-	{
-		id: "TT-001",
-		name: "Traje Estructural Básico",
-		image: "/images/linea-fuego.png",
-		category: "Estructurales",
-	},
-	{
-		id: "TT-002",
-		name: "Traje Estructural Avanzado",
-		image: "/images/linea-fuego.png",
-		category: "Estructurales",
-	},
-	{
-		id: "TT-003",
-		name: "Traje Estructural Premium",
-		image: "/images/linea-fuego.png",
-		category: "Estructurales",
-	},
-	{
-		id: "TT-004",
-		name: "Traje Estructural Elite",
-		image: "/images/linea-fuego.png",
-		category: "Estructurales",
-	},
-];
-
-// Productos adicionales para mostrar variedad
-const additionalProducts = [
-	{
-		id: "TR-001",
-		name: "Traje Rescate Básico",
-		image: "/images/linea-rescate.png",
-		category: "Rescate",
-	},
-	{
-		id: "TR-002",
-		name: "Traje Rescate Avanzado",
-		image: "/images/linea-rescate.png",
-		category: "Rescate",
-	},
-	{
-		id: "TR-003",
-		name: "Traje Rescate Premium",
-		image: "/images/linea-rescate.png",
-		category: "Rescate",
-	},
-	{
-		id: "TR-004",
-		name: "Traje Rescate Elite",
-		image: "/images/linea-rescate.png",
-		category: "Rescate",
-	},
-];
-
-// Certificaciones
-const certifications = [
-	{ name: "NFPA", icon: "nfpa" },
-	{ name: "CE", icon: "ce" },
-	{ name: "ISO", icon: "iso" },
-	{ name: "UL", icon: "ul" },
-	{ name: "EN", icon: "en" },
-	{ name: "ANSI", icon: "ansi" },
-];
 ---
 
 <Layout
@@ -116,7 +52,7 @@ const certifications = [
 					para el gremio bomberil, de rescate e industrial.
 				</p>
 				<a
-					href="#productos"
+					href="/catalogo"
 					class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
 				>
 					Ver Catálogo
@@ -149,128 +85,37 @@ const certifications = [
 					<p class="text-lg text-[#6b7280] max-w-3xl mx-auto">
 						La mejor calidad, diseño y precio, representados con los mejores
 					
-distribuidores y representantes de las líderes empresas nacionales
+			distribuidores y representantes de las líderes empresas nacionales
 						en equipos de protección contra incendios.
 					</p>
 				</div>
 
-				<!-- Estructurales Category -->
-				<div class="mb-16">
-					<h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
-						<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-						Estructurales
-					</h3>
-					<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-						{
-							structuralProducts.map((product) => (
-								<div class="group">
-									<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-										<div class="relative aspect-[3/4] overflow-hidden bg-gray-50 p-4">
-											<img
-												src={product.image}
-												alt={product.name}
-												class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-												loading="lazy"
-											/>
-										</div>
-										<div class="p-4">
-											<h4 class="font-semibold text-[#2f2f3b] text-sm mb-1">
-												{product.name}
-											</h4>
-											<p class="text-xs text-[#6b7280] mb-3">
-												Modelo: {product.id}
-											</p>
-											<button class="w-full bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors">
-												Agregar al carrito
-											</button>
-										</div>
+				<ProductsAreaData server:defer>
+					<div slot="fallback">
+						{Array.from({ length: 2 }).map((_, sectionIdx) => (
+							<div class="mb-16" key={`section-${sectionIdx}`}>
+								<div class="h-6 bg-gray-200 animate-pulse rounded w-48 mb-8"></div>
+								<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+									{Array.from({ length: 4 }).map((_, i) => (
+										<div class="group" key={`sk-${sectionIdx}-${i}`}>
+											<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+												<div class="relative aspect-3/4 overflow-hidden bg-gray-50 p-4">
+													<div class="w-full h-full bg-gray-200 animate-pulse rounded-xl"></div>
+												</div>
+												<div class="p-4 space-y-3">
+													<div class="h-4 bg-gray-200 animate-pulse rounded w-3/4"></div>
+													<div class="h-3 bg-gray-200 animate-pulse rounded w-1/2"></div>
+													<div class="h-9 bg-gray-200 animate-pulse rounded"></div>
+												</div>
+											</div>
 									</div>
+									))}
 								</div>
-								))
-							}
-						</div>
-						<div class="flex justify-end mt-6">
-							<a
-								href="#"
-								class="inline-flex items-center gap-2 bg-[#2f2f3b] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#504aff] transition-colors"
-							>
-								Ver más
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								>
-									<path d="m9 18 6-6-6-6" />
-								</svg>
-							</a>
-						</div>
+							</div>
+						))}
 					</div>
-
-				<!-- Rescate Category -->
-				<div class="mb-16">
-					<h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
-						<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-						Rescate
-					</h3>
-					<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-						{
-							additionalProducts.map((product) => (
-								<div class="group">
-									<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-										<div class="relative aspect-[3/4] overflow-hidden bg-gray-50 p-4">
-											<img
-												src={product.image}
-												alt={product.name}
-												class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-												loading="lazy"
-											/>
-										</div>
-										<div class="p-4">
-											<h4 class="font-semibold text-[#2f2f3b] text-sm mb-1">
-												{product.name}
-											</h4>
-											<p class="text-xs text-[#6b7280] mb-3">
-												Modelo: {product.id}
-											</p>
-											<button class="w-full bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors">
-												Agregar al carrito
-											</button>
-										</div>
-									</div>
-								</div>
-								))
-							}
-						</div>
-						<div class="flex justify-end mt-6">
-							<a
-								href="/catalogo"
-								data-astro-prefetch="hover"
-								class="inline-flex items-center gap-2 bg-[#2f2f3b] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#504aff] transition-colors"
-							>
-								Ver más
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-								>
-									<path d="m9 18 6-6-6-6" />
-								</svg>
-							</a>
-						</div>
-					</div>
-				</div>
+				</ProductsAreaData>
+			</div>
 		</section>
 
 		<!-- Certifications Section -->
