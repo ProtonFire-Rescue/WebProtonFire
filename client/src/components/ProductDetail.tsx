@@ -88,6 +88,8 @@ export default function ProductDetail({
               <div className="flex items-center gap-4 text-sm">
                 <span className="text-gray-600">Marca: {product.brand}</span>
                 <span className="text-gray-400">|</span>
+                <span className="text-gray-600">Modelo: {product.model}</span>
+                <span className="text-gray-400">|</span>
                 <span className="flex items-center gap-1 text-green-600">
                   <Check size={16} />
                   {product.category}
@@ -110,9 +112,9 @@ export default function ProductDetail({
             </div>
 
             {/* CTA Button */}
-            <button
-              onClick={handleCotizar}
-              disabled={isCotizando}
+            <a
+              href={`https://wa.me/593982487322?text=Hola, me interesa saber información acerca del producto: ${product.name}, modelo: ${product.model} y marca: ${product.brand}`}
+              target="_blank"
               className="w-full bg-[#504aff] text-white font-semibold py-4 px-8 rounded-xl hover:bg-[#3f3bcc] transition-colors shadow-lg shadow-[#504aff]/30 flex items-center justify-center gap-3"
             >
               {isCotizando ? (
@@ -126,7 +128,7 @@ export default function ProductDetail({
                   Cotizar Ahora
                 </>
               )}
-            </button>
+            </a>
           </div>
         </div>
       </section>
