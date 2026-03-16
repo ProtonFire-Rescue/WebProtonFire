@@ -43,7 +43,7 @@ const totalCount = cards.length;
     {groupNames.map((groupName) => {
       const items = grouped.get(groupName) ?? [];
       return (
-        <div class="mb-16">
+        <div class="mb-16" id={groupName.toLowerCase()}>
           <h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
             <span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
             {groupName}
@@ -93,3 +93,4 @@ const totalCount = cards.length;
     })}
   </>
 )
+  }
