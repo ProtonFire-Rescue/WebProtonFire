@@ -1,0 +1,43 @@
+---
+import ProductDetail from "./ProductDetail";
+import { BACKEND_URL } from "../utils/contants";
+import { getProductByIdQuery, getRelatedProductsQuery } from "../utils/server";
+import type { ProductView, StrapiProduct } from "../types";
+
+const { id } = Astro.props;
+
+const { data: product } = await getProductByIdQuery(
+  id,
+  'fields[0]=name&fields[1]=description&populate[category][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText',
+  { cacheTtlMs: 15000 },
+);
+
+if (!product?.length) {
+  return Astro.redirect("/catalogo");
+}
+
+const { data: relatedProducts } = await getRelatedProductsQuery(
+  product[0].category.name,
+  'fields[0]=name&populate[category][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&pagination[pageSize]=12&sort[0]=createdAt:desc',
+  { cacheTtlMs: 15000 },
+);
+
+const toProductView = (p: StrapiProduct): ProductView => ({
+  id: p.id,
+  name: p.name,
+  images: (p.images ?? []).map((image) => ({
+    id: image.id,
+    url: `${BACKEND_URL}${image.url}`,
+    alt: image.alternativeText ?? "",
+  })),
+  category: p.category?.name ?? "",
+  brand: p.brand?.name ?? "",
+  model: p.model?.name ?? "",
+  description: p.description,
+});
+
+const relatedProductsFilter = relatedProducts.map(toProductView);
+const productFilter = toProductView(product[0]);
+---
+
+<ProductDetail product={productFilter} relatedProducts={relatedProductsFilter} client:load />
