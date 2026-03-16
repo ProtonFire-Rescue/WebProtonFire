@@ -2,17 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
-import ProductCatalog from "../components/ProductCatalog";
-import { BACKEND_URL } from "../utils/contants";
-import { getProducts } from "../utils/server";
+import CatalogData from "../components/CatalogData.astro";
 
 const currentPath = Astro.url.pathname;
-const productsData = await getProducts();
-const allProducts = productsData.data.map((product: any) => {
-  const {id, product_name: name, images, category: {categoryName: category}, brand: {modelName: brand}} = product;
-  return {id, name, image: `${BACKEND_URL}${images[0].formats.small.url}`, category, brand};
-});
-
 
 ---
 
@@ -41,7 +33,23 @@ const allProducts = productsData.data.map((product: any) => {
 		<!-- Product Catalog Section -->
 		<section class="pb-20 bg-white">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
-				<ProductCatalog initialProducts={allProducts} client:load/>
+				<CatalogData server:defer>
+					<div slot="fallback" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+						{Array.from({ length: 8 }).map((_, i) => (
+							<div key={i} class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+								<div class="relative aspect-3/4 overflow-hidden bg-gray-50 p-4">
+									<div class="w-full h-full bg-gray-200 animate-pulse rounded-xl"></div>
+								</div>
+								<div class="p-4 space-y-3">
+									<div class="h-4 bg-gray-200 animate-pulse rounded w-3/4"></div>
+									<div class="h-3 bg-gray-200 animate-pulse rounded w-1/2"></div>
+									<div class="h-3 bg-gray-200 animate-pulse rounded w-2/3"></div>
+									<div class="h-9 bg-gray-200 animate-pulse rounded"></div>
+								</div>
+							</div>
+						))}
+					</div>
+				</CatalogData>
 			</div>
 		</section>
 	</main>

@@ -1,31 +1,10 @@
 import { useState } from "react";
 import { Check, ChevronRight, ShoppingCart, ArrowLeft } from "lucide-react";
-
-interface Images {
-  id: string;
-  url: string;
-  alt: string;
-}
-
-
-interface RelatedProduct {
-  id: string;
-  name: string;
-  model: string;
-  brand: string;
-  image: string;
-}
+import type { ProductView } from "../types";
 
 interface ProductDetailProps {
-  product: {
-    id: string;
-    name: string;
-    brand: string;
-    category: string;
-    images: Images[];
-    description?: string;
-  };
-  relatedProducts: RelatedProduct[];
+  product: ProductView;
+  relatedProducts: ProductView[];
   onCotizar?: (productId: string) => void;
   onBack?: () => void;
 }
@@ -41,11 +20,10 @@ export default function ProductDetail({
 
   const handleCotizar = () => {
     setIsCotizando(true);
-    onCotizar?.(product.id);
+    onCotizar?.(product.id.toString());
     setTimeout(() => setIsCotizando(false), 2000);
   };
-
-  console.log(product.images)
+  
 
   return (
     <div className="min-h-screen bg-white">
@@ -177,7 +155,7 @@ export default function ProductDetail({
               >
                 <div className="aspect-3/4 bg-gray-100 overflow-hidden">
                   <img
-                    src={item.image}
+                    src={item.images[0].url}
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />

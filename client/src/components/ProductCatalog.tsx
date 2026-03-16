@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { getBrands, getCategories } from '../utils/server';
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
   model: string;
   brand: string;
@@ -12,33 +12,25 @@ interface Product {
 
 interface ProductCatalogProps {
   initialProducts?: Product[];
+  categories?: string[];
+  brands?: string[];
 }
 
 
 
 
-export default function ProductCatalog({ initialProducts = [] }: ProductCatalogProps) {
+export default function ProductCatalog({ initialProducts = [], categories, brands }: ProductCatalogProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [selectedBrand, setSelectedBrand] = useState('Todos');
   const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none');
-  const [categories, setCategories] = useState(['Todos']);
-  const [brands, setBrands] = useState(['Todos']);
+  const [categoriesList, setCategoriesList] = useState<string[]>(['Todos'])
+  const [brandList, setBrandList] = useState<string[]>(['Todos'])
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const categoriesData = await getCategories();
-      setCategories(['Todos', ...categoriesData.data.map((category: any) => category.categoryName)]);
-    };
-    const fetchBrands = async () => {
-      const brandsData = await getBrands();
-      setBrands(['Todos', ...brandsData.data.map((brand: any) => brand.modelName)]);
-    };
-    fetchCategories();
-    fetchBrands();
-  }, []);
-
-
+    setCategoriesList(['Todos', ...categories || []])
+    setBrandList(['Todos', ...brands || []])
+  }, [categories, brands]);
 
   const filteredProducts = useMemo(() => {
     let result = [...initialProducts];
@@ -71,8 +63,8 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
     // Sort by price (using id as proxy for price demo)
     if (priceSort !== 'none') {
       result.sort((a, b) => {
-        const priceA = parseInt(a.id.split('-')[1] || '0');
-        const priceB = parseInt(b.id.split('-')[1] || '0');
+        const priceA = a.id;
+        const priceB = b.id;
         return priceSort === 'asc' ? priceA - priceB : priceB - priceA;
       });
     }
@@ -112,7 +104,7 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
         <div className="mb-6">
           <h4 className="text-sm font-medium text-gray-500 mb-3">Categoría</h4>
           <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
+            {categoriesList.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
@@ -132,7 +124,7 @@ export default function ProductCatalog({ initialProducts = [] }: ProductCatalogP
         <div className="mb-6">
           <h4 className="text-sm font-medium text-gray-500 mb-3">Marca</h4>
           <div className="flex flex-wrap gap-2">
-            {brands.map((brand) => (
+            {brandList.map((brand) => (
               <button
                 key={brand}
                 onClick={() => setSelectedBrand(brand)}
