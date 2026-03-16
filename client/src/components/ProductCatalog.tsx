@@ -85,7 +85,8 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Sidebar Filters */}
-      <aside className="w-full lg:w-64 shrink-0">
+      <div className='relative w-64'>
+        <aside className="sticky top-5 mb-10 w-full lg:w-64 shrink-0">
         <h3 className="text-lg font-semibold text-[#2f2f3b] mb-6">Filtros</h3>
 
         {/* Search in sidebar for mobile */}
@@ -177,6 +178,8 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
         )}
       </aside>
 
+      </div>
+
       {/* Products Grid */}
       <div className="flex-1">
         {/* Desktop Search */}
@@ -211,25 +214,6 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
 
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-[#2f2f3b]">Todos los Productos</h3>
-          <a
-            href="#"
-            className="text-sm text-[#504aff] hover:underline flex items-center gap-1"
-          >
-            Ver categorías
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </a>
         </div>
 
         <p className="text-sm text-gray-500 mb-6">

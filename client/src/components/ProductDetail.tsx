@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, ChevronRight, ShoppingCart, ArrowLeft } from "lucide-react";
+import { Check, ChevronRight, ShoppingCart } from "lucide-react";
 import type { ProductView } from "../types";
 
 interface ProductDetailProps {
@@ -13,7 +13,6 @@ export default function ProductDetail({
   product,
   relatedProducts,
   onCotizar,
-  onBack,
 }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]?.url || "");
   const [isCotizando, setIsCotizando] = useState(false);
@@ -80,14 +79,6 @@ export default function ProductDetail({
 
           {/* Right - Product Info */}
           <div className="space-y-6">
-            {/* Back Button */}
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 text-gray-500 hover:text-[#504aff] transition-colors"
-            >
-              <ArrowLeft size={20} />
-              <span>Volver a productos</span>
-            </button>
 
             {/* Title & Brand */}
             <div>
