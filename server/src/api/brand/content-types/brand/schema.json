@@ -11,12 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "modelName": {
+    "name": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "modelName"
+      "type": "uid"
     },
     "products": {
       "type": "relation",

@@ -11,15 +11,14 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "product_name": {
+    "name": {
       "type": "string"
     },
     "description": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "product_name"
+      "type": "uid"
     },
     "images": {
       "type": "media",
