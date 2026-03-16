@@ -4,215 +4,250 @@ import Menu from '../../components/Menu.astro';
 import Footer from '../../components/Footer.astro';
 
 const currentPath = Astro.url.pathname;
+
+const fireTypes = [
+  { class: 'A', description: 'Sólidos combustibles (cartón, papel, etc.)' },
+  { class: 'B', description: 'Líquidos inflamables (hidrocarburos, pintura, etc.)' },
+  { class: 'C', description: 'Eléctricos (transformadores desenergizados)' },
+  { class: 'D', description: 'Metales combustibles (magnesio, aluminio, litio, etc.)' },
+  { class: 'K', description: 'Aceites y grasas (en cocinas, calderos, etc.)' }
+];
+
+const howItWorks = [
+  'Es un aditivo potencializador del agua (fortalece 20 veces más la capacidad extintora del agua).',
+'Se mezcla con el agua a través de un eductor común (1% recomendable, se consume mucho menos que la espuma al 6%).',
+'Encapsula vapores inflamables y los descompone.',
+'Es un enfriador nato: enfría de 650 a 53ºC en pocos segundos el material inflamado.',
+'Evita la re-ignición: destruye las moléculas del material combustible.',
+'Actúa sobre los 3 elementos del fuego: combustible – fuente de calor – reaccion en cadena (la espuma convencional solo actúa sobre 2).',
+'Totalmente biodegradable, no tóxico, no corrosivo (no requiere remediación ambiental posterior).',
+'Posee certificacion NFPA 18 y UL LISTED.',
+'Costo inferior a la caneca de espumogeno convencional (ahorro en cada descarga).',
+'Producto 100% americano (fabricado en Atlanta, USA).',
+];
+
+const specifications = [
+  { title: 'Capacidad de extinción para múltiples clases de fuego', description: 'Efectivo contra fuegos de clase A, B, C, D y K, ofreciendo una solución versátil.' },
+  { title: 'Fórmula biodegradable y no tóxica', description: 'Seguro para el medio ambiente, humanos y animales, sin efectos nocivos.' },
+  { title: 'Reduce el tiempo de extinción significativamente', description: 'Actúa más rápido que el agua sola, controlando incendios en menos tiempo.' },
+  { title: 'Disminuye el consumo de agua hasta en un 50%', description: 'Optimiza el uso de recursos hídricos durante la extinción.' },
+  { title: 'Previene la re-ignición del fuego', description: 'Crea una barrera protectora que evita que el fuego vuelva a encenderse.' },
+  { title: 'No corrosivo para equipos ni superficies', description: 'Protege la integridad de equipos y estructuras durante su aplicación.' },
+  { title: 'Versátil y fácil de aplicar', description: 'Compatible con equipos estándar de extinción, sin necesidad de modificaciones.' },
+  { title: 'No deja residuos ni manchas', description: 'Limpieza sencilla después de su uso, sin residuos pegajosos.' }
+];
 ---
 
 <Layout 
-	title="F-500 - Sistema de Extinción Eficaz | PROTON Fire & Rescue"
-	description="F-500 es el sistema de extinción eficaz para combatir fuegos de clase A, B, C, D y K. Sistema versátil y biodegradable, seguro para equipos y medio ambiente."
+	title="F-500 EA - Agente Encapsulador | PROTON Fire & Rescue"
+	description="F-500 EA es un agente encapsulador de última generación para combatir fuegos de clase A, B, C, D y K. Biodegradable, no tóxico y altamente eficaz."
 	url="https://protonfire.com/productos/f-500"
 >
 	<Menu currentPath={currentPath} />
 	
-	<main>
+	<main class="bg-white">
 		<!-- Hero Section -->
-		<section class="bg-[#f8f9fa] py-20">
-			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+		<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-50 via-white to-orange-50">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 py-20">
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div>
-						<h1 class="text-4xl md:text-5xl lg:text-[52px] font-bold text-[#2f2f3b] leading-tight mb-6">
-							F-500
+					<!-- Left Content -->
+					<div class="space-y-6">
+						<h1 class="text-5xl lg:text-6xl font-bold text-[#2f2f3b] leading-tight">
+							F-500 EA<br />
+							<span class="text-3xl lg:text-4xl text-gray-600">(Encapsulator Agent)</span>
 						</h1>
-						<p class="text-lg text-[#6b7280] leading-relaxed mb-8">
-							Es un sistema de extinción de incendios altamente eficaz que ofrece una solución versátil y segura para combatir fuegos de diversas clases. Su fórmula biodegradable y no tóxica lo hace ideal para proteger tanto a los equipos de emergencia como al medio ambiente.
+						<p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+							Un agente encapsulador de última generación que ofrece una solución versátil y segura para combatir fuegos de diversas clases. Su fórmula biodegradable y no tóxica lo hace ideal para proteger tanto a los equipos de emergencia como al medio ambiente.
 						</p>
-						<a 
-							href="/contactanos"
-							class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[25px] hover:bg-[#3f3bcc] transition-colors"
-						>
-							Contactanos
+						<a href="#comenzar" class="inline-block bg-[#504aff] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+							Ver más
 						</a>
 					</div>
-					<div class="relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
-							alt="F-500 Sistema de extinción" 
-							class="w-full h-auto rounded-2xl shadow-2xl"
-						/>
+
+					<!-- Right Image -->
+					<div class="relative flex justify-center">
+						<div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500">
+							<img
+								src="/f-500/product_present.webp"
+								alt="F-500 EA Encapsulator Agent"
+								class="w-full h-auto object-contain"
+								loading="eager"
+							/>
+						</div>
+						<!-- Decorative elements -->
+						<div class="absolute -top-6 -right-6 w-32 h-32 bg-red-200 rounded-full blur-3xl opacity-50"></div>
+						<div class="absolute -bottom-6 -left-6 w-40 h-40 bg-orange-200 rounded-full blur-3xl opacity-50"></div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Info Control Flame Section -->
-		<section class="py-20 bg-white">
-			<div class="max-w-[1232px] mx-auto px-4">
+		<!-- Fire Types Section -->
+		<section class="py-20">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
-					<div class="relative">
-						<img 
-							src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
-							alt="F-500 Control de fuegos" 
-							class="w-full h-[337px] object-cover rounded-2xl"
-						/>
+					<!-- Image -->
+					<div class="order-2 lg:order-1 flex justify-center">
+						<div class="relative rounded-3xl overflow-hidden shadow-xl md:w-120">
+							<img
+								src="/f-500/fire_types.webp"
+								alt="Tipos de fuego que controla F-500"
+								class="w-full h-auto object-cover"
+								loading="lazy"
+							/>
+						</div>
 					</div>
-					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
+
+					<!-- Content -->
+					<div class="order-1 lg:order-2 space-y-6">
+						<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]">
 							¿Qué tipos de fuego controla?
 						</h2>
-						<p class="text-lg text-[#6b7280] mb-6">
-							Controla diferente tipo de fuegos, tales como:
+						<p class="text-lg text-gray-600 leading-relaxed">
+							Controla diferentes tipos de fuegos, tales como:
 						</p>
-						<ul class="space-y-3">
-							<li class="flex items-center gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-								<span class="text-[#2f2f3b]"><strong>Clase A:</strong> Sólidos combustibles (cartón, papel, etc.)</span>
-							</li>
-							<li class="flex items-center gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-								<span class="text-[#2f2f3b]"><strong>Clase B:</strong> Líquidos inflamables (hidrocarburos, pintura, etc.)</span>
-							</li>
-							<li class="flex items-center gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-								<span class="text-[#2f2f3b]"><strong>Clase C:</strong> Eléctricos (transformadores desenergizados)</span>
-							</li>
-							<li class="flex items-center gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-								<span class="text-[#2f2f3b]"><strong>Clase D:</strong> Metales combustibles (magnesio, aluminio, litio, etc.)</span>
-							</li>
-							<li class="flex items-center gap-3">
-								<span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
-								<span class="text-[#2f2f3b]"><strong>Clase K:</strong> Aceites y grasas (en cocinas, calderos, etc.)</span>
-							</li>
+						<ul class="space-y-4">
+							{fireTypes.map((type) => (
+								<li class="flex items-start gap-3">
+									<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+										<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+										</svg>
+									</div>
+									<span class="text-gray-700"><strong>Clase {type.class}:</strong> {type.description}</span>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<!-- Product Gallery Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<div class="grid md:grid-cols-2 gap-8">
-					<img 
-						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
-						alt="F-500 Aplicación" 
-						class="w-full h-[268px] object-cover rounded-2xl"
-					/>
-					<img 
-						src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
-						alt="F-500 Equipo" 
-						class="w-full h-[125px] object-cover rounded-2xl"
-					/>
-				</div>
-			</div>
-		</section>
-
-		<!-- Product Details Section -->
+		<!-- How It Works Section -->
 		<section class="py-20 bg-white">
-			<div class="max-w-[1180px] mx-auto px-4">
-				<div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-					<div class="grid lg:grid-cols-2">
-						<!-- Product Gallery -->
-						<div class="p-6">
-							<div class="relative h-[552px] rounded-2xl overflow-hidden mb-4">
-								<img 
-									src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" 
-									alt="F-500 Producto" 
-									class="w-full h-full object-cover"
-								/>
-							</div>
-							<div class="grid grid-cols-4 gap-2">
-								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 1" class="h-[136px] w-full object-cover rounded-lg" />
-								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 2" class="h-[136px] w-full object-cover rounded-lg" />
-								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 3" class="h-[136px] w-full object-cover rounded-lg" />
-								<img src="https://www.figma.com/api/mcp/asset/be2c6160-b9a7-403d-b147-99f7397c3de3" alt="F-500 4" class="h-[136px] w-full object-cover rounded-lg" />
-							</div>
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<!-- Content -->
+					<div class="space-y-6 mx-20">
+						<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]">
+							¿Cómo actúa?
+						</h2>
+						<p class="text-lg text-gray-600 leading-relaxed">
+							El F500 al ser rociado sobre el fuego mediante un eductor común, y al tener menor tensión superficial que el agua, penetra y encapsula las moléculas del mismo, rompiendo la reacción en cadena con un abrupto descenso de la temperatura en segundos. 
+						</p>
+						<p class="text-lg font-bold text-[#2f2f3b] my-4">
+							Entre sus principales características tenemos:
+						</p>
+						<ul class="space-y-4">
+							{howItWorks.map((item) => (
+								<li class="flex items-start gap-3">
+									<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+									</div>
+									<span class="text-gray-700">{item}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<!-- Images Grid -->
+					<div class="flex flex-col items-center gap-10">
+						<div class="bg-gray-50 rounded-2xl p-6 w-120">
+							<img
+								src="/f-500/cient_type1.webp"
+								alt="F-500 en acción"
+								class="w-full h-full object-cover rounded-xl"
+								loading="lazy"
+							/>
 						</div>
-						
-						<!-- Product Info -->
-						<div class="p-8 lg:p-12">
-							<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-2">
-								F-500
-							</h2>
-							<p class="text-lg text-[#504aff] font-semibold mb-6">Sistema de extinción eficaz</p>
-							
-							<div class="mb-8">
-								<h3 class="text-xl font-bold text-[#2f2f3b] mb-4">Especificaciones</h3>
-								<p class="text-[#6b7280] leading-relaxed mb-4">
-									F-500 es un aditivo líquido, biodegradable y no tóxico que se mezcla con agua para combatir incendios. Su fórmula única reduce la tensión superficial del agua, permitiendo una penetración más profunda y una extinción más rápida.
-								</p>
-								<ul class="space-y-2">
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">Biodegradable y amigable con el medio ambiente</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">No tóxico para humanos ni animales</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">No corrosivo para equipos</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">Versátil para múltiples clases de fuego</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">Reduce el tiempo de extinción</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">Disminuye el consumo de agua</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">Prevents re-ignición</span>
-									</li>
-									<li class="flex items-start gap-3">
-										<span class="w-2 h-2 bg-[#504aff] rounded-full mt-2"></span>
-										<span class="text-[#6b7280]">No deja residuos pegajosos</span>
-									</li>
-								</ul>
-							</div>
+						<div class="bg-gray-50 rounded-2xl p-6 w-120">
+							<img
+								src="/f-500/cient_type2.webp"
+								alt="Aplicación de F-500"
+								class="w-full h-full object-cover rounded-xl"
+								loading="lazy"
+							/>
+						</div>
+						<div class="bg-gray-50 rounded-2xl p-6 w-120">
+							<img
+								src="/f-500/cient_type3.webp"
+								alt="Aplicación de F-500"
+								class="w-full h-full object-cover rounded-xl"
+								loading="lazy"
+							/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
+		<!-- Specifications Section -->
+		<!-- <section class="py-20 bg-gradient-to-br from-red-50 via-white to-orange-50">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 items-center">
+					<div class="relative">
+						<div class="relative bg-white rounded-3xl shadow-2xl p-8">
+							<img
+								src="/f-500/product_present.webp"
+								alt="F-500 EA Sistema"
+								class="w-full h-auto object-contain"
+								loading="lazy"
+							/>
+						</div>
+					</div>
+
+					<div class="space-y-6">
+						<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]">
+							F-500 EA<br />
+							(Encapsulator Agent)
+						</h2>
+						<p class="text-sm text-gray-500 uppercase tracking-wide">
+							Características principales
+						</p>
+
+						<div class="space-y-4">
+							{specifications.map((spec, index) => (
+								<div class="flex items-start gap-3">
+									<div class={`w-3 h-3 rounded-full flex-shrink-0 mt-2 ${
+										index % 6 === 0 ? 'bg-red-500' :
+										index % 6 === 1 ? 'bg-orange-500' :
+										index % 6 === 2 ? 'bg-yellow-500' :
+										index % 6 === 3 ? 'bg-green-500' :
+										index % 6 === 4 ? 'bg-blue-500' :
+										'bg-purple-500'
+									}`}></div>
+									<div>
+										<h4 class="font-semibold text-[#2f2f3b] mb-1">{spec.title}</h4>
+										<p class="text-gray-600 text-sm">{spec.description}</p>
+									</div>
+								</div>
+							))}
+						</div>
+
+						<button class="bg-[#504aff] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 mt-8">
+							Conoce Más
+						</button>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
 		<!-- CTA Section -->
-		<section class="py-20 bg-[#504aff]">
-			<div class="max-w-[1440px] mx-auto px-4 text-center">
-				<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-					¿Interesado en F-500?
+		<section id="comenzar" class="py-60 bg-gradient-to-r from-red-50 via-white to-orange-50">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6">
+					¿Interesado en F-500 EA?
 				</h2>
-				<p class="text-xl text-white/90 max-w-2xl mx-auto mb-8">
-					Contáctanos para obtener más información sobre F-500 y cómo puede ayudar a proteger tus instalaciones.
+				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+					Descubre cómo F-500 EA puede transformar la seguridad contra incendios en tus instalaciones
 				</p>
-				<a 
+				<a
 					href="/contactanos"
-					class="inline-flex items-center bg-white text-[#504aff] font-semibold px-8 py-4 rounded-[25px] hover:bg-gray-100 transition-colors"
+					class="inline-block bg-[#504aff] text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-[#3f3bcc] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
 				>
-					Contactanos
+					Solicitar Información
 				</a>
 			</div>
 		</section>
-
-		<!-- Back Link -->
-		<div class="bg-white py-4 border-b border-gray-100">
-			<div class="max-w-[1440px] mx-auto px-4">
-				<a 
-					href="/productos"
-					class="inline-flex items-center text-[#504aff] font-semibold hover:underline"
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
-						<path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-					</svg>
-					Regresar al catálogo
-				</a>
-			</div>
-		</div>
 	</main>
 	
 	<Footer />
