@@ -34,7 +34,7 @@
                         <h2 className="text-3xl font-bold">{destacados[selectedProduct].title}</h2>
                         <p className="w-75 md:w-125 lg:w-150">{destacados[selectedProduct].description}</p>
                         <div>
-                            <a className="btn border-0 inline-flex w-full md:w-auto h-13.75 text-[15px] items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[30px] hover:bg-[#3f3bcc] justify-center shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 shrink-0" href={`/productos/${destacados[selectedProduct].name}`}>
+                            <a className="btn border-0 inline-flex w-full md:w-auto h-13.75 text-[15px] items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[30px] hover:bg-[#3f3bcc] justify-center shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 shrink-0" href={`/productos/${destacados[selectedProduct].name.toLowerCase()}`}>
                                 <div className="flex items-center justify-center text-[15px]">
                                     <span>Explora más</span><ChevronRight width={20}/>
                                 </div>
