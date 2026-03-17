@@ -15,7 +15,7 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "slug": {
       "type": "uid"
@@ -30,10 +30,11 @@
         "audios"
       ]
     },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "products"
     },
     "type": {
       "type": "relation",
