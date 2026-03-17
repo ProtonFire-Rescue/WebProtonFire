@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Check, ChevronRight, ShoppingCart } from "lucide-react";
-import type { ProductView } from "../types";
+import type { ProductView } from "../types/types";
 
 interface ProductDetailProps {
   product: ProductView;
-  relatedProducts: ProductView[];
   onCotizar?: (productId: string) => void;
   onBack?: () => void;
 }
 
 export default function ProductDetail({
   product,
-  relatedProducts,
   onCotizar,
 }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(product.images[0]?.url || "");
@@ -90,10 +88,14 @@ export default function ProductDetail({
                 <span className="text-gray-400">|</span>
                 <span className="text-gray-600">Modelo: {product.model}</span>
                 <span className="text-gray-400">|</span>
-                <span className="flex items-center gap-1 text-green-600">
-                  <Check size={16} />
-                  {product.category}
-                </span>
+                {
+                  product.categories.map((category) => (
+                    <span className="flex items-center gap-1 text-green-600">
+                      <Check size={16} />
+                      {category}
+                    </span>
+                  ))
+                }
               </div>
             </div>
 
@@ -129,41 +131,6 @@ export default function ProductDetail({
                 </>
               )}
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Products */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">
-            Productos relacionados
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {relatedProducts.map((item) => (
-              <a
-                key={item.id}
-                href={`/producto/${item.id}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="aspect-3/4 bg-gray-100 overflow-hidden">
-                  <img
-                    src={item.images[0].url}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4 space-y-2">
-                  <span className="text-xs text-gray-500 uppercase tracking-wider">
-                    {item.brand}
-                  </span>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-[#504aff] transition-colors">
-                    {item.name}
-                  </h3>
-                  <p className="text-sm text-gray-600">{item.model}</p>
-                </div>
-              </a>
-            ))}
           </div>
         </div>
       </section>

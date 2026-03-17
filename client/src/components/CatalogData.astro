@@ -4,17 +4,34 @@ import { BACKEND_URL } from "../utils/contants";
 import { getProductsQuery } from "../utils/server";
 
 const { data } = await getProductsQuery(
-  'fields[0]=name&populate[category][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&pagination[pageSize]=100&sort[0]=createdAt:desc',
+  'fields[0]=name&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
   { cacheTtlMs: 15000 },
 );
 
-const categories = [...new Set(data.map((product: any) => product.category.name))];
+const filteredCategories: string[] = [...new Set(data.flatMap((product: any) => 
+  (product.categories ?? []).map((cat: any) => cat.name)
+))].filter(Boolean) as string[];
+
 const brands = [...new Set(data.map((product: any) => product.brand.name))];
 
+const types = [...new Set(data.map((product: any) => product.type.name))];
+
 const allProducts = data.map((product: any) => {
-  const { id, name, images, category: { name: category }, brand: { name: brand }, model: { name: model } } = product;
-  return { id, name, image: `${BACKEND_URL}${images?.[0]?.url ?? ''}`, category, brand, model };
+  const { id, name, images, categories, brand, model, type } = product;
+  const categoryNames = (categories ?? []).map((cat: any) => cat.name);
+  
+  return { 
+    id, 
+    name, 
+    image: `${BACKEND_URL}${images?.[0]?.url ?? ''}`, 
+    category: categoryNames.length > 0 ? categoryNames[0] : 'Otros',
+    categories: categoryNames.length > 0 ? categoryNames : ['Otros'],
+    brand: brand?.name ?? '',
+    model: model?.name ?? '',
+    type: type?.name ?? ''
+  };
 });
+
 ---
 
-<ProductCatalog initialProducts={allProducts} categories={categories} brands={brands} client:load />
+<ProductCatalog initialProducts={allProducts} categories={filteredCategories} brands={brands} types={types} client:load />

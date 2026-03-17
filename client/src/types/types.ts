@@ -13,7 +13,7 @@ export interface StrapiProduct {
     name: string;
     description: string;
     images: StrapiImage[];
-    category: StrapiNameRelation;
+    categories: StrapiNameRelation[];
     brand: StrapiNameRelation;
     model: StrapiNameRelation;
 }
@@ -29,6 +29,7 @@ export interface ProductView {
     name: string;
     images: ProductImage[];
     category: string;
+    categories: string[];
     brand: string;
     model: string;
     description: string;

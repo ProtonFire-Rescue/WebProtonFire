@@ -9,24 +9,15 @@ import { getProductByIdQuery } from "../../utils/server";
 const { id } = Astro.params;
 const currentPath = Astro.url.pathname;
 
-const { data: productMeta } = await getProductByIdQuery(
-  id,
-  'fields[0]=name',
-  { cacheTtlMs: 15000 },
-);
-
-if (!productMeta?.length) {
-  return Astro.redirect("/catalogo");
-}
 ---
 
 <Layout
-  title={`${productMeta[0].name} - PROTON Fire & Rescue`}
-  description={`${productMeta[0].name} - Equipos de seguridad profesional para bomberos y rescate.`}
-  url={`https://protonfire.com/producto/${productMeta[0].id}`}
+  title="Producto - PROTON Fire & Rescue"
+  description="Equipos de seguridad profesional para bomberos y rescate. Descubre nuestros productos de alta calidad."
+  url={`https://protonfire.com/producto/${id}`}
 >
   <Menu currentPath={currentPath} />
-  
+	
 	<ProductPageData id={id} server:defer>
 		<section slot="fallback" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 mt-30">
 			<div class="grid lg:grid-cols-2 gap-12">

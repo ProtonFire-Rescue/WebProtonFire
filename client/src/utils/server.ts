@@ -1,4 +1,4 @@
-import type { StrapiProduct } from "../types";
+import type { StrapiProduct } from "../types/types";
 
 const STRAPI_URL = (import.meta as any).env?.PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
 
@@ -42,7 +42,7 @@ async function fetchWithCache(url: string, cacheKey: string): Promise<any> {
     clearTimeout(timeoutId);
     
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${response.status} ${response}`);
     }
     
     const data = await response.json();
@@ -100,7 +100,7 @@ export const getRelatedProducts = async (
 ) => {
     const populate = opts?.populate ?? '*';
     return fetchWithCache(
-        `${STRAPI_URL}/api/productos?filters[category][name][$eq]=${encodeURIComponent(categoryName)}&populate=${encodeURIComponent(populate)}`,
+        `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&populate=${encodeURIComponent(populate)}`,
         `related-${categoryName}-${populate}`,
     );
 };
@@ -108,55 +108,7 @@ export const getRelatedProducts = async (
 export const getRelatedProductsQuery = async (categoryName: string, query: string, opts?: { cacheTtlMs?: number }) => {
     const q = query.startsWith('?') ? query.slice(1) : query;
     return fetchWithCache(
-        `${STRAPI_URL}/api/productos?filters[category][name][$eq]=${encodeURIComponent(categoryName)}&${q}`,
+        `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&${q}`,
         `related-${categoryName}-${q}`,
     );
-};
-
-// Nueva función para obtener categorías con sus productos en paralelo (para el menú)
-export const getCategoriesWithProducts = async () => {
-  try {
-    // Obtener categorías y productos en paralelo
-    const categoriesData = await fetchWithCache(`${STRAPI_URL}/api/categories?fields[0]=name&populate[type][fields][0]=name`, 'categories-menu');
-    const productsData = await fetchWithCache(`${STRAPI_URL}/api/productos?populate=category&populate[brand][fields][0]=name`, 'products-menu');
-
-    console.log(categoriesData);
-    console.log(productsData);
-
-    // Agrupar productos por categoría
-    const categoriesMap = new Map();
-    
-    // Inicializar categorías
-    if (categoriesData?.data) {
-      categoriesData.data.forEach((category: any) => {
-        categoriesMap.set(category.id, {
-          id: category.id,
-          name: category.categoryName || category.name,
-          slug: category.slug || (category.categoryName || category.name)?.toLowerCase().replace(/\s+/g, '-'),
-          products: []
-        });
-      });
-    }
-
-    // Agrupar productos por categoría
-    if (productsData?.data) {
-      productsData.data.forEach((product: any) => {
-        const categoryId = product.category?.id;
-        if (categoryId && categoriesMap.has(categoryId)) {
-          const category = categoriesMap.get(categoryId);
-          category.products.push({
-            id: product.id,
-            name: product.product_name || product.name,
-            slug: product.slug || (product.product_name || product.name)?.toLowerCase().replace(/\s+/g, '-'),
-            brand: product.brand?.modelName || product.brand?.name
-          });
-        }
-      });
-    }
-
-    return Array.from(categoriesMap.values());
-  } catch (error) {
-    console.error('Error fetching categories with products:', error);
-    return [];
-  }
 };
