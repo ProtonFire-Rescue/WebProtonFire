@@ -23,8 +23,15 @@ interface ProductCatalogProps {
 
 
 export default function ProductCatalog({ initialProducts = [], categories, brands, types }: ProductCatalogProps) {
+  const getInitialCategory = () => {
+    if (typeof window === 'undefined') return 'Todos';
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('categoria');
+    return cat ? decodeURIComponent(cat) : 'Todos';
+  };
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
+  const [selectedCategory, setSelectedCategory] = useState(getInitialCategory);
   const [selectedBrand, setSelectedBrand] = useState('Todos');
   const [selectedType, setSelectedType] = useState('Todos');
   const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none');
@@ -53,8 +60,6 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
           p.type.toLowerCase().includes(query)
       );
     }
-
-    console.log(selectedType)
 
 
 
@@ -220,7 +225,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Valor"
+              placeholder="Buscar producto..."
               className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600"
             />
             <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
@@ -275,6 +280,9 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
+                  <span className="absolute top-3 left-3 bg-[#504aff]/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    {product.category}
+                  </span>
                 </div>
                 <div className="p-4">
                   <h4 className="font-semibold text-[#2f2f3b] text-sm mb-1 uppercase tracking-wide">
@@ -286,7 +294,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                   </p>
                   <a
                     href={`/producto/${product.id}`}
-                    className="w-full bg-[#2f2f3b] text-white text-sm font-medium p-2 rounded-lg hover:bg-[#504aff] transition-colors"
+                    className="block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors"
                   >
                     Ver más
                   </a>

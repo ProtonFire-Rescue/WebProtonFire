@@ -3,6 +3,8 @@ import ProductCatalog from "./ProductCatalog";
 import { BACKEND_URL } from "../utils/contants";
 import { getProductsQuery } from "../utils/server";
 
+
+
 const { data } = await getProductsQuery(
   'fields[0]=name&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
   { cacheTtlMs: 15000 },
