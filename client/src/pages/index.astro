@@ -172,19 +172,38 @@ const homePageSchema = {
 				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-30 md:pt-10 pb-20"
 			>
 				<div class="max-w-2xl">
+					<span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 text-xs md:text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+						<span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+						+20 años protegiendo vidas en Ecuador
+					</span>
 					<h1
 						class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
 					>
 						Proton Fire & Rescue
 					</h1>
-					<p class="text-sm md:text-lg text-white/90 leading-relaxed">
-						Somos una empresa ecuatoriana con más de 2 decadas de
+					<p class="text-sm md:text-lg text-white/80 leading-relaxed mb-10 max-w-xl">
+						Somos una empresa ecuatoriana con más de 2 décadas de
 						trayectoria en el mercado nacional. Nos especializamos
 						en la importación y comercialización de equipos de
 						seguridad para los sectores bomberil, de rescate e
 						industrial, consolidándonos como un referente de
 						confianza en el país.
 					</p>
+					<div class="flex flex-col sm:flex-row gap-4">
+						<a
+							href="/productos"
+							class="inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5"
+						>
+							Ver Productos
+							<ChevronRight />
+						</a>
+						<a
+							href="/contactanos"
+							class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-300 hover:-translate-y-0.5"
+						>
+							Contáctanos
+						</a>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -304,7 +323,7 @@ const homePageSchema = {
 				<div class="grid md:grid-cols-3 gap-6">
 					<!-- Capacitación -->
 					<div
-						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
 					>
 						<div
 							class="w-[120px] h-[120px] bg-[#f8f9fa] rounded-full flex items-center justify-center mx-auto mb-6"
@@ -335,7 +354,7 @@ const homePageSchema = {
 
 					<!-- Confección -->
 					<div
-						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
 					>
 						<div
 							class="w-[120px] h-[120px] bg-[#f8f9fa] rounded-full flex items-center justify-center mx-auto mb-6"
@@ -366,7 +385,7 @@ const homePageSchema = {
 
 					<!-- Mantenimiento -->
 					<div
-						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
+						class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
 					>
 						<div
 							class="w-[120px] h-[120px] bg-[#f8f9fa] rounded-full flex items-center justify-center mx-auto mb-6"
