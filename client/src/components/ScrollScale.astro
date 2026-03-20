@@ -11,7 +11,7 @@ const { images, speed = 20, startEvent = false } = Astro.props;
 const displayImages = [...images, ...images, ...images];
 ---
 
-<section class="absolute -z-1 left-1/2 top-0 -translate-x-1/2 w-full h-100 overflow-hidden pointer-events-none">
+<section data-aos="fade-up" class="absolute -z-1 left-1/2 top-0 -translate-x-1/2 w-full h-100 overflow-hidden pointer-events-none">
   <div 
     id="carousel-track" 
     class="flex gap-10 px-10 py-10 will-change-transform"

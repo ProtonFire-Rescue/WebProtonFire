@@ -1,7 +1,7 @@
 import { defineAction, ActionError } from "astro:actions";
 import { z } from "zod";
 import { Resend } from "resend";
-import EmailSend from "../components/EmailSend";
+import EmailSend from "../components/react-island/EmailSend";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
