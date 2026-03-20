@@ -13,6 +13,17 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# products
+products/
+
+# playground
+playwright-report/
+tests/
+test-results/
+playwright.config.ts
+README.e2e.md
+README.tests.md
+
 # environment variables
 .env
 .env.production
