@@ -60,7 +60,6 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       }
     } catch (error) {
       toast.error("Error inesperado al enviar el formulario");
-      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
