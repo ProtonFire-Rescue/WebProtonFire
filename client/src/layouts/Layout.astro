@@ -1,7 +1,6 @@
 ---
-import '../styles/global.css';
-import { Toaster } from 'sonner';
-import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+import "../styles/global.css";
+import { Toaster } from "sonner";
 
 export interface Props {
 	title: string;
@@ -15,59 +14,62 @@ export interface Props {
 }
 
 const {
-	title = 'PROTON Fire & Rescue - Equipos de Seguridad Ecuador',
-	description = 'Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.',
-	image = '/og-image.jpg',
-	url = 'https://protonfire.com',
-	type = 'website',
-	keywords = 'equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia',
-	author = 'PROTON Fire & Rescue',
-	jsonLd
+	title = "PROTON Fire & Rescue - Equipos de Seguridad Ecuador",
+	description = "Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.",
+	image = "/og-image.jpg",
+	url = "https://protonfire.com",
+	type = "website",
+	keywords = "equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia",
+	author = "PROTON Fire & Rescue",
+	jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const fullImageUrl = image.startsWith('http') ? image : `https://protonfire.com${image}`;
+const fullImageUrl = image.startsWith("http")
+	? image
+	: `https://protonfire.com${image}`;
 
 // Structured Data base para la organización
 const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
-	"name": "PROTON Fire & Rescue",
-	"description": "Empresa ecuatoriana especializada en equipos de seguridad para bomberos, rescate e industria con más de 20 años de experiencia",
-	"url": "https://protonfire.com",
-	"logo": "https://protonfire.com/logo.png",
-	"image": "https://protonfire.com/og-image.jpg",
-	"telephone": "+593-XX-XXXXXXX",
-	"email": "tecnologia@gmail.com",
-	"address": {
+	name: "PROTON Fire & Rescue",
+	description:
+		"Empresa ecuatoriana especializada en equipos de seguridad para bomberos, rescate e industria con más de 20 años de experiencia",
+	url: "https://protonfire.com",
+	logo: "https://protonfire.com/logo.png",
+	image: "https://protonfire.com/og-image.jpg",
+	telephone: "+593-XX-XXXXXXX",
+	email: "tecnologia@gmail.com",
+	address: {
 		"@type": "PostalAddress",
-		"addressCountry": "EC",
-		"addressLocality": "Ecuador"
+		addressCountry: "EC",
+		addressLocality: "Ecuador",
 	},
-	"sameAs": [
+	sameAs: [
 		"https://www.facebook.com/protonfire",
 		"https://www.instagram.com/protonfire",
-		"https://www.linkedin.com/company/protonfire"
+		"https://www.linkedin.com/company/protonfire",
 	],
-	"areaServed": {
+	areaServed: {
 		"@type": "Country",
-		"name": "Ecuador"
+		name: "Ecuador",
 	},
-	"foundingDate": "2000",
-	"slogan": "Protegiendo vidas, asegurando el futuro"
+	foundingDate: "2000",
+	slogan: "Protegiendo vidas, asegurando el futuro",
 };
 
 // Website schema
 const websiteSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebSite",
-	"name": "PROTON Fire & Rescue",
-	"url": "https://protonfire.com",
-	"potentialAction": {
+	name: "PROTON Fire & Rescue",
+	url: "https://protonfire.com",
+	potentialAction: {
 		"@type": "SearchAction",
-		"target": "https://protonfire.com/catalogo?q={search_term_string}",
-		"query-input": "required name=search_term_string"
-	}
+		target: "https://protonfire.com/catalogo?q={search_term_string}",
+		"query-input": "required name=search_term_string",
+	},
 };
 ---
 
@@ -78,20 +80,23 @@ const websiteSchema = {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- SEO Basics -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta name="keywords" content={keywords} />
 		<meta name="author" content={author} />
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<meta
+			name="robots"
+			content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+		/>
 		<link rel="canonical" href={canonicalURL} />
-		
+
 		<!-- Language and Geographic Targeting -->
 		<meta name="language" content="Spanish" />
 		<meta name="geo.region" content="EC" />
 		<meta name="geo.placename" content="Ecuador" />
-		
+
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={type} />
 		<meta property="og:url" content={url} />
@@ -103,7 +108,7 @@ const websiteSchema = {
 		<meta property="og:image:alt" content={title} />
 		<meta property="og:site_name" content="PROTON Fire & Rescue" />
 		<meta property="og:locale" content="es_EC" />
-		
+
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:url" content={url} />
@@ -113,59 +118,86 @@ const websiteSchema = {
 		<meta name="twitter:image:alt" content={title} />
 		<meta name="twitter:site" content="@protonfire" />
 		<meta name="twitter:creator" content="@protonfire" />
-		
+
+		<link rel="icon" type="image/webp" href="/favicon2.webp" />
+
 		<!-- Additional SEO Meta Tags -->
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta
+			name="apple-mobile-web-app-status-bar-style"
+			content="black-translucent"
+		/>
 		<meta name="apple-mobile-web-app-title" content="PROTON Fire" />
-		
+
 		<!-- Theme Color -->
 		<meta name="theme-color" content="#504aff" />
 		<meta name="msapplication-TileColor" content="#504aff" />
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-		
+
 		<!-- Preconnect to external domains for performance -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Questrial&display=swap"
+			rel="stylesheet"
+		/>
 		<!-- DNS Prefetch -->
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-		
+
 		<!-- Structured Data - Organization -->
-		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-		
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(organizationSchema)}
+		/>
+
 		<!-- Structured Data - Website -->
-		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-		
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(websiteSchema)}
+		/>
+
 		<!-- Page-specific Structured Data -->
-		{jsonLd && (
-			<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-		)}
-		
+		{
+			jsonLd && (
+				<script
+					type="application/ld+json"
+					set:html={JSON.stringify(jsonLd)}
+				/>
+			)
+		}
+
 		<!-- Google Analytics -->
-		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+		<script
+			is:inline
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+		></script>
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-XXXXXXXXXX');
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-XXXXXXXXXX");
 		</script>
-		
+
 		<!-- AOS Animate On Scroll -->
-		<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-		
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+		/>
 	</head>
-	<body class="font-sans antialiased ">
-		<Toaster client:load transition:persist richColors={true}/>
+	<body class="font-sans antialiased">
+		<Toaster client:load transition:persist richColors={true} />
 		<slot />
 	</body>
 </html>
 
 <style>
-	*{
-		font-family: 'Questrial', sans-serif;
+	* {
+		font-family: "Questrial", sans-serif;
 	}
 	html,
 	body {
@@ -176,20 +208,21 @@ const websiteSchema = {
 </style>
 
 <script>
-	import AOS from 'aos';
+	import AOS from "aos";
 
 	function initAOS() {
 		AOS.init({
 			duration: 700,
-			easing: 'ease-out-cubic',
+			easing: "ease-out-cubic",
 			once: true,
 			offset: 50,
-			disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+			disable: window.matchMedia("(prefers-reduced-motion: reduce)")
+				.matches,
 		});
 	}
 
 	initAOS();
-	document.addEventListener('astro:page-load', () => {
+	document.addEventListener("astro:page-load", () => {
 		initAOS();
 		AOS.refresh();
 	});
