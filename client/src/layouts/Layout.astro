@@ -1,7 +1,5 @@
 ---
-import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
-import { fade } from 'astro/virtual-modules/transitions.js';
 import { Toaster } from 'sonner';
 import WhatsAppWidget from '../components/WhatsAppWidget.astro';
 
@@ -155,12 +153,13 @@ const websiteSchema = {
 			gtag('config', 'G-XXXXXXXXXX');
 		</script>
 		
-		<ClientRouter/>
+		<!-- AOS Animate On Scroll -->
+		<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+		
 	</head>
-	<body class="font-sans antialiased">
+	<body class="font-sans antialiased ">
 		<Toaster client:load transition:persist richColors={true}/>
 		<slot />
-		<WhatsAppWidget />
 	</body>
 </html>
 
@@ -175,3 +174,23 @@ const websiteSchema = {
 		height: 100%;
 	}
 </style>
+
+<script>
+	import AOS from 'aos';
+
+	function initAOS() {
+		AOS.init({
+			duration: 700,
+			easing: 'ease-out-cubic',
+			once: true,
+			offset: 50,
+			disable: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+		});
+	}
+
+	initAOS();
+	document.addEventListener('astro:page-load', () => {
+		initAOS();
+		AOS.refresh();
+	});
+</script>

@@ -1,7 +1,7 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Menu from "../../components/Menu.astro";
-import Footer from "../../components/Footer.astro";
+import Layout from '@/layouts/Layout.astro';
+import Menu from '@/components/page/Menu.astro';
+import Footer from '@/components/page/Footer.astro';
 
 const currentPath = Astro.url.pathname;
 
@@ -121,19 +121,19 @@ const breadcrumbSchema = {
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Left Content -->
           <div class="space-y-6">
-            <h1 class="text-5xl lg:text-6xl font-bold text-[#2f2f3b] leading-tight">
+            <h1 class="text-5xl lg:text-6xl font-bold text-[#2f2f3b] leading-tight" data-aos="fade-up" data-aos-delay="100">
               FLAIM FTS
             </h1>
-            <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+            <p class="text-lg text-gray-600 leading-relaxed max-w-xl" data-aos="fade-up" data-aos-delay="200">
 El sistema que proporciona a los bomberos las habilidades esenciales para mejorar la calidad del entrenamiento contra incendios en vivo y mejorar el conocimiento de la situación durante la extinción de incendios en la vida real.            </p>
-            <a href="#comenzar" class="bg-[#504aff] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <a href="#comenzar" data-aos="fade-up" data-aos-delay="300" class="bg-[#504aff] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Ver más
             </a>
           </div>
 
           <!-- Right Image -->
           <div class="relative flex justify-center">
-            <div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500">
+            <div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500" data-aos="fade-left">
               <img
                 src="/flaim/flaim_body.jpg"
                 alt="FLAIM FTS Training System"
@@ -155,7 +155,7 @@ El sistema que proporciona a los bomberos las habilidades esenciales para mejora
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Image -->
           <div class="order-2 lg:order-1 flex justify-center">
-            <div class="relative rounded-3xl overflow-hidden shadow-xl md:w-120">
+            <div class="relative rounded-3xl overflow-hidden shadow-xl md:w-120" data-aos="fade-right">
               <img
                 src="/flaim/flaim_demo2.jpg"
                 alt="FLAIM Trainer System Demo"
@@ -167,7 +167,7 @@ El sistema que proporciona a los bomberos las habilidades esenciales para mejora
 
           <!-- Content -->
           <div class="order-1 lg:order-2 space-y-6">
-            <h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]">
+            <h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]" data-aos="fade-left">
               FLAIM Trainer System
             </h2>
             <p class="text-lg text-gray-600 leading-relaxed">
@@ -197,13 +197,13 @@ ahora en Ecuador, ofrece:             </p>
       <div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-8">
         <section class="flex flex-col w-full lg:w-1/2 lg:mx-20 gap-8">
           <div class="text-start">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2f2f3b] mb-4">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2f2f3b] mb-4" data-aos="fade-up">
               Características principales:
             </h2>
           </div>
           {
             princial_characteristics.map((char) => (
-              <div class="space-y-4">
+              <div class="space-y-4" data-aos="fade-up">
                 <h3 class="text-xl md:text-2xl font-bold text-[#2f2f3b]">{char.title}</h3>
                 <p class="text-gray-600 leading-relaxed text-sm md:text-base">
                   {char.description}
@@ -215,7 +215,7 @@ ahora en Ecuador, ofrece:             </p>
 
         <section class="flex flex-col w-full lg:w-1/2 gap-6 md:gap-8">
           <!-- Feature 2 -->
-          <div class="bg-gray-50 rounded-2xl p-4 md:p-6">
+          <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="100">
             <img
               src="/flaim/flaim_demo3.webp"
               alt="VR Training"
@@ -225,7 +225,7 @@ ahora en Ecuador, ofrece:             </p>
           </div>
 
           <!-- Feature 3 -->
-          <div class="bg-gray-50 rounded-2xl p-4 md:p-6">
+          <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="200">
             <img
               src="/flaim/flaim_complete.jpg"
               alt="Training Action"
@@ -235,7 +235,7 @@ ahora en Ecuador, ofrece:             </p>
           </div>
 
           <!-- Feature 6 -->
-          <div class="bg-gray-50 rounded-2xl p-4 md:p-6">
+          <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="300">
             <img
               src="/flaim/flaim_demo1.jpg"
               alt="FLAIM Demo"
@@ -346,15 +346,16 @@ ahora en Ecuador, ofrece:             </p>
     <!-- CTA Section -->
     <section id="comenzar" class="py-60 bg-linear-to-r from-purple-50 via-white to-blue-50">
       <div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up">
           ¿Listo para revolucionar tu entrenamiento?
         </h2>
-        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
           Descubre cómo FLAIM FTS puede transformar la capacitación de tu equipo de bomberos
         </p>
         <a
           href="https://wa.me/593982487322?text=Me%20interesar%C3%ADa%20obtener%20informaci%C3%B3n%20acerca%20del%20producto%20Flaim%20FTS"
           target="_blank"
+          data-aos="fade-up" data-aos-delay="200"
           class="inline-block bg-[#504aff] text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-[#3f3bcc] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
         >
           Solicitar Demo

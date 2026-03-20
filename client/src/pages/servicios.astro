@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Menu from "../components/Menu.astro";
-import Footer from "../components/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+import Menu from "@/components/page/Menu.astro";
+import Footer from "@/components/page/Footer.astro";
 
 const currentPath = Astro.url.pathname;
 
@@ -98,34 +98,27 @@ const trainingServices = [
 	<main>
 		<!-- Hero Section - Dark with gradient like index -->
 		<section
-			class="relative min-h-150 md:min-h-200 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
+			class="relative min-h-150 md:min-h-170 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
 		>
 			<!-- Background Image with overlay -->
-			<div class="absolute inset-0 bg-black/50">
-				<video
-					src="/videos/home.mp4"
-					class="w-full h-full object-cover"
-					autoplay
-					muted
-					loop
-					playsinline></video>
-				<div
-					class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"
-				>
-				</div>
-			</div>
-
+			<div
+							class="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50"
+							style="background-image: url('/images/services.png'); background-blend-mode: overlay;"
+						>
+						</div>
 			<div
 				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-30 md:pt-10 pb-20"
 			>
 				<div class="max-w-3xl">
 					<h1
 						class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
+						data-aos="fade-up" data-aos-delay="100"
 					>
 						Nuestros Servicios
 					</h1>
 					<p
 						class="text-base md:text-xl text-white/90 leading-relaxed mb-8"
+						data-aos="fade-up" data-aos-delay="200"
 					>
 						Además de ofrecer productos, PROTON Fire & Rescue ofrece
 						un catálogo de servicios especializados para tu
@@ -148,6 +141,7 @@ const trainingServices = [
 						<div>
 							<h2
 								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+								data-aos="fade-up"
 							>
 								Capacitación y Formación
 							</h2>
@@ -160,7 +154,7 @@ const trainingServices = [
 						<div class="space-y-4">
 							{
 								trainingServices.map((item) => (
-									<div class="border-b border-gray-200 pb-4 last:border-0">
+									<div class="border-b border-gray-200 pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
 											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
 												<svg
@@ -205,7 +199,7 @@ const trainingServices = [
 						<div class="space-y-4">
 							{
 								maintenanceServices.map((item) => (
-									<div class="border-b border-gray-200 pb-4 last:border-0">
+									<div class="border-b border-gray-200 pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
 											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
 												<svg
@@ -238,6 +232,7 @@ const trainingServices = [
 						<div>
 							<h2
 								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+								data-aos="fade-up"
 							>
 								Soporte Técnico, Mantenimiento y Confección
 							</h2>
@@ -258,6 +253,7 @@ const trainingServices = [
 					<a
 						class="relative rounded-3xl overflow-hidden shadow-2xl"
 						href="#servicios"
+						data-aos="fade-right"
 					>
 						<img
 							src="/images/carusel_2.png"
@@ -276,6 +272,7 @@ const trainingServices = [
 					<a
 						class="relative rounded-3xl overflow-hidden shadow-2xl"
 						href="/productos"
+						data-aos="fade-left"
 					>
 						<img
 							src="/images/carusel_3.png"
@@ -300,22 +297,27 @@ const trainingServices = [
 			class="py-60 bg-linear-to-b from-purple-100 via-white to-blue-100"
 		>
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-4xl lg:text-5xl font-bold mb-6">
+				<h2 class="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up">
 					¿Por qué elegir nuestros servicios?
 				</h2>
-				<p class="text-gray-600 text-xl max-w-2xl mx-auto mb-8">
+				<p class="text-gray-600 text-xl max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
 					Cada uno de nuestros servicios cuenta con el respaldo de
 					técnicos calificados y está diseñado para superar las
 					expectativas de cumplimiento y seguridad. En PROTON Fire &
 					Rescue, no solo cumplimos con la norma, elevamos el estándar
 					de protección para tu empresa.
 				</p>
+				<div 
+					data-aos="fade-up" 
+					data-aos-delay="200"
+				>
 				<a
 					href="/contactanos"
 					class="inline-block bg-[#504aff] text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-[#3f3bcc] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
 				>
-					Contactanos
+					Contáctanos
 				</a>
+				</div>
 			</div>
 		</section>
 	</main>

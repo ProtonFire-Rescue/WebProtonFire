@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Menu from '../components/Menu.astro';
-import Footer from '../components/Footer.astro';
-import ContactForm from '../components/ContactForm';
+import Layout from '@/layouts/Layout.astro';
+import Menu from '@/components/page/Menu.astro';
+import Footer from '@/components/page/Footer.astro';
+import ContactForm from '@/components/react-island/ContactForm';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -20,7 +20,7 @@ const currentPath = Astro.url.pathname;
 			<div class="max-w-360 mx-auto px-6 sm:px-6 lg:px-5 md:pb-20">
 				<div class="flex flex-col lg:flex-row justify-center lg:gap-8 items-center p-0 sm:px-20 md:px-32 lg:px-30">
 					<!-- Image Side -->
-					<div class="relative w-full md:w-125 md:h-125 overflow-hidden my-5 md:my-20 pt-20 bg-linear-to-t from-white to-zinc-600 drop-shadow-xl rounded-full">
+					<div class="relative w-full md:w-125 md:h-125 overflow-hidden my-5 md:my-20 pt-20 bg-linear-to-t from-white to-zinc-600 drop-shadow-xl rounded-full" data-aos="fade-right">
 						<img 
 							src="/images/Contactanos.png" 
 							alt="Contact PROTON" 
@@ -30,7 +30,7 @@ const currentPath = Astro.url.pathname;
 					</div>
 					
 					<!-- Content Side -->
-					<div class=" bg-white rounded-3xl p-8 lg:p-16 shadow-xl w-full md:w-110 lg:w-125 lg:mt-10">
+					<div class=" bg-white rounded-3xl p-8 lg:p-16 shadow-xl w-full md:w-110 lg:w-125 lg:mt-10" data-aos="fade-left">
 						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
 							Contáctanos
 						</h2>
@@ -60,7 +60,7 @@ const currentPath = Astro.url.pathname;
 			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid lg:grid-cols-2 gap-12">
 					<!-- Left Side - Globe/Info -->
-					<div class="bg-[#504aff] rounded-3xl p-8 lg:p-12 text-white flex flex-col justify-center">
+					<div class="bg-[#504aff] rounded-3xl p-8 lg:p-12 text-white flex flex-col justify-center" data-aos="fade-right">
 						<h3 class="text-2xl md:text-3xl font-bold mb-6">
 							Y si quieres enviar tus dudas, inquietudes o requerimientos
 						</h3>
@@ -88,7 +88,7 @@ const currentPath = Astro.url.pathname;
 					</div>
 					
 					<!-- Right Side - Form -->
-					<div class="bg-[#f8f9fa] rounded-3xl p-8 lg:p-12">
+					<div class="bg-[#f8f9fa] rounded-3xl p-8 lg:p-12" data-aos="fade-left">
 						<h3 class="text-2xl font-bold text-[#2f2f3b] mb-8">Envíanos un mensaje</h3>
 						<ContactForm client:load />
 					</div>
@@ -102,7 +102,7 @@ const currentPath = Astro.url.pathname;
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
 					<!-- Text Side -->
 					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6">
+						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6" data-aos="fade-right">
 							Si gustas visitar nuestras instalaciones, no dudes en hacerlo.
 						</h2>
 						<a 
@@ -115,7 +115,7 @@ const currentPath = Astro.url.pathname;
 					</div>
 					
 					<!-- Image Side -->
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7935797736495!2d-78.43716742524255!3d-0.2017744354018979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a0c7103d33f%3A0x27499afcdfc3b332!2sPROTON%20fire%20%26%20rescue!5e0!3m2!1sen!2sec!4v1773082391816!5m2!1sen!2sec" class="min-w-full h-[500px] md:w-[650px] md:h-[450px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<iframe data-aos="fade-left" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7935797736495!2d-78.43716742524255!3d-0.2017744354018979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a0c7103d33f%3A0x27499afcdfc3b332!2sPROTON%20fire%20%26%20rescue!5e0!3m2!1sen!2sec!4v1773082391816!5m2!1sen!2sec" class="min-w-full h-[500px] md:w-[650px] md:h-[450px]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</section>

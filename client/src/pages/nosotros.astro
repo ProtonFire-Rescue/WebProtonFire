@@ -1,29 +1,32 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Menu from "../components/Menu.astro";
-import Footer from "../components/Footer.astro";
-import InfiniteCarousel from "../components/InfiniteCarousel.astro";
-import ScrollScale from "../components/ScrollScale.astro";
-import UserCarousel from "../components/UserCarousel.astro";
+import Layout from "@/layouts/Layout.astro";
+import Menu from "@/components/page/Menu.astro";
+import Footer from "@/components/page/Footer.astro";
+import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
+import ScrollScale from "@/components/ScrollScale.astro";
 
 const currentPath = Astro.url.pathname;
 
 // Ejemplo de imágenes para el carousel
 const carouselImages = [
-	{ src: "/images/carusel_1.png", alt: "Carusel imagen 1" },
-	{ src: "/images/carusel_2.png", alt: "Carusel imagen 2" },
-	{ src: "/images/carusel_3.png", alt: "Carusel imagen 3" },
-	{ src: "/images/carusel_4.png", alt: "Carusel imagen 4" },
+	{ src: "/images/carusel_1.png", alt: "Carrusel imagen 1" },
+	{ src: "/images/carusel_2.png", alt: "Carrusel imagen 2" },
+	{ src: "/images/carusel_3.png", alt: "Carrusel imagen 3" },
+	{ src: "/images/carusel_4.png", alt: "Carrusel imagen 4" },
 ];
 
 // Imágenes para carousel de marcas
-const brandImages = [
-	{ src: "/brands/f500.png", alt: "F500" },
-	{ src: "/brands/sicor.png", alt: "Sicor" },
-	{ src: "/brands/viking.png", alt: "Viking" },
-	{ src: "/brands/task.png", alt: "Task" },
-	{ src: "/brands/hystec.png", alt: "Hystec" },
-	{ src: "/brands/gvs.png", alt: "GVS" },
+const certificationImages = [
+	{ src: "/certifications/cert1.png", alt: "Certificación 1" },
+	{ src: "/certifications/cert2.png", alt: "Certificación 2" },
+	{ src: "/certifications/cert3.png", alt: "Certificación 3" },
+	{ src: "/certifications/cert4.png", alt: "Certificación 4" },
+	{ src: "/certifications/cert5.png", alt: "Certificación 5" },
+	{ src: "/certifications/cert6.png", alt: "Certificación 6" },
+	{ src: "/certifications/cert7.png", alt: "Certificación 7" },
+	{ src: "/certifications/cert8.png", alt: "Certificación 8" },
+	{ src: "/certifications/cert9.png", alt: "Certificación 9" },
+	{ src: "/certifications/cert10.png", alt: "Certificación 10" },
 ];
 ---
 
@@ -37,21 +40,27 @@ const brandImages = [
 	<main>
 		<!-- Hero Section -->
 		<section
-			class="relative py-30 md:py-65 md:mx-5 md:rounded-[55px] bg-gradient-to-b from-white from-5% to-black overflow-hidden"
+			class="relative py-20 md:py-65 md:mx-5 md:rounded-[55px] bg-gradient-to-b from-white from-5% to-black overflow-hidden"
 		>
-			<div class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="relative flex flex-col items-center z-10 max-w-360 mx-auto px-6 sm:px-6 lg:px-8">
+				<img
+					src="/logos/proton.png"
+					alt="PROTON Fire & Rescue Logo"
+					class="h-22 w-34 mb-6 brightness-0 invert"
+				/>
 				<ScrollScale
 					images={carouselImages.map((image) => image.src)}
 					speed={30}
 				/>
-				<div class="text-center text-white">
+				<div class="text-center text-white" data-aos="fade-up" data-aos-delay="100">
 					<h1
-						class="text-4xl max-w-4xl mx-auto md:text-5xl lg:text-[52px] font-bold mb-6"
+						class="text-3xl max-w-4xl mx-auto sm:text-4xl md:text-5xl lg:text-[52px] font-bold mb-4 md:mb-6"
+					
 					>
 						Líderes en soluciones bomberiles, rescate e
 						industriales.
 					</h1>
-					<p class="text-base md:text-xl max-w-3xl mx-auto">
+					<p class="text-sm sm:text-base md:text-xl max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
 						En Proton Fire & Rescue, la calidad técnica se une a un
 						servicio humano excepcional. Nos mantenemos a la
 						vanguardia tecnológica para ofrecerte productos
@@ -72,11 +81,13 @@ const brandImages = [
 					<div>
 						<h2
 							class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6"
+							data-aos="fade-right"
 						>
-							Quienes somos
+							¿Quiénes somos?
 						</h2>
 						<p
-							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							data-aos="fade-right" data-aos-delay="100"
 						>
 							Somos un grupo humano alegre, honesto, trabajador y
 							dedicado a dar el mejor producto y/o servicio a
@@ -87,7 +98,8 @@ const brandImages = [
 							expectativas.
 						</p>
 						<p
-							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							data-aos="fade-right" data-aos-delay="200"
 						>
 							Nos enfocamos en que nuestro servicio posventa sea
 							genuino y damos un seguimiento personalizado a cada
@@ -96,17 +108,19 @@ const brandImages = [
 							soporte permanente.
 						</p>
 						<p
-							class="text-normal md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							data-aos="fade-right" data-aos-delay="300"
 						>
 							Tenemos el privilegio de contar con técnicos
 							altamente calificados, que hacen de nuestro equipo
-							uno de los mejores a nivel nacional en el ambito
+							uno de los mejores a nivel nacional en el ámbito
 							bomberil e industrial. Cuando requiera asistencia
 							técnica de calidad, productos certificados, pero
 							ante todo, seriedad y cumplimiento, piense en
-							<strong>Proton Fire & Rescue</strong>
+							<strong>Proton Fire & Rescue</strong>.
 						</p>
-						<div class="grid grid-cols-3 gap-6 mt-8">
+						<!-- TODO: Implementar valores por satisfacción -->
+						<!-- <div class="grid grid-cols-3 gap-6 mt-8">
 							<div class="text-center">
 								<div
 									class="text-4xl font-bold text-[#504aff] mb-2"
@@ -137,9 +151,9 @@ const brandImages = [
 									Marcas internacionales
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
-					<div class="relative">
+					<div class="relative" data-aos="fade-left">
 						<img
 							src="/images/hero-home.png"
 							alt="PROTON Fire & Rescue"
@@ -152,73 +166,74 @@ const brandImages = [
 		</section>
 
 		<!-- Team Company Section -->
-		<section class="py-30 bg-gradient-to-b from-white via-zinc-200 to-white">
-			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-12">
-					<h2
-						class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-4"
+		<section class="to-white">
+			<section class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="text-center py-20">
+					<div
+						class="relative w-full min-h-105 sm:min-h-120 md:min-h-150 rounded-3xl md:rounded-[40px] overflow-hidden shadow-2xl"
+						data-aos="zoom-in"
 					>
-						Nuestro equipo
-					</h2>
-					<p class="text-[#6b7280] max-w-2xl mx-auto">
-						Detrás de cada solución en PROTON Fire & Rescue, hay un
-						equipo de profesionales apasionados por tu éxito.
-						Nuestros asesores no solo conocen el catálogo; entienden
-						tus desafíos. Con una combinación de honestidad, alegría
-						y rigor técnico, cada integrante de nuestro equipo de
-						ventas está aquí para escucharte y guiarte hacia la
-						decisión que mejor proteja tu inversión y tu seguridad.
-					</p>
-				</div>
-				<UserCarousel users={[
-					{ name: 'John Doe', bio: 'Técnico con experiencia en instalaciones de bombeo', image: 'https://randomuser.me/api/portraits/men/1.jpg' },
-					{ name: 'Jane Smith', bio: 'Técnico con experiencia en sistemas de iluminación', image: 'https://randomuser.me/api/portraits/women/1.jpg' },
-					{ name: 'Thomas Anderson', bio: 'Técnico con experiencia en sistemas de protección incendios', image: 'https://randomuser.me/api/portraits/men/2.jpg' },
-					{ name: 'Alice Johnson', bio: 'Técnico con experiencia en sistemas de ventilación', image: 'https://randomuser.me/api/portraits/women/2.jpg' },
-					{ name: 'Bob Davis', bio: 'Técnico con experiencia en sistemas de seguridad', image: 'https://randomuser.me/api/portraits/men/3.jpg' },
-					{ name: 'Emily Taylor', bio: 'Técnico con experiencia en sistemas de protección aerosol', image: 'https://randomuser.me/api/portraits/women/3.jpg' },
-					{ name: 'Charlie Wilson', bio: 'Técnico con experiencia en sistemas de extinción de incendios', image: 'https://randomuser.me/api/portraits/men/4.jpg' },
-					{ name: 'Sarah Rodriguez', bio: 'Técnico con experiencia en sistemas de calefacción', image: 'https://randomuser.me/api/portraits/women/4.jpg' },
-					{ name: 'David Lee', bio: 'Técnico con experiencia en sistemas de protección contra incendios químicos', image: 'https://randomuser.me/api/portraits/men/5.jpg' },
-					{ name: 'Michelle Hernandez', bio: 'Técnico con experiencia en sistemas de acción de gravedad', image: 'https://randomuser.me/api/portraits/women/5.jpg' },
-				]} />
-			</div>
-		</section>
+						<!-- Background image with brightness filter -->
+						<div
+							class="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50"
+							style="background-image: url('/images/atencion_cliente.png'); background-blend-mode: overlay;"
+						>
+						</div>
+						<!-- Content overlay -->
+						<div
+							class="absolute inset-0 flex flex-col items-center justify-center p-8 sm:p-12 md:p-16"
+						>
+							<h2
+							class="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-3 md:mb-4"
+							>
+								Nuestro equipo
+							</h2>
+							<p
+							class="text-xs sm:text-sm md:text-lg text-white max-w-2xl mx-auto px-4 sm:px-6 md:px-0 leading-relaxed"
+							>
+								Detrás de cada solución en PROTON Fire & Rescue,
+								hay un equipo de profesionales apasionados por
+								tu éxito. Nuestros asesores no solo conocen el
+								catálogo; entienden tus desafíos. Con una
+								combinación de honestidad, alegría y rigor
+								técnico, cada integrante de nuestro equipo de
+								ventas está aquí para escucharte y guiarte hacia
+								la decisión que mejor proteja tu inversión y tu
+								seguridad.
+							</p>
 
-		<!-- Partners Carousel Section -->
-		<section class="py-16 bg-white">
-			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-12">
-					<h2
-						class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-4"
-					>
-						Nuestros Partners y Productos
-					</h2>
-					<p class="text-[#6b7280] max-w-2xl mx-auto">
-						Trabajamos con las mejores marcas internacionales y
-						ofrecemos productos de la más alta calidad
-					</p>
-				</div>
+							<div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-10">
+								<a
+									href="/contactanos"
+									class="inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5"
+								>
+									Contáctanos
+								</a>
+							</div>
+						</div>
+					</div>
 
-				<InfiniteCarousel
-					images={brandImages}
-					speed={25}
-					direction="left"
-				/>
-			</div>
+					<!-- TODO: Implementar carousel de usuarios -->
+				</div>
+			</section>
 		</section>
 
 		<!-- Values Section -->
 		<section class="py-20">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<h2
-					class="text-3xl md:text-4xl font-bold text-[#2f2f3b] text-center mb-12"
+					class="text-3xl md:text-4xl font-bold text-[#2f2f3b] text-center"
+					data-aos="fade-up"
 				>
 					Nuestros Valores
 				</h2>
+				<p class="text-center text-[#6b7280] mt-5 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+					Son los principios que guían todo lo que hacemos. Son la
+					base de nuestra cultura y la razón de nuestro éxito.
+				</p>
 
 				<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+					<div class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-3xl p-8 text-center shadow-xl" data-aos="fade-up" data-aos-delay="100">
 						<div
 							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
 						>
@@ -237,16 +252,16 @@ const brandImages = [
 								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+						<h3 class="text-xl font-bold text-white mb-2">
 							Calidad
 						</h3>
-						<p class="text-[#6b7280]">
+						<p class="text-zinc-300">
 							Productos certificados de las mejores marcas
 							internacionales
 						</p>
 					</div>
 
-					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+					<div class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-3xl p-8 text-center shadow-xl" data-aos="fade-up" data-aos-delay="200">
 						<div
 							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
 						>
@@ -265,15 +280,15 @@ const brandImages = [
 								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+						<h3 class="text-xl font-bold text-white mb-2">
 							Compromiso
 						</h3>
-						<p class="text-[#6b7280]">
+						<p class="text-zinc-300">
 							Dedicación total a la seguridad de nuestros clientes
 						</p>
 					</div>
 
-					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+					<div class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-3xl p-8 text-center shadow-xl" data-aos="fade-up" data-aos-delay="300">
 						<div
 							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
 						>
@@ -292,16 +307,16 @@ const brandImages = [
 								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+						<h3 class="text-xl font-bold text-white mb-2">
 							Innovación
 						</h3>
-						<p class="text-[#6b7280]">
+						<p class="text-zinc-300">
 							Siempre a la vanguardia de la tecnología en
 							seguridad
 						</p>
 					</div>
 
-					<div class="bg-white rounded-3xl p-8 text-center shadow-xl">
+					<div class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-3xl p-8 text-center shadow-xl" data-aos="fade-up" data-aos-delay="400">
 						<div
 							class="w-16 h-16 bg-[#504aff]/10 rounded-full flex items-center justify-center mx-auto mb-4"
 						>
@@ -320,15 +335,33 @@ const brandImages = [
 								></path>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-[#2f2f3b] mb-2">
+						<h3 class="text-xl font-bold text-white mb-2">
 							Servicio
 						</h3>
-						<p class="text-[#6b7280]">
+						<p class="text-zinc-300">
 							Atención personalizada y soporte técnico
 							especializado
 						</p>
 					</div>
 				</div>
+			</div>
+		</section>
+
+		<section class="py-20 md:py-40">
+			<div class="max-w-[1440px] mx-auto px-4">
+				<p
+					class="text-lg text-[#6b7280] text-center max-w-[632px] mx-auto mb-12"
+					data-aos="fade-up"
+				>
+					Conocemos y distribuimos solo productos que cumplan con las
+					siguientes certificaciones internacionales.
+				</p>
+
+				<InfiniteCarousel
+					images={certificationImages}
+					speed={30}
+					direction="right"
+				/>
 			</div>
 		</section>
 
