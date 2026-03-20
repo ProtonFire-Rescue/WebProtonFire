@@ -33,3 +33,4 @@ README.tests.md
 
 # jetbrains setting folder
 .idea/
+.vercel
