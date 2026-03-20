@@ -23,7 +23,6 @@ export const server = {
         react: EmailSend({ name, email, asunto, message, phone }),
       });
       if (error) {
-        console.error(error)
         throw new ActionError({
           code: "INTERNAL_SERVER_ERROR",
           message: error.message,
