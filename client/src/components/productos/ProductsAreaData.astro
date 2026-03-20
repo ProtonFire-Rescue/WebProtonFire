@@ -1,0 +1,121 @@
+---
+import { getProductsQuery } from "@/utils/server";
+import { BACKEND_URL } from "@/utils/contants";
+
+
+const { data } = await getProductsQuery(
+  'fields[0]=name&populate[type][fields][0]=name&populate[model][fields][0]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&pagination[pageSize]=100&sort[0]=createdAt:desc',
+  { cacheTtlMs: 15000 },
+);
+
+type Card = {
+  id: number;
+  name: string;
+  image: string;
+  category: string;
+  model: string;
+};
+
+const cards: Card[] = (data ?? []).flatMap((p: any) => {
+  const categories = p.categories ?? [];
+  if (categories.length === 0) {
+    return [{
+      id: p.id,
+      name: p.name,
+      image: `${BACKEND_URL}${p.images?.[0]?.url ?? ""}`,
+      category: "Otros",
+      model: p.model?.name ?? "",
+    }];
+  }
+  return categories.map((cat: any) => ({
+    id: p.id,
+    name: p.name,
+    image: `${BACKEND_URL}${p.images?.[0]?.url ?? ""}`,
+    category: cat.name,
+    model: p.model?.name ?? "",
+  }));
+});
+
+const groupNames = Array.from(new Set([...cards.map((c) => c.category)]));
+const grouped = new Map<string, Card[]>();
+for (const g of groupNames) grouped.set(g, []);
+for (const c of cards) grouped.get(c.category)?.push(c);
+
+console.log(grouped)
+
+const totalCount = cards.length;
+---
+
+{totalCount === 0 ? (
+  <div class="text-center py-16">
+    <p class="text-gray-500">No hay productos disponibles</p>
+  </div>
+) : (
+  <>
+    {groupNames.map((groupName) => {
+      const items = grouped.get(groupName) ?? [];
+      return (
+        <div class="mb-16" id={groupName.toLowerCase()}>
+          <h3 class="text-xl font-semibold text-[#2f2f3b] mb-8 flex items-center gap-2">
+            <span class="w-2 h-2 bg-[#504aff] rounded-full"></span>
+            {groupName}
+          </h3>
+
+          {items.length === 0 ? (
+            <p class="text-sm text-gray-500">No hay productos disponibles</p>
+          ) : (
+            <div>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {items.slice(0, 4).map((product) => (
+                  <div class="group" key={product.id}>
+                    <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                      <div class="relative aspect-[3/4] overflow-hidden bg-gray-50 p-4">
+                        {product.image ? (
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div class="w-full h-full bg-gray-100"></div>
+                        )}
+                      </div>
+                      <div class="p-4">
+                        <h4 class="font-semibold text-[#2f2f3b] text-sm mb-1">
+                          {product.name}
+                        </h4>
+                        <p class="text-xs text-[#6b7280] mb-3">
+                          Modelo: {product.model}
+                        </p>
+                        <a
+                          href={`/producto/${product.id}`}
+                          data-astro-prefetch="hover"
+                          class="w-full inline-flex justify-center bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors"
+                        >
+                          Ver más
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {items.length > 4 && (
+                <div class="flex justify-center mt-8">
+                  <a
+                    href={`/catalogo?categoria=${encodeURIComponent(groupName)}`}
+                    class="inline-flex items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 text-sm"
+                  >
+                    Ver todos los productos de {groupName}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </>
+)
+  }

@@ -17,7 +17,7 @@ const {
 	images,
 	speed = 20,
 	contentClass = "relative w-full overflow-hidden bg-transparent",
-	imageClass = "h-10 md:h-40 lg:h-28 w-auto object-contain md:grayscale hover:grayscale-0 transition-all duration-300",
+	imageClass = "h-10 md:h-40 lg:h-28 w-auto rounded-md object-contain md:grayscale hover:grayscale-0 transition-all duration-300",
 	direction = "left",
 	blur = true,
 } = Astro.props;
@@ -35,7 +35,12 @@ const duplicatedImages = [...images, ...images];
 		{
 			duplicatedImages.map((image, index) => (
 				<div class="shrink-0 px-4" id={`image-${index}`}>
-					<img src={image.src} alt={image.alt} class={imageClass} loading="lazy"/>
+					<img
+						src={image.src}
+						alt={image.alt}
+						class={imageClass}
+						loading="lazy"
+					/>
 				</div>
 			))
 		}
