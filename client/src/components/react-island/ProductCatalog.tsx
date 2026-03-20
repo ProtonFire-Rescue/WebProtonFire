@@ -235,10 +235,10 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                   </button>
                 ))}
               </div>
-            </div>
+            </div>{/* 
 
             {/* Precio Filter */}
-            <div>
+            {/* <div>
               <h4 className="text-sm font-medium text-gray-500 mb-3">Precio</h4>
               <div className="flex gap-2">
                 <button
@@ -259,8 +259,8 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                 >
                   Más barato
                 </button>
-              </div>
-            </div>
+              </div> 
+            </div> */}
           </div>
 
           {/* Drawer Footer */}
