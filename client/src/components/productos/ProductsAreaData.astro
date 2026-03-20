@@ -41,8 +41,6 @@ const grouped = new Map<string, Card[]>();
 for (const g of groupNames) grouped.set(g, []);
 for (const c of cards) grouped.get(c.category)?.push(c);
 
-console.log(grouped)
-
 const totalCount = cards.length;
 ---
 
