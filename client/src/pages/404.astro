@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Menu from "../components/Menu.astro";
-import Footer from "../components/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+import Menu from "@/components/page/Menu.astro";
+import Footer from "@/components/page/Footer.astro";
 ---
 
 <Layout
@@ -13,7 +13,7 @@ import Footer from "../components/Footer.astro";
 	<main class="min-h-screen flex items-center justify-center bg-white px-4">
 		<div class="max-w-lg w-full text-center py-20">
 			<!-- Icono decorativo -->
-			<div class="mx-auto mb-8 w-24 h-24 rounded-full bg-[#504aff]/10 flex items-center justify-center">
+			<div class="mx-auto mb-8 w-24 h-24 rounded-full bg-[#504aff]/10 flex items-center justify-center" data-aos="zoom-in">
 				<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#504aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
 					<circle cx="11" cy="11" r="8"/>
 					<path d="m21 21-4.3-4.3"/>
@@ -22,20 +22,20 @@ import Footer from "../components/Footer.astro";
 			</div>
 
 			<!-- Código de error -->
-			<p class="text-sm font-semibold text-[#504aff] tracking-widest uppercase mb-3">Error 404</p>
+			<p class="text-sm font-semibold text-[#504aff] tracking-widest uppercase mb-3" data-aos="fade-up" data-aos-delay="100">Error 404</p>
 
 			<!-- Título -->
-			<h1 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
+			<h1 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4" data-aos="fade-up" data-aos-delay="200">
 				Página no encontrada
 			</h1>
 
 			<!-- Descripción -->
-			<p class="text-gray-500 mb-10 max-w-md mx-auto leading-relaxed">
+			<p class="text-gray-500 mb-10 max-w-md mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="300">
 				Lo sentimos, la página que buscas no existe, fue movida o está temporalmente fuera de servicio.
 			</p>
 
 			<!-- CTAs -->
-			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+			<div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="400">
 				<a
 					href="/"
 					class="inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-3.5 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 text-sm"
