@@ -14,8 +14,9 @@ export const server = {
       phone: z.string()
     }),
     handler: async ({ name, email, asunto, message, phone }, context) => {
-      const runtimeEnv = context?.locals?.runtime?.env;
-      const apiKey = runtimeEnv?.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+      const platformEnv = (context as any)?.platform?.env;
+      const runtimeEnv = (context as any)?.locals?.runtime?.env;
+      const apiKey = platformEnv?.RESEND_API_KEY ?? runtimeEnv?.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
 
       if (!apiKey) {
         throw new ActionError({
