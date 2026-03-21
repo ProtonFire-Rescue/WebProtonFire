@@ -3,8 +3,6 @@ import { z } from "zod";
 import { Resend } from "resend";
 import EmailSend from "@/components/react-island/EmailSend";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
 export const server = {
   send: defineAction({
     accept: "form",
@@ -15,7 +13,18 @@ export const server = {
       message: z.string(),
       phone: z.string()
     }),
-    handler: async ({name, email, asunto, message, phone}) => {
+    handler: async ({ name, email, asunto, message, phone }, context) => {
+      const runtimeEnv = context?.locals?.runtime?.env;
+      const apiKey = runtimeEnv?.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+
+      if (!apiKey) {
+        throw new ActionError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Missing RESEND_API_KEY in server environment",
+        });
+      }
+
+      const resend = new Resend(apiKey);
       const { data, error } = await resend.emails.send({
         from: "ProtonFire <onboarding@resend.dev>",
         to: ["tecnologia@protonfire.com"],
