@@ -2,10 +2,11 @@
 	"compatibility_date": "2026-03-20",
 	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
 	"name": "protonfire_web",
-	"main": "./dist/_worker.js",
+	"main": "./dist/_worker.js/index.js",
 	"assets": {
 		"directory": "./dist",
-		"binding": "ASSETS"
+		"binding": "ASSETS",
+		"exclude": ["_worker.js/**"]
 	},
 	"observability": {
 		"enabled": true
