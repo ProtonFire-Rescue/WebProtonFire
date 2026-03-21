@@ -11,7 +11,7 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
-  site: 'https://webprotonfire.tecnologia-14a.workers.dev/_actions/send/',
+  site: 'https://webprotonfire.tecnologia-14a.workers.dev',
 
   vite: {
     plugins: [tailwindcss()]  
