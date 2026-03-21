@@ -1,7 +1,7 @@
 {
 	"compatibility_date": "2026-03-20",
 	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
-	"name": "protonfire_web",
+	"name": "webprotonfire",
 	"main": "./dist/_worker.js/index.js",
 	"assets": {
 		"directory": "./dist",
