@@ -1,6 +1,8 @@
-import type { StrapiProduct } from "../types/types";
 
-const STRAPI_URL = (import.meta as any).env?.VITE_BACKEND_URL ?? 'http://localhost:1337';
+const platformEnv = (import.meta as any).env?.platform?.env;
+const runtimeEnv = (import.meta as any).env?.locals?.runtime?.env;
+const STRAPI_URL = platformEnv?.VITE_BACKEND_URL ?? runtimeEnv?.VITE_BACKEND_URL ?? import.meta.env.VITE_BACKEND_URL;
+
 
 type CacheEntry = { expiresAt: number; value: unknown };
 const cache = new Map<string, { data: any; timestamp: number }>();
