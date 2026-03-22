@@ -1,6 +1,6 @@
 import type { StrapiProduct } from "../types/types";
 
-const STRAPI_URL = (import.meta as any).env?.PUBLIC_STRAPI_URL ?? 'http://localhost:1337';
+const STRAPI_URL = (import.meta as any).env?.VITE_BACKEND_URL ?? 'http://localhost:1337';
 
 type CacheEntry = { expiresAt: number; value: unknown };
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -32,19 +32,35 @@ async function fetchWithCache(url: string, cacheKey: string): Promise<any> {
   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos timeout
 
   try {
-    const response = await fetch(url, { 
+    const response = await fetch(url, {
       signal: controller.signal,
       headers: {
         'Accept': 'application/json',
       }
     });
-    
+
     clearTimeout(timeoutId);
-    
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status} ${response}`);
+      const isDev = (import.meta as any).env?.DEV === true;
+      const contentType = response.headers.get('content-type') ?? '';
+      let body: unknown = null;
+
+      try {
+        body = contentType.includes('application/json') ? await response.json() : await response.text();
+      } catch {
+        body = null;
+      }
+
+      if (isDev) {
+        throw new Error(
+          `HTTP error! url: ${url} status: ${response.status} ${response.statusText} body: ${typeof body === 'string' ? body : JSON.stringify(body)}`,
+        );
+      }
+
+      throw new Error(`HTTP error! url: ${url} status: ${response.status} ${response.statusText}`);
     }
-    
+
     const data = await response.json();
     setCachedData(cacheKey, data);
     return data;
@@ -65,13 +81,13 @@ export const getProductsQuery = async (query: string, opts?: { cacheTtlMs?: numb
 };
 
 export const getCategories = async (opts?: { cacheTtlMs?: number }) => {
-  const {data} = await fetchWithCache(`${STRAPI_URL}/api/categories`, 'categories-all');
+  const { data } = await fetchWithCache(`${STRAPI_URL}/api/categories`, 'categories-all');
   const refinedData = ['Todos', ...data.map((category: any) => category.name)];
   return refinedData;
 };
 
 export const getBrands = async (opts?: { cacheTtlMs?: number }) => {
-  const {data} = await fetchWithCache(`${STRAPI_URL}/api/brands`, 'brands-all');
+  const { data } = await fetchWithCache(`${STRAPI_URL}/api/brands`, 'brands-all');
   const refinedData = ['Todos', ...data.map((brand: any) => brand.name)];
   return refinedData;
 };
@@ -80,35 +96,35 @@ export const getProductById = async (
   id: string | undefined,
   opts?: { populate?: string; cacheTtlMs?: number },
 ) => {
-    if (!id) throw new Error('Missing id');
-    const populate = opts?.populate ?? '*';
-    return fetchWithCache(
-        `${STRAPI_URL}/api/productos?filters[id][$eq]=${encodeURIComponent(id)}&populate=${encodeURIComponent(populate)}`,
-        `product-${id}-${populate}`,
-    );
+  if (!id) throw new Error('Missing id');
+  const populate = opts?.populate ?? '*';
+  return fetchWithCache(
+    `${STRAPI_URL}/api/productos?filters[id][$eq]=${encodeURIComponent(id)}&populate=${encodeURIComponent(populate)}`,
+    `product-${id}-${populate}`,
+  );
 };
 
 export const getProductByIdQuery = async (id: string | undefined, query: string, opts?: { cacheTtlMs?: number }) => {
-    if (!id) throw new Error('Missing id');
-    const q = query.startsWith('?') ? query.slice(1) : query;
-    return fetchWithCache(`${STRAPI_URL}/api/productos?filters[id][$eq]=${encodeURIComponent(id)}&${q}`, `product-${id}-${q}`);
+  if (!id) throw new Error('Missing id');
+  const q = query.startsWith('?') ? query.slice(1) : query;
+  return fetchWithCache(`${STRAPI_URL}/api/productos?filters[id][$eq]=${encodeURIComponent(id)}&${q}`, `product-${id}-${q}`);
 };
 
 export const getRelatedProducts = async (
-    categoryName: string,
-    opts?: { populate?: string; cacheTtlMs?: number },
+  categoryName: string,
+  opts?: { populate?: string; cacheTtlMs?: number },
 ) => {
-    const populate = opts?.populate ?? '*';
-    return fetchWithCache(
-        `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&populate=${encodeURIComponent(populate)}`,
-        `related-${categoryName}-${populate}`,
-    );
+  const populate = opts?.populate ?? '*';
+  return fetchWithCache(
+    `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&populate=${encodeURIComponent(populate)}`,
+    `related-${categoryName}-${populate}`,
+  );
 };
 
 export const getRelatedProductsQuery = async (categoryName: string, query: string, opts?: { cacheTtlMs?: number }) => {
-    const q = query.startsWith('?') ? query.slice(1) : query;
-    return fetchWithCache(
-        `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&${q}`,
-        `related-${categoryName}-${q}`,
-    );
+  const q = query.startsWith('?') ? query.slice(1) : query;
+  return fetchWithCache(
+    `${STRAPI_URL}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&${q}`,
+    `related-${categoryName}-${q}`,
+  );
 };
