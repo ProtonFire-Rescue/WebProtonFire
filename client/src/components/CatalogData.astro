@@ -5,9 +5,11 @@ import { getProductsQuery } from "../utils/server";
 
 
 
+const strapiBaseUrl = Astro.platform?.env?.VITE_BACKEND_URL;
+
 const { data } = await getProductsQuery(
   'fields[0]=name&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
-  { cacheTtlMs: 15000 },
+  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl },
 );
 
 const filteredCategories: string[] = [...new Set(data.flatMap((product: any) => 
