@@ -52,8 +52,6 @@
   body {
     line-height: 1.6;
     color: var(--pf-dark);
-    overflow-x: hidden;
-    overflow-x: clip;
   }
   
   @media (prefers-reduced-motion: reduce) {

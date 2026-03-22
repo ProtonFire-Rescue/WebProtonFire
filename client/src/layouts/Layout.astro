@@ -189,7 +189,7 @@ const websiteSchema = {
 			href="https://unpkg.com/aos@2.3.4/dist/aos.css"
 		/>
 	</head>
-	<body class="font-sans antialiased overflow-x-hidden">
+	<body class="font-sans antialiased">
 		<Toaster client:load transition:persist richColors={true} />
 		<slot />
 	</body>
@@ -204,6 +204,8 @@ const websiteSchema = {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		overflow-x: hidden;
+		overflow-x: clip;
 	}
 </style>
 
