@@ -5,7 +5,7 @@ import { getProductsQuery } from "../utils/server";
 
 
 
-const strapiBaseUrl = Astro.platform?.env?.VITE_BACKEND_URL;
+const strapiBaseUrl = import.meta.env?.VITE_BACKEND_URL;
 const publicBackendUrl = strapiBaseUrl ?? BACKEND_URL;
 
 const { data } = await getProductsQuery(

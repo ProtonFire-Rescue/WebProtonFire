@@ -7,7 +7,7 @@ import type { ProductView, StrapiProduct } from "@/types/types";
 
 const { id } = Astro.props;
 
-const strapiBaseUrl = Astro.platform?.env?.VITE_BACKEND_URL;
+const strapiBaseUrl = import.meta?.env?.VITE_BACKEND_URL;
 const publicBackendUrl = strapiBaseUrl ?? BACKEND_URL;
 const { data: product } = await getProductByIdQuery(
   id,
