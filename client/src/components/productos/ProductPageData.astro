@@ -42,7 +42,7 @@ const categoryName = product[0].categories?.[0]?.name ?? '';
 <RelatedProducts 
   categoryName={categoryName} 
   excludeId={product[0].id} 
-  backendUrl={BACKEND_URL}
+  backendUrl={publicBackendUrl}
   client:idle 
 />
 
