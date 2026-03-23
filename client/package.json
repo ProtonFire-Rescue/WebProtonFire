@@ -7,6 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "deploy": "pnpm build && node -e \"require('fs').writeFileSync('dist/.assetsignore', '_worker.js\\n')\" && wrangler deploy",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",

@@ -1,13 +1,16 @@
 ---
 import ProductCatalog from "./react-island/ProductCatalog";
 import { BACKEND_URL } from "../utils/contants";
-import { getProductsQuery } from "../utils/server";
+import { getProductsQuery, resolveBackendUrl } from "../utils/server";
 
 
+
+const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
+const publicBackendUrl = strapiBaseUrl || BACKEND_URL;
 
 const { data } = await getProductsQuery(
   'fields[0]=name&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
-  { cacheTtlMs: 15000 },
+  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro },
 );
 
 const filteredCategories: string[] = [...new Set(data.flatMap((product: any) => 
@@ -25,7 +28,7 @@ const allProducts = data.map((product: any) => {
   return { 
     id, 
     name, 
-    image: `${BACKEND_URL}${images?.[0]?.url ?? ''}`, 
+    image: `${publicBackendUrl}${images?.[0]?.url ?? ''}`, 
     category: categoryNames.length > 0 ? categoryNames[0] : 'Otros',
     categories: categoryNames.length > 0 ? categoryNames : ['Otros'],
     brand: brand?.name ?? '',

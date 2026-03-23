@@ -1,8 +1,11 @@
 {
 	"compatibility_date": "2026-03-20",
 	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
-	"name": "protonfire_web",
-	"main": "@astrojs/cloudflare/entrypoints/server",
+	"name": "webprotonfire",
+	"main": "./dist/_worker.js/index.js",
+	"vars": {
+		"VITE_BACKEND_URL": "https://webprotonfire-production.up.railway.app"
+	},
 	"assets": {
 		"directory": "./dist",
 		"binding": "ASSETS"

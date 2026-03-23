@@ -1,11 +1,14 @@
 ---
-import { getProductsQuery } from "@/utils/server";
+import { getProductsQuery, resolveBackendUrl } from "@/utils/server";
 import { BACKEND_URL } from "@/utils/contants";
 
 
+const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
+const publicBackendUrl = strapiBaseUrl || BACKEND_URL;
+
 const { data } = await getProductsQuery(
   'fields[0]=name&populate[type][fields][0]=name&populate[model][fields][0]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&pagination[pageSize]=100&sort[0]=createdAt:desc',
-  { cacheTtlMs: 15000 },
+  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro },
 );
 
 type Card = {
