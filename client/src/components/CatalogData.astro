@@ -28,7 +28,7 @@ const allProducts = data.map((product: any) => {
   return { 
     id, 
     name, 
-    image: `${publicBackendUrl}${images?.[0]?.url ?? ''}`, 
+    image: images?.[0]?.url ?? '', 
     category: categoryNames.length > 0 ? categoryNames[0] : 'Otros',
     categories: categoryNames.length > 0 ? categoryNames : ['Otros'],
     brand: brand?.name ?? '',
