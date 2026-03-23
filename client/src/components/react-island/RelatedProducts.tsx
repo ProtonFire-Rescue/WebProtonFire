@@ -33,7 +33,7 @@ export default function RelatedProducts({ categoryName, excludeId, backendUrl }:
               name: p.name,
               images: (p.images ?? []).map((img: any) => ({
                 id: img.id,
-                url: `${backendUrl}${img.url}`,
+                url: img.url,
                 alt: img.alternativeText ?? '',
               })),
               category: p.categories?.[0]?.name ?? '',

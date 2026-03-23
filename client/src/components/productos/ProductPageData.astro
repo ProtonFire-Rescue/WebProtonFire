@@ -22,7 +22,7 @@ const toProductView = (p: StrapiProduct): ProductView => ({
   name: p.name,
   images: (p.images ?? []).map((image) => ({
     id: image.id,
-    url: `${BACKEND_URL}${image.url}`,
+    url: image.url,
     alt: image.alternativeText ?? "",
   })),
   category: p.categories?.[0]?.name ?? "",

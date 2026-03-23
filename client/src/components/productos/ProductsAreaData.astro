@@ -22,7 +22,7 @@ const cards: Card[] = (data ?? []).flatMap((p: any) => {
     return [{
       id: p.id,
       name: p.name,
-      image: `${BACKEND_URL}${p.images?.[0]?.url ?? ""}`,
+      image: p.images?.[0]?.url ?? "",
       category: "Otros",
       model: p.model?.name ?? "",
     }];
@@ -30,7 +30,7 @@ const cards: Card[] = (data ?? []).flatMap((p: any) => {
   return categories.map((cat: any) => ({
     id: p.id,
     name: p.name,
-    image: `${BACKEND_URL}${p.images?.[0]?.url ?? ""}`,
+    image: p.images?.[0]?.url ?? "",
     category: cat.name,
     model: p.model?.name ?? "",
   }));
