@@ -53,6 +53,21 @@
       "relation": "oneToOne",
       "target": "api::model.model",
       "mappedBy": "product"
+    },
+    "Genero": {
+      "type": "enumeration",
+      "enum": [
+        "N/A",
+        "Femenino",
+        "Masculino",
+        "Unisex"
+      ]
+    },
+    "certifications": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::certification.certification",
+      "mappedBy": "products"
     }
   }
 }

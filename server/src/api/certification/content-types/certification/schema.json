@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "brands",
+  "collectionName": "certifications",
   "info": {
-    "singularName": "brand",
-    "pluralName": "brands",
-    "displayName": "Brand"
+    "singularName": "certification",
+    "pluralName": "certifications",
+    "displayName": "Certification"
   },
   "options": {
     "draftAndPublish": true
@@ -15,16 +15,14 @@
       "type": "string"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "name"
     },
     "products": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::producto.producto",
-      "mappedBy": "brand"
-    },
-    "descripcion": {
-      "type": "text"
+      "inversedBy": "certifications"
     }
   }
 }
