@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, ChevronRight, ShoppingCart, Shield, Truck, Headphones } from "lucide-react";
+import { Check, ChevronRight, ShoppingCart, Shield, Truck, Headphones, Award, User } from "lucide-react";
 import type { ProductView } from "../../types/types";
 
 interface ProductDetailProps {
@@ -93,10 +93,19 @@ export default function ProductDetail({
               <h1 className="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-3">
                 {product.name}
               </h1>
-              <div className="flex items-center gap-3 text-sm">
-                <span className="text-gray-500">Marca: <span className="text-[#2f2f3b] font-medium">{product.brand}</span></span>
+              <div className="flex items-center gap-3 text-sm flex-wrap">
+                <span className="text-gray-500">Marca: <span className="text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full">{product.brand}</span></span>
                 <span className="text-gray-300">|</span>
-                <span className="text-gray-500">Modelo: <span className="text-[#2f2f3b] font-medium">{product.model}</span></span>
+                <span className="text-gray-500">Modelo: <span className="text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full">{product.model}</span></span>
+                {product.genero && product.genero !== 'N/A' && (
+                  <>
+                    <span className="text-gray-300">|</span>
+                    <span className="inline-flex items-center gap-1 text-gray-500">
+                      <User size={13} />
+                      <span className="text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full">{product.genero}</span>
+                    </span>
+                  </>
+                )}
               </div>
             </div>
 
@@ -107,6 +116,34 @@ export default function ProductDetail({
               </h2>
               <p className="text-gray-600 leading-relaxed">{product.description}</p>
             </div>
+
+            {/* Certifications */}
+            {product.certifications.length > 0 && (
+              <div className="border-t border-gray-100 pt-6 ">
+                <h2 className="text-lg font-bold text-[#2f2f3b] mb-3 flex items-center gap-2">
+                  <Award size={20} className="text-[#504aff]" />
+                  Certificaciones
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {product.certifications.map((cert) => (
+                    <div
+                      key={cert.id}
+                      className="group relative inline-flex items-center gap-1.5 bg-[#504aff]/5 text-[#504aff] text-sm font-semibold px-4 py-2 rounded-full border border-[#504aff]/20 hover:bg-[#504aff]/10 transition-colors cursor-pointer"
+                      data-tip={cert.description}
+                    >
+                      <Shield size={14} />
+                      {cert.name}
+                      {cert.description && (
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white border border-gray-200 shadow-lg text-gray-700 text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10">
+                          {cert.description}
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white"></div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Trust indicators */}
             <div className="grid grid-cols-3 gap-3 py-4 border-t border-b border-gray-100">

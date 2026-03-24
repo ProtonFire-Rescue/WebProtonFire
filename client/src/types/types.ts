@@ -8,6 +8,12 @@ export interface StrapiImage {
     alternativeText?: string;
 }
 
+export interface StrapiCertification {
+    id: number;
+    name: string;
+    description?: string;
+}
+
 export interface StrapiProduct {
     id: number;
     name: string;
@@ -16,12 +22,20 @@ export interface StrapiProduct {
     categories: StrapiNameRelation[];
     brand: StrapiNameRelation;
     model: StrapiNameRelation;
+    Genero?: 'N/A' | 'Femenino' | 'Masculino' | 'Unisex';
+    certifications?: StrapiCertification[];
 }
 
 export interface ProductImage {
     id: number;
     url: string;
     alt: string;
+}
+
+export interface CertificationView {
+    id: number;
+    name: string;
+    description?: string;
 }
 
 export interface ProductView {
@@ -33,5 +47,7 @@ export interface ProductView {
     brand: string;
     model: string;
     description: string;
+    genero: string;
+    certifications: CertificationView[];
 }
 
