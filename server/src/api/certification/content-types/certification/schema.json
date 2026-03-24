@@ -23,6 +23,9 @@
       "relation": "manyToMany",
       "target": "api::producto.producto",
       "inversedBy": "certifications"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
