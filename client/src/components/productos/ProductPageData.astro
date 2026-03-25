@@ -52,24 +52,4 @@ const categoryName = product[0].categories?.[0]?.name ?? '';
   client:idle 
 />
 
-<script define:vars={{ productName: product[0].name, productDescription: product[0].description }}>
-  // Actualizar meta tags dinámicamente cuando se cargue el producto
-  if (typeof document !== 'undefined') {
-    document.title = `${productName} - PROTON Fire & Rescue`;
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', `${productDescription || productName} - Equipos de seguridad profesional para bomberos y rescate.`);
-    }
-    
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-      ogTitle.setAttribute('content', `${productName} - PROTON Fire & Rescue`);
-    }
-    
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    if (ogDescription) {
-      ogDescription.setAttribute('content', `${productDescription || productName} - Equipos de seguridad profesional para bomberos y rescate.`);
-    }
-  }
-</script>
+<!-- Meta tags SEO se manejan server-side en producto/[id].astro -->

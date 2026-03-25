@@ -9,6 +9,7 @@ import WhatsAppWidget from "@/components/WhatsAppWidget.astro";
 
 const currentPath = Astro.url.pathname;
 
+
 const productCategories = [
 	{
 		name: "Línea Fuego",
@@ -65,17 +66,19 @@ const certificationImages = [
 	{ src: "/certifications/cert10.png", alt: "Certificación 10" },
 ];
 
+const siteOrigin = Astro.url.origin;
+
 // Structured Data para la página de inicio
 const homePageSchema = {
 	"@context": "https://schema.org",
 	"@type": "LocalBusiness",
-	"@id": "https://www.protonfire.com",
+	"@id": siteOrigin,
 	name: "PROTON Fire & Rescue",
 	description:
 		"Empresa ecuatoriana líder con más de 20 años de experiencia en importación y comercialización de equipos de seguridad para bomberos, rescate e industria en Ecuador.",
-	url: "https://www.protonfire.com",
-	logo: "https://www.protonfire.com/logo.png",
-	image: "https://www.protonfire.com/og-image.jpg",
+	url: siteOrigin,
+	logo: `${siteOrigin}/logo.png`,
+	image: `${siteOrigin}/og-image.jpg`,
 	telephone: "+593992526658",
 	email: "info@protonfire.com",
 	address: {
@@ -145,8 +148,6 @@ const homePageSchema = {
 <Layout
 	title="PROTON Fire & Rescue Ecuador | Equipos Bomberos, Rescate e Industria"
 	description="Empresa ecuatoriana líder con +20 años en equipos de seguridad para bomberos, rescate e industria. Importadores de FLAIM VR, F-500 EA y equipos certificados. Servicio en todo Ecuador."
-	url="https://www.protonfire.com"
-	image="https://www.protonfire.com/og-image.jpg"
 	keywords="equipos bomberos Ecuador, equipos rescate Ecuador, PROTON Fire Rescue, equipos seguridad industrial Ecuador, FLAIM Ecuador, F-500 Ecuador, equipos contra incendios, trajes bombero Ecuador, equipos emergencia"
 	jsonLd={homePageSchema}
 >

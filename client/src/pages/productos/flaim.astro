@@ -4,6 +4,7 @@ import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
 
 const characteristics =  [
   'Entrenamiento virtual ideal para bomberos.',
@@ -48,11 +49,11 @@ const flaimProductSchema = {
     "name": "FLAIM"
   },
   "image": [
-    "https://www.protonfire.com/flaim/flaim_body.jpg",
-    "https://www.protonfire.com/flaim/flaim_demo1.jpg",
-    "https://www.protonfire.com/flaim/flaim_demo2.jpg",
-    "https://www.protonfire.com/flaim/flaim_demo3.webp",
-    "https://www.protonfire.com/flaim/flaim_complete.jpg"
+    `${siteOrigin}/flaim/flaim_body.jpg`,
+    `${siteOrigin}/flaim/flaim_demo1.jpg`,
+    `${siteOrigin}/flaim/flaim_demo2.jpg`,
+    `${siteOrigin}/flaim/flaim_demo3.webp`,
+    `${siteOrigin}/flaim/flaim_complete.jpg`
   ],
   "offers": {
     "@type": "Offer",
@@ -84,19 +85,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Inicio",
-      "item": "https://www.protonfire.com"
+      "item": siteOrigin
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Productos",
-      "item": "https://www.protonfire.com/productos"
+      "item": `${siteOrigin}/productos`
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "FLAIM FTS",
-      "item": "https://www.protonfire.com/productos/flaim"
+      "item": `${siteOrigin}/productos/flaim`
     }
   ]
 };
@@ -106,8 +107,7 @@ const breadcrumbSchema = {
 <Layout
   title="FLAIM FTS - Sistema de Formación de Bomberos VR | PROTON Ecuador"
   description="FLAIM Trainer System - Tecnología de realidad virtual para entrenamiento de bomberos en Ecuador. Sistema de formación inmersivo, seguro y efectivo con escenarios 3D hiperrealistas. Reduce costos y riesgos."
-  url="https://www.protonfire.com/productos/flaim"
-  image="https://www.protonfire.com/flaim/flaim_body.jpg"
+  image="/flaim/flaim_body.jpg"
   type="product"
   keywords="FLAIM FTS, entrenamiento bomberos VR, realidad virtual bomberos, simulador incendios, FLAIM Ecuador, capacitación bomberos, entrenamiento virtual incendios, FLAIM Trainer, equipos bomberos Ecuador"
   jsonLd={[flaimProductSchema, breadcrumbSchema]}
