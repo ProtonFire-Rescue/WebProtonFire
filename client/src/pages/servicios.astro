@@ -4,6 +4,7 @@ import Menu from "@/components/page/Menu.astro";
 import Footer from "@/components/page/Footer.astro";
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
 
 const services = [
 	{
@@ -86,12 +87,56 @@ const trainingServices = [
 			"Seguridad vertical para sectores clave. Capacitación específica para la industria eléctrica, telecomunicaciones y construcción, enfocada en la prevención de caídas y el uso correcto de equipos certificados.",
 	},
 ];
+
+const serviciosJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "Service",
+		"name": "Servicios de PROTON Fire & Rescue",
+		"description": "Servicios de capacitación, confección y mantenimiento para equipos de seguridad de bomberos, rescate e industria en Ecuador.",
+		"url": `${siteOrigin}/servicios`,
+		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"provider": {
+			"@type": "Organization",
+			"name": "PROTON Fire & Rescue",
+			"url": siteOrigin
+		},
+		"areaServed": { "@type": "Country", "name": "Ecuador" },
+		"hasOfferCatalog": {
+			"@type": "OfferCatalog",
+			"name": "Servicios Especializados",
+			"itemListElement": [
+				{
+					"@type": "Offer",
+					"itemOffered": { "@type": "Service", "name": "Capacitación y Formación de Brigadas", "description": "Capacitación especializada en rescate, primeros auxilios, HAZMAT y trabajos de alto riesgo." }
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": { "@type": "Service", "name": "Confección de Prendas Técnicas", "description": "Confección de prendas ignífugas, dieléctricas y antidesgarro con insumos certificados." }
+				},
+				{
+					"@type": "Offer",
+					"itemOffered": { "@type": "Service", "name": "Mantenimiento de Equipos", "description": "Mantenimiento especializado de equipos SCBA, pruebas hidrostáticas y recarga de aire respirable." }
+				}
+			]
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+			{ "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${siteOrigin}/servicios` }
+		]
+	}
+];
 ---
 
 <Layout
 	title="Servicios y Capacitaciones | PROTON Fire & Rescue Ecuador"
 	description="Descubre nuestros servicios de capacitación, confección y mantenimiento para equipos de seguridad de bomberos, rescate e industria en Ecuador."
 	keywords="capacitación bomberos Ecuador, mantenimiento equipos SCBA, confección prendas ignífugas, formación brigadas industriales, HAZMAT Ecuador"
+	jsonLd={serviciosJsonLd}
 >
 	<Menu currentPath={currentPath} />
 

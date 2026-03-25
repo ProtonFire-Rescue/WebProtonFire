@@ -6,6 +6,7 @@ import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
 import ScrollScale from "@/components/ScrollScale.astro";
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
 
 // Ejemplo de imágenes para el carousel
 const carouselImages = [
@@ -28,12 +29,40 @@ const certificationImages = [
 	{ src: "/certifications/cert9.png", alt: "Certificación International Standard Worldwide" },
 	{ src: "/certifications/cert10.png", alt: "Certificación ATEX (del francés ATmosphères EXplosibles)" },
 ];
+
+const nosotrosJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "AboutPage",
+		"name": "Quiénes Somos - PROTON Fire & Rescue Ecuador",
+		"description": "Conoce PROTON Fire & Rescue, empresa ecuatoriana con más de 2 décadas de trayectoria en equipos de seguridad para bomberos, rescate e industria.",
+		"url": `${siteOrigin}/nosotros`,
+		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"mainEntity": {
+			"@type": "Organization",
+			"name": "PROTON Fire & Rescue",
+			"foundingDate": "2000",
+			"url": siteOrigin,
+			"areaServed": { "@type": "Country", "name": "Ecuador" },
+			"slogan": "Protegiendo vidas, asegurando el futuro"
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+			{ "@type": "ListItem", "position": 2, "name": "Nosotros", "item": `${siteOrigin}/nosotros` }
+		]
+	}
+];
 ---
 
 <Layout
 	title="Quiénes Somos | Proton Fire & Rescue Ecuador"
 	description="Conoce PROTON Fire & Rescue, empresa ecuatoriana con más de 2 décadas de trayectoria en equipos de seguridad para bomberos, rescate e industria."
 	keywords="PROTON Fire Rescue empresa, equipos bomberos Ecuador empresa, quienes somos PROTON, seguridad industrial Ecuador"
+	jsonLd={nosotrosJsonLd}
 >
 	<Menu currentPath={currentPath} />
 
@@ -156,7 +185,7 @@ const certificationImages = [
 					<div class="relative" data-aos="fade-left">
 						<img
 							src="/images/hero-home.png"
-							alt="PROTON Fire & Rescue"
+							alt="Imagen de fondo para la página de nosotros."
 							class="w-full h-auto rounded-2xl shadow-xl"
 							loading="lazy"
 						/>

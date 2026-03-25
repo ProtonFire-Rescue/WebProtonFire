@@ -10,7 +10,7 @@ export interface Props {
 	type?: string;
 	keywords?: string;
 	author?: string;
-	jsonLd?: object;
+	jsonLd?: object | object[];
 	canonical?: string;
 }
 
@@ -25,7 +25,6 @@ const {
 	canonical = Astro.url.href,
 } = Astro.props;
 
-console.log(title, description, image)
 
 const siteOrigin = Astro.url.origin;
 const fullImageUrl = image.startsWith("http") ? image : `${siteOrigin}${image}`;
@@ -161,10 +160,19 @@ const websiteSchema = {
 		<!-- Page-specific Structured Data -->
 		{
 			jsonLd && (
-				<script
-					type="application/ld+json"
-					set:html={JSON.stringify(jsonLd)}
-				/>
+				Array.isArray(jsonLd)
+					? jsonLd.map((schema) => (
+						<script
+							type="application/ld+json"
+							set:html={JSON.stringify(schema)}
+						/>
+					))
+					: (
+						<script
+							type="application/ld+json"
+							set:html={JSON.stringify(jsonLd)}
+						/>
+					)
 			)
 		}
 

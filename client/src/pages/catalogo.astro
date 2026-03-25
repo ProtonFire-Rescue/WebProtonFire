@@ -5,13 +5,43 @@ import Footer from "@/components/page/Footer.astro";
 import CatalogData from "@/components/CatalogData.astro";
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
 
+const catalogJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"name": "Catálogo de Productos - PROTON Fire & Rescue",
+		"description": "Explora nuestro catálogo completo de equipos de seguridad para bomberos, rescate e industria. Filtra por categoría, marca y precio.",
+		"url": `${siteOrigin}/catalogo`,
+		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"isPartOf": {
+			"@type": "WebSite",
+			"name": "PROTON Fire & Rescue Ecuador",
+			"url": siteOrigin
+		},
+		"provider": {
+			"@type": "Organization",
+			"name": "PROTON Fire & Rescue",
+			"url": siteOrigin
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+			{ "@type": "ListItem", "position": 2, "name": "Catálogo", "item": `${siteOrigin}/catalogo` }
+		]
+	}
+];
 ---
 
 <Layout
 	title="Catálogo de Productos Bomberiles, Rescate y más - PROTON Fire & Rescue"
 	description="Explora nuestro catálogo completo de equipos de seguridad. Filtra por categoría, marca y precio."
 	keywords="catálogo equipos bomberos, filtrar productos seguridad, equipos contra incendios Ecuador, trajes bombero catálogo"
+	jsonLd={catalogJsonLd}
 >
 	<Menu currentPath={currentPath} />
 

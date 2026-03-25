@@ -6,6 +6,7 @@ import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
 import ProductsAreaData from "@/components/productos/ProductsAreaData.astro";
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
 
 // Marcas para el carousel
 const brandImages = [
@@ -14,12 +15,42 @@ const brandImages = [
 	{ src: "/brands/viking.png", alt: "Viking lider en el sector de seguridad y protección" },
 	{ src: "/brands/carbon-x.png", alt: "Carbon X marca de textiles de alto rendimiento" },
 ];
+
+const productosJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"name": "Equipos de Bomberos y Rescate - PROTON Fire & Rescue",
+		"description": "Catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales certificadas.",
+		"url": `${siteOrigin}/productos`,
+		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"isPartOf": {
+			"@type": "WebSite",
+			"name": "PROTON Fire & Rescue Ecuador",
+			"url": siteOrigin
+		},
+		"provider": {
+			"@type": "Organization",
+			"name": "PROTON Fire & Rescue",
+			"url": siteOrigin
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+			{ "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteOrigin}/productos` }
+		]
+	}
+];
 ---
 
 <Layout
 	title="Equipos de Bomberos y Rescate en Ecuador | PROTON Fire & Rescue"
 	description="Descubre nuestro catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales."
 	keywords="productos bomberos Ecuador, equipos contra incendios, trajes bombero, SCBA Ecuador, equipos rescate, F-500, FLAIM VR, equipos seguridad industrial"
+	jsonLd={productosJsonLd}
 >
 	<Menu currentPath={currentPath} />
 

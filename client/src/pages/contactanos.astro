@@ -5,12 +5,46 @@ import Footer from '@/components/page/Footer.astro';
 import ContactForm from '@/components/react-island/ContactForm';
 
 const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
+
+const contactJsonLd = [
+	{
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		"name": "Contacto - PROTON Fire & Rescue Ecuador",
+		"description": "Contacta con PROTON Fire & Rescue para obtener información sobre equipos de seguridad, capacitación y servicios para bomberos, rescate e industria.",
+		"url": `${siteOrigin}/contactanos`,
+		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"mainEntity": {
+			"@type": "Organization",
+			"name": "PROTON Fire & Rescue",
+			"telephone": "+593992526658",
+			"email": "info@protonfire.com",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Raúl González y Chimborazo Oe2-91",
+				"addressLocality": "Quito",
+				"postalCode": "170136",
+				"addressCountry": "EC"
+			}
+		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+			{ "@type": "ListItem", "position": 2, "name": "Contáctanos", "item": `${siteOrigin}/contactanos` }
+		]
+	}
+];
 ---
 
 <Layout 
 	title="Contacto | Cotiza Equipos de Seguridad - PROTON FIRE & RESCUE Ecuador"
 	description="Contacta con PROTON Fire & Rescue para obtener información sobre equipos de seguridad, capacitación y servicios para bomberos, rescate e industria."
 	keywords="contacto PROTON Fire, equipos bomberos Ecuador contacto, cotización equipos seguridad, WhatsApp PROTON Fire"
+	jsonLd={contactJsonLd}
 >
 	<Menu currentPath={currentPath} />
 	
