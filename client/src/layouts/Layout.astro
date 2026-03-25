@@ -17,7 +17,7 @@ const {
 	title = "PROTON Fire & Rescue - Equipos de Seguridad Ecuador",
 	description = "Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.",
 	image = "/og-image.jpg",
-	url = "https://protonfire.com",
+	url = "https://www.protonfire.com",
 	type = "website",
 	keywords = "equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia",
 	author = "PROTON Fire & Rescue",
@@ -27,7 +27,7 @@ const {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullImageUrl = image.startsWith("http")
 	? image
-	: `https://protonfire.com${image}`;
+	: `https://www.protonfire.com${image}`;
 
 // Structured Data base para la organización
 const organizationSchema = {
@@ -36,20 +36,20 @@ const organizationSchema = {
 	name: "PROTON Fire & Rescue",
 	description:
 		"Empresa ecuatoriana especializada en equipos de seguridad para bomberos, rescate e industria con más de 20 años de experiencia",
-	url: "https://protonfire.com",
-	logo: "https://protonfire.com/logo.png",
-	image: "https://protonfire.com/og-image.jpg",
-	telephone: "+593-XX-XXXXXXX",
-	email: "tecnologia@gmail.com",
+	url: "https://www.protonfire.com",
+	logo: "https://www.protonfire.com/logo.png",
+	image: "https://www.protonfire.com/og-image.jpg",
+	telephone: "+593992526658",
+	email: "info@protonfire.com",
 	address: {
 		"@type": "PostalAddress",
 		addressCountry: "EC",
 		addressLocality: "Ecuador",
 	},
 	sameAs: [
-		"https://www.facebook.com/protonfire",
-		"https://www.instagram.com/protonfire",
-		"https://www.linkedin.com/company/protonfire",
+		"https://www.facebook.com/protonFireRescue",
+		"https://www.instagram.com/proton_fire_/",
+		"https://www.youtube.com/@protonfirerescue2360",
 	],
 	areaServed: {
 		"@type": "Country",
@@ -64,10 +64,10 @@ const websiteSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebSite",
 	name: "PROTON Fire & Rescue",
-	url: "https://protonfire.com",
+	url: "https://www.protonfire.com",
 	potentialAction: {
 		"@type": "SearchAction",
-		target: "https://protonfire.com/catalogo?q={search_term_string}",
+		target: "https://www.protonfire.com/catalogo?q={search_term_string}",
 		"query-input": "required name=search_term_string",
 	},
 };
@@ -168,20 +168,11 @@ const websiteSchema = {
 			)
 		}
 
-		<!-- Google Analytics -->
-		<script
-			is:inline
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
-		></script>
-		<script is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag("js", new Date());
-			gtag("config", "G-XXXXXXXXXX");
-		</script>
+		<!-- Google Analytics - TODO: Agregar Measurement ID cuando esté disponible -->
+
+		<!-- Preconnect to Cloudinary for image performance -->
+		<link rel="preconnect" href="https://res.cloudinary.com" />
+		<link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
 		<!-- AOS Animate On Scroll -->
 		<link

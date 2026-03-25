@@ -10,7 +10,7 @@ Disallow: /api/
 Disallow: /_astro/
 
 # Sitemap location
-Sitemap: https://protonfire.com/sitemap.xml
+Sitemap: https://www.protonfire.com/sitemap-index.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 Crawl-delay: 1
