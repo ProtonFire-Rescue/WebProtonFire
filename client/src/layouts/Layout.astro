@@ -17,14 +17,15 @@ export interface Props {
 const {
 	title = "PROTON Fire & Rescue - Equipos de Seguridad Ecuador",
 	description = "Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.",
-	image = "/images/og/og-home.webp",
-	url = Astro.url.href,
+	image = "/images/og/og_home.webp",
 	type = "website",
 	keywords = "equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia",
 	author = "PROTON Fire & Rescue",
 	jsonLd,
 	canonical = Astro.url.href,
 } = Astro.props;
+
+console.log(title, description, image)
 
 const siteOrigin = Astro.url.origin;
 const fullImageUrl = image.startsWith("http") ? image : `${siteOrigin}${image}`;
@@ -98,7 +99,7 @@ const websiteSchema = {
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content={type} />
-		<meta property="og:url" content={url} />
+		<meta property="og:url" content={canonical} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={fullImageUrl} />
@@ -110,7 +111,7 @@ const websiteSchema = {
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={url} />
+		<meta name="twitter:url" content={canonical} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={fullImageUrl} />
@@ -122,7 +123,7 @@ const websiteSchema = {
 
 		<!-- Additional SEO Meta Tags -->
 		<meta name="format-detection" content="telephone=no" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="mobile-web-app-capable" content="yes"/>
 		<meta
 			name="apple-mobile-web-app-status-bar-style"
 			content="black-translucent"

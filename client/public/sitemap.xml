@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/nosotros</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Products Main Page -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Catalog Page -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/catalogo</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Services Page -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/servicios</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/contactanos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Product Pages -->
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos/flaim</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://webprotonfire.tecnologia-14a.workers.dev/flaim/flaim_body.jpg</image:loc>
+      <image:title>FLAIM FTS - Sistema de Formacion de Bomberos</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos/f-500</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://webprotonfire.tecnologia-14a.workers.dev/f-500/product_present.webp</image:loc>
+      <image:title>F-500 EA - Agente Encapsulador</image:title>
+    </image:image>
+  </url>
+  
+</urlset>
