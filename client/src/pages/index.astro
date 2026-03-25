@@ -16,133 +16,154 @@ const productCategories = [
 		description:
 			"Equipos especializados para la extinción de incendios y protección contra fuego",
 		image: "./images/linea-fuego.png",
+		url: "/productos#forestal",
 		category: "forestal",
 		products: [
 			"Extintores",
 			"Mangueras",
-			"Equipos de respiración",
-			"Trajes de bombero",
+			"Trajes",
 		],
 	},
 	{
 		name: "Línea Rescate",
 		category: "rescate",
+		url:"/productos#rescate",
 		description:
 			"Equipos para operaciones de rescate y salvamento en emergencias",
 		image: "./images/linea-rescate.png",
-		products: ["Cuerdas", "Arnés", "Poleas", "Herramientas de rescate"],
+		products: ["Accesorios", "Estabilizadores", "Herramientas de rescate"],
 	},
 	{
 		name: "Línea Tecnología",
 		category: "tecnologia",
+		url:"#destacados",
 		description:
 			"Soluciones tecnológicas avanzadas para entrenamiento y operaciones",
 		image: "./images/linea-tecnologia.png",
-		products: ["F-500", "FLAIM VR", "Sistemas de monitoreo"],
+		products: ["F-500", "FLAIM VR", "Equipos Eléctricos"],
 	},
 ];
 
 // Imágenes para carousel de marcas
 const brandImages = [
-	{ src: "/brands/f500.png", alt: "F500" },
-	{ src: "/brands/sicor.png", alt: "Sicor" },
-	{ src: "/brands/viking.png", alt: "Viking" },
-	{ src: "/brands/task.png", alt: "Task" },
-	{ src: "/brands/hystec.png", alt: "Hystec" },
-	{ src: "/brands/gvs.png", alt: "GVS" },
+	{ src: "/brands/f500.png", alt: "F500 Agente Encapsulador de Alta Tecnología" },
+	{ src: "/brands/sicor.png", alt: "Sicor marca Italiana líder, equipos de protección" },
+	{ src: "/brands/viking.png", alt: "Viking lider en el sector de seguridad y protección" },
+	{ src: "/brands/carbon-x.png", alt: "Carbon X marca de textiles de alto rendimiento" },
 ];
 
 // Imágenes para carousel de certificaciones
 const certificationImages = [
-	{ src: "/certifications/cert1.png", alt: "Certificación 1" },
-	{ src: "/certifications/cert2.png", alt: "Certificación 2" },
-	{ src: "/certifications/cert3.png", alt: "Certificación 3" },
-	{ src: "/certifications/cert4.png", alt: "Certificación 4" },
-	{ src: "/certifications/cert5.png", alt: "Certificación 5" },
-	{ src: "/certifications/cert6.png", alt: "Certificación 6" },
-	{ src: "/certifications/cert7.png", alt: "Certificación 7" },
-	{ src: "/certifications/cert8.png", alt: "Certificación 8" },
-	{ src: "/certifications/cert9.png", alt: "Certificación 9" },
-	{ src: "/certifications/cert10.png", alt: "Certificación 10" },
+	{ src: "/certifications/cert1.png", alt: "Certificación National Fire Protection Association (NFPA)" },
+	{ src: "/certifications/cert2.png", alt: "Certificación KFI (Korean Firer Institue)" },
+	{ src: "/certifications/cert3.png", alt: "Certificación EN (Normas Europeas)" },
+	{ src: "/certifications/cert4.png", alt: "Certificación UL Classified" },
+	{ src: "/certifications/cert5.png", alt: "Certificación forestal US Forest Service (USFS)" },
+	{ src: "/certifications/cert6.png", alt: "Certificación FM Approved" },
+	{ src: "/certifications/cert7.png", alt: "Certificación NIOSH (National Institute for Occupational Safety and Health)" },
+	{ src: "/certifications/cert8.png", alt: "Certificación EN 469 (o UNE-EN 469)" },
+	{ src: "/certifications/cert9.png", alt: "Certificación International Standard Worldwide" },
+	{ src: "/certifications/cert10.png", alt: "Certificación ATEX (del francés ATmosphères EXplosibles)" },
 ];
 
 const siteOrigin = Astro.url.origin;
 
 // Structured Data para la página de inicio
 const homePageSchema = {
-	"@context": "https://schema.org",
-	"@type": "LocalBusiness",
-	"@id": siteOrigin,
-	name: "PROTON Fire & Rescue",
-	description:
-		"Empresa ecuatoriana líder con más de 20 años de experiencia en importación y comercialización de equipos de seguridad para bomberos, rescate e industria en Ecuador.",
-	url: siteOrigin,
-	logo: `${siteOrigin}/logo.png`,
-	image: `${siteOrigin}/og-image.jpg`,
-	telephone: "+593992526658",
-	email: "info@protonfire.com",
-	address: {
-		"@type": "PostalAddress",
-		addressCountry: "EC",
-		addressLocality: "Ecuador",
-	},
-	geo: {
-		"@type": "GeoCoordinates",
-		addressCountry: "EC",
-	},
-	areaServed: {
-		"@type": "Country",
-		name: "Ecuador",
-	},
-	hasOfferCatalog: {
-		"@type": "OfferCatalog",
-		name: "Equipos de Seguridad",
-		itemListElement: [
-			{
-				"@type": "OfferCatalog",
-				name: "Línea Fuego",
-				itemListElement: [
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Product",
-							name: "Equipos contra incendios",
-						},
-					},
-				],
-			},
-			{
-				"@type": "OfferCatalog",
-				name: "Línea Rescate",
-				itemListElement: [
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Product",
-							name: "Equipos de rescate",
-						},
-					},
-				],
-			},
-			{
-				"@type": "OfferCatalog",
-				name: "Línea Tecnología",
-				itemListElement: [
-					{
-						"@type": "Offer",
-						itemOffered: {
-							"@type": "Product",
-							name: "Tecnología para bomberos",
-						},
-					},
-				],
-			},
-		],
-	},
-	slogan: "Protegiendo vidas, asegurando el futuro",
-	foundingDate: "2000",
-	priceRange: "$$",
-};
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": siteOrigin, 
+  "name": "PROTON Fire & Rescue Ecuador",
+  "description": "Empresa ecuatoriana especializada en equipos de seguridad para bomberos, rescate e industria con más de 20 años de experiencia.",
+  "url": siteOrigin,
+  "logo": `${siteOrigin}/logos/proton-logo.png`,
+  "image": `${siteOrigin}/images/og/og_home.jpg`,
+  "telephone": "+593992526658",
+  "email": "info@protonfire.com",
+  "priceRange": "$$",
+  "slogan": "Protegiendo vidas, asegurando el futuro",
+  "foundingDate": "2000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Raúl González y Chimborazo Oe2-91",
+    "addressLocality": "Quito",
+    "postalCode": "170136",
+    "addressCountry": "EC"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -0.20154376685984446,
+    "longitude": -78.43466760636124
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/protonFireRescue",
+    "https://www.instagram.com/proton_fire_/",
+    "https://www.youtube.com/@protonfirerescue2360"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Ecuador"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Equipos de Seguridad",
+    "itemListElement": [
+      {
+        "@type": "OfferCatalog",
+        "name": "Línea Fuego",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Equipos contra incendios"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Línea Rescate",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Equipos de rescate"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "OfferCatalog",
+        "name": "Línea Tecnología",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Tecnología para bomberos"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
 ---
 
 <Layout
@@ -283,7 +304,7 @@ const homePageSchema = {
 					{
 						productCategories.map((category) => (
 							<a
-								href={`/productos`}
+								href={category.url}
 								class="group relative overflow-hidden rounded-2xl"
 								data-aos="fade-up"
 							>
@@ -299,9 +320,19 @@ const homePageSchema = {
 									<h3 class="text-2xl font-bold text-white mb-2">
 										{category.name}
 									</h3>
-									<span class="text-white/80 font-light">
-										Leer más
-									</span>
+									<p class="text-zinc-200 mb-2">
+										{category.description}
+									</p>
+
+									<div class="flex gap-2">
+										{
+											category.products.map((product) => {
+												return <div class="bg-white/20 flex items-center justify-center backdrop-blur-sm text-white text-xs font-medium px-3 py-1 rounded-full">
+													{product}
+												</div>
+											})
+										}
+									</div>
 								</div>
 							</a>
 						))
@@ -445,6 +476,7 @@ const homePageSchema = {
 		<!-- Productos Destacados Section -->
 		<section
 			class="py-40 bg-gradient-to-b from-purple-50 via-white to-blue-50"
+			id="destacados"
 		>
 			<div class="max-w-[1414px] mx-auto px-4">
 				<h2

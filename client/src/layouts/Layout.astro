@@ -11,43 +11,39 @@ export interface Props {
 	keywords?: string;
 	author?: string;
 	jsonLd?: object;
-	canonical?: string
+	canonical?: string;
 }
 
 const {
 	title = "PROTON Fire & Rescue - Equipos de Seguridad Ecuador",
 	description = "Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.",
-	image = "/og-image.jpg",
+	image = "/images/og/og-home.webp",
 	url = Astro.url.href,
 	type = "website",
 	keywords = "equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia",
 	author = "PROTON Fire & Rescue",
 	jsonLd,
-	canonical = Astro.url.href
+	canonical = Astro.url.href,
 } = Astro.props;
 
-
 const siteOrigin = Astro.url.origin;
-const fullImageUrl = image.startsWith("http")
-	? image
-	: `${siteOrigin}${image}`;
+const fullImageUrl = image.startsWith("http") ? image : `${siteOrigin}${image}`;
 
 // Structured Data base para la organización
 const organizationSchema = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
-	name: "PROTON Fire & Rescue",
-	description:
-		"Empresa ecuatoriana especializada en equipos de seguridad para bomberos, rescate e industria con más de 20 años de experiencia",
-	url: siteOrigin,
-	logo: `${siteOrigin}/logo.png`,
-	image: `${siteOrigin}/og-image.jpg`,
-	telephone: "+593992526658",
-	email: "info@protonfire.com",
-	address: {
-		"@type": "PostalAddress",
-		addressCountry: "EC",
-		addressLocality: "Ecuador",
+	name: "PROTON Fire & Rescue Ecuador",
+	alternateName: "Proton Fire & Rescue",
+	url: canonical,
+	logo: `${siteOrigin}/logos/proton-logo.png`,
+	contactPoint: {
+		"@type": "ContactPoint",
+		telephone: "+593992526658",
+		contactType: "customer service",
+		contactOption: "HearingImpairedSupported",
+		areaServed: "EC",
+		availableLanguage: "es",
 	},
 	sameAs: [
 		"https://www.facebook.com/protonFireRescue",
@@ -66,11 +62,11 @@ const organizationSchema = {
 const websiteSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebSite",
-	name: "PROTON Fire & Rescue",
+	name: "PROTON Fire & Rescue Ecuador",
 	url: siteOrigin,
 	potentialAction: {
 		"@type": "SearchAction",
-		target: `${siteOrigin}/catalogo?q={search_term_string}`,
+		target: `${siteOrigin}/catalogo?categoria={search_term_string}`,
 		"query-input": "required name=search_term_string",
 	},
 };
@@ -109,7 +105,7 @@ const websiteSchema = {
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content={title} />
-		<meta property="og:site_name" content="PROTON Fire & Rescue" />
+		<meta property="og:site_name" content="PROTON Fire & Rescue Ecuador" />
 		<meta property="og:locale" content="es_EC" />
 
 		<!-- Twitter -->
