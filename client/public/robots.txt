@@ -1,5 +1,5 @@
 # robots.txt for PROTON Fire & Rescue
-# https://protonfire.com/robots.txt
+# https://webprotonfire.tecnologia-14a.workers.dev/robots.txt
 
 User-agent: *
 Allow: /
@@ -10,7 +10,7 @@ Disallow: /api/
 Disallow: /_astro/
 
 # Sitemap location
-Sitemap: https://www.protonfire.com/sitemap-index.xml
+Sitemap: https://webprotonfire.tecnologia-14a.workers.dev/sitemap-index.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 Crawl-delay: 1

@@ -5,7 +5,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://protonfire.com/</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -13,7 +13,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://protonfire.com/nosotros</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/nosotros</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -21,7 +21,7 @@
   
   <!-- Products Main Page -->
   <url>
-    <loc>https://protonfire.com/productos</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -29,7 +29,7 @@
   
   <!-- Catalog Page -->
   <url>
-    <loc>https://protonfire.com/catalogo</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/catalogo</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -37,7 +37,7 @@
   
   <!-- Contact Page -->
   <url>
-    <loc>https://protonfire.com/contactanos</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/contactanos</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -45,23 +45,23 @@
   
   <!-- Product Pages -->
   <url>
-    <loc>https://protonfire.com/productos/flaim</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos/flaim</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://protonfire.com/flaim/flaim_body.jpg</image:loc>
+      <image:loc>https://webprotonfire.tecnologia-14a.workers.dev/flaim/flaim_body.jpg</image:loc>
       <image:title>FLAIM FTS - Sistema de Formación de Bomberos</image:title>
     </image:image>
   </url>
   
   <url>
-    <loc>https://protonfire.com/productos/f-500</loc>
+    <loc>https://webprotonfire.tecnologia-14a.workers.dev/productos/f-500</loc>
     <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://protonfire.com/f-500/product_present.webp</image:loc>
+      <image:loc>https://webprotonfire.tecnologia-14a.workers.dev/f-500/product_present.webp</image:loc>
       <image:title>F-500 EA - Agente Encapsulador</image:title>
     </image:image>
   </url>
