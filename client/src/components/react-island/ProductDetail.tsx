@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Check, ChevronRight, ShoppingCart, Shield, Truck, Headphones, Award, User } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import { Check, ChevronLeft, ChevronRight, ShoppingCart, Shield, Truck, Headphones, Award, User } from "lucide-react";
 import type { ProductView } from "../../types/types";
 
 interface ProductDetailProps {
@@ -12,8 +12,26 @@ export default function ProductDetail({
   product,
   onCotizar,
 }: ProductDetailProps) {
-  const [selectedImage, setSelectedImage] = useState(product.images[0]?.url || "");
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isCotizando, setIsCotizando] = useState(false);
+  const thumbsRef = useRef<HTMLDivElement>(null);
+
+  const selectedImage = product.images[currentIndex]?.url || "";
+
+  const goToImage = useCallback((index: number) => {
+    setCurrentIndex(index);
+    // Scroll thumbnail into view
+    const container = thumbsRef.current;
+    if (!container) return;
+    const thumb = container.children[index] as HTMLElement;
+    if (!thumb) return;
+    thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, []);
+
+  const handleImageClick = useCallback(() => {
+    const nextIndex = (currentIndex + 1) % product.images.length;
+    goToImage(nextIndex);
+  }, [currentIndex, product.images.length, goToImage]);
 
   const handleCotizar = () => {
     setIsCotizando(true);
@@ -41,42 +59,65 @@ export default function ProductDetail({
 
       {/* Main Product Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12">
           {/* Left - Image Gallery */}
-          <div className="space-y-4">
+          <div className="space-y-4 min-w-0">
             {/* Main Image */}
-            <div className="aspect-square bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 relative group">
+            <div
+              className="aspect-[4/3] sm:aspect-square bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 relative group"
+            >
               <img
                 src={selectedImage}
                 alt={product.name}
                 className="w-full h-full object-contain p-8 transition-transform duration-500 group-hover:scale-105"
               />
+              {product.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => goToImage((currentIndex - 1 + product.images.length) % product.images.length)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Imagen anterior"
+                  >
+                    <ChevronLeft size={20} className="text-gray-700" />
+                  </button>
+                  <button
+                    onClick={() => goToImage((currentIndex + 1) % product.images.length)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Siguiente imagen"
+                  >
+                    <ChevronRight size={20} className="text-gray-700" />
+                  </button>
+                  <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs px-2.5 py-1 rounded-full">
+                    {currentIndex + 1} / {product.images.length}
+                  </div>
+                </>
+              )}
             </div>
             
-            {/* Thumbnails */}
-            <div className="flex gap-3 overflow-x-auto pb-2">
-              {product.images.map((image) => (
-                <button
-                  key={image.id}
-                  onClick={() => setSelectedImage(image.url)}
-                  className={`shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImage === image.url
-                      ? "border-[#504aff] shadow-md shadow-[#504aff]/20"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+            {/* Thumbnails with navigation */}
+            <div ref={thumbsRef} className="flex gap-2 sm:gap-3 overflow-x-hidden pb-1 scrollbar-hide">
+                {product.images.map((image, index) => (
+                  <button
+                    key={image.id}
+                    onClick={() => goToImage(index)}
+                    className={`shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                      currentIndex === index
+                        ? "border-[#504aff] shadow-md shadow-[#504aff]/20"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <img
+                      src={image.url}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
           </div>
 
           {/* Right - Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
 
             {/* Categories badges */}
             <div className="flex flex-wrap gap-2">
