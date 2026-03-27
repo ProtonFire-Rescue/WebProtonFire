@@ -30,7 +30,7 @@ export default function RelatedProducts({ categoryName, excludeId, backendUrl }:
             .filter((p: any) => p.documentId !== excludeId)
             .map((p: any) => ({
               id: p.id,
-              p:p.documentId,
+              documentId:p.documentId,
               name: p.name,
               images: (p.images ?? []).map((img: any) => ({
                 id: img.id,
@@ -54,6 +54,8 @@ export default function RelatedProducts({ categoryName, excludeId, backendUrl }:
 
     fetchRelatedProducts();
   }, [categoryName, excludeId, backendUrl]);
+
+  console.log(products)
 
   return (
     <section className="bg-gray-50 py-16">
