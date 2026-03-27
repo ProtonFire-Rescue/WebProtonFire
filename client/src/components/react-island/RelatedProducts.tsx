@@ -79,7 +79,7 @@ export default function RelatedProducts({ categoryName, excludeId, backendUrl }:
             products.slice(0, 4).map((item) => (
               <a
                 key={item.id}
-                href={`/producto/${item.id}`}
+                href={`/producto/${item.documentId}`}
                 className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="relative aspect-3/4 bg-gray-50 overflow-hidden p-4">

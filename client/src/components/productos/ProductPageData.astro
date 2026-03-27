@@ -21,6 +21,7 @@ if (!product?.length) {
 
 const toProductView = (p: StrapiProduct): ProductView => ({
   id: p.id,
+  documentId: p.documentId,
   name: p.name,
   images: (p.images ?? []).map((image) => ({
     id: image.id,
@@ -47,7 +48,7 @@ const categoryName = product[0].categories?.[0]?.name ?? '';
 <ProductDetail product={productFilter} client:load />
 <RelatedProducts 
   categoryName={categoryName} 
-  excludeId={product[0].id} 
+  excludeId={product[0].documentId} 
   backendUrl={publicBackendUrl}
   client:idle 
 />

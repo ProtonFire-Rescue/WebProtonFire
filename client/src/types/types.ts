@@ -16,6 +16,7 @@ export interface StrapiCertification {
 
 export interface StrapiProduct {
     id: number;
+    documentId: string;
     name: string;
     description: string;
     images: StrapiImage[];
@@ -40,6 +41,7 @@ export interface CertificationView {
 
 export interface ProductView {
     id: number;
+    documentId: string;
     name: string;
     images: ProductImage[];
     category: string;
