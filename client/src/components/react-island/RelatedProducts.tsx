@@ -27,9 +27,10 @@ export default function RelatedProducts({ categoryName, excludeId, backendUrl }:
         if (response.ok) {
           const { data } = await response.json();
           const filtered = data
-            .filter((p: any) => p.id !== excludeId)
+            .filter((p: any) => p.documentId !== excludeId)
             .map((p: any) => ({
               id: p.id,
+              p:p.documentId,
               name: p.name,
               images: (p.images ?? []).map((img: any) => ({
                 id: img.id,
