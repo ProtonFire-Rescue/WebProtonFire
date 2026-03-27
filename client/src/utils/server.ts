@@ -124,7 +124,7 @@ export const getProductByIdQuery = async (id: string | undefined, query: string,
   if (!id) throw new Error('Missing id');
   const q = query.startsWith('?') ? query.slice(1) : query;
   const STRAPI_URL = resolveBackendUrl(opts);
-  return fetchWithCache(`${STRAPI_URL}/api/productos?filters[id][$eq]=${encodeURIComponent(id)}&${q}`, `product-${id}-${q}`);
+  return fetchWithCache(`${STRAPI_URL}/api/productos?filters[documentId][$eq]=${encodeURIComponent(id)}&${q}`, `product-${id}-${q}`);
 };
 
 export const getRelatedProducts = async (
