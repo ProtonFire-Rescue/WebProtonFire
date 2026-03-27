@@ -39,6 +39,7 @@ const config: Core.Config.Middlewares = [
       headers: '*',
       origin: [
         'http://localhost:1337',
+        'http://localhost:4321',
         'http://localhost:3000',
         'https://webprotonfire-production.up.railway.app', // Tu Strapi en Railway
         'https://webprotonfire.tecnologia-14a.workers.dev',                          // Tu frontend en Cloudflare
