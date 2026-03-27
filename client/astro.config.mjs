@@ -7,11 +7,13 @@ import react from '@astrojs/react';
 
 import cloudflare from '@astrojs/cloudflare';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
   adapter: cloudflare(),
-  site: 'https://www.protonfire.com',
+  site: 'https://webprotonfire.tecnologia-14a.workers.dev/',
 
   vite: {
     plugins: [tailwindcss()]  
@@ -19,5 +21,6 @@ export default defineConfig({
 
   integrations: [
     react(),
+    sitemap()
   ]
 });

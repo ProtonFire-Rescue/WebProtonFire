@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect } from 'react';
-import { getBrands, getCategories } from '../../utils/server';
 
 interface Product {
   id: number;
@@ -45,6 +44,38 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
     setBrandList(['Todos', ...brands || []])
     setTypeList(['Todos', ...types || []])
   }, [categories, brands, types]);
+
+  // Compute products filtered only by category (to derive available brands/types)
+  const productsByCategory = useMemo(() => {
+    if (selectedCategory === 'Todos') return initialProducts;
+    return initialProducts.filter((p) =>
+      p.categories.some(cat => cat.toLowerCase() === selectedCategory.toLowerCase())
+    );
+  }, [initialProducts, selectedCategory]);
+
+  // Available types and brands based on the selected category
+  const availableTypes = useMemo(() => {
+    const typesSet = new Set(productsByCategory.map((p) => p.type).filter(Boolean));
+    return ['Todos', ...Array.from(typesSet).sort()];
+  }, [productsByCategory]);
+
+  const availableBrands = useMemo(() => {
+    const brandsSet = new Set(productsByCategory.map((p) => p.brand).filter(Boolean));
+    return ['Todos', ...Array.from(brandsSet).sort()];
+  }, [productsByCategory]);
+
+  // Reset dependent filters when they become unavailable after a category change
+  useEffect(() => {
+    if (selectedType !== 'Todos' && !availableTypes.includes(selectedType)) {
+      setSelectedType('Todos');
+    }
+  }, [availableTypes, selectedType]);
+
+  useEffect(() => {
+    if (selectedBrand !== 'Todos' && !availableBrands.includes(selectedBrand)) {
+      setSelectedBrand('Todos');
+    }
+  }, [availableBrands, selectedBrand]);
 
   // Lock body scroll when drawer is open
   useEffect(() => {
@@ -203,7 +234,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
             <div>
               <h4 className="text-sm font-medium text-gray-500 mb-3">Tipo</h4>
               <div className="flex flex-wrap gap-2">
-                {typeList.map((type) => (
+                {availableTypes.map((type) => (
                   <button
                     key={type}
                     onClick={() => setSelectedType(type)}
@@ -222,7 +253,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
             <div>
               <h4 className="text-sm font-medium text-gray-500 mb-3">Marca</h4>
               <div className="flex flex-wrap gap-2">
-                {brandList.map((brand) => (
+                {availableBrands.map((brand) => (
                   <button
                     key={brand}
                     onClick={() => setSelectedBrand(brand)}
