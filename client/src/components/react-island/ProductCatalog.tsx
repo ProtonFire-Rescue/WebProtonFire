@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 
 interface Product {
   id: number;
+  documentId:string;
   name: string;
   model: string;
   brand: string;
@@ -25,7 +26,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
   const getInitialCategory = () => {
     if (typeof window === 'undefined') return 'Todos';
     const params = new URLSearchParams(window.location.search);
-    const cat = params.get('categoria');
+    const cat = params.get('q');
     return cat ? decodeURIComponent(cat) : 'Todos';
   };
 
@@ -53,6 +54,13 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
     );
   }, [initialProducts, selectedCategory]);
 
+  const productsByType = useMemo(() => {
+    if (selectedType === 'Todos') return initialProducts;
+    return initialProducts.filter((p) =>
+      p.type.toLowerCase() === selectedType.toLowerCase()
+    );
+  }, [initialProducts, selectedType]);
+
   // Available types and brands based on the selected category
   const availableTypes = useMemo(() => {
     const typesSet = new Set(productsByCategory.map((p) => p.type).filter(Boolean));
@@ -60,9 +68,12 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
   }, [productsByCategory]);
 
   const availableBrands = useMemo(() => {
-    const brandsSet = new Set(productsByCategory.map((p) => p.brand).filter(Boolean));
+    const brandsSet = selectedType === 'Todos' 
+      ? new Set(productsByCategory.map((p) => p.brand).filter(Boolean))
+      : new Set(productsByType.map((p) => p.brand).filter(Boolean));
+    
     return ['Todos', ...Array.from(brandsSet).sort()];
-  }, [productsByCategory]);
+  }, [productsByCategory, productsByType, selectedType]);
 
   // Reset dependent filters when they become unavailable after a category change
   useEffect(() => {
@@ -435,7 +446,7 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
                     Marca: {product.brand}
                   </p>
                   <a
-                    href={`/producto/${product.id}`}
+                    href={`/producto/${product.documentId}`}
                     className="block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors"
                   >
                     Ver más
