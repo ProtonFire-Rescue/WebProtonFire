@@ -12,7 +12,7 @@ export const GET: APIRoute = async (context) => {
 
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&populate[categories][fields][0]=name&pagination[pageSize]=200`
     )
     const { data } = await response.json()
 
@@ -39,6 +39,7 @@ ${staticPages
   </url>`
   )
   .join('\n')}
+
 ${(data ?? [])
   .map(
     (prod: any) => `  <url>
@@ -46,9 +47,19 @@ ${(data ?? [])
     <lastmod>${prod.updatedAt ?? now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>`
+  </url>
+  `
+    
   )
   .join('\n')}
+
+  ${(data ?? []).map((prod: any) => `  <url>
+    <loc>${SITE_URL}/catalogo?q=${prod.categories.name}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  `).join('\n')}
 </urlset>`
 
     return new Response(sitemap, {
