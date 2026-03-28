@@ -1,11 +1,13 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from 'astro/config'
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite'
 
-import react from '@astrojs/react';
+import react from '@astrojs/react'
 
-import cloudflare from '@astrojs/cloudflare';
+import cloudflare from '@astrojs/cloudflare'
+
+import partytown from '@astrojs/partytown'
 
 // import sitemap from '@astrojs/sitemap';
 
@@ -16,10 +18,15 @@ export default defineConfig({
   site: 'https://protonfire.com',
 
   vite: {
-    plugins: [tailwindcss()]  
+    plugins: [tailwindcss()]
   },
 
   integrations: [
-    react()
+    react(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push']
+      }
+    })
   ]
-});
+})
