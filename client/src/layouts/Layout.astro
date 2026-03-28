@@ -14,6 +14,8 @@ export interface Props {
   canonical?: string
 }
 
+const GA_ID = import.meta.env.PUBLIC_GA_ID
+
 const {
   title = 'PROTON Fire & Rescue - Equipos de Seguridad Ecuador',
   description = 'Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.',
@@ -160,17 +162,17 @@ const websiteSchema = {
     <!-- Google tag (gtag.js) -->
     <script
       async
-      src='https://www.googletagmanager.com/gtag/js?id=G-4EWT2XHH4X'
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
     >
     </script>
-    <script>
+    <script is:inline define:vars={{ GA_ID }}>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push(arguments)
       }
       gtag('js', new Date())
 
-      gtag('config', 'G-4EWT2XHH4X')
+      gtag('config', GA_ID)
     </script>
 
     <!-- Page-specific Structured Data -->
