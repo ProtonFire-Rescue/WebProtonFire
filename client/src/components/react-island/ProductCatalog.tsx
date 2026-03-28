@@ -1,181 +1,214 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react'
 
 interface Product {
-  id: number;
-  documentId:string;
-  name: string;
-  model: string;
-  brand: string;
-  category: string;
-  categories: string[];
-  image: string;
-  type: string;
+  id: number
+  documentId: string
+  slug: string
+  name: string
+  model: string
+  brand: string
+  category: string
+  categories: string[]
+  image: string
+  type: string
 }
 
 interface ProductCatalogProps {
-  initialProducts?: Product[];
-  categories?: string[];
-  brands?: string[];
-  types?: string[];
+  initialProducts?: Product[]
+  categories?: string[]
+  brands?: string[]
+  types?: string[]
 }
 
-
-
-
-export default function ProductCatalog({ initialProducts = [], categories, brands, types }: ProductCatalogProps) {
+export default function ProductCatalog({
+  initialProducts = [],
+  categories,
+  brands,
+  types
+}: ProductCatalogProps) {
   const getInitialCategory = () => {
-    if (typeof window === 'undefined') return 'Todos';
-    const params = new URLSearchParams(window.location.search);
-    const cat = params.get('q');
-    return cat ? decodeURIComponent(cat) : 'Todos';
-  };
+    if (typeof window === 'undefined') return 'Todos'
+    const params = new URLSearchParams(window.location.search)
+    const cat = params.get('q')
+    return cat ? decodeURIComponent(cat) : 'Todos'
+  }
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState(getInitialCategory);
-  const [selectedBrand, setSelectedBrand] = useState('Todos');
-  const [selectedType, setSelectedType] = useState('Todos');
-  const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none');
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState(getInitialCategory)
+  const [selectedBrand, setSelectedBrand] = useState('Todos')
+  const [selectedType, setSelectedType] = useState('Todos')
+  const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none')
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [categoriesList, setCategoriesList] = useState<string[]>(['Todos'])
   const [brandList, setBrandList] = useState<string[]>(['Todos'])
   const [typeList, setTypeList] = useState<string[]>(['Todos'])
 
   useEffect(() => {
-    setCategoriesList(['Todos', ...categories || []])
-    setBrandList(['Todos', ...brands || []])
-    setTypeList(['Todos', ...types || []])
-  }, [categories, brands, types]);
+    setCategoriesList(['Todos', ...(categories || [])])
+    setBrandList(['Todos', ...(brands || [])])
+    setTypeList(['Todos', ...(types || [])])
+  }, [categories, brands, types])
 
   // Compute products filtered only by category (to derive available brands/types)
   const productsByCategory = useMemo(() => {
-    if (selectedCategory === 'Todos') return initialProducts;
+    if (selectedCategory === 'Todos') return initialProducts
     return initialProducts.filter((p) =>
-      p.categories.some(cat => cat.toLowerCase() === selectedCategory.toLowerCase())
-    );
-  }, [initialProducts, selectedCategory]);
+      p.categories.some(
+        (cat) => cat.toLowerCase() === selectedCategory.toLowerCase()
+      )
+    )
+  }, [initialProducts, selectedCategory])
 
   const productsByType = useMemo(() => {
-    if (selectedType === 'Todos') return initialProducts;
-    return initialProducts.filter((p) =>
-      p.type.toLowerCase() === selectedType.toLowerCase()
-    );
-  }, [initialProducts, selectedType]);
+    if (selectedType === 'Todos') return initialProducts
+    return initialProducts.filter(
+      (p) => p.type.toLowerCase() === selectedType.toLowerCase()
+    )
+  }, [initialProducts, selectedType])
 
   // Available types and brands based on the selected category
   const availableTypes = useMemo(() => {
-    const typesSet = new Set(productsByCategory.map((p) => p.type).filter(Boolean));
-    return ['Todos', ...Array.from(typesSet).sort()];
-  }, [productsByCategory]);
+    const typesSet = new Set(
+      productsByCategory.map((p) => p.type).filter(Boolean)
+    )
+    return ['Todos', ...Array.from(typesSet).sort()]
+  }, [productsByCategory])
 
   const availableBrands = useMemo(() => {
-    const brandsSet = selectedType === 'Todos' 
-      ? new Set(productsByCategory.map((p) => p.brand).filter(Boolean))
-      : new Set(productsByType.map((p) => p.brand).filter(Boolean));
-    
-    return ['Todos', ...Array.from(brandsSet).sort()];
-  }, [productsByCategory, productsByType, selectedType]);
+    const brandsSet =
+      selectedType === 'Todos'
+        ? new Set(productsByCategory.map((p) => p.brand).filter(Boolean))
+        : new Set(productsByType.map((p) => p.brand).filter(Boolean))
+
+    return ['Todos', ...Array.from(brandsSet).sort()]
+  }, [productsByCategory, productsByType, selectedType])
 
   // Reset dependent filters when they become unavailable after a category change
   useEffect(() => {
     if (selectedType !== 'Todos' && !availableTypes.includes(selectedType)) {
-      setSelectedType('Todos');
+      setSelectedType('Todos')
     }
-  }, [availableTypes, selectedType]);
+  }, [availableTypes, selectedType])
 
   useEffect(() => {
     if (selectedBrand !== 'Todos' && !availableBrands.includes(selectedBrand)) {
-      setSelectedBrand('Todos');
+      setSelectedBrand('Todos')
     }
-  }, [availableBrands, selectedBrand]);
+  }, [availableBrands, selectedBrand])
 
   // Lock body scroll when drawer is open
   useEffect(() => {
     if (drawerOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
-    return () => { document.body.style.overflow = ''; };
-  }, [drawerOpen]);
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [drawerOpen])
 
   const filteredProducts = useMemo(() => {
-    let result = [...initialProducts];
+    let result = [...initialProducts]
 
     // Filter by search
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
+      const query = searchQuery.toLowerCase()
       result = result.filter(
         (p) =>
           p.name.toLowerCase().includes(query) ||
           p.category.toLowerCase().includes(query) ||
-          p.categories.some(cat => cat.toLowerCase().includes(query)) ||
+          p.categories.some((cat) => cat.toLowerCase().includes(query)) ||
           p.brand.toLowerCase().includes(query) ||
           p.type.toLowerCase().includes(query)
-      );
+      )
     }
 
     // Filter by category
     if (selectedCategory !== 'Todos') {
       result = result.filter((p) =>
-        p.categories.some(cat => cat.toLowerCase() === selectedCategory.toLowerCase())
-      );
+        p.categories.some(
+          (cat) => cat.toLowerCase() === selectedCategory.toLowerCase()
+        )
+      )
     }
 
     // Filter by brand
     if (selectedBrand !== 'Todos') {
-      result = result.filter((p) => p.brand === selectedBrand);
+      result = result.filter((p) => p.brand === selectedBrand)
     }
 
     // Filter by type
     if (selectedType !== 'Todos') {
-      result = result.filter((p) => p.type === selectedType);
+      result = result.filter((p) => p.type === selectedType)
     }
 
     // Sort by price (using id as proxy for price demo)
     if (priceSort !== 'none') {
       result.sort((a, b) => {
-        const priceA = a.id;
-        const priceB = b.id;
-        return priceSort === 'asc' ? priceA - priceB : priceB - priceA;
-      });
+        const priceA = a.id
+        const priceB = b.id
+        return priceSort === 'asc' ? priceA - priceB : priceB - priceA
+      })
     }
 
-    return result;
-  }, [initialProducts, searchQuery, selectedCategory, selectedBrand, selectedType, priceSort]);
+    return result
+  }, [
+    initialProducts,
+    searchQuery,
+    selectedCategory,
+    selectedBrand,
+    selectedType,
+    priceSort
+  ])
 
   const resetFilters = () => {
-    setSearchQuery('');
-    setSelectedCategory('Todos');
-    setSelectedBrand('Todos');
-    setSelectedType('Todos');
-    setPriceSort('none');
-  };
+    setSearchQuery('')
+    setSelectedCategory('Todos')
+    setSelectedBrand('Todos')
+    setSelectedType('Todos')
+    setPriceSort('none')
+  }
 
   const hasActiveFilters =
-    searchQuery || selectedCategory !== 'Todos' || selectedBrand !== 'Todos' || selectedType !== 'Todos' || priceSort !== 'none';
+    searchQuery ||
+    selectedCategory !== 'Todos' ||
+    selectedBrand !== 'Todos' ||
+    selectedType !== 'Todos' ||
+    priceSort !== 'none'
 
   const activeFilterCount = [
     selectedCategory !== 'Todos',
     selectedBrand !== 'Todos',
     selectedType !== 'Todos',
     priceSort !== 'none',
-    !!searchQuery,
-  ].filter(Boolean).length;
+    !!searchQuery
+  ].filter(Boolean).length
 
   return (
-    <div className="relative">
+    <div className='relative'>
       {/* ── Fixed Floating Filter Button ── */}
       <button
         onClick={() => setDrawerOpen(true)}
-        className="fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-[#504aff] text-white pl-5 pr-6 py-3.5 rounded-full shadow-xl shadow-[#504aff]/30 hover:bg-[#3f3bcc] hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm"
-        aria-label="Abrir filtros"
+        className='fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-[#504aff] text-white pl-5 pr-6 py-3.5 rounded-full shadow-xl shadow-[#504aff]/30 hover:bg-[#3f3bcc] hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm'
+        aria-label='Abrir filtros'
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='18'
+          height='18'
+          viewBox='0 0 24 24'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        >
+          <polygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3' />
         </svg>
         Filtros
         {activeFilterCount > 0 && (
-          <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+          <span className='absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center'>
             {activeFilterCount}
           </span>
         )}
@@ -185,55 +218,69 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
       <div
         className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${drawerOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setDrawerOpen(false)}
-        aria-hidden="true"
+        aria-hidden='true'
       />
 
       {/* ── Filter Drawer (slides from right) ── */}
       <aside
         className={`fixed top-0 right-0 z-50 h-full w-full sm:w-96 bg-white shadow-2xl transform transition-transform duration-300 ease-out ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
-        aria-label="Panel de filtros"
+        aria-label='Panel de filtros'
       >
-        <div className="flex flex-col h-full">
+        <div className='flex flex-col h-full'>
           {/* Drawer Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-            <h3 className="text-lg font-bold text-[#2f2f3b]">Filtros</h3>
+          <div className='flex items-center justify-between px-6 py-5 border-b border-gray-100'>
+            <h3 className='text-lg font-bold text-[#2f2f3b]'>Filtros</h3>
             <button
               onClick={() => setDrawerOpen(false)}
-              className="p-2 rounded-xl hover:bg-gray-100 transition-colors text-gray-500 hover:text-[#2f2f3b]"
-              aria-label="Cerrar filtros"
+              className='p-2 rounded-xl hover:bg-gray-100 transition-colors text-gray-500 hover:text-[#2f2f3b]'
+              aria-label='Cerrar filtros'
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path d='M18 6 6 18' />
+                <path d='m6 6 12 12' />
               </svg>
             </button>
           </div>
 
           {/* Drawer Body (scrollable) */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+          <div className='flex-1 overflow-y-auto px-6 py-6 space-y-6'>
             {/* Search */}
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-3">Buscar</h4>
+              <h4 className='text-sm font-medium text-gray-500 mb-3'>Buscar</h4>
               <input
-                type="text"
+                type='text'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar producto..."
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-sm"
+                placeholder='Buscar producto...'
+                className='w-full px-4 py-2.5 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-sm'
               />
             </div>
 
             {/* Categoría Filter */}
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-3">Categoría</h4>
-              <div className="flex flex-wrap gap-2">
+              <h4 className='text-sm font-medium text-gray-500 mb-3'>
+                Categoría
+              </h4>
+              <div className='flex flex-wrap gap-2'>
                 {categoriesList.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${selectedCategory === cat
+                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${
+                      selectedCategory === cat
                         ? 'bg-[#504aff] text-white border-[#504aff]'
                         : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
-                      }`}
+                    }`}
                   >
                     {cat}
                   </button>
@@ -243,16 +290,17 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
 
             {/* Tipo Filter */}
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-3">Tipo</h4>
-              <div className="flex flex-wrap gap-2">
+              <h4 className='text-sm font-medium text-gray-500 mb-3'>Tipo</h4>
+              <div className='flex flex-wrap gap-2'>
                 {availableTypes.map((type) => (
                   <button
                     key={type}
                     onClick={() => setSelectedType(type)}
-                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${selectedType === type
+                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${
+                      selectedType === type
                         ? 'bg-[#504aff] text-white border-[#504aff]'
                         : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
-                      }`}
+                    }`}
                   >
                     {type}
                   </button>
@@ -262,22 +310,24 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
 
             {/* Marca Filter */}
             <div>
-              <h4 className="text-sm font-medium text-gray-500 mb-3">Marca</h4>
-              <div className="flex flex-wrap gap-2">
+              <h4 className='text-sm font-medium text-gray-500 mb-3'>Marca</h4>
+              <div className='flex flex-wrap gap-2'>
                 {availableBrands.map((brand) => (
                   <button
                     key={brand}
                     onClick={() => setSelectedBrand(brand)}
-                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${selectedBrand === brand
+                    className={`px-4 py-2 text-sm border rounded-full transition-colors ${
+                      selectedBrand === brand
                         ? 'bg-[#504aff] text-white border-[#504aff]'
                         : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
-                      }`}
+                    }`}
                   >
                     {brand}
                   </button>
                 ))}
               </div>
-            </div>{/* 
+            </div>
+            {/* 
 
             {/* Precio Filter */}
             {/* <div>
@@ -306,18 +356,18 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
           </div>
 
           {/* Drawer Footer */}
-          <div className="px-6 py-4 border-t border-gray-100 space-y-3">
+          <div className='px-6 py-4 border-t border-gray-100 space-y-3'>
             {hasActiveFilters && (
               <button
                 onClick={resetFilters}
-                className="w-full px-4 py-2.5 text-sm border border-gray-200 text-[#2f2f3b] rounded-full hover:bg-gray-50 transition-colors font-medium"
+                className='w-full px-4 py-2.5 text-sm border border-gray-200 text-[#2f2f3b] rounded-full hover:bg-gray-50 transition-colors font-medium'
               >
                 Restablecer filtros
               </button>
             )}
             <button
               onClick={() => setDrawerOpen(false)}
-              className="w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20"
+              className='w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20'
             >
               Ver {filteredProducts.length} productos
             </button>
@@ -328,30 +378,30 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
       {/* ── Main Content ── */}
       <div>
         {/* Search Bar */}
-        <div className="max-w-xl mb-6">
-          <div className="relative">
+        <div className='max-w-xl mb-6'>
+          <div className='relative'>
             <input
-              type="text"
+              type='text'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar producto..."
-              className="w-full px-4 py-3 pr-12 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600"
+              placeholder='Buscar producto...'
+              className='w-full px-4 py-3 pr-12 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600'
             />
-            <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+            <button className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors'>
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-gray-500"
+                xmlns='http://www.w3.org/2000/svg'
+                width='16'
+                height='16'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='text-gray-500'
               >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
+                <circle cx='11' cy='11' r='8'></circle>
+                <path d='m21 21-4.3-4.3'></path>
               </svg>
             </button>
           </div>
@@ -359,95 +409,170 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
 
         {/* Active Filters Pills */}
         {hasActiveFilters && (
-          <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="text-xs text-gray-500 font-medium">Filtros activos:</span>
+          <div className='flex flex-wrap items-center gap-2 mb-6'>
+            <span className='text-xs text-gray-500 font-medium'>
+              Filtros activos:
+            </span>
             {selectedCategory !== 'Todos' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full">
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
                 {selectedCategory}
-                <button onClick={() => setSelectedCategory('Todos')} className="hover:text-red-500 transition-colors" aria-label={`Quitar filtro ${selectedCategory}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <button
+                  onClick={() => setSelectedCategory('Todos')}
+                  className='hover:text-red-500 transition-colors'
+                  aria-label={`Quitar filtro ${selectedCategory}`}
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  >
+                    <path d='M18 6 6 18' />
+                    <path d='m6 6 12 12' />
+                  </svg>
                 </button>
               </span>
             )}
             {selectedType !== 'Todos' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full">
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
                 {selectedType}
-                <button onClick={() => setSelectedType('Todos')} className="hover:text-red-500 transition-colors" aria-label={`Quitar filtro ${selectedType}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <button
+                  onClick={() => setSelectedType('Todos')}
+                  className='hover:text-red-500 transition-colors'
+                  aria-label={`Quitar filtro ${selectedType}`}
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  >
+                    <path d='M18 6 6 18' />
+                    <path d='m6 6 12 12' />
+                  </svg>
                 </button>
               </span>
             )}
             {selectedBrand !== 'Todos' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full">
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
                 {selectedBrand}
-                <button onClick={() => setSelectedBrand('Todos')} className="hover:text-red-500 transition-colors" aria-label={`Quitar filtro ${selectedBrand}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                <button
+                  onClick={() => setSelectedBrand('Todos')}
+                  className='hover:text-red-500 transition-colors'
+                  aria-label={`Quitar filtro ${selectedBrand}`}
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  >
+                    <path d='M18 6 6 18' />
+                    <path d='m6 6 12 12' />
+                  </svg>
                 </button>
               </span>
             )}
             {priceSort !== 'none' && (
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full">
-                Precio: {priceSort === 'asc' ? 'Menor a mayor' : 'Mayor a menor'}
-                <button onClick={() => setPriceSort('none')} className="hover:text-red-500 transition-colors" aria-label="Quitar filtro de precio">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
+                Precio:{' '}
+                {priceSort === 'asc' ? 'Menor a mayor' : 'Mayor a menor'}
+                <button
+                  onClick={() => setPriceSort('none')}
+                  className='hover:text-red-500 transition-colors'
+                  aria-label='Quitar filtro de precio'
+                >
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  >
+                    <path d='M18 6 6 18' />
+                    <path d='m6 6 12 12' />
+                  </svg>
                 </button>
               </span>
             )}
             <button
               onClick={resetFilters}
-              className="text-xs text-red-500 hover:text-red-600 font-medium transition-colors ml-1"
+              className='text-xs text-red-500 hover:text-red-600 font-medium transition-colors ml-1'
             >
               Limpiar todo
             </button>
           </div>
         )}
 
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-[#2f2f3b]">Todos los Productos</h3>
-          <p className="text-sm text-gray-500">
+        <div className='flex items-center justify-between mb-6'>
+          <h3 className='text-lg font-semibold text-[#2f2f3b]'>
+            Todos los Productos
+          </h3>
+          <p className='text-sm text-gray-500'>
             {filteredProducts.length} productos encontrados
           </p>
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-500 mb-4">No se encontraron productos con los filtros seleccionados</p>
+          <div className='text-center py-20'>
+            <p className='text-gray-500 mb-4'>
+              No se encontraron productos con los filtros seleccionados
+            </p>
             <button
               onClick={resetFilters}
-              className="px-6 py-2 bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors"
+              className='px-6 py-2 bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors'
             >
               Limpiar filtros
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6'>
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
+                className='group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer'
               >
-                <div className="relative aspect-3/4 overflow-hidden bg-gray-50 p-4">
+                <div className='relative aspect-3/4 overflow-hidden bg-gray-50 p-4'>
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                    className='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
+                    loading='lazy'
                   />
-                  <span className="absolute top-3 left-3 bg-[#504aff]/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
                     {product.category}
                   </span>
                 </div>
-                <div className="p-4">
-                  <h4 className="font-semibold text-[#2f2f3b] text-sm mb-1 uppercase tracking-wide">
+                <div className='p-4'>
+                  <h4 className='font-semibold text-[#2f2f3b] text-sm mb-1 uppercase tracking-wide'>
                     {product.name}
                   </h4>
-                  <p className="text-xs text-gray-400 mb-1">{product.model}</p>
-                  <p className="text-xs text-[#504aff] font-medium mb-3">
+                  <p className='text-xs text-gray-400 mb-1'>{product.model}</p>
+                  <p className='text-xs text-[#504aff] font-medium mb-3'>
                     Marca: {product.brand}
                   </p>
                   <a
-                    href={`/producto/${product.documentId}`}
-                    className="block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors"
+                    href={`/producto/${product.documentId}?name=${product.slug}`}
+                    className='block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors'
                   >
                     Ver más
                   </a>
@@ -458,5 +583,5 @@ export default function ProductCatalog({ initialProducts = [], categories, brand
         )}
       </div>
     </div>
-  );
+  )
 }

@@ -1,41 +1,50 @@
 ---
-import ProductCatalog from "./react-island/ProductCatalog";
-import { getProductsQuery, resolveBackendUrl } from "../utils/server";
+import ProductCatalog from './react-island/ProductCatalog'
+import { getProductsQuery, resolveBackendUrl } from '../utils/server'
 
-
-
-const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
+const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
 
 const { data } = await getProductsQuery(
-  'fields[0]=name&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
-  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro },
-);
+  'fields[0]=name&fields[1]=slug&populate[categories][fields][0]=name&populate[brand][fields][0]=name&populate[model][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
+  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
+)
 
-const filteredCategories: string[] = [...new Set(data.flatMap((product: any) => 
-  (product.categories ?? []).map((cat: any) => cat.name)
-))].filter(Boolean) as string[];
+const filteredCategories: string[] = [
+  ...new Set(
+    data.flatMap((product: any) =>
+      (product.categories ?? []).map((cat: any) => cat.name)
+    )
+  )
+].filter(Boolean) as string[]
 
-const brands = [...new Set(data.map((product: any) => product.brand.name))];
+const brands = [...new Set(data.map((product: any) => product.brand.name))]
 
-const types = [...new Set(data.map((product: any) => product.type.name))];
+const types = [...new Set(data.map((product: any) => product.type.name))]
 
 const allProducts = data.map((product: any) => {
-  const { id,documentId, name, images, categories, brand, model, type } = product;
-  const categoryNames = (categories ?? []).map((cat: any) => cat.name);
-  
-  return { 
-    id, 
+  const { id, documentId, name, images, categories, brand, model, type, slug } =
+    product
+  const categoryNames = (categories ?? []).map((cat: any) => cat.name)
+
+  return {
+    id,
     documentId,
-    name, 
-    image: images?.[0]?.url ?? '', 
+    name,
+    slug,
+    image: images?.[0]?.url ?? '',
     category: categoryNames.length > 0 ? categoryNames[0] : 'Otros',
     categories: categoryNames.length > 0 ? categoryNames : ['Otros'],
     brand: brand?.name ?? '',
     model: model?.name ?? '',
     type: type?.name ?? ''
-  };
-});
-
+  }
+})
 ---
 
-<ProductCatalog initialProducts={allProducts} categories={filteredCategories} brands={brands} types={types} client:load />
+<ProductCatalog
+  initialProducts={allProducts}
+  categories={filteredCategories}
+  brands={brands}
+  types={types}
+  client:load
+/>
