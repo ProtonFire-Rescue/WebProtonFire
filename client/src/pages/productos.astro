@@ -1,328 +1,333 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Menu from "@/components/page/Menu.astro";
-import Footer from "@/components/page/Footer.astro";
-import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
-import ProductsAreaData from "@/components/productos/ProductsAreaData.astro";
+import Layout from '@/layouts/Layout.astro'
+import Menu from '@/components/page/Menu.astro'
+import Footer from '@/components/page/Footer.astro'
+import InfiniteCarousel from '@/components/InfiniteCarousel.astro'
+import ProductsAreaData from '@/components/productos/ProductsAreaData.astro'
 
-const currentPath = Astro.url.pathname;
-const siteOrigin = Astro.url.origin;
+const currentPath = Astro.url.pathname
+const siteOrigin = Astro.url.origin
 
 // Marcas para el carousel
 const brandImages = [
-	{ src: "/brands/f500.png", alt: "F500 Agente Encapsulador de Alta Tecnología" },
-	{ src: "/brands/sicor.png", alt: "Sicor marca Italiana líder, equipos de protección" },
-	{ src: "/brands/viking.png", alt: "Viking lider en el sector de seguridad y protección" },
-	{ src: "/brands/carbon-x.png", alt: "Carbon X marca de textiles de alto rendimiento" },
-];
+  {
+    src: '/brands/f500.png',
+    alt: 'F500 Agente Encapsulador de Alta Tecnología'
+  },
+  {
+    src: '/brands/sicor.png',
+    alt: 'Sicor marca Italiana líder, equipos de protección'
+  },
+  {
+    src: '/brands/viking.png',
+    alt: 'Viking lider en el sector de seguridad y protección'
+  },
+  {
+    src: '/brands/carbon-x.png',
+    alt: 'Carbon X marca de textiles de alto rendimiento'
+  }
+]
 
 const productosJsonLd = [
-	{
-		"@context": "https://schema.org",
-		"@type": "CollectionPage",
-		"name": "Equipos de Bomberos y Rescate - PROTON Fire & Rescue",
-		"description": "Catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales certificadas.",
-		"url": `${siteOrigin}/productos`,
-		"image": `${siteOrigin}/images/og/og_home.webp`,
-		"isPartOf": {
-			"@type": "WebSite",
-			"name": "PROTON Fire & Rescue Ecuador",
-			"url": siteOrigin
-		},
-		"provider": {
-			"@type": "Organization",
-			"name": "PROTON Fire & Rescue",
-			"url": siteOrigin
-		}
-	},
-	{
-		"@context": "https://schema.org",
-		"@type": "BreadcrumbList",
-		"itemListElement": [
-			{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
-			{ "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteOrigin}/productos` }
-		]
-	}
-];
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Equipos de Bomberos y Rescate - PROTON Fire & Rescue',
+    description:
+      'Catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales certificadas.',
+    url: `${siteOrigin}/productos`,
+    image: `${siteOrigin}/images/og/og_home.webp`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'PROTON Fire & Rescue Ecuador',
+      url: siteOrigin
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'PROTON Fire & Rescue',
+      url: siteOrigin
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteOrigin },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Productos',
+        item: `${siteOrigin}/productos`
+      }
+    ]
+  }
+]
 ---
 
 <Layout
-	title="Equipos de Bomberos y Rescate en Ecuador | PROTON Fire & Rescue Ecuador"
-	description="Descubre nuestro catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales."
-	keywords="productos bomberos Ecuador, equipos contra incendios, trajes bombero, SCBA Ecuador, equipos rescate, F-500, FLAIM VR, equipos seguridad industrial"
-	jsonLd={productosJsonLd}
+  title='Equipos de Bomberos y Rescate en Ecuador | PROTON Fire & Rescue Ecuador'
+  description='Descubre nuestro catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales.'
+  keywords='productos bomberos Ecuador, equipos contra incendios, trajes bombero, SCBA Ecuador, equipos rescate, F-500, FLAIM VR, equipos seguridad industrial'
+  jsonLd={productosJsonLd}
 >
-	<Menu currentPath={currentPath} />
+  <Menu currentPath={currentPath} />
 
-	<main>
-		<!-- Hero Section - Dark with gradient -->
-		<section
-			class="relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-150 md:min-h-175 py-20 md:py-32 overflow-hidden md:mx-5 md:rounded-[55px]"
-		>
-			<!-- Large rounded gradient circle background -->
-			<div
-				class="hidden md:absolute inset-x-1 bottom-20 flex items-center justify-center pointer-events-none"
-			>
-				<div
-					class="w-[140%] md:w-[120%] aspect-square rounded-full bg-linear-to-b from-60% from-black to-white"
-					style="background-image:  ;"
-				>
-				</div>
-			</div>
-			<div
-				class="absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50"
-				style="background-image: url('/images/products.png'); background-blend-mode: overlay;"
-			>
-			</div>
-			<div
-				class="relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 md:pt-10 pb-20 text-center"
-			>
-				<h1
-					class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
-					data-aos="fade-up"
-					data-aos-delay="100"
-				>
-					Equipamiento de clase mundial<br />al alcance de tu mano
-				</h1>
-				<p
-					class="text-base md:text-xl text-white/80 max-w-2xl mx-auto mb-10"
-					data-aos="fade-up"
-					data-aos-delay="200"
-				>
-					La protección y seguridad que usted necesita, con la
-					representación de las mejores marcas y líderes, consolidando
-					cada día nuestra oferta técnica para el gremio bomberil, de
-					rescate e industrial.
-				</p>
-				<div data-aos="fade-up" data-aos-delay="300">
-					<a
-						href="/catalogo"
-						class="inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5"
-					>
-						Ver Catálogo
-					</a>
-				</div>
-			</div>
-		</section>
+  <main>
+    <!-- Hero Section - Dark with gradient -->
+    <section
+      class='relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-150 md:min-h-175 py-20 md:py-32 overflow-hidden md:mx-5 md:rounded-[55px]'
+    >
+      <!-- Large rounded gradient circle background -->
+      <div
+        class='hidden md:absolute inset-x-1 bottom-20 flex items-center justify-center pointer-events-none'
+      >
+        <div
+          class='w-[140%] md:w-[120%] aspect-square rounded-full bg-linear-to-b from-60% from-black to-white'
+          style='background-image:  ;'
+        >
+        </div>
+      </div>
+      <div
+        class='absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50'
+        style="background-image: url('/images/products.png'); background-blend-mode: overlay;"
+      >
+      </div>
+      <div
+        class='relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 md:pt-10 pb-20 text-center'
+      >
+        <h1
+          class='text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6'
+          data-aos='fade-up'
+          data-aos-delay='100'
+        >
+          Equipamiento de clase mundial<br />al alcance de tu mano
+        </h1>
+        <p
+          class='text-base md:text-xl text-white/80 max-w-2xl mx-auto mb-10'
+          data-aos='fade-up'
+          data-aos-delay='200'
+        >
+          La protección y seguridad que usted necesita, con la representación de
+          las mejores marcas y líderes, consolidando cada día nuestra oferta
+          técnica para el gremio bomberil, de rescate e industrial.
+        </p>
+        <div data-aos='fade-up' data-aos-delay='300'>
+          <a
+            href='/catalogo/all'
+            class='inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5'
+          >
+            Ver Catálogo
+          </a>
+        </div>
+      </div>
+    </section>
 
-		<!-- Brands Carousel Section -->
-		<section class="py-16 bg-white">
-			<div class="max-w-360 mx-auto px-4">
-				<InfiniteCarousel
-					images={brandImages}
-					speed={25}
-					direction="left"
-					imageClass="h-12 md:h-16 lg:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-					blur={false}
-				/>
-			</div>
-		</section>
+    <!-- Brands Carousel Section -->
+    <section class='py-16 bg-white'>
+      <div class='max-w-360 mx-auto px-4'>
+        <InfiniteCarousel
+          images={brandImages}
+          speed={25}
+          direction='left'
+          imageClass='h-12 md:h-16 lg:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300'
+          blur={false}
+        />
+      </div>
+    </section>
 
-		<!-- Products Area Section -->
-		<section
-			id="productos"
-			class="py-20 bg-linear-180 from-orange-50 via-white to-blue-100"
-		>
-			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center mb-16">
-					<h2
-						class="text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] mb-4"
-						data-aos="fade-up"
-					>
-						Área de productos
-					</h2>
-					<p
-						class="text-lg text-[#6b7280] max-w-3xl mx-auto"
-						data-aos="fade-up"
-						data-aos-delay="100"
-					>
-						La mejor calidad, diseño y precio, respaldados por los
-						mejores distribuidores y representantes de las empresas
-						líderes nacionales en equipos de protección contra
-						incendios.
-					</p>
-				</div>
+    <!-- Products Area Section -->
+    <section
+      id='productos'
+      class='py-20 bg-linear-180 from-orange-50 via-white to-blue-100'
+    >
+      <div class='max-w-360 mx-auto px-4 sm:px-6 lg:px-8'>
+        <div class='text-center mb-16'>
+          <h2
+            class='text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] mb-4'
+            data-aos='fade-up'
+          >
+            Área de productos
+          </h2>
+          <p
+            class='text-lg text-[#6b7280] max-w-3xl mx-auto'
+            data-aos='fade-up'
+            data-aos-delay='100'
+          >
+            La mejor calidad, diseño y precio, respaldados por los mejores
+            distribuidores y representantes de las empresas líderes nacionales
+            en equipos de protección contra incendios.
+          </p>
+        </div>
 
-				<ProductsAreaData server:defer>
-					<div slot="fallback">
-						{
-							Array.from({ length: 2 }).map((_, sectionIdx) => (
-								<div
-									class="mb-16"
-									key={`section-${sectionIdx}`}
-								>
-									<div class="h-6 bg-gray-200 animate-pulse rounded w-48 mb-8" />
-									<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-										{Array.from({ length: 4 }).map(
-											(_, i) => (
-												<div
-													class="group"
-													key={`sk-${sectionIdx}-${i}`}
-												>
-													<div class="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-														<div class="relative aspect-3/4 overflow-hidden bg-gray-50 p-4">
-															<div class="w-full h-full bg-gray-200 animate-pulse rounded-xl" />
-														</div>
-														<div class="p-4 space-y-3">
-															<div class="h-4 bg-gray-200 animate-pulse rounded w-3/4" />
-															<div class="h-3 bg-gray-200 animate-pulse rounded w-1/2" />
-															<div class="h-9 bg-gray-200 animate-pulse rounded" />
-														</div>
-													</div>
-												</div>
-											),
-										)}
-									</div>
-								</div>
-							))
-						}
-					</div>
-				</ProductsAreaData>
-			</div>
-		</section>
+        <ProductsAreaData server:defer>
+          <div slot='fallback'>
+            {
+              Array.from({ length: 2 }).map((_, sectionIdx) => (
+                <div class='mb-16' key={`section-${sectionIdx}`}>
+                  <div class='h-6 bg-gray-200 animate-pulse rounded w-48 mb-8' />
+                  <div class='grid grid-cols-1 md:grid-cols-4 gap-6'>
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <div class='group' key={`sk-${sectionIdx}-${i}`}>
+                        <div class='bg-white rounded-2xl border border-gray-100 overflow-hidden'>
+                          <div class='relative aspect-3/4 overflow-hidden bg-gray-50 p-4'>
+                            <div class='w-full h-full bg-gray-200 animate-pulse rounded-xl' />
+                          </div>
+                          <div class='p-4 space-y-3'>
+                            <div class='h-4 bg-gray-200 animate-pulse rounded w-3/4' />
+                            <div class='h-3 bg-gray-200 animate-pulse rounded w-1/2' />
+                            <div class='h-9 bg-gray-200 animate-pulse rounded' />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </ProductsAreaData>
+      </div>
+    </section>
 
-		<!-- Certifications Section -->
-		<section class="py-20 bg-[#f8f9fa]">
-			<div class="max-w-360 mx-auto px-4 text-center">
-				<p
-					class="text-lg text-[#6b7280] max-w-3xl mx-auto mb-12"
-					data-aos="fade-up"
-				>
-					Estos productos fueron seleccionados bajo excelentes
-					estándares y certificaciones internacionales.
-				</p>
+    <!-- Certifications Section -->
+    <section class='py-20 bg-[#f8f9fa]'>
+      <div class='max-w-360 mx-auto px-4 text-center'>
+        <p
+          class='text-lg text-[#6b7280] max-w-3xl mx-auto mb-12'
+          data-aos='fade-up'
+        >
+          Estos productos fueron seleccionados bajo excelentes estándares y
+          certificaciones internacionales.
+        </p>
 
-				<div
-					class="flex flex-wrap justify-center items-center gap-8 md:gap-12"
-					data-aos="fade-up"
-					data-aos-delay="100"
-				>
-					<!-- Certification placeholders - using text badges -->
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<path
-								d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-							></path>
-							<path d="m9 12 2 2 4-4"></path>
-						</svg>
-						<span class="font-semibold">NFPA</span>
-					</div>
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<circle cx="12" cy="12" r="10"></circle>
-							<path d="m9 12 2 2 4-4"></path>
-						</svg>
-						<span class="font-semibold">CE</span>
-					</div>
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<path d="M12 2v4"></path>
-							<path d="m5 5 2.8 2.8"></path>
-							<path d="m19 5-2.8 2.8"></path>
-							<circle cx="12" cy="12" r="4"></circle>
-							<path d="M12 16v4"></path>
-							<path d="m5 19 2.8-2.8"></path>
-							<path d="m19 19-2.8-2.8"></path>
-						</svg>
-						<span class="font-semibold">ISO</span>
-					</div>
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<path
-								d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-							></path>
-							<polyline points="14 2 14 8 20 8"></polyline>
-							<path d="m9 15 2 2 4-4"></path>
-						</svg>
-						<span class="font-semibold">UL</span>
-					</div>
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<path
-								d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-							></path>
-							<path d="m9 12 2 2 4-4"></path>
-						</svg>
-						<span class="font-semibold">EN</span>
-					</div>
-					<div class="flex items-center gap-2 text-[#6b7280]">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.5"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="text-[#504aff]"
-						>
-							<circle cx="12" cy="12" r="10"></circle>
-							<path d="M8 12h8"></path>
-							<path d="M12 8v8"></path>
-						</svg>
-						<span class="font-semibold">ANSI</span>
-					</div>
-				</div>
-			</div>
-		</section>
-	</main>
+        <div
+          class='flex flex-wrap justify-center items-center gap-8 md:gap-12'
+          data-aos='fade-up'
+          data-aos-delay='100'
+        >
+          <!-- Certification placeholders - using text badges -->
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path>
+              <path d='m9 12 2 2 4-4'></path>
+            </svg>
+            <span class='font-semibold'>NFPA</span>
+          </div>
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <circle cx='12' cy='12' r='10'></circle>
+              <path d='m9 12 2 2 4-4'></path>
+            </svg>
+            <span class='font-semibold'>CE</span>
+          </div>
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <path d='M12 2v4'></path>
+              <path d='m5 5 2.8 2.8'></path>
+              <path d='m19 5-2.8 2.8'></path>
+              <circle cx='12' cy='12' r='4'></circle>
+              <path d='M12 16v4'></path>
+              <path d='m5 19 2.8-2.8'></path>
+              <path d='m19 19-2.8-2.8'></path>
+            </svg>
+            <span class='font-semibold'>ISO</span>
+          </div>
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <path
+                d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'
+              >
+              </path>
+              <polyline points='14 2 14 8 20 8'></polyline>
+              <path d='m9 15 2 2 4-4'></path>
+            </svg>
+            <span class='font-semibold'>UL</span>
+          </div>
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path>
+              <path d='m9 12 2 2 4-4'></path>
+            </svg>
+            <span class='font-semibold'>EN</span>
+          </div>
+          <div class='flex items-center gap-2 text-[#6b7280]'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              class='text-[#504aff]'
+            >
+              <circle cx='12' cy='12' r='10'></circle>
+              <path d='M8 12h8'></path>
+              <path d='M12 8v8'></path>
+            </svg>
+            <span class='font-semibold'>ANSI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-	<Footer />
+  <Footer />
 </Layout>

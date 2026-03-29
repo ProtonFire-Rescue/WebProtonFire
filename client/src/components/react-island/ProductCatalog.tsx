@@ -14,6 +14,7 @@ interface Product {
 }
 
 interface ProductCatalogProps {
+  category?: string
   initialProducts?: Product[]
   categories?: string[]
   brands?: string[]
@@ -21,20 +22,16 @@ interface ProductCatalogProps {
 }
 
 export default function ProductCatalog({
+  category = 'all',
   initialProducts = [],
   categories,
   brands,
   types
 }: ProductCatalogProps) {
-  const getInitialCategory = () => {
-    if (typeof window === 'undefined') return 'Todos'
-    const params = new URLSearchParams(window.location.search)
-    const cat = params.get('q')
-    return cat ? decodeURIComponent(cat) : 'Todos'
-  }
-
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedCategory, setSelectedCategory] = useState(getInitialCategory)
+  const [selectedCategory, setSelectedCategory] = useState(
+    category === 'all' ? 'Todos' : category
+  )
   const [selectedBrand, setSelectedBrand] = useState('Todos')
   const [selectedType, setSelectedType] = useState('Todos')
   const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none')
@@ -571,7 +568,7 @@ export default function ProductCatalog({
                     Marca: {product.brand}
                   </p>
                   <a
-                    href={`/producto/${product.documentId}?name=${product.slug}`}
+                    href={`/producto/${product.documentId}/${product.slug}`}
                     className='block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors'
                   >
                     Ver más
