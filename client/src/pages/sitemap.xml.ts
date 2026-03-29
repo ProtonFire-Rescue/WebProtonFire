@@ -22,11 +22,11 @@ export const GET: APIRoute = async (context) => {
     const { data: categories } = await categoriesResponse.json()
 
     const staticPages = [
-      { path: '', changefreq: 'weekly', priority: '1.0' },
-      { path: '/productos', changefreq: 'weekly', priority: '0.9' },
+      { path: '', changefreq: 'monthly', priority: '1.0' },
+      { path: '/productos', changefreq: 'monthly', priority: '0.9' },
       { path: '/productos/f-500', changefreq: 'monthly', priority: '0.8' },
       { path: '/productos/flaim', changefreq: 'monthly', priority: '0.8' },
-      { path: '/catalogo/all', changefreq: 'weekly', priority: '0.8' },
+      { path: '/catalogo/all', changefreq: 'monthly', priority: '0.8' },
       { path: '/servicios', changefreq: 'monthly', priority: '0.7' },
       { path: '/nosotros', changefreq: 'monthly', priority: '0.6' },
       { path: '/contactanos', changefreq: 'monthly', priority: '0.6' }
@@ -50,7 +50,7 @@ ${(data ?? [])
     (prod: any) => `  <url>
     <loc>${SITE_URL}/producto/${prod.documentId}/${prod.slug}</loc>
     <lastmod>${prod.updatedAt ?? now}</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   `
@@ -62,7 +62,7 @@ ${(data ?? [])
       (cat: any) => `  <url>
     <loc>${SITE_URL}/catalogo/${cat.name}</loc>
     <lastmod>${now}</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   `
