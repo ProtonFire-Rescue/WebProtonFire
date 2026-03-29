@@ -26,7 +26,7 @@ export const GET: APIRoute = async (context) => {
       { path: '/productos', changefreq: 'weekly', priority: '0.9' },
       { path: '/productos/f-500', changefreq: 'monthly', priority: '0.8' },
       { path: '/productos/flaim', changefreq: 'monthly', priority: '0.8' },
-      { path: '/catalogo', changefreq: 'weekly', priority: '0.8' },
+      { path: '/catalogo/all', changefreq: 'weekly', priority: '0.8' },
       { path: '/servicios', changefreq: 'monthly', priority: '0.7' },
       { path: '/nosotros', changefreq: 'monthly', priority: '0.6' },
       { path: '/contactanos', changefreq: 'monthly', priority: '0.6' }
@@ -48,7 +48,7 @@ ${staticPages
 ${(data ?? [])
   .map(
     (prod: any) => `  <url>
-    <loc>${SITE_URL}/producto/${prod.documentId}?name=${prod.slug}</loc>
+    <loc>${SITE_URL}/producto/${prod.documentId}/${prod.slug}</loc>
     <lastmod>${prod.updatedAt ?? now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -60,7 +60,7 @@ ${(data ?? [])
   ${(categories ?? [])
     .map(
       (cat: any) => `  <url>
-    <loc>${SITE_URL}/catalogo?q=${cat.name}</loc>
+    <loc>${SITE_URL}/catalogo/${cat.name}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
