@@ -17,7 +17,7 @@ export const GET: APIRoute = async (context) => {
     const { data } = await response.json()
 
     const categoriesResponse = await fetch(
-      `${STRAPI_URL}/api/categorias?fields[0]=name&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/categories?fields[0]=name&pagination[pageSize]=200`
     )
     const { data: categories } = await categoriesResponse.json()
 
