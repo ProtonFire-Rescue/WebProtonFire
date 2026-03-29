@@ -12,9 +12,14 @@ export const GET: APIRoute = async (context) => {
 
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&populate[categories][fields][0]=name&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&pagination[pageSize]=200`
     )
     const { data } = await response.json()
+
+    const categoriesResponse = await fetch(
+      `${STRAPI_URL}/api/categorias?fields[0]=name&pagination[pageSize]=200`
+    )
+    const { data: categories } = await categoriesResponse.json()
 
     const staticPages = [
       { path: '', changefreq: 'weekly', priority: '1.0' },
@@ -49,17 +54,20 @@ ${(data ?? [])
     <priority>0.7</priority>
   </url>
   `
-    
   )
   .join('\n')}
 
-  ${(data ?? []).map((prod: any) => `  <url>
-    <loc>${SITE_URL}/catalogo?q=${prod.categories.name}</loc>
+  ${(categories ?? [])
+    .map(
+      (cat: any) => `  <url>
+    <loc>${SITE_URL}/catalogo?q=${cat.name}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  `).join('\n')}
+  `
+    )
+    .join('\n')}
 </urlset>`
 
     return new Response(sitemap, {

@@ -3,31 +3,22 @@
 
 User-agent: *
 Allow: /
-
-# Disallow admin or private areas
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_astro/
 
-# Sitemap location
+# Sitemap
 Sitemap: https://protonfire.com/sitemap.xml
 
-# Crawl-delay (optional)
-Crawl-delay: 1
-
-# Specific bot rules
-User-agent: Googlebot
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Block bad bots
+# Slow down aggressive crawlers (optional)
 User-agent: AhrefsBot
-Crawl-delay: 10
+Disallow: /
 
 User-agent: SemrushBot
-Crawl-delay: 10
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
