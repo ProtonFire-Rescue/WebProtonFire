@@ -14,8 +14,6 @@ export interface Props {
   canonical?: string
 }
 
-const GA_ID = import.meta.env.PUBLIC_GA_ID
-
 const {
   title = 'PROTON Fire & Rescue - Equipos de Seguridad Ecuador',
   description = 'Empresa ecuatoriana con más de 2 décadas de trayectoria en importación y comercialización de equipos de seguridad para bomberos, rescate e industria.',
@@ -160,19 +158,16 @@ const websiteSchema = {
 
     <!-- Google Analytics -->
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-    >
-    </script>
-    <script is:inline define:vars={{ GA_ID }}>
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-4EWT2XHH4X'
+    ></script>
+    <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
         dataLayer.push(arguments)
       }
       gtag('js', new Date())
 
-      gtag('config', GA_ID)
+      gtag('config', 'G-4EWT2XHH4X')
     </script>
 
     <!-- Page-specific Structured Data -->
@@ -192,7 +187,9 @@ const websiteSchema = {
           />
         ))
     }
-    
+
+    <!-- Google Analytics - TODO: Agregar Measurement ID cuando esté disponible -->
+
     <!-- Preconnect to Cloudinary for image performance -->
     <link rel='preconnect' href='https://res.cloudinary.com' />
     <link rel='dns-prefetch' href='https://res.cloudinary.com' />
