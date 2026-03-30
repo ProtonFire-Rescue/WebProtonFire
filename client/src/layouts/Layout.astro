@@ -34,7 +34,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'PROTON Fire & Rescue Ecuador',
   alternateName: 'Proton Fire & Rescue',
-  url: canonical,
+  url: siteOrigin,
   logo: `${siteOrigin}/logos/proton-logo.png`,
   contactPoint: {
     '@type': 'ContactPoint',
@@ -117,8 +117,6 @@ const websiteSchema = {
     <meta name='twitter:site' content='@protonfire' />
     <meta name='twitter:creator' content='@protonfire' />
 
-    <link rel='icon' type='image/webp' href='/favicon2.webp' />
-
     <!-- Additional SEO Meta Tags -->
     <meta name='format-detection' content='telephone=no' />
     <meta name='mobile-web-app-capable' content='yes' />
@@ -187,8 +185,6 @@ const websiteSchema = {
           />
         ))
     }
-
-    <!-- Google Analytics - TODO: Agregar Measurement ID cuando esté disponible -->
 
     <!-- Preconnect to Cloudinary for image performance -->
     <link rel='preconnect' href='https://res.cloudinary.com' />
