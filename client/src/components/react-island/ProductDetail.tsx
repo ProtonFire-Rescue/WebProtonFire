@@ -54,10 +54,10 @@ export default function ProductDetail({
   }
 
   return (
-    <div className='min-h-screen bg-white'>
+    <div className='min-h-screen bg-white dark:bg-[#0b0b12]'>
       {/* Breadcrumb */}
       <div className='max-w-7xl mx-auto mt-30 px-4 sm:px-6 lg:px-8 py-4'>
-        <nav className='flex items-center text-sm text-gray-400'>
+        <nav className='flex items-center text-sm text-gray-400 dark:text-[#6b7280]'>
           <a href='/' className='hover:text-[#504aff] transition-colors'>
             Inicio
           </a>
@@ -69,7 +69,7 @@ export default function ProductDetail({
             Catálogo
           </a>
           <ChevronRight size={14} className='mx-2' />
-          <span className='text-[#2f2f3b] font-medium truncate max-w-[200px]'>
+          <span className='text-[#2f2f3b] dark:text-white font-medium truncate max-w-[200px]'>
             {product.name}
           </span>
         </nav>
@@ -81,7 +81,7 @@ export default function ProductDetail({
           {/* Left - Image Gallery */}
           <div className='space-y-4 min-w-0'>
             {/* Main Image */}
-            <div className='aspect-[4/3] sm:aspect-square bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 relative group'>
+            <div className='aspect-[4/3] sm:aspect-square bg-gray-50 dark:bg-[#12121e] rounded-2xl overflow-hidden border border-gray-100 dark:border-[#2a2a3e] relative group'>
               <img
                 src={selectedImage}
                 alt={product.name}
@@ -96,7 +96,7 @@ export default function ProductDetail({
                           product.images.length
                       )
                     }
-                    className='absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
+                    className='absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 dark:bg-[#1a1a2e]/80 hover:bg-white dark:hover:bg-[#1a1a2e] shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
                     aria-label='Imagen anterior'
                   >
                     <ChevronLeft size={20} className='text-gray-700' />
@@ -105,7 +105,7 @@ export default function ProductDetail({
                     onClick={() =>
                       goToImage((currentIndex + 1) % product.images.length)
                     }
-                    className='absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
+                    className='absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 dark:bg-[#1a1a2e]/80 hover:bg-white dark:hover:bg-[#1a1a2e] shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
                     aria-label='Siguiente imagen'
                   >
                     <ChevronRight size={20} className='text-gray-700' />
@@ -129,7 +129,7 @@ export default function ProductDetail({
                   className={`shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                     currentIndex === index
                       ? 'border-[#504aff] shadow-md shadow-[#504aff]/20'
-                      : 'border-gray-200 hover:border-gray-300'
+                      : 'border-gray-200 dark:border-[#2a2a3e] hover:border-gray-300 dark:hover:border-[#504aff]/50'
                   }`}
                 >
                   <img
@@ -149,7 +149,7 @@ export default function ProductDetail({
               {product.categories.map((category) => (
                 <span
                   key={category}
-                  className='inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-semibold px-3 py-1 rounded-full border border-green-200'
+                  className='inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-200 dark:border-green-800'
                 >
                   <Check size={12} />
                   {category}
@@ -159,29 +159,29 @@ export default function ProductDetail({
 
             {/* Title & Brand */}
             <div>
-              <h1 className='text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-3'>
+              <h1 className='text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white mb-3'>
                 {product.name}
               </h1>
               <div className='flex items-center gap-3 text-sm flex-wrap'>
-                <span className='text-gray-500'>
+                <span className='text-gray-500 dark:text-[#9ca3b8]'>
                   Marca:{' '}
-                  <span className='text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full'>
+                  <span className='text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full'>
                     {product.brand}
                   </span>
                 </span>
-                <span className='text-gray-300'>|</span>
-                <span className='text-gray-500'>
+                <span className='text-gray-300 dark:text-[#2a2a3e]'>|</span>
+                <span className='text-gray-500 dark:text-[#9ca3b8]'>
                   Modelo:{' '}
-                  <span className='text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full'>
+                  <span className='text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full'>
                     {product.model}
                   </span>
                 </span>
                 {product.genero && product.genero !== 'N/A' && (
                   <>
-                    <span className='text-gray-300'>|</span>
-                    <span className='inline-flex items-center gap-1 text-gray-500'>
+                    <span className='text-gray-300 dark:text-[#2a2a3e]'>|</span>
+                    <span className='inline-flex items-center gap-1 text-gray-500 dark:text-[#9ca3b8]'>
                       <User size={13} />
-                      <span className='text-[#2f2f3b] font-medium bg-blue-50 px-2 py-1 rounded-full'>
+                      <span className='text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full'>
                         {product.genero}
                       </span>
                     </span>
@@ -191,19 +191,19 @@ export default function ProductDetail({
             </div>
 
             {/* Specs */}
-            <div className='border-t border-gray-100 pt-6'>
-              <h2 className='text-lg font-bold text-[#2f2f3b] mb-3'>
+            <div className='border-t border-gray-100 dark:border-[#2a2a3e] pt-6'>
+              <h2 className='text-lg font-bold text-[#2f2f3b] dark:text-white mb-3'>
                 Descripción del producto
               </h2>
-              <p className='text-gray-600 leading-relaxed'>
+              <p className='text-gray-600 dark:text-[#9ca3b8] leading-relaxed'>
                 {product.description}
               </p>
             </div>
 
             {/* Certifications */}
             {product.certifications.length > 0 && (
-              <div className='border-t border-gray-100 pt-6 '>
-                <h2 className='text-lg font-bold text-[#2f2f3b] mb-3 flex items-center gap-2'>
+              <div className='border-t border-gray-100 dark:border-[#2a2a3e] pt-6 '>
+                <h2 className='text-lg font-bold text-[#2f2f3b] dark:text-white mb-3 flex items-center gap-2'>
                   <Award size={20} className='text-[#504aff]' />
                   Certificaciones
                 </h2>
@@ -217,7 +217,7 @@ export default function ProductDetail({
                       <Shield size={14} />
                       {cert.name}
                       {cert.description && (
-                        <div className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white border border-gray-200 shadow-lg text-gray-700 text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10'>
+                        <div className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white dark:bg-[#1a1a2e] border border-gray-200 dark:border-[#2a2a3e] shadow-lg text-gray-700 dark:text-[#c8c8d8] text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10'>
                           {cert.description}
                           <div className='absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white'></div>
                         </div>
@@ -229,12 +229,12 @@ export default function ProductDetail({
             )}
 
             {/* Trust indicators */}
-            <div className='grid grid-cols-3 gap-3 py-4 border-t border-b border-gray-100'>
+            <div className='grid grid-cols-3 gap-3 py-4 border-t border-b border-gray-100 dark:border-[#2a2a3e]'>
               <div className='flex flex-col items-center text-center gap-2'>
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Shield size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 font-medium'>
+                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Certificado
                   <br />
                   internacionalmente
@@ -244,7 +244,7 @@ export default function ProductDetail({
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Truck size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 font-medium'>
+                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Envío a<br />
                   todo Ecuador
                 </span>
@@ -253,7 +253,7 @@ export default function ProductDetail({
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Headphones size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 font-medium'>
+                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Soporte
                   <br />
                   técnico
@@ -280,7 +280,7 @@ export default function ProductDetail({
                   </>
                 )}
               </a>
-              <p className='text-xs text-gray-400 text-center'>
+              <p className='text-xs text-gray-400 dark:text-[#6b7280] text-center'>
                 Te responderemos en menos de 24 horas por WhatsApp
               </p>
             </div>

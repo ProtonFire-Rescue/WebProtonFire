@@ -4,6 +4,7 @@ import Menu from "@/components/page/Menu.astro";
 import Footer from "@/components/page/Footer.astro";
 import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
 import ScrollScale from "@/components/ScrollScale.astro";
+import CTAButton from "@/components/ui/CTAButton.astro";
 import { Image } from "astro:assets";
 
 const currentPath = Astro.url.pathname;
@@ -67,7 +68,7 @@ const nosotrosJsonLd = [
 >
 	<Menu currentPath={currentPath} />
 
-	<main>
+	<main class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section -->
 		<section
 			class="relative py-20 md:py-65 md:mx-5 md:rounded-[55px] bg-gradient-to-b from-white from-5% to-black overflow-hidden"
@@ -105,20 +106,20 @@ const nosotrosJsonLd = [
 		</section>
 
 		<!-- History Section -->
-		<section class="py-20 bg-white">
+		<section class="py-20 bg-white dark:bg-[#0b0b12]">
 			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 				<div
 					class="flex flex-col-reverse md:grid md:grid-cols-2 gap-12 items-center"
 				>
 					<div>
 						<h2
-							class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6"
+							class="text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white mb-6"
 							data-aos="fade-right"
 						>
 							¿Quiénes somos?
 						</h2>
 						<p
-							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] dark:text-[#9ca3b8] mb-6 leading-relaxed"
 							data-aos="fade-right" data-aos-delay="100"
 						>
 							Somos un grupo humano alegre, honesto, trabajador y
@@ -130,7 +131,7 @@ const nosotrosJsonLd = [
 							expectativas.
 						</p>
 						<p
-							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] dark:text-[#9ca3b8] mb-6 leading-relaxed"
 							data-aos="fade-right" data-aos-delay="200"
 						>
 							Nos enfocamos en que nuestro servicio posventa sea
@@ -140,7 +141,7 @@ const nosotrosJsonLd = [
 							soporte permanente.
 						</p>
 						<p
-							class="text-sm sm:text-base md:text-lg text-[#6b7280] mb-6 leading-relaxed"
+							class="text-sm sm:text-base md:text-lg text-[#6b7280] dark:text-[#9ca3b8] mb-6 leading-relaxed"
 							data-aos="fade-right" data-aos-delay="300"
 						>
 							Tenemos el privilegio de contar con técnicos
@@ -237,12 +238,9 @@ const nosotrosJsonLd = [
 							</p>
 
 							<div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-10">
-								<a
-									href="/contactanos"
-									class="inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5"
-								>
+								<CTAButton href="/contactanos">
 									Contáctanos
-								</a>
+								</CTAButton>
 							</div>
 						</div>
 					</div>
@@ -256,12 +254,12 @@ const nosotrosJsonLd = [
 		<section class="py-20">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<h2
-					class="text-3xl md:text-4xl font-bold text-[#2f2f3b] text-center"
+					class="text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white text-center"
 					data-aos="fade-up"
 				>
 					Nuestros Valores
 				</h2>
-				<p class="text-center text-[#6b7280] mt-5 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+				<p class="text-center text-[#6b7280] dark:text-[#9ca3b8] mt-5 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
 					Son los principios que guían todo lo que hacemos. Son la
 					base de nuestra cultura y la razón de nuestro éxito.
 				</p>
@@ -384,7 +382,7 @@ const nosotrosJsonLd = [
 		<section class="py-20 md:py-40">
 			<div class="max-w-[1440px] mx-auto px-4">
 				<p
-					class="text-lg text-[#6b7280] text-center max-w-[632px] mx-auto mb-12"
+					class="text-lg text-[#6b7280] dark:text-[#9ca3b8] text-center max-w-[632px] mx-auto mb-12"
 					data-aos="fade-up"
 				>
 					Conocemos y distribuimos solo productos que cumplan con las

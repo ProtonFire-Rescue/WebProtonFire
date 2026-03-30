@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro'
 import Menu from '@/components/page/Menu.astro'
 import Footer from '@/components/page/Footer.astro'
+import CTAButton from '@/components/ui/CTAButton.astro'
 import InfiniteCarousel from '@/components/InfiniteCarousel.astro'
 import ProductsAreaData from '@/components/productos/ProductsAreaData.astro'
 
@@ -72,7 +73,7 @@ const productosJsonLd = [
 >
   <Menu currentPath={currentPath} />
 
-  <main>
+  <main class="min-h-screen dark:bg-[#0b0b12]">
     <!-- Hero Section - Dark with gradient -->
     <section
       class='relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-150 md:min-h-175 py-20 md:py-32 overflow-hidden md:mx-5 md:rounded-[55px]'
@@ -112,18 +113,15 @@ const productosJsonLd = [
           técnica para el gremio bomberil, de rescate e industrial.
         </p>
         <div data-aos='fade-up' data-aos-delay='300'>
-          <a
-            href='/catalogo/all'
-            class='inline-flex items-center justify-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg shadow-[#504aff]/30 hover:shadow-xl hover:shadow-[#504aff]/40 hover:-translate-y-0.5'
-          >
+          <CTAButton href='/catalogo/all'>
             Ver Catálogo
-          </a>
+          </CTAButton>
         </div>
       </div>
     </section>
 
     <!-- Brands Carousel Section -->
-    <section class='py-16 bg-white'>
+    <section class='py-16 bg-white dark:bg-[#0b0b12]'>
       <div class='max-w-360 mx-auto px-4'>
         <InfiniteCarousel
           images={brandImages}
@@ -138,18 +136,18 @@ const productosJsonLd = [
     <!-- Products Area Section -->
     <section
       id='productos'
-      class='py-20 bg-linear-180 from-orange-50 via-white to-blue-100'
+      class='py-20 bg-linear-180 from-orange-50 via-white to-blue-100 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]'
     >
       <div class='max-w-360 mx-auto px-4 sm:px-6 lg:px-8'>
         <div class='text-center mb-16'>
           <h2
-            class='text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] mb-4'
+            class='text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] dark:text-white mb-4'
             data-aos='fade-up'
           >
             Área de productos
           </h2>
           <p
-            class='text-lg text-[#6b7280] max-w-3xl mx-auto'
+            class='text-lg text-[#6b7280] dark:text-[#9ca3b8] max-w-3xl mx-auto'
             data-aos='fade-up'
             data-aos-delay='100'
           >
@@ -168,7 +166,7 @@ const productosJsonLd = [
                   <div class='grid grid-cols-1 md:grid-cols-4 gap-6'>
                     {Array.from({ length: 4 }).map((_, i) => (
                       <div class='group' key={`sk-${sectionIdx}-${i}`}>
-                        <div class='bg-white rounded-2xl border border-gray-100 overflow-hidden'>
+                        <div class='bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] overflow-hidden'>
                           <div class='relative aspect-3/4 overflow-hidden bg-gray-50 p-4'>
                             <div class='w-full h-full bg-gray-200 animate-pulse rounded-xl' />
                           </div>
@@ -190,10 +188,10 @@ const productosJsonLd = [
     </section>
 
     <!-- Certifications Section -->
-    <section class='py-20 bg-[#f8f9fa]'>
+    <section class='py-20 bg-[#f8f9fa] dark:bg-[#12121e]'>
       <div class='max-w-360 mx-auto px-4 text-center'>
         <p
-          class='text-lg text-[#6b7280] max-w-3xl mx-auto mb-12'
+          class='text-lg text-[#6b7280] dark:text-[#9ca3b8] max-w-3xl mx-auto mb-12'
           data-aos='fade-up'
         >
           Estos productos fueron seleccionados bajo excelentes estándares y
@@ -206,7 +204,7 @@ const productosJsonLd = [
           data-aos-delay='100'
         >
           <!-- Certification placeholders - using text badges -->
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -224,7 +222,7 @@ const productosJsonLd = [
             </svg>
             <span class='font-semibold'>NFPA</span>
           </div>
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -242,7 +240,7 @@ const productosJsonLd = [
             </svg>
             <span class='font-semibold'>CE</span>
           </div>
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -265,7 +263,7 @@ const productosJsonLd = [
             </svg>
             <span class='font-semibold'>ISO</span>
           </div>
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -287,7 +285,7 @@ const productosJsonLd = [
             </svg>
             <span class='font-semibold'>UL</span>
           </div>
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -305,7 +303,7 @@ const productosJsonLd = [
             </svg>
             <span class='font-semibold'>EN</span>
           </div>
-          <div class='flex items-center gap-2 text-[#6b7280]'>
+          <div class='flex items-center gap-2 text-[#6b7280] dark:text-[#9ca3b8]'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'

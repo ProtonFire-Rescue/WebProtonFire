@@ -1,0 +1,53 @@
+---
+export interface Props {
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'outline';
+  target?: string;
+  rel?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  href,
+  size = 'md',
+  variant = 'primary',
+  target,
+  rel,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const sizeMap: Record<string, string> = {
+  sm: 'px-6 py-3 text-sm',
+  md: 'px-8 py-4 text-base',
+  lg: 'px-10 py-5 text-lg',
+};
+
+const variantMap: Record<string, string> = {
+  primary:
+    'bg-[#504aff] text-white shadow-lg shadow-[#504aff]/30 hover:bg-[#3f3bcc] hover:shadow-xl hover:shadow-[#504aff]/40',
+  outline:
+    'border-2 border-gray-200 dark:border-white/20 text-[#2f2f3b] dark:text-white/80 hover:border-[#504aff] hover:text-[#504aff]',
+};
+
+const base =
+  'inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5';
+
+const classes = [base, variantMap[variant], sizeMap[size], className]
+  .filter(Boolean)
+  .join(' ');
+
+const linkProps = target === '_blank' ? { target, rel: rel ?? 'noopener noreferrer' } : { target, rel };
+---
+
+{href ? (
+  <a href={href} class={classes} {...linkProps} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} {...rest}>
+    <slot />
+  </button>
+)}

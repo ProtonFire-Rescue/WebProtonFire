@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 * {
   font-family: 'Questrial', system-ui, -apple-system, sans-serif;
   font-display: swap;
@@ -15,13 +17,20 @@
     --pf-secondary: #ff0501;
     --pf-accent: #ff0511;
 
-    
     /* Neutral Colors */
     --pf-dark: #2f2f3b;
     --pf-gray: #6b7280;
     --pf-light: #f3f4f6;
     --pf-white: #ffffff;
-    
+
+    /* Surface Colors (light) */
+    --pf-bg: #ffffff;
+    --pf-bg-soft: #f8f9fa;
+    --pf-bg-muted: #f3f4f6;
+    --pf-text: #2f2f3b;
+    --pf-text-muted: #6b7280;
+    --pf-border: #e5e7eb;
+
     /* DaisyUI Mapping */
     --p: #504aff;
     --pc: #ffffff;
@@ -40,6 +49,19 @@
     --wa: #f59e0b;
     --er: #ff0501;
   }
+
+  .dark {
+    --pf-bg: #0b0b12;
+    --pf-bg-soft: #12121e;
+    --pf-bg-muted: #1a1a2e;
+    --pf-text: #e8e8f0;
+    --pf-text-muted: #9ca3b8;
+    --pf-border: #2a2a3e;
+    --pf-dark: #e8e8f0;
+    --pf-gray: #9ca3b8;
+    --pf-light: #1a1a2e;
+    --pf-white: #0b0b12;
+  }
 }
 
 /* Font Family */
@@ -52,7 +74,13 @@
   
   body {
     line-height: 1.6;
-    color: var(--pf-dark);
+    color: var(--pf-text);
+    background-color: var(--pf-bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark {
+    color-scheme: dark;
   }
   
   @media (prefers-reduced-motion: reduce) {

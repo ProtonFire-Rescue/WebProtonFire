@@ -73,6 +73,15 @@ const websiteSchema = {
 
 <!doctype html>
 <html lang='es'>
+  <script is:inline>
+    (function() {
+      const stored = localStorage.getItem('theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark')
+      }
+    })()
+  </script>
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -198,7 +207,7 @@ const websiteSchema = {
     <link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' media='print' onload="this.media='all'" />
     <noscript><link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' /></noscript>
   </head>
-  <body class='font-sans antialiased'>
+  <body class='font-sans antialiased bg-white dark:bg-[#0b0b12] text-[#2f2f3b] dark:text-[#e8e8f0] transition-colors duration-300'>
     <Toaster client:idle transition:persist richColors={true} />
     <slot />
   </body>

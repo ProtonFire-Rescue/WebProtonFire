@@ -221,16 +221,16 @@ export default function ProductCatalog({
 
       {/* ── Filter Drawer (slides from right) ── */}
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-full sm:w-96 bg-white shadow-2xl transform transition-transform duration-300 ease-out ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 z-50 h-full w-full sm:w-96 bg-white dark:bg-[#12121e] shadow-2xl transform transition-transform duration-300 ease-out ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
         aria-label='Panel de filtros'
       >
         <div className='flex flex-col h-full'>
           {/* Drawer Header */}
-          <div className='flex items-center justify-between px-6 py-5 border-b border-gray-100'>
-            <h3 className='text-lg font-bold text-[#2f2f3b]'>Filtros</h3>
+          <div className='flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-[#2a2a3e]'>
+            <h3 className='text-lg font-bold text-[#2f2f3b] dark:text-white'>Filtros</h3>
             <button
               onClick={() => setDrawerOpen(false)}
-              className='p-2 rounded-xl hover:bg-gray-100 transition-colors text-gray-500 hover:text-[#2f2f3b]'
+              className='p-2 rounded-xl hover:bg-gray-100 dark:hover:bg-white/10 transition-colors text-gray-500 dark:text-[#9ca3b8] hover:text-[#2f2f3b] dark:hover:text-white'
               aria-label='Cerrar filtros'
             >
               <svg
@@ -254,19 +254,19 @@ export default function ProductCatalog({
           <div className='flex-1 overflow-y-auto px-6 py-6 space-y-6'>
             {/* Search */}
             <div>
-              <h4 className='text-sm font-medium text-gray-500 mb-3'>Buscar</h4>
+              <h4 className='text-sm font-medium text-gray-500 dark:text-[#9ca3b8] mb-3'>Buscar</h4>
               <input
                 type='text'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder='Buscar producto...'
-                className='w-full px-4 py-2.5 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-sm'
+                className='w-full px-4 py-2.5 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-sm bg-white dark:bg-[#0b0b12] dark:text-white dark:placeholder-[#6b7280]'
               />
             </div>
 
             {/* Categoría Filter */}
             <div>
-              <h4 className='text-sm font-medium text-gray-500 mb-3'>
+              <h4 className='text-sm font-medium text-gray-500 dark:text-[#9ca3b8] mb-3'>
                 Categoría
               </h4>
               <div className='flex flex-wrap gap-2'>
@@ -277,7 +277,7 @@ export default function ProductCatalog({
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedCategory === cat
                         ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
                     }`}
                   >
                     {cat}
@@ -288,7 +288,7 @@ export default function ProductCatalog({
 
             {/* Tipo Filter */}
             <div>
-              <h4 className='text-sm font-medium text-gray-500 mb-3'>Tipo</h4>
+              <h4 className='text-sm font-medium text-gray-500 dark:text-[#9ca3b8] mb-3'>Tipo</h4>
               <div className='flex flex-wrap gap-2'>
                 {availableTypes.map((type) => (
                   <button
@@ -297,7 +297,7 @@ export default function ProductCatalog({
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedType === type
                         ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
                     }`}
                   >
                     {type}
@@ -308,7 +308,7 @@ export default function ProductCatalog({
 
             {/* Marca Filter */}
             <div>
-              <h4 className='text-sm font-medium text-gray-500 mb-3'>Marca</h4>
+              <h4 className='text-sm font-medium text-gray-500 dark:text-[#9ca3b8] mb-3'>Marca</h4>
               <div className='flex flex-wrap gap-2'>
                 {availableBrands.map((brand) => (
                   <button
@@ -317,7 +317,7 @@ export default function ProductCatalog({
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedBrand === brand
                         ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 text-gray-600 hover:border-[#504aff] hover:text-[#504aff]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
                     }`}
                   >
                     {brand}
@@ -354,21 +354,22 @@ export default function ProductCatalog({
           </div>
 
           {/* Drawer Footer */}
-          <div className='px-6 py-4 border-t border-gray-100 space-y-3'>
+          <div className='px-6 py-4 border-t border-gray-100 dark:border-[#2a2a3e] space-y-3'>
             {hasActiveFilters && (
               <button
                 onClick={resetFilters}
-                className='w-full px-4 py-2.5 text-sm border border-gray-200 text-[#2f2f3b] rounded-full hover:bg-gray-50 transition-colors font-medium'
+                className='w-full px-4 py-2.5 text-sm border border-gray-200 dark:border-[#2a2a3e] text-[#2f2f3b] dark:text-white rounded-full hover:bg-gray-50 dark:hover:bg-white/5 transition-colors font-medium'
               >
                 Restablecer filtros
               </button>
             )}
-            <button
+            <a
+              href={`/catalogo/${selectedCategory}`}
               onClick={() => setDrawerOpen(false)}
-              className='w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20'
+              className='text-center block w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20'
             >
               Ver {filteredProducts.length} productos
-            </button>
+            </a>
           </div>
         </div>
       </aside>
@@ -383,9 +384,9 @@ export default function ProductCatalog({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder='Buscar producto...'
-              className='w-full px-4 py-3 pr-12 border border-gray-200 rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600'
+              className='w-full px-4 py-3 pr-12 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600 dark:text-white bg-white dark:bg-[#12121e] dark:placeholder-[#6b7280]'
             />
-            <button className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors'>
+            <button className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 dark:bg-[#1a1a2e] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#2a2a3e] transition-colors'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='16'
@@ -408,7 +409,7 @@ export default function ProductCatalog({
         {/* Active Filters Pills */}
         {hasActiveFilters && (
           <div className='flex flex-wrap items-center gap-2 mb-6'>
-            <span className='text-xs text-gray-500 font-medium'>
+            <span className='text-xs text-gray-500 dark:text-[#9ca3b8] font-medium'>
               Filtros activos:
             </span>
             {selectedCategory !== 'Todos' && (
@@ -512,27 +513,28 @@ export default function ProductCatalog({
                 </button>
               </span>
             )}
-            <button
+            <a
+              href='/catalogo/all'
               onClick={resetFilters}
-              className='text-xs text-red-500 hover:text-red-600 font-medium transition-colors ml-1'
+              className='block text-center text-xs text-red-500 hover:text-red-600 font-medium transition-colors ml-1'
             >
               Limpiar todo
-            </button>
+            </a>
           </div>
         )}
 
         <div className='flex items-center justify-between mb-6'>
-          <h3 className='text-lg font-semibold text-[#2f2f3b]'>
+          <h3 className='text-lg font-semibold text-[#2f2f3b] dark:text-white'>
             Todos los Productos
           </h3>
-          <p className='text-sm text-gray-500'>
+          <p className='text-sm text-gray-500 dark:text-[#9ca3b8]'>
             {filteredProducts.length} productos encontrados
           </p>
         </div>
 
         {filteredProducts.length === 0 ? (
           <div className='text-center py-20'>
-            <p className='text-gray-500 mb-4'>
+            <p className='text-gray-500 dark:text-[#9ca3b8] mb-4'>
               No se encontraron productos con los filtros seleccionados
             </p>
             <button
@@ -547,9 +549,9 @@ export default function ProductCatalog({
             {filteredProducts.map((product) => (
               <div
                 key={product.id}
-                className='group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer'
+                className='group bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] overflow-hidden hover:shadow-xl dark:hover:shadow-black/30 transition-all duration-300 cursor-pointer'
               >
-                <div className='relative aspect-3/4 overflow-hidden bg-gray-50 p-4'>
+                <div className='relative aspect-3/4 overflow-hidden bg-gray-50 dark:bg-[#12121e] p-4'>
                   <img
                     src={product.image}
                     alt={product.name}
@@ -561,10 +563,10 @@ export default function ProductCatalog({
                   </span>
                 </div>
                 <div className='p-4'>
-                  <h4 className='font-semibold text-[#2f2f3b] text-sm mb-1 uppercase tracking-wide'>
+                  <h4 className='font-semibold text-[#2f2f3b] dark:text-white text-sm mb-1 uppercase tracking-wide'>
                     {product.name}
                   </h4>
-                  <p className='text-xs text-gray-400 mb-1'>{product.model}</p>
+                  <p className='text-xs text-gray-400 dark:text-[#6b7280] mb-1'>{product.model}</p>
                   <p className='text-xs text-[#504aff] font-medium mb-3'>
                     Marca: {product.brand}
                   </p>

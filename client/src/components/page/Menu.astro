@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import ThemeToggle from '@/components/ui/ThemeToggle.astro';
 
 export interface Props {
 	currentPath?: string;
@@ -17,7 +18,7 @@ const menuItems = [
 <header  class="fixed top-3 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-225 px-3 sm:px-4" role="banner">
 	<nav 
 		id="main-nav"
-		class="navigation bg-white/70 backdrop-blur-xl backdrop-saturate-150 border border-white/30 shadow-lg shadow-black/5 rounded-3xl px-4 sm:px-6 py-2.5 sm:py-3"
+		class="navigation bg-white/70 dark:bg-[#12121e]/80 backdrop-blur-xl backdrop-saturate-150 border border-white/30 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/30 rounded-3xl px-4 sm:px-6 py-2.5 sm:py-3"
 		role="navigation" 
 		aria-label="Menú principal"
 	>
@@ -43,7 +44,7 @@ const menuItems = [
 						class={`text-[14px] font-semibold transition-colors duration-200 ${
 							item.active 
 								? 'text-[#504aff]' 
-								: 'text-[#2f2f3b] hover:text-[#504aff]'
+								: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff]'
 						}`}
 					>
 						{item.label}
@@ -51,18 +52,21 @@ const menuItems = [
 				))}
 			</div>
 			
-			<!-- CTA Button (Desktop) -->
-			<a 
-				href="/contactanos"
-				class="hidden md:block bg-[#504aff] text-white text-[13px] font-semibold px-6 py-2.5 rounded-full hover:bg-[#3f3bcc] transition-all duration-200 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 shrink-0"
-			>
-				Contáctanos
-			</a>
+			<!-- CTA Button (Desktop) + Theme Toggle -->
+			<div class="hidden md:flex items-center gap-2 shrink-0">
+				<ThemeToggle />
+				<a 
+					href="/contactanos"
+					class="bg-[#504aff] text-white text-[13px] font-semibold px-6 py-2.5 rounded-full hover:bg-[#3f3bcc] transition-all duration-200 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30"
+				>
+					Contáctanos
+				</a>
+			</div>
 			
 			<!-- Mobile Menu Button -->
 			<button 
 				type="button"
-				class="md:hidden p-1.5 text-[#2f2f3b] hover:text-[#504aff] transition-colors"
+				class="md:hidden p-1.5 text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff] transition-colors"
 				aria-label="Abrir menú móvil"
 				id="mobile-menu-button"
 			>
@@ -79,14 +83,14 @@ const menuItems = [
 
 		<!-- Mobile Menu (inside nav, animated with max-height) -->
 		<div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0" style="transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;">
-			<div class="border-t border-gray-200/50 mt-3 pt-3 pb-1 space-y-1">
+			<div class="border-t border-gray-200/50 dark:border-white/10 mt-3 pt-3 pb-1 space-y-1">
 				{menuItems.map((item) => (
 					<a 
 						href={item.href}
 						class={`mobile-menu-link block text-[14px] font-semibold py-2.5 px-3 rounded-xl transition-colors ${
 							item.active 
 								? 'text-[#504aff] bg-[#504aff]/10' 
-								: 'text-[#2f2f3b] hover:bg-[#504aff]/5'
+								: 'text-[#2f2f3b] dark:text-white/80 hover:bg-[#504aff]/5'
 						}`}
 					>
 						{item.label}

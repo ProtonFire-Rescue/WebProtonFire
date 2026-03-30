@@ -66,15 +66,15 @@ const catalogJsonLd = [
 
   <main>
     <!-- Header Section -->
-    <section class='py-16 bg-white'>
+    <section class='py-16 bg-white dark:bg-[#0b0b12]'>
       <div class='max-w-360 mx-auto px-4 sm:px-6 lg:px-8'>
         <div class='text-center mt-16'>
           <h1
-            class='text-3xl md:text-4xl lg:text-[40px] font-bold text-[#2f2f3b] mb-3'
+            class='text-3xl md:text-4xl lg:text-[40px] font-bold text-[#2f2f3b] dark:text-white mb-3'
           >
             Busca el producto de tu interés
           </h1>
-          <p class='text-gray-500 max-w-xl mx-auto'>
+          <p class='text-gray-500 dark:text-[#9ca3b8] max-w-xl mx-auto'>
             Explora nuestro catálogo completo y encuentra el equipo perfecto
             para tus necesidades
           </p>
@@ -83,7 +83,7 @@ const catalogJsonLd = [
     </section>
 
     <!-- Product Catalog Section -->
-    <section class='pb-20 bg-white'>
+    <section class='pb-20 bg-white dark:bg-[#0b0b12]'>
       <div class='max-w-360 mx-auto px-4 sm:px-6 lg:px-8'>
         <CatalogData server:defer category={category}>
           <div
@@ -94,9 +94,9 @@ const catalogJsonLd = [
               Array.from({ length: 8 }).map((_, i) => (
                 <div
                   key={i}
-                  class='bg-white rounded-2xl border border-gray-100 overflow-hidden'
+                  class='bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] overflow-hidden'
                 >
-                  <div class='relative aspect-3/4 overflow-hidden bg-gray-50 p-4'>
+                  <div class='relative aspect-3/4 overflow-hidden bg-gray-50 dark:bg-[#12121e] p-4'>
                     <div class='w-full h-full bg-gray-200 animate-pulse rounded-xl' />
                   </div>
                   <div class='p-4 space-y-3'>

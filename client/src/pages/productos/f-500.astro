@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
+import CTAButton from '@/components/ui/CTAButton.astro';
 import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
@@ -155,28 +156,30 @@ const faqSchema = {
 >
 	<Menu currentPath={currentPath} />
 	
-	<main class="bg-white">
+	<main class="bg-white dark:bg-[#0b0b12]">
 		<!-- Hero Section -->
-		<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-50 via-white to-orange-50">
+		<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 py-20">
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
 					<!-- Left Content -->
 					<div class="space-y-6">
-						<h1 class="text-5xl lg:text-6xl font-bold text-[#2f2f3b] leading-tight" data-aos="fade-up" data-aos-delay="100">
+						<h1 class="text-5xl lg:text-6xl font-bold text-[#2f2f3b] dark:text-white leading-tight" data-aos="fade-up" data-aos-delay="100">
 							F-500 EA<br />
-							<span class="text-3xl lg:text-4xl text-gray-600">(Encapsulator Agent)</span>
+							<span class="text-3xl lg:text-4xl text-gray-600 dark:text-[#9ca3b8]">(Encapsulator Agent)</span>
 						</h1>
-						<p class="text-lg text-gray-600 leading-relaxed max-w-xl" data-aos="fade-up" data-aos-delay="200">
+						<p class="text-lg text-gray-600 dark:text-[#9ca3b8] leading-relaxed max-w-xl" data-aos="fade-up" data-aos-delay="200">
 							Un agente encapsulador de última generación que ofrece una solución versátil y segura para combatir fuegos de diversas clases. Su fórmula biodegradable y no tóxica lo hace ideal para proteger tanto a los equipos de emergencia como al medio ambiente.
 						</p>
-						<a href="#comenzar" data-aos="fade-up" data-aos-delay="300" class="inline-block bg-[#504aff] text-white px-8 py-4 rounded-full font-semibold hover:bg-[#3f3bcc] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-							Ver más
-						</a>
+						<div data-aos="fade-up" data-aos-delay="300">
+							<CTAButton href="#comenzar">
+								Ver más
+							</CTAButton>
+						</div>
 					</div>
 
 					<!-- Right Image -->
-					<div class="relative flex justify-center">
-						<div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500" data-aos="fade-left">
+					<div class="relative flex justify-center"  data-aos="fade-left">
+						<div class="relative md:w-130 bg-white dark:bg-[#1a1a2e] rounded-3xl shadow-2xl dark:shadow-black/30 p-8 transform hover:scale-105 transition-transform duration-500">
 							<Image
 								src="/f-500/product_present.webp"
 								alt="F-500 EA Encapsulator Agent"
@@ -214,10 +217,10 @@ const faqSchema = {
 
 					<!-- Content -->
 					<div class="order-1 lg:order-2 space-y-6">
-						<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b]" data-aos="fade-left">
+						<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b] dark:text-white" data-aos="fade-left">
 							¿Qué tipos de fuego controla?
 						</h2>
-						<p class="text-lg text-gray-600 leading-relaxed">
+						<p class="text-lg text-gray-600 dark:text-[#9ca3b8] leading-relaxed">
 							Controla diferentes tipos de fuegos, tales como:
 						</p>
 						<ul class="space-y-4">
@@ -228,7 +231,7 @@ const faqSchema = {
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
 										</svg>
 									</div>
-									<span class="text-gray-700"><strong>Clase {type.class}:</strong> {type.description}</span>
+									<span class="text-gray-700 dark:text-[#c8c8d8]"><strong>Clase {type.class}:</strong> {type.description}</span>
 								</li>
 							))}
 						</ul>
@@ -238,26 +241,29 @@ const faqSchema = {
 		</section>
 
 		<!-- How It Works Section -->
-		<section class="py-12 md:py-20 bg-white">
+		<section class="py-12 md:py-20 bg-white dark:bg-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 					<!-- Content -->
 					<div class="space-y-6 md:mx-20 lg:mx-0 xl:mx-20">
-						<h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2f2f3b]" data-aos="fade-up">
+						<h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#2f2f3b] dark:text-white" data-aos="fade-up">
 							¿Cómo actúa?
 						</h2>
-						<p class="text-base md:text-lg text-gray-600 leading-relaxed">
+						<p class="text-base md:text-lg text-gray-600 dark:text-[#9ca3b8] leading-relaxed">
 							El F500 al ser rociado sobre el fuego mediante un eductor común, y al tener menor tensión superficial que el agua, penetra y encapsula las moléculas del mismo, rompiendo la reacción en cadena con un abrupto descenso de la temperatura en segundos. 
 						</p>
-						<p class="text-base md:text-lg font-bold text-[#2f2f3b] my-4">
+						<p class="text-base md:text-lg font-bold text-[#2f2f3b] dark:text-white my-4">
 							Entre sus principales características tenemos:
 						</p>
 						<ul class="space-y-3 md:space-y-4">
 							{howItWorks.map((item) => (
 								<li class="flex items-start gap-3">
-									<div class="w-3 h-3 md:w-6 md:h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+									<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+										<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+										</svg>
 									</div>
-									<p class="text-sm md:text-base text-gray-700">{item}</p>
+									<p class="text-sm md:text-base text-gray-700 dark:text-[#c8c8d8]">{item}</p>
 								</li>
 							))}
 						</ul>
@@ -265,7 +271,7 @@ const faqSchema = {
 
 					<!-- Images Grid -->
 					<div class="flex flex-col items-center gap-6 md:gap-10 mt-8 lg:mt-0">
-						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="100">
+						<div class="bg-gray-50 dark:bg-[#1a1a2e] rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="100">
 							<Image
 								src="/f-500/cient_type1.webp"
 								alt="F-500 en acción"
@@ -275,7 +281,7 @@ const faqSchema = {
 								height={320}
 							/>
 						</div>
-						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="200">
+						<div class="bg-gray-50 dark:bg-[#1a1a2e] rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="200">
 							<Image
 								src="/f-500/cient_type2.webp"
 								alt="Aplicación de F-500"
@@ -285,7 +291,7 @@ const faqSchema = {
 								height={320}
 							/>
 						</div>
-						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="300">
+						<div class="bg-gray-50 dark:bg-[#1a1a2e] rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="300">
 							<Image
 								src="/f-500/cient_type3.webp"
 								alt="Reacción del F-500 en contacto con el fuego"
@@ -352,23 +358,23 @@ const faqSchema = {
 		</section> -->
 
 		<!-- CTA Section -->
-		<section id="comenzar" class="py-60 bg-gradient-to-r from-red-50 via-white to-orange-50">
+		<section id="comenzar" class="py-60 bg-gradient-to-r from-red-50 via-white to-orange-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up">
+				<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b] dark:text-white mb-6" data-aos="fade-up">
 					¿Interesado en F-500 EA?
 				</h2>
-				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+				<p class="text-xl text-gray-600 dark:text-[#9ca3b8] mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
 					Descubre cómo F-500 EA puede transformar la seguridad contra incendios en tus instalaciones
 				</p>
-				<a
-					href="https://wa.me/593982487322?text=Hola, me interesa obtener información acerca del F-500 EA"
-					target="_blank"
-					rel="noopener noreferrer"
-					data-aos="fade-up" data-aos-delay="200"
-					class="inline-block bg-[#504aff] text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-[#3f3bcc] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-				>
-					Solicitar Información
-				</a>
+				<div data-aos="fade-up" data-aos-delay="200">
+					<CTAButton
+						href="https://wa.me/593992526658?text=Hola, me interesa obtener información acerca del F-500 EA"
+						target="_blank"
+						size="lg"
+					>
+						Solicitar Información
+					</CTAButton>
+				</div>
 			</div>
 		</section>
 	</main>

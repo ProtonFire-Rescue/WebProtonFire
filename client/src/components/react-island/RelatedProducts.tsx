@@ -64,10 +64,10 @@ export default function RelatedProducts({
   console.log(products)
 
   return (
-    <section className='bg-gray-50 py-16'>
+    <section className='bg-gray-50 dark:bg-[#12121e] py-16'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between mb-8'>
-          <h2 className='text-2xl font-bold text-[#2f2f3b]'>
+          <h2 className='text-2xl font-bold text-[#2f2f3b] dark:text-white'>
             Productos relacionados
           </h2>
         </div>
@@ -76,9 +76,9 @@ export default function RelatedProducts({
             Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className='bg-white rounded-2xl overflow-hidden border border-gray-100'
+                className='bg-white dark:bg-[#1a1a2e] rounded-2xl overflow-hidden border border-gray-100 dark:border-[#2a2a3e]'
               >
-                <div className='aspect-3/4 bg-gray-100 animate-pulse'></div>
+                <div className='aspect-3/4 bg-gray-100 dark:bg-[#12121e] animate-pulse'></div>
                 <div className='p-4 space-y-2'>
                   <div className='h-3 bg-gray-100 animate-pulse rounded-full w-1/3'></div>
                   <div className='h-5 bg-gray-100 animate-pulse rounded-full w-2/3'></div>
@@ -91,9 +91,9 @@ export default function RelatedProducts({
               <a
                 key={item.id}
                 href={productUrl(item.category, item.slug)}
-                className='group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300'
+                className='group bg-white dark:bg-[#1a1a2e] rounded-2xl overflow-hidden border border-gray-100 dark:border-[#2a2a3e] hover:shadow-xl dark:hover:shadow-black/30 hover:-translate-y-1 transition-all duration-300'
               >
-                <div className='relative aspect-3/4 bg-gray-50 overflow-hidden p-4'>
+                <div className='relative aspect-3/4 bg-gray-50 dark:bg-[#12121e] overflow-hidden p-4'>
                   <img
                     src={item.images[0]?.url}
                     alt={item.name}
@@ -105,10 +105,10 @@ export default function RelatedProducts({
                   </span>
                 </div>
                 <div className='p-4'>
-                  <h3 className='font-semibold text-[#2f2f3b] text-sm mb-1 uppercase tracking-wide group-hover:text-[#504aff] transition-colors'>
+                  <h3 className='font-semibold text-[#2f2f3b] dark:text-white text-sm mb-1 uppercase tracking-wide group-hover:text-[#504aff] transition-colors'>
                     {item.name}
                   </h3>
-                  <p className='text-xs text-gray-400 mb-1'>{item.model}</p>
+                  <p className='text-xs text-gray-400 dark:text-[#6b7280] mb-1'>{item.model}</p>
                   <p className='text-xs text-[#504aff] font-medium'>
                     Marca: {item.brand}
                   </p>
@@ -116,7 +116,7 @@ export default function RelatedProducts({
               </a>
             ))
           ) : (
-            <div className='col-span-full text-center py-8 text-gray-500'>
+            <div className='col-span-full text-center py-8 text-gray-500 dark:text-[#9ca3b8]'>
               No hay productos relacionados disponibles
             </div>
           )}

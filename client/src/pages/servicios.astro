@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Menu from "@/components/page/Menu.astro";
 import Footer from "@/components/page/Footer.astro";
+import CTAButton from "@/components/ui/CTAButton.astro";
 import { Image } from "astro:assets";
 
 const currentPath = Astro.url.pathname;
@@ -141,7 +142,7 @@ const serviciosJsonLd = [
 >
 	<Menu currentPath={currentPath} />
 
-	<main>
+	<main class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section - Dark with gradient like index -->
 		<section
 			class="relative min-h-150 md:min-h-170 py-30 md:py-65 overflow-hidden md:mx-5 md:rounded-[55px]"
@@ -177,7 +178,7 @@ const serviciosJsonLd = [
 		<!-- Capacitación y Formación Section - Two Column Layout -->
 		
 		<section
-			class="py-20 bg-linear-90 from-blue-100 via-white to-gray-100"
+			class="py-20 bg-linear-90 from-blue-100 via-white to-gray-100 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]"
 			id="servicios"
 		>
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,12 +187,12 @@ const serviciosJsonLd = [
 					<div class="grid md:grid-cols-3 gap-8 md:pl-20" id="capacitacion">
 						<div>
 							<h2
-								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-8"
 								data-aos="fade-up"
 							>
 								Capacitación y Formación
 							</h2>
-							<p class="text-[#6b7280] mb-8">
+							<p class="text-[#6b7280] dark:text-[#9ca3b8] mb-8">
 								Preparamos a tu equipo para responder con
 								precisión cuando cada segundo cuenta.
 							</p>
@@ -200,7 +201,7 @@ const serviciosJsonLd = [
 						<div class="space-y-4">
 							{
 								trainingServices.map((item) => (
-									<div class="border-b border-gray-200 pb-4 last:border-0" data-aos="fade-up">
+									<div class="border-b border-gray-200 dark:border-[#2a2a3e] pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
 											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
 												<svg
@@ -217,11 +218,11 @@ const serviciosJsonLd = [
 													/>
 												</svg>
 											</div>
-											<h2 class=" text-xl font-bold text-[#2f2f3b] mb-1">
+											<h2 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
 												{item.name}
 											</h2>
 										</div>
-										<p class="text-[#6b7280]">
+										<p class="text-[#6b7280] dark:text-[#9ca3b8]">
 											{item.description}
 										</p>
 										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Solicitar</a>
@@ -232,7 +233,7 @@ const serviciosJsonLd = [
 						<div></div>
 					</div>
 					<hr
-						class="border-gray-200 border-dashed my-8 w-full border"
+						class="border-gray-200 dark:border-[#2a2a3e] border-dashed my-8 w-full border"
 					/>
 
 					<!-- Right Column: Maintenance Services -->
@@ -246,7 +247,7 @@ const serviciosJsonLd = [
 						<div class="space-y-4">
 							{
 								maintenanceServices.map((item) => (
-									<div class="border-b border-gray-200 pb-4 last:border-0" data-aos="fade-up">
+									<div class="border-b border-gray-200 dark:border-[#2a2a3e] pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
 											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
 												<svg
@@ -263,11 +264,11 @@ const serviciosJsonLd = [
 													/>
 												</svg>
 											</div>
-											<h2 class=" text-xl font-bold text-[#2f2f3b] mb-1">
+											<h2 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
 												{item.name}
 											</h2>
 										</div>
-										<p class="text-[#6b7280]">
+										<p class="text-[#6b7280] dark:text-[#9ca3b8]">
 											{item.description}
 										</p>
 										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Solicitar</a>
@@ -278,12 +279,12 @@ const serviciosJsonLd = [
 
 						<div>
 							<h2
-								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] mb-8"
+								class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-8"
 								data-aos="fade-up"
 							>
 								Soporte Técnico, Mantenimiento y Confección
 							</h2>
-							<p class="text-[#6b7280] mb-8 leading-relaxed">
+							<p class="text-[#6b7280] dark:text-[#9ca3b8] mb-8 leading-relaxed">
 								Tecnología y respaldo técnico para garantizar la
 								operatividad de tus equipos.
 							</p>
@@ -345,13 +346,13 @@ const serviciosJsonLd = [
 
 		<!-- CTA Section - Dark Card Style -->
 		<section
-			class="py-60 bg-linear-to-b from-purple-100 via-white to-blue-100"
+			class="py-60 bg-linear-to-b from-purple-100 via-white to-blue-100 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]"
 		>
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-4xl lg:text-5xl font-bold mb-6" data-aos="fade-up">
+				<h2 class="text-4xl lg:text-5xl font-bold text-[#2f2f3b] dark:text-white mb-6" data-aos="fade-up">
 					¿Por qué elegir nuestros servicios?
 				</h2>
-				<p class="text-gray-600 text-xl max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+				<p class="text-gray-600 dark:text-[#9ca3b8] text-xl max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
 					Cada uno de nuestros servicios cuenta con el respaldo de
 					técnicos calificados y está diseñado para superar las
 					expectativas de cumplimiento y seguridad. En PROTON Fire &
@@ -362,12 +363,9 @@ const serviciosJsonLd = [
 					data-aos="fade-up" 
 					data-aos-delay="200"
 				>
-				<a
-					href="/contactanos"
-					class="inline-block bg-[#504aff] text-white px-10 py-5 rounded-full font-semibold text-lg hover:bg-[#3f3bcc] transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-				>
+				<CTAButton href="/contactanos" size="lg">
 					Contáctanos
-				</a>
+				</CTAButton>
 				</div>
 			</div>
 		</section>

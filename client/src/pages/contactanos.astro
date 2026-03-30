@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
 import ContactForm from '@/components/react-island/ContactForm';
+import CTAButton from '@/components/ui/CTAButton.astro';
 import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
@@ -49,9 +50,9 @@ const contactJsonLd = [
 >
 	<Menu currentPath={currentPath} />
 	
-	<main>
+	<main class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- WhatsApp Hero Section -->
-		<section class="relative py-5 bg-linear-70 from-purple-50 via-white to-blue-50 overflow-hidden">
+		<section class="relative py-5 bg-linear-70 from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12] overflow-hidden">
 			<div class="max-w-360 mx-auto px-6 sm:px-6 lg:px-5 md:pb-20">
 				<div class="flex flex-col lg:flex-row justify-center lg:gap-8 items-center p-0 sm:px-20 md:px-32 lg:px-30">
 					<!-- Image Side -->
@@ -67,14 +68,14 @@ const contactJsonLd = [
 					</div>
 					
 					<!-- Content Side -->
-					<div class=" bg-white rounded-3xl p-8 lg:p-16 shadow-xl w-full md:w-110 lg:w-125 lg:mt-10" data-aos="fade-left">
-						<h1 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-4">
+					<div class="bg-white dark:bg-[#1a1a2e] rounded-3xl p-8 lg:p-16 shadow-xl dark:shadow-black/30 w-full md:w-110 lg:w-125 lg:mt-10" data-aos="fade-left">
+						<h1 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white mb-4">
 							Contáctanos
 						</h1>
-						<p class="text-lg text-[#6b7280] mb-6">
+						<p class="text-lg text-[#6b7280] dark:text-[#9ca3b8] mb-6">
 							Si te surgieron inquietudes o tienes alguna consulta.
 						</p>
-						<p class="text-[#6b7280] mb-8">
+						<p class="text-[#6b7280] dark:text-[#9ca3b8] mb-8">
 							Nuestro equipo se ocupará de responder a tu inquietud lo más rápido posible.
 						</p>
 						<a 
@@ -93,7 +94,7 @@ const contactJsonLd = [
 		</section>
 
 		<!-- Contact Form & Info Section -->
-		<section class="py-20 bg-white">
+		<section class="py-20 bg-white dark:bg-[#0b0b12]">
 			<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid lg:grid-cols-2 gap-12">
 					<!-- Left Side - Globe/Info -->
@@ -125,8 +126,8 @@ const contactJsonLd = [
 					</div>
 					
 					<!-- Right Side - Form -->
-					<div class="bg-[#f8f9fa] rounded-3xl p-8 lg:p-12" data-aos="fade-left">
-						<h3 class="text-2xl font-bold text-[#2f2f3b] mb-8">Envíanos un mensaje</h3>
+					<div class="bg-[#f8f9fa] dark:bg-[#1a1a2e] rounded-3xl p-8 lg:p-12" data-aos="fade-left">
+						<h3 class="text-2xl font-bold text-[#2f2f3b] dark:text-white mb-8">Envíanos un mensaje</h3>
 						<ContactForm client:visible />
 					</div>
 				</div>
@@ -134,22 +135,18 @@ const contactJsonLd = [
 		</section>
 
 		<!-- Map / Visit Section -->
-		<section class="py-30 bg-gradient-to-b from-purple-50 via-white to-blue-50">
+		<section class="py-30 bg-gradient-to-b from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
 					<!-- Text Side -->
 					<div>
-						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] mb-6" data-aos="fade-right">
+						<h2 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white mb-6" data-aos="fade-right">
 							Si gustas visitar nuestras instalaciones, no dudes en hacerlo.
 						</h2>
-						<a 
-							href="https://maps.app.goo.gl/JZ3AMbpR5peRVVnK9"
-							target="_blank"
-							class="inline-flex items-center bg-[#504aff] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#3f3bcc] transition-colors"
-						>
+						<CTAButton href="https://maps.app.goo.gl/JZ3AMbpR5peRVVnK9" target="_blank">
 							Viajar ahora
-						</a>
-						<address class="not-italic text-gray-600 mt-4 text-sm leading-relaxed">
+						</CTAButton>
+						<address class="not-italic text-gray-600 dark:text-[#9ca3b8] mt-4 text-sm leading-relaxed">
 							Raúl González y Chimborazo Oe2-91 y, 170136 Quito
 						</address>
 					</div>

@@ -68,15 +68,15 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-[#2f2f3b] mb-2">
+        <label htmlFor="name" className="block text-sm font-semibold text-[#2f2f3b] dark:text-white mb-2">
           Nombres y Apellidos *
         </label>
         <input
           {...register("name", { required: "El nombre es obligatorio" })}
           type="text"
           id="name"
-          className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all ${
-            errors.name ? "border-red-500 focus:ring-red-200" : "border-gray-200"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+            errors.name ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Nombres y apellidos..."
         />
@@ -86,7 +86,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-[#2f2f3b] mb-2">
+        <label htmlFor="email" className="block text-sm font-semibold text-[#2f2f3b] dark:text-white mb-2">
           Email *
         </label>
         <input
@@ -99,8 +99,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           })}
           type="email"
           id="email"
-          className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all ${
-            errors.email ? "border-red-500 focus:ring-red-200" : "border-gray-200"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+            errors.email ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Email..."
         />
@@ -110,15 +110,15 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="asunto" className="block text-sm font-semibold text-[#2f2f3b] mb-2">
+        <label htmlFor="asunto" className="block text-sm font-semibold text-[#2f2f3b] dark:text-white mb-2">
           Asunto *
         </label>
         <input
           {...register("asunto", { required: "El asunto es obligatorio" })}
           type="text"
           id="asunto"
-          className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all ${
-            errors.asunto ? "border-red-500 focus:ring-red-200" : "border-gray-200"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+            errors.asunto ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Asunto..."
         />
@@ -127,15 +127,15 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         )}
       </div>
       <div>
-        <label htmlFor="phone" className="block text-sm font-semibold text-[#2f2f3b] mb-2">
+        <label htmlFor="phone" className="block text-sm font-semibold text-[#2f2f3b] dark:text-white mb-2">
           Teléfono *
         </label>
         <input
           {...register("phone", { required: "Falto tu número telefonico, agregalo para hablar contigo" })}
           type="string"
           id="phone"
-          className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all ${
-            errors.phone ? "border-red-500 focus:ring-red-200" : "border-gray-200"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+            errors.phone ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="0922211..."
         />
@@ -145,15 +145,15 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-[#2f2f3b] mb-2">
+        <label htmlFor="message" className="block text-sm font-semibold text-[#2f2f3b] dark:text-white mb-2">
           Mensaje *
         </label>
         <textarea
           {...register("message", { required: "El mensaje es obligatorio" })}
           id="message"
           rows={4}
-          className={`w-full px-4 py-3 bg-white border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all resize-none ${
-            errors.message ? "border-red-500 focus:ring-red-200" : "border-gray-200"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all resize-none dark:text-white dark:placeholder-[#6b7280] ${
+            errors.message ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Tu mensaje..."
         />
