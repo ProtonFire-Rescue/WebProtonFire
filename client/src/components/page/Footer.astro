@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets"
+
 const currentYear = new Date().getFullYear()
 
 const footerLinks = {
@@ -50,10 +52,12 @@ const socialLinks = [
     <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12'>
       <!-- Brand Section -->
       <div class='lg:col-span-2'>
-        <img
+        <Image
           src='/logos/proton-logo.png'
           alt='PROTON Fire & Rescue Logo'
           class='h-[72px] w-auto mb-6 brightness-0 invert'
+          width={72}
+          height={72}
         />
         <p class='text-gray-400 mb-6 max-w-sm'>
           Nuestra palabra y seriedad son nuestro activo más valioso… permítanos
@@ -78,7 +82,7 @@ const socialLinks = [
 
       <!-- Servicios -->
       <div>
-        <h4 class='text-lg font-semibold mb-4'>Servicios</h4>
+        <span class='text-lg font-semibold mb-4'>Servicios</span>
         <ul class='space-y-2'>
           {
             footerLinks.servicios.map((link) => (
@@ -97,7 +101,7 @@ const socialLinks = [
 
       <!-- Productos -->
       <div>
-        <h4 class='text-lg font-semibold mb-4'>Productos</h4>
+        <span class='text-lg font-semibold mb-4'>Productos</span>
         <ul class='space-y-2'>
           {
             footerLinks.productos.map((link) => (
@@ -116,7 +120,7 @@ const socialLinks = [
 
       <!-- Empresa -->
       <div>
-        <h4 class='text-lg font-semibold mb-4'>Empresa</h4>
+        <span class='text-lg font-semibold mb-4'>Empresa</span>
         <ul class='space-y-2'>
           {
             footerLinks.empresa.map((link) => (

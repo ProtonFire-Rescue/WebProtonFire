@@ -4,6 +4,7 @@ import Menu from "@/components/page/Menu.astro";
 import Footer from "@/components/page/Footer.astro";
 import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
 import ScrollScale from "@/components/ScrollScale.astro";
+import { Image } from "astro:assets";
 
 const currentPath = Astro.url.pathname;
 const siteOrigin = Astro.url.origin;
@@ -72,10 +73,12 @@ const nosotrosJsonLd = [
 			class="relative py-20 md:py-65 md:mx-5 md:rounded-[55px] bg-gradient-to-b from-white from-5% to-black overflow-hidden"
 		>
 			<div class="relative flex flex-col items-center z-10 max-w-360 mx-auto px-6 sm:px-6 lg:px-8">
-				<img
+				<Image
 					src="/logos/proton.png"
 					alt="PROTON Fire & Rescue Logo"
 					class="h-22 w-34 mb-6 brightness-0 invert"
+					width={136}
+					height={88}
 				/>
 				<ScrollScale
 					images={carouselImages.map((image) => image.src)}
@@ -183,11 +186,13 @@ const nosotrosJsonLd = [
 						</div> -->
 					</div>
 					<div class="relative" data-aos="fade-left">
-						<img
+						<Image
 							src="/images/hero-home.png"
 							alt="Imagen de fondo para la página de nosotros."
 							class="w-full h-auto rounded-2xl shadow-xl"
 							loading="lazy"
+							width={600}
+							height={400}
 						/>
 					</div>
 				</div>

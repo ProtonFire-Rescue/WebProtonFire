@@ -154,18 +154,22 @@ const websiteSchema = {
       set:html={JSON.stringify(websiteSchema)}
     />
 
-    <!-- Google Analytics -->
-    <!-- Google tag (gtag.js) -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-4EWT2XHH4X'
-    ></script>
+    <!-- Google Analytics (deferred to not block LCP) -->
     <script>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-
-      gtag('config', 'G-4EWT2XHH4X')
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.createElement('script')
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4EWT2XHH4X'
+          s.async = true
+          document.head.appendChild(s)
+          s.onload = function () {
+            window.dataLayer = window.dataLayer || []
+            function gtag() { dataLayer.push(arguments) }
+            gtag('js', new Date())
+            gtag('config', 'G-4EWT2XHH4X')
+          }
+        }, 100)
+      })
     </script>
 
     <!-- Page-specific Structured Data -->
@@ -190,11 +194,12 @@ const websiteSchema = {
     <link rel='preconnect' href='https://res.cloudinary.com' />
     <link rel='dns-prefetch' href='https://res.cloudinary.com' />
 
-    <!-- AOS Animate On Scroll -->
-    <link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' />
+    <!-- AOS Animate On Scroll (non-render-blocking) -->
+    <link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' media='print' onload="this.media='all'" />
+    <noscript><link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' /></noscript>
   </head>
   <body class='font-sans antialiased'>
-    <Toaster client:load transition:persist richColors={true} />
+    <Toaster client:idle transition:persist richColors={true} />
     <slot />
   </body>
 </html>

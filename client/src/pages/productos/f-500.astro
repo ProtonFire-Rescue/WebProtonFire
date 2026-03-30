@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
+import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 const siteOrigin = Astro.url.origin;
@@ -176,11 +177,13 @@ const faqSchema = {
 					<!-- Right Image -->
 					<div class="relative flex justify-center">
 						<div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500" data-aos="fade-left">
-							<img
+							<Image
 								src="/f-500/product_present.webp"
 								alt="F-500 EA Encapsulator Agent"
 								class="w-full h-auto object-contain"
 								loading="eager"
+								width={480}
+								height={320}
 							/>
 						</div>
 						<!-- Decorative elements -->
@@ -198,11 +201,13 @@ const faqSchema = {
 					<!-- Image -->
 					<div class="order-2 lg:order-1 flex justify-center">
 						<div class="relative rounded-3xl overflow-hidden shadow-xl md:w-120" data-aos="fade-right">
-							<img
+							<Image
 								src="/f-500/fire_types.webp"
 								alt="Tipos de fuego que controla F-500"
 								class="w-full h-auto object-cover"
 								loading="lazy"
+								width={480}
+								height={320}
 							/>
 						</div>
 					</div>
@@ -261,27 +266,33 @@ const faqSchema = {
 					<!-- Images Grid -->
 					<div class="flex flex-col items-center gap-6 md:gap-10 mt-8 lg:mt-0">
 						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="100">
-							<img
+							<Image
 								src="/f-500/cient_type1.webp"
 								alt="F-500 en acción"
 								class="w-full h-full object-cover rounded-xl"
 								loading="lazy"
+								width={480}
+								height={320}
 							/>
 						</div>
 						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="200">
-							<img
+							<Image
 								src="/f-500/cient_type2.webp"
 								alt="Aplicación de F-500"
 								class="w-full h-full object-cover rounded-xl"
 								loading="lazy"
+								width={480}
+								height={320}
 							/>
 						</div>
 						<div class="bg-gray-50 rounded-2xl p-4 md:p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-full xl:w-120" data-aos="fade-left" data-aos-delay="300">
-							<img
+							<Image
 								src="/f-500/cient_type3.webp"
 								alt="Reacción del F-500 en contacto con el fuego"
 								class="w-full h-full object-cover rounded-xl"
 								loading="lazy"
+								width={480}
+								height={320}
 							/>
 						</div>
 					</div>
@@ -295,7 +306,7 @@ const faqSchema = {
 				<div class="grid lg:grid-cols-2 gap-12 items-center">
 					<div class="relative">
 						<div class="relative bg-white rounded-3xl shadow-2xl p-8">
-							<img
+							<Image
 								src="/f-500/product_present.webp"
 								alt="F-500 EA Sistema"
 								class="w-full h-auto object-contain"

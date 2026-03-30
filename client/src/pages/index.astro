@@ -6,6 +6,7 @@ import Destacados from "@/components/react-island/Destacados";
 import InfiniteCarousel from "@/components/InfiniteCarousel.astro";
 import { ChevronRight } from "lucide-react";
 import WhatsAppWidget from "@/components/WhatsAppWidget.astro";
+import { Image } from "astro:assets";
 
 const currentPath = Astro.url.pathname;
 
@@ -309,10 +310,12 @@ const homePageSchema = {
 								data-aos="fade-up"
 							>
 								<div class="relative h-[413px] overflow-hidden">
-									<img
+									<Image
 										src={category.image}
 										alt={category.name}
 										class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+										width={413}
+										height={413}
 									/>
 									<div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
 								</div>
@@ -382,10 +385,12 @@ const homePageSchema = {
 						<div
 							class="w-[120px] h-[120px] bg-white/40 rounded-full flex items-center justify-center mx-auto mb-6"
 						>
-							<img
+							<Image
 								src="/icons/capacitacion.png"
 								alt="Servicio de capacitación"
 								class="w-[70px] h-[70px] object-contain"
+								width={70}
+								height={70}	
 							/>
 						</div>
 						<h3
@@ -414,10 +419,12 @@ const homePageSchema = {
 						<div
 							class="w-[120px] h-[120px] bg-white/40 rounded-full flex items-center justify-center mx-auto mb-6"
 						>
-							<img
+							<Image
 								src="/icons/confeccion.png"
 								alt="Servicio de Confección"
 								class="w-[70px] h-[70px] object-contain"
+								width={70}
+								height={70}
 							/>
 						</div>
 						<h3
@@ -446,10 +453,12 @@ const homePageSchema = {
 						<div
 							class="w-[120px] h-[120px] bg-white/40 rounded-full flex items-center justify-center mx-auto mb-6"
 						>
-							<img
+							<Image
 								src="/icons/mantenimiento.png"
 								alt="Servicio de mantenimiento"
 								class="w-[70px] h-[70px] object-contain"
+								width={70}
+								height={70}
 							/>
 						</div>
 						<h3
@@ -493,7 +502,7 @@ const homePageSchema = {
 					que más llaman la atención de nuestros clientes.
 				</p>
 
-				<Destacados client:load />
+				<Destacados client:visible />
 			</div>
 		</section>
 

@@ -46,7 +46,7 @@ const productFilter = toProductView(product[0])
 const categoryName = product[0].categories?.[0]?.name ?? ''
 ---
 
-<ProductDetail product={productFilter} client:load />
+<ProductDetail product={productFilter} client:idle />
 <RelatedProducts
   categoryName={categoryName}
   excludeId={product[0].documentId}

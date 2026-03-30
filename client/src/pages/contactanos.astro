@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
 import ContactForm from '@/components/react-island/ContactForm';
+import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 const siteOrigin = Astro.url.origin;
@@ -55,11 +56,13 @@ const contactJsonLd = [
 				<div class="flex flex-col lg:flex-row justify-center lg:gap-8 items-center p-0 sm:px-20 md:px-32 lg:px-30">
 					<!-- Image Side -->
 					<div class="relative w-full md:w-125 md:h-125 overflow-hidden my-5 md:my-20 pt-20 bg-linear-to-t from-white to-zinc-600 drop-shadow-xl rounded-full" data-aos="fade-right">
-						<img 
+						<Image 
 							src="/images/Contactanos.png" 
 							alt="Imagen cartoon para la página de contacto" 
 							class="w-full h-auto object-cover"
 							loading="lazy"
+							width={200}
+							height={200}
 						/>
 					</div>
 					
@@ -124,7 +127,7 @@ const contactJsonLd = [
 					<!-- Right Side - Form -->
 					<div class="bg-[#f8f9fa] rounded-3xl p-8 lg:p-12" data-aos="fade-left">
 						<h3 class="text-2xl font-bold text-[#2f2f3b] mb-8">Envíanos un mensaje</h3>
-						<ContactForm client:load />
+						<ContactForm client:visible />
 					</div>
 				</div>
 			</div>

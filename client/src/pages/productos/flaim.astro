@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Menu from '@/components/page/Menu.astro';
 import Footer from '@/components/page/Footer.astro';
+import { Image } from 'astro:assets';
 
 const currentPath = Astro.url.pathname;
 const siteOrigin = Astro.url.origin;
@@ -134,11 +135,13 @@ El sistema que proporciona a los bomberos las habilidades esenciales para mejora
           <!-- Right Image -->
           <div class="relative flex justify-center">
             <div class="relative md:w-130 bg-white rounded-3xl shadow-2xl p-8 transform hover:scale-105 transition-transform duration-500" data-aos="fade-left">
-              <img
+              <Image
                 src="/flaim/flaim_body.jpg"
                 alt="Equipo FLAIM FTS Training System para el entrenamiento en realidad virtual"
                 class="w-full h-auto object-contain"
                 loading="eager"
+                width={480}
+                height={320}
               />
             </div>
             <!-- Decorative elements -->
@@ -156,7 +159,7 @@ El sistema que proporciona a los bomberos las habilidades esenciales para mejora
           <!-- Image -->
           <div class="order-2 lg:order-1 flex justify-center">
             <div class="relative rounded-3xl overflow-hidden shadow-xl md:w-120" data-aos="fade-right">
-              <img
+              <Image
                 src="/flaim/flaim_demo2.jpg"
                 alt="Equipo FLAIM Trainer System Demo"
                 class="w-full h-auto object-cover"
@@ -216,7 +219,7 @@ ahora en Ecuador, ofrece:             </p>
         <section class="flex flex-col w-full lg:w-1/2 gap-6 md:gap-8">
           <!-- Feature 2 -->
           <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="100">
-            <img
+            <Image
               src="/flaim/flaim_demo3.webp"
               alt="Equipo VR Training para el entrenamiento en entornos virtuales bomberiles"
               class="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl mb-4"
@@ -226,7 +229,7 @@ ahora en Ecuador, ofrece:             </p>
 
           <!-- Feature 3 -->
           <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="200">
-            <img
+            <Image
               src="/flaim/flaim_complete.jpg"
               alt="Equipo Flaim FTS en acción"
               class="w-full h-36 sm:h-40 md:h-48 object-cover rounded-xl mb-4"
@@ -236,7 +239,7 @@ ahora en Ecuador, ofrece:             </p>
 
           <!-- Feature 6 -->
           <div class="bg-gray-50 rounded-2xl p-4 md:p-6" data-aos="fade-left" data-aos-delay="300">
-            <img
+            <Image
               src="/flaim/flaim_demo1.jpg"
               alt="Demostración del equipo Flaim FTS"
               class="w-full h-48 sm:h-64 md:h-80 object-cover rounded-xl mb-4"
@@ -253,7 +256,7 @@ ahora en Ecuador, ofrece:             </p>
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div class="relative">
             <div class="relative bg-white rounded-3xl shadow-2xl p-8">
-              <img
+              <Image
                 src="/flaim/flaim_body.jpg"
                 alt="FLAIM FTS Sistema"
                 class="w-full h-auto object-contain"

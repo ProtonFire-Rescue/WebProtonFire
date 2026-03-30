@@ -1,6 +1,7 @@
 ---
 import { getProductsQuery, resolveBackendUrl } from '@/utils/server'
 import { productUrl } from '@/utils/slugify'
+import { Image } from 'astro:assets'
 const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
 
 const { data } = await getProductsQuery(
@@ -78,11 +79,13 @@ const totalCount = cards.length
                       <div class='bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300'>
                         <div class='relative aspect-[3/4] overflow-hidden bg-gray-50 p-4'>
                           {product.image ? (
-                            <img
+                            <Image
                               src={product.image}
                               alt={product.name}
                               class='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
                               loading='lazy'
+                              width={200}
+                              height={200}
                             />
                           ) : (
                             <div class='w-full h-full bg-gray-100' />
