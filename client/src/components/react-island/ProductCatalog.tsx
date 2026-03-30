@@ -363,13 +363,12 @@ export default function ProductCatalog({
                 Restablecer filtros
               </button>
             )}
-            <a
-              href={`/catalogo/${selectedCategory}`}
+            <button
               onClick={() => setDrawerOpen(false)}
               className='text-center block w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20'
             >
               Ver {filteredProducts.length} productos
-            </a>
+            </button>
           </div>
         </div>
       </aside>

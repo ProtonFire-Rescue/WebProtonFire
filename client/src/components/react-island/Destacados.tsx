@@ -6,13 +6,13 @@ const destacados = [
         name: "f-500",
         title: "F-500 Agente encapsulador",
         description: "El F500 es una innovadora tecnología para el combate de incendios y control de riesgos: es la 3ra. y última generación de agentes supresores de fuego. No es una espuma (aunque la complementa y fortalece), es un agente encapsulador acuoso que enfría y controla la temperatura del siniestro de manera más efectiva y rápida.",
-        image: "/images/f-500.png"
+        image: "/images/f-500.webp"
     },
     {
         name: "Flaim",
         title: "FLAIM FTS",
         description: "FLAIM FTS es un sistema inmersivo de capacitación para bomberos que combina escenarios de incendios virtuales de alta fidelidad con equipos estándar de la industria para brindar experiencias de capacitación que se sienten reales.",
-        image: "/images/flaim.jpg"
+        image: "/images/flaim.webp"
     }
 ]
 

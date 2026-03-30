@@ -3,9 +3,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-* {
-  font-family: 'Questrial', system-ui, -apple-system, sans-serif;
-  font-display: swap;
+@theme inline {
+  --font-sans: var(--font-questrial), system-ui, -apple-system, sans-serif;
 }
 
 /* PROTON Fire & Rescue Theme */
@@ -67,7 +66,7 @@
 /* Font Family */
 @layer base {
   html {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-questrial), system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
   }

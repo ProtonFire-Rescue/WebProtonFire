@@ -126,12 +126,14 @@ const seoKeywords = [
   type='product'
   jsonLd={productJsonLd}
 >
-  <Menu currentPath={currentPath} />
+  
 
-  <ProductPageData slug={slug} server:defer>
+  <main class="bg-white dark:bg-[#0b0b12]">
+    <Menu currentPath={currentPath} />
+    <ProductPageData slug={slug} server:defer>
     <section
       slot='fallback'
-      class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 mt-30'
+      class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-30'
     >
       <div class='grid lg:grid-cols-2 gap-12'>
         <div class='space-y-4'>
@@ -161,5 +163,7 @@ const seoKeywords = [
     </section>
   </ProductPageData>
 
-  <Footer />
+ 
+  </main>
+   <Footer />
 </Layout>

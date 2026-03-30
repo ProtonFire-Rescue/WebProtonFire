@@ -56,7 +56,7 @@ export default function ProductDetail({
   return (
     <div className='min-h-screen bg-white dark:bg-[#0b0b12]'>
       {/* Breadcrumb */}
-      <div className='max-w-7xl mx-auto mt-30 px-4 sm:px-6 lg:px-8 py-4'>
+      <div className='max-w-7xl mx-auto pt-30 px-4 sm:px-6 lg:px-8 py-4'>
         <nav className='flex items-center text-sm text-gray-400 dark:text-[#6b7280]'>
           <a href='/' className='hover:text-[#504aff] transition-colors'>
             Inicio
@@ -93,7 +93,7 @@ export default function ProductDetail({
                     onClick={() =>
                       goToImage(
                         (currentIndex - 1 + product.images.length) %
-                          product.images.length
+                        product.images.length
                       )
                     }
                     className='absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 dark:bg-[#1a1a2e]/80 hover:bg-white dark:hover:bg-[#1a1a2e] shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'
@@ -126,11 +126,10 @@ export default function ProductDetail({
                 <button
                   key={image.id}
                   onClick={() => goToImage(index)}
-                  className={`shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                    currentIndex === index
+                  className={`shrink-0 w-14 h-14 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-all ${currentIndex === index
                       ? 'border-[#504aff] shadow-md shadow-[#504aff]/20'
                       : 'border-gray-200 dark:border-[#2a2a3e] hover:border-gray-300 dark:hover:border-[#504aff]/50'
-                  }`}
+                    }`}
                 >
                   <img
                     src={image.url}
@@ -147,13 +146,18 @@ export default function ProductDetail({
             {/* Categories badges */}
             <div className='flex flex-wrap gap-2'>
               {product.categories.map((category) => (
-                <span
+                <a href={`/catalogo/${category}`}
                   key={category}
-                  className='inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-200 dark:border-green-800'
+                  className='group relative inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-200 dark:border-green-800'
+                  data-tip={category}
                 >
                   <Check size={12} />
                   {category}
-                </span>
+                  <div className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white dark:bg-[#1a1a2e] border border-gray-200 dark:border-[#2a2a3e] shadow-lg text-gray-700 dark:text-[#c8c8d8] text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10'>
+                    {`Este producto pertenece a la categoria de productos en "${category}"`}
+                    <div className='absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white'></div>
+                  </div>
+                </a>
               ))}
             </div>
 
