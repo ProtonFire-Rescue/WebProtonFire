@@ -61,8 +61,6 @@ export default function RelatedProducts({
     fetchRelatedProducts()
   }, [categoryName, excludeId, backendUrl])
 
-  console.log(products)
-
   return (
     <section className='bg-gray-50 dark:bg-[#12121e] py-16'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
