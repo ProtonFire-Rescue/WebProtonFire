@@ -8,7 +8,7 @@ const currentPath = Astro.url.pathname
 const siteOrigin = Astro.url.origin
 
 const { category } = Astro.params
-console.log(category)
+const categoryLabel = category === 'all' ? 'Todos los Productos' : decodeURIComponent(category ?? 'all')
 
 const catalogJsonLd = [
   {
@@ -17,7 +17,7 @@ const catalogJsonLd = [
     name: 'Catálogo de Productos - PROTON Fire & Rescue',
     description:
       'Explora nuestro catálogo completo de equipos de seguridad para bomberos, rescate e industria. Filtra por categoría, marca y precio.',
-    url: `${siteOrigin}/catalogo`,
+    url: `${siteOrigin}/catalogo/${category}`,
     image: `${siteOrigin}/images/og/og_home.webp`,
     isPartOf: {
       '@type': 'WebSite',
@@ -39,8 +39,18 @@ const catalogJsonLd = [
         '@type': 'ListItem',
         position: 2,
         name: 'Catálogo',
-        item: `${siteOrigin}/catalogo`
-      }
+        item: `${siteOrigin}/catalogo/all`
+      },
+      ...(category && category !== 'all'
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: categoryLabel,
+              item: `${siteOrigin}/catalogo/${category}`
+            }
+          ]
+        : [])
     ]
   }
 ]

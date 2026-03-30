@@ -1,6 +1,7 @@
 // src/pages/sitemap.xml.ts
 import type { APIRoute } from 'astro'
 import { resolveBackendUrl } from '@/utils/server'
+import { productUrl } from '@/utils/slugify'
 
 export const GET: APIRoute = async (context) => {
   const SITE_URL = (context.site?.origin ?? 'http://localhost:1337').replace(
@@ -12,7 +13,7 @@ export const GET: APIRoute = async (context) => {
 
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&populate[categories][fields][0]=name&pagination[pageSize]=200`
     )
     const { data } = await response.json()
 
@@ -44,30 +45,28 @@ ${staticPages
   </url>`
   )
   .join('\n')}
-
 ${(data ?? [])
-  .map(
-    (prod: any) => `  <url>
-    <loc>${SITE_URL}/producto/${prod.documentId}/${prod.slug}</loc>
+  .map((prod: any) => {
+    const catName = prod.categories?.[0]?.name ?? 'producto'
+    const url = productUrl(catName, prod.slug)
+    return `  <url>
+    <loc>${SITE_URL}${url}</loc>
     <lastmod>${prod.updatedAt ?? now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  `
-  )
+  </url>`
+  })
   .join('\n')}
-
-  ${(categories ?? [])
-    .map(
-      (cat: any) => `  <url>
-    <loc>${SITE_URL}/catalogo/${cat.name}</loc>
+${(categories ?? [])
+  .map(
+    (cat: any) => `  <url>
+    <loc>${SITE_URL}/catalogo/${encodeURIComponent(cat.name)}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  `
-    )
-    .join('\n')}
+  </url>`
+  )
+  .join('\n')}
 </urlset>`
 
     return new Response(sitemap, {

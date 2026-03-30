@@ -2,15 +2,15 @@
 import ProductDetail from '@/components/react-island/ProductDetail'
 import RelatedProducts from '@/components/react-island/RelatedProducts'
 import { BACKEND_URL } from '@/utils/constants'
-import { getProductByIdQuery, resolveBackendUrl } from '@/utils/server'
+import { getProductBySlugQuery, resolveBackendUrl } from '@/utils/server'
 import type { ProductView, StrapiProduct } from '@/types/types'
 
-const { id } = Astro.props
+const { slug } = Astro.props
 
 const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
 const publicBackendUrl = strapiBaseUrl || BACKEND_URL
-const { data: product } = await getProductByIdQuery(
-  id,
+const { data: product } = await getProductBySlugQuery(
+  slug,
   'fields[0]=name&fields[1]=description&fields[2]=Genero&fields[3]=slug&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&populate[certifications][fields][0]=name&populate[certifications][fields][1]=description',
   { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
 )

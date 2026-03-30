@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
+import { productUrl } from '../../utils/slugify'
 
 interface Product {
   id: number
@@ -568,7 +569,7 @@ export default function ProductCatalog({
                     Marca: {product.brand}
                   </p>
                   <a
-                    href={`/producto/${product.documentId}/${product.slug}`}
+                    href={productUrl(product.category, product.slug)}
                     className='block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors'
                   >
                     Ver más
