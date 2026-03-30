@@ -119,9 +119,6 @@
 # 6. TRAILING SLASH normalization for current Astro pages
 #    (in case Google indexed WP-style trailing slash URLs)
 # ─────────────────────────────────────────────────────────────────────────────
-/productos/                           /productos                 301
+
 /productos/f-500/                     /productos/f-500           301
 /productos/flaim/                     /productos/flaim           301
-/servicios/                           /servicios                 301
-/nosotros/                            /nosotros                  301
-/contactanos/                         /contactanos               301
