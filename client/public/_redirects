@@ -115,10 +115,3 @@
 /comments/feed                        /                          301
 /comments/feed/                       /                          301
 
-# ─────────────────────────────────────────────────────────────────────────────
-# 6. TRAILING SLASH normalization for current Astro pages
-#    (in case Google indexed WP-style trailing slash URLs)
-# ─────────────────────────────────────────────────────────────────────────────
-
-/productos/f-500/                     /productos/f-500           301
-/productos/flaim/                     /productos/flaim           301
