@@ -1,0 +1,127 @@
+# =============================================================================
+# Cloudflare Pages — Redirects (301 Permanent)
+# Old cPanel/WordPress URLs → New Astro Routes
+# Format: /old-path /new-path [status-code]
+# Docs: https://developers.cloudflare.com/pages/configuration/redirects/
+# =============================================================================
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. VERY OLD STATIC HTML PAGES (pre-WordPress)
+# ─────────────────────────────────────────────────────────────────────────────
+/altura.html                          /catalogo/Rescate          301
+/contactenos.html                     /contactanos               301
+/emergencias.html                     /servicios                 301
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 2. WORDPRESS — Category / Product listing pages
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Structural equipment
+/estructurales                        /catalogo/Estructural      301
+/estructurales/                       /catalogo/Estructural      301
+/epp-trajes                           /catalogo/Estructural      301
+/epp-trajes/                          /catalogo/Estructural      301
+/i-f-trajes-epp                       /catalogo/Estructural      301
+/i-f-trajes-epp/                      /catalogo/Estructural      301
+/i-f-cascos                           /catalogo/Estructural      301
+/i-f-cascos/                          /catalogo/Estructural      301
+/i-f-botas                            /catalogo/Estructural      301
+/i-f-botas/                           /catalogo/Estructural      301
+/i-f-guantes                          /catalogo/Estructural      301
+/i-f-guantes/                         /catalogo/Estructural      301
+/i-f-hood                             /catalogo/Estructural      301
+/i-f-hood/                            /catalogo/Estructural      301
+/botas                                /catalogo/Estructural      301
+/botas/                               /catalogo/Estructural      301
+/cascos                               /catalogo/Estructural      301
+/cascos/                              /catalogo/Estructural      301
+/guantes                              /catalogo/Estructural      301
+/guantes/                             /catalogo/Estructural      301
+/calzado                              /catalogo/Estructural      301
+/calzado/                             /catalogo/Estructural      301
+
+# Forestry equipment
+/forestales                           /catalogo/Forestal         301
+/forestales/                          /catalogo/Forestal         301
+/forestal                             /catalogo/Forestal         301
+/forestal/                            /catalogo/Forestal         301
+/i-f-mascaras                         /catalogo/Forestal         301
+/i-f-mascaras/                        /catalogo/Forestal         301
+
+# Rescue equipment
+/brec                                 /catalogo/Rescate          301
+/brec/                                /catalogo/Rescate          301
+/alturas                              /catalogo/Rescate          301
+/alturas/                             /catalogo/Rescate          301
+
+# General equipment
+/equipos                              /catalogo/Equipos          301
+/equipos/                             /catalogo/Equipos          301
+/equipos/camaras                      /catalogo/Equipos          301
+/equipos/camaras/                     /catalogo/Equipos          301
+/bombas                               /catalogo/Equipos          301
+/bombas/                              /catalogo/Equipos          301
+/compresores                          /catalogo/Equipos          301
+/compresores/                         /catalogo/Equipos          301
+
+# HAZMAT
+/hazmat                               /catalogo/HAZMAT           301
+/hazmat/                              /catalogo/HAZMAT           301
+/detectores-gases                     /catalogo/HAZMAT           301
+/detectores-gases/                    /catalogo/HAZMAT           301
+/espacios-confinados                  /catalogo/HAZMAT           301
+/espacios-confinados/                 /catalogo/HAZMAT           301
+
+# Accessories & Tools
+/varios                               /catalogo/Accesorios       301
+/varios/                              /catalogo/Accesorios       301
+/herramientas                         /catalogo/Herramientas     301
+/herramientas/                        /catalogo/Herramientas     301
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 3. WORDPRESS — Specific product / feature pages
+# ─────────────────────────────────────────────────────────────────────────────
+/f500                                 /productos/f-500           301
+/f500/                                /productos/f-500           301
+/policial                             /productos                 301
+/policial/                            /productos                 301
+/videos                               /                          301
+/videos/                              /                          301
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 4. WORDPRESS — System / junk pages
+# ─────────────────────────────────────────────────────────────────────────────
+/sample-page                          /                          301
+/sample-page/                         /                          301
+/2019/08/12/hello-world               /                          301
+/2019/08/12/hello-world/              /                          301
+/category/uncategorized               /                          301
+/category/uncategorized/              /                          301
+/author/protonfi                      /nosotros                  301
+/author/protonfi/                     /nosotros                  301
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 5. WORDPRESS — Infrastructure paths (block & redirect)
+# ─────────────────────────────────────────────────────────────────────────────
+/wp-admin                             /                          301
+/wp-admin/*                           /                          301
+/wp-login.php                         /                          301
+/wp-content/*                         /                          301
+/wp-includes/*                        /                          301
+/wp-json/*                            /                          301
+/xmlrpc.php                           /                          301
+/feed                                 /                          301
+/feed/                                /                          301
+/comments/feed                        /                          301
+/comments/feed/                       /                          301
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 6. TRAILING SLASH normalization for current Astro pages
+#    (in case Google indexed WP-style trailing slash URLs)
+# ─────────────────────────────────────────────────────────────────────────────
+/productos/                           /productos                 301
+/productos/f-500/                     /productos/f-500           301
+/productos/flaim/                     /productos/flaim           301
+/servicios/                           /servicios                 301
+/nosotros/                            /nosotros                  301
+/contactanos/                         /contactanos               301
