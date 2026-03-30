@@ -3,6 +3,7 @@
 
 User-agent: *
 Allow: /
+Allow: /images/ 
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_astro/
@@ -10,7 +11,32 @@ Disallow: /_astro/
 # Sitemap
 Sitemap: https://protonfire.com/sitemap.xml
 
-# Slow down aggressive crawlers (optional)
+# Block AI training crawlers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Block aggressive SEO crawlers (optional)
 User-agent: AhrefsBot
 Disallow: /
 
