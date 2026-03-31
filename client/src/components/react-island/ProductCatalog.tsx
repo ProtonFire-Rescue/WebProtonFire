@@ -41,6 +41,16 @@ export default function ProductCatalog({
   const [brandList, setBrandList] = useState<string[]>(['Todos'])
   const [typeList, setTypeList] = useState<string[]>(['Todos'])
 
+// Get type from URL params on mount
+useEffect(() => {
+  const urlParams = new URLSearchParams(window.location.search)
+  const typeParam = urlParams.get('type')
+  if (typeParam) {
+    setSelectedType(typeParam)
+  }
+}, [])
+  
+
   useEffect(() => {
     setCategoriesList(['Todos', ...(categories || [])])
     setBrandList(['Todos', ...(brands || [])])

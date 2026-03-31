@@ -24,45 +24,48 @@
 /i-f-trajes-epp                       /catalogo/Estructural      301
 /i-f-trajes-epp/                      /catalogo/Estructural      301
 /i-f-cascos                           /catalogo/Estructural      301
-/i-f-cascos/                          /catalogo/Estructural      301
-/i-f-botas                            /catalogo/Estructural      301
-/i-f-botas/                           /catalogo/Estructural      301
-/i-f-guantes                          /catalogo/Estructural      301
-/i-f-guantes/                         /catalogo/Estructural      301
+/i-f-cascos/                          /catalogo/all?type=Botas       301
+/i-f-botas                            /catalogo/all?type=Botas       301
+/i-f-botas/                           /catalogo/all?type=Botas       301
+/i-f-guantes                          /catalogo/all?type=Guantes     301
+/i-f-guantes/                         /catalogo/all?type=Guantes     301
 /i-f-hood                             /catalogo/Estructural      301
 /i-f-hood/                            /catalogo/Estructural      301
-/botas                                /catalogo/Estructural      301
-/botas/                               /catalogo/Estructural      301
-/cascos                               /catalogo/Estructural      301
-/cascos/                              /catalogo/Estructural      301
-/guantes                              /catalogo/Estructural      301
-/guantes/                             /catalogo/Estructural      301
+/botas                                /catalogo/all?type=Botas      301
+/botas/                               /catalogo/all?type=Botas      301
+/cascos                               /catalogo/all?type=Cascos      301
+/cascos/                              /catalogo/all?type=Cascos      301
+/guantes                              /catalogo/all?type=Guantes      301
+/guantes/                             /catalogo/all?type=Guantes      301
 /calzado                              /catalogo/Estructural      301
 /calzado/                             /catalogo/Estructural      301
+/prendas/                             /productos     301        
+/monjas/                              /productos     301        
 
 # Forestry equipment
 /forestales                           /catalogo/Forestal         301
 /forestales/                          /catalogo/Forestal         301
 /forestal                             /catalogo/Forestal         301
 /forestal/                            /catalogo/Forestal         301
-/i-f-mascaras                         /catalogo/Forestal         301
-/i-f-mascaras/                        /catalogo/Forestal         301
+/i-f-mascaras                         /catalogo/all?type=Mascara         301
+/i-f-mascaras/                        /catalogo/all?type=Mascara         301
 
 # Rescue equipment
-/brec                                 /catalogo/Rescate          301
-/brec/                                /catalogo/Rescate          301
+/brec                                 /catalogo/all?type=BREC          301
+/brec/                                /catalogo/all?type=BREC          301
 /alturas                              /catalogo/Rescate          301
 /alturas/                             /catalogo/Rescate          301
+/scba-era/                             /catalogo/all?type=SCBA-ERA          301
 
 # General equipment
 /equipos                              /catalogo/Equipos          301
 /equipos/                             /catalogo/Equipos          301
-/equipos/camaras                      /catalogo/Equipos          301
-/equipos/camaras/                     /catalogo/Equipos          301
-/bombas                               /catalogo/Equipos          301
-/bombas/                              /catalogo/Equipos          301
-/compresores                          /catalogo/Equipos          301
-/compresores/                         /catalogo/Equipos          301
+/equipos/camaras                      /catalogo/all?type=Cámaras          301
+/equipos/camaras/                     /catalogo/all?type=Cámaras          301
+/bombas                               /catalogo/all?type=Bombas          301
+/bombas/                              /catalogo/all?type=Bombas          301
+/compresores                          /catalogo/all?type=Compresores          301
+/compresores/                         /catalogo/all?type=Compresores          301
 
 # HAZMAT
 /hazmat                               /catalogo/HAZMAT           301
@@ -77,6 +80,12 @@
 /varios/                              /catalogo/Accesorios       301
 /herramientas                         /catalogo/Herramientas     301
 /herramientas/                        /catalogo/Herramientas     301
+/vehicular/                           /catalogo/Rescate?type=Extricación          301
+/rescate/                             /catalogo/Rescate          301
+/linternas/                           /catalogo/all?type=Iluminación          301  
+/incendios-estructurales/             /catalogo/Forestal         301
+/unidad-extincion/                    /catalogo/Equipos          301
+/rescate/epp-rescate/                 /catalogo/Rescate          301
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 3. WORDPRESS — Specific product / feature pages
