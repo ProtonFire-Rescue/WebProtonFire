@@ -30,7 +30,7 @@ export const server = {
       const resend = new Resend(apiKey);
       const { data, error } = await resend.emails.send({
         from: "ProtonFire <onboarding@mail.protonfire.com>",
-        to: ["tecnologia@protonfire.com"],
+        to: [email_resend],
         subject: asunto,
         react: EmailSend({ name, email, asunto, message, phone }),
       });
