@@ -37,16 +37,37 @@ const nosotrosJsonLd = [
 		"@context": "https://schema.org",
 		"@type": "AboutPage",
 		"name": "Quiénes Somos - PROTON Fire & Rescue Ecuador",
-		"description": "Conoce PROTON Fire & Rescue, empresa ecuatoriana con más de 2 décadas de trayectoria en equipos de seguridad para bomberos, rescate e industria.",
+		"description": "Conoce PROTON Fire & Rescue, empresa ecuatoriana con más de 2 décadas de trayectoria en la importación y comercialización de equipos de seguridad para bomberos, rescate e industria. Técnicos altamente calificados y servicio posventa genuino.",
 		"url": `${siteOrigin}/nosotros`,
-		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"image": `${siteOrigin}/images/hero-home.webp`,
+		"inLanguage": "es",
+		"isPartOf": { "@id": `${siteOrigin}/#website` },
 		"mainEntity": {
+			"@id": `${siteOrigin}/#organization`,
 			"@type": "Organization",
-			"name": "PROTON Fire & Rescue",
+			"name": "PROTON Fire & Rescue Ecuador",
+			"alternateName": "Proton Fire & Rescue",
+			"description": "Grupo humano alegre, honesto, trabajador y dedicado a brindar el mejor producto y servicio en equipos de seguridad para bomberos, rescate e industria en Ecuador. Técnicos altamente calificados con presencia en ferias internacionales como FDIC (EE.UU.) e INTERSCHUTZ (Alemania).",
 			"foundingDate": "2000",
 			"url": siteOrigin,
+			"logo": `${siteOrigin}/logos/proton-logo.webp`,
 			"areaServed": { "@type": "Country", "name": "Ecuador" },
-			"slogan": "Protegiendo vidas, asegurando el futuro"
+			"slogan": "Protegiendo vidas, asegurando el futuro",
+			"numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 10, "maxValue": 50 },
+			"knowsAbout": [
+				"Equipos de protección contra incendios",
+				"Equipos de rescate",
+				"Equipos SCBA",
+				"Trajes estructurales y forestales",
+				"F-500 EA Agente Encapsulador",
+				"FLAIM - Realidad virtual para bomberos",
+				"Equipos HAZMAT",
+				"Capacitación y formación de brigadas"
+			],
+			"event": [
+				{ "@type": "Event", "name": "FDIC International", "location": { "@type": "Place", "name": "Indianapolis, Estados Unidos" }, "description": "Feria internacional de bomberos y equipos de emergencia" },
+				{ "@type": "Event", "name": "INTERSCHUTZ", "location": { "@type": "Place", "name": "Hannover, Alemania" }, "description": "Feria mundial líder en seguridad, rescate y protección contra incendios" }
+			]
 		}
 	},
 	{
@@ -84,6 +105,7 @@ const nosotrosJsonLd = [
 				<ScrollScale
 					images={carouselImages.map((image) => image.src)}
 					speed={30}
+					client:visible
 				/>
 				<div class="text-center text-white" data-aos="fade-up" data-aos-delay="100">
 					<h1

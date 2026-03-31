@@ -14,21 +14,60 @@ const contactJsonLd = [
 		"@context": "https://schema.org",
 		"@type": "ContactPage",
 		"name": "Contacto - PROTON Fire & Rescue Ecuador",
-		"description": "Contacta con PROTON Fire & Rescue para obtener información sobre equipos de seguridad, capacitación y servicios para bomberos, rescate e industria.",
+		"description": "Contacta con PROTON Fire & Rescue para cotizaciones de equipos de seguridad, capacitación bomberil y servicios de mantenimiento para bomberos, rescate e industria en Ecuador.",
 		"url": `${siteOrigin}/contactanos`,
-		"image": `${siteOrigin}/images/og/og_home.webp`,
+		"image": `${siteOrigin}/images/Contactanos.webp`,
+		"inLanguage": "es",
+		"isPartOf": { "@id": `${siteOrigin}/#website` },
 		"mainEntity": {
+			"@id": `${siteOrigin}/#organization`,
 			"@type": "Organization",
-			"name": "PROTON Fire & Rescue",
+			"name": "PROTON Fire & Rescue Ecuador",
 			"telephone": "+593992526658",
 			"email": "info@protonfire.com",
+			"url": siteOrigin,
 			"address": {
 				"@type": "PostalAddress",
 				"streetAddress": "Raúl González y Chimborazo Oe2-91",
 				"addressLocality": "Quito",
+				"addressRegion": "Pichincha",
 				"postalCode": "170136",
 				"addressCountry": "EC"
-			}
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": -0.20154376685984446,
+				"longitude": -78.43466760636124
+			},
+			"openingHoursSpecification": [
+				{
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+					"opens": "08:00",
+					"closes": "17:00"
+				}
+			],
+			"contactPoint": [
+				{
+					"@type": "ContactPoint",
+					"telephone": "+593992526658",
+					"contactType": "sales",
+					"availableLanguage": "es",
+					"areaServed": "EC"
+				},
+				{
+					"@type": "ContactPoint",
+					"email": "info@protonfire.com",
+					"contactType": "customer service",
+					"availableLanguage": "es",
+					"areaServed": "EC"
+				}
+			],
+			"sameAs": [
+				"https://www.facebook.com/protonFireRescue",
+				"https://www.instagram.com/proton_fire_/",
+				"https://www.youtube.com/@protonfirerescue2360"
+			]
 		}
 	},
 	{

@@ -35,18 +35,30 @@ const productosJsonLd = [
     '@type': 'CollectionPage',
     name: 'Equipos de Bomberos y Rescate - PROTON Fire & Rescue',
     description:
-      'Catálogo de equipos de seguridad para bomberos, rescate e industria. Trabajamos con las mejores marcas internacionales certificadas.',
+      'Catálogo completo de equipos de seguridad para bomberos, rescate e industria en Ecuador. Trajes estructurales, forestales, herramientas de rescate, SCBA, HAZMAT y tecnología de entrenamiento. Marcas certificadas NFPA, EN, ISO y UL.',
     url: `${siteOrigin}/productos`,
-    image: `${siteOrigin}/images/og/og_home.webp`,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'PROTON Fire & Rescue Ecuador',
-      url: siteOrigin
+    image: `${siteOrigin}/images/products.webp`,
+    inLanguage: 'es',
+    isPartOf: { '@id': `${siteOrigin}/#website` },
+    about: {
+      '@type': 'Thing',
+      name: 'Equipos de seguridad para bomberos, rescate e industria'
     },
-    provider: {
-      '@type': 'Organization',
-      name: 'PROTON Fire & Rescue',
-      url: siteOrigin
+    provider: { '@id': `${siteOrigin}/#organization` },
+    mainEntity: {
+      '@type': 'ItemList',
+      name: 'Líneas de productos PROTON Fire & Rescue',
+      numberOfItems: 8,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Equipos Estructurales', url: `${siteOrigin}/catalogo/Estructural`, description: 'Trajes, cascos, botas, guantes y capuchas para combate de incendios estructurales' },
+        { '@type': 'ListItem', position: 2, name: 'Equipos Forestales', url: `${siteOrigin}/catalogo/Forestal`, description: 'Trajes y equipos para combate de incendios forestales' },
+        { '@type': 'ListItem', position: 3, name: 'Equipos de Rescate', url: `${siteOrigin}/catalogo/Rescate`, description: 'Herramientas hidráulicas, estabilizadores y equipos de rescate vehicular y en altura' },
+        { '@type': 'ListItem', position: 4, name: 'Equipos HAZMAT', url: `${siteOrigin}/catalogo/HAZMAT`, description: 'Detectores de gases, trajes químicos y equipos para espacios confinados' },
+        { '@type': 'ListItem', position: 5, name: 'Equipos Generales', url: `${siteOrigin}/catalogo/Equipos`, description: 'Cámaras térmicas, bombas y compresores de aire' },
+        { '@type': 'ListItem', position: 6, name: 'F-500 EA Agente Encapsulador', url: `${siteOrigin}/productos/f-500`, description: 'Agente encapsulador multiclase biodegradable para extinción de incendios A, B, C, D y K' },
+        { '@type': 'ListItem', position: 7, name: 'FLAIM FTS Entrenamiento VR', url: `${siteOrigin}/productos/flaim`, description: 'Sistema de realidad virtual para formación de bomberos con escenarios 3D hiperrealistas' },
+        { '@type': 'ListItem', position: 8, name: 'Accesorios y Herramientas', url: `${siteOrigin}/catalogo/Accesorios`, description: 'Linternas, herramientas manuales y accesorios complementarios' },
+      ]
     }
   },
   {

@@ -44,38 +44,48 @@ const princial_characteristics = [
 const flaimProductSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
-  "name": "FLAIM FTS - Sistema de Formación de Bomberos",
-  "description": "FLAIM Trainer System - Tecnología de realidad virtual para entrenamiento de bomberos. Sistema de formación inmersivo y seguro con escenarios 3D hiperrealistas.",
+  "name": "FLAIM FTS - Sistema de Formación de Bomberos con Realidad Virtual",
+  "description": "FLAIM Trainer System - Tecnología de realidad virtual para entrenamiento de bomberos en Ecuador. Sistema de formación inmersivo y seguro con escenarios 3D hiperrealistas, calor radiante simulado, gestión de SCBA y analítica de rendimiento en tiempo real.",
+  "url": `${siteOrigin}/productos/flaim`,
+  "sku": "FLAIM-FTS",
   "brand": {
     "@type": "Brand",
-    "name": "FLAIM"
+    "name": "FLAIM Systems"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "FLAIM Systems",
+    "url": "https://flaimsystems.com/"
   },
   "image": [
-    `${siteOrigin}/flaim/flaim_body.jpg`,
-    `${siteOrigin}/flaim/flaim_demo1.jpg`,
-    `${siteOrigin}/flaim/flaim_demo2.jpg`,
+    `${siteOrigin}/flaim/flaim_body.webp`,
+    `${siteOrigin}/flaim/flaim_demo1.webp`,
+    `${siteOrigin}/flaim/flaim_demo2.webp`,
     `${siteOrigin}/flaim/flaim_demo3.webp`,
-    `${siteOrigin}/flaim/flaim_complete.jpg`
+    `${siteOrigin}/flaim/flaim_complete.webp`
   ],
   "offers": {
     "@type": "Offer",
+    "url": `${siteOrigin}/productos/flaim`,
     "availability": "https://schema.org/InStock",
     "priceCurrency": "USD",
-    "seller": {
-      "@type": "Organization",
-      "name": "PROTON Fire & Rescue"
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": { "@id": `${siteOrigin}/#organization` },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "EC" },
+      "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 5, "maxValue": 30, "unitCode": "DAY" } }
     }
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "47"
-  },
+  "countryOfOrigin": { "@type": "Country", "name": "Australia" },
   "category": "Equipos de Entrenamiento para Bomberos",
-  "manufacturer": {
-    "@type": "Organization",
-    "name": "FLAIM Systems"
-  }
+  "additionalProperty": [
+    { "@type": "PropertyValue", "name": "Tecnología", "value": "Realidad Virtual (VR)" },
+    { "@type": "PropertyValue", "name": "Tipo de Entrenamiento", "value": "Extinción de incendios, uso de extintores, SCBA" },
+    { "@type": "PropertyValue", "name": "Escenarios", "value": "3D hiperrealistas con calor radiante" },
+    { "@type": "PropertyValue", "name": "Analítica", "value": "FLAIM Capture - plataforma de datos de rendimiento" },
+    { "@type": "PropertyValue", "name": "Aplicaciones", "value": "Bomberos, defensa, industria" }
+  ]
 };
 
 // Breadcrumb Schema
@@ -83,23 +93,48 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+    { "@type": "ListItem", "position": 2, "name": "Productos", "item": `${siteOrigin}/productos` },
+    { "@type": "ListItem", "position": 3, "name": "FLAIM FTS", "item": `${siteOrigin}/productos/flaim` }
+  ]
+};
+
+// FAQ Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Inicio",
-      "item": siteOrigin
+      "@type": "Question",
+      "name": "¿Qué es el sistema FLAIM FTS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FLAIM FTS (Fire Training System) es un sistema de entrenamiento basado en realidad virtual que permite a los bomberos practicar la extinción de incendios en escenarios 3D hiperrealistas con calor radiante simulado, sin los riesgos de un entrenamiento con fuego real."
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Productos",
-      "item": `${siteOrigin}/productos`
+      "@type": "Question",
+      "name": "¿Qué incluye el sistema FLAIM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El sistema incluye FLAIM Trainer (manguera con visor VR y calor radiante), FLAIM Extinguisher (entrenamiento con extintores) y FLAIM Capture (plataforma de analítica para registrar el desempeño y mejorar habilidades)."
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "FLAIM FTS",
-      "item": `${siteOrigin}/productos/flaim`
+      "@type": "Question",
+      "name": "¿Es más económico que el entrenamiento con fuego real?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, FLAIM reduce significativamente los costos de entrenamiento al eliminar la necesidad de combustible, infraestructura de quema, y riesgos de lesiones. Además, permite repetir escenarios ilimitadamente sin costo adicional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Está disponible FLAIM en Ecuador?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, PROTON Fire & Rescue es distribuidor autorizado de FLAIM Systems en Ecuador. Ofrecemos el sistema completo con instalación, capacitación y soporte técnico local."
+      }
     }
   ]
 };
@@ -109,10 +144,10 @@ const breadcrumbSchema = {
 <Layout
   title="FLAIM FTS - Sistema de Formación de Bomberos VR | PROTON Fire & Rescue Ecuador"
   description="FLAIM Trainer System - Tecnología de realidad virtual para entrenamiento de bomberos en Ecuador. Sistema de formación inmersivo, seguro y efectivo con escenarios 3D hiperrealistas. Reduce costos y riesgos."
-  image="/flaim/flaim_body.jpg"
+  image="/flaim/flaim_body.webp"
   type="product"
   keywords="FLAIM FTS, entrenamiento bomberos VR, realidad virtual bomberos, simulador incendios, FLAIM Ecuador, capacitación bomberos, entrenamiento virtual incendios, FLAIM Trainer, equipos bomberos Ecuador"
-  jsonLd={[flaimProductSchema, breadcrumbSchema]}
+  jsonLd={[flaimProductSchema, breadcrumbSchema, faqSchema]}
 >
   <Menu currentPath={currentPath} />
 

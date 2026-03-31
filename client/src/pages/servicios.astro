@@ -94,34 +94,77 @@ const serviciosJsonLd = [
 	{
 		"@context": "https://schema.org",
 		"@type": "Service",
-		"name": "Servicios de PROTON Fire & Rescue",
-		"description": "Servicios de capacitación, confección y mantenimiento para equipos de seguridad de bomberos, rescate e industria en Ecuador.",
+		"name": "Servicios Especializados de PROTON Fire & Rescue",
+		"description": "Servicios profesionales de capacitación bomberil, confección de prendas técnicas ignífugas y mantenimiento de equipos SCBA, extintores y sistemas de trabajo en altura en Ecuador.",
 		"url": `${siteOrigin}/servicios`,
-		"image": `${siteOrigin}/images/og/og_home.webp`,
-		"provider": {
-			"@type": "Organization",
-			"name": "PROTON Fire & Rescue",
-			"url": siteOrigin
-		},
+		"image": `${siteOrigin}/images/services.webp`,
+		"serviceType": "Servicios de Seguridad y Protección contra Incendios",
+		"provider": { "@id": `${siteOrigin}/#organization` },
 		"areaServed": { "@type": "Country", "name": "Ecuador" },
+		"availableChannel": {
+			"@type": "ServiceChannel",
+			"serviceUrl": `${siteOrigin}/contactanos`,
+			"servicePhone": "+593992526658",
+			"availableLanguage": "es"
+		},
 		"hasOfferCatalog": {
 			"@type": "OfferCatalog",
 			"name": "Servicios Especializados",
 			"itemListElement": [
 				{
 					"@type": "Offer",
-					"itemOffered": { "@type": "Service", "name": "Capacitación y Formación de Brigadas", "description": "Capacitación especializada en rescate, primeros auxilios, HAZMAT y trabajos de alto riesgo." }
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Capacitación y Formación de Brigadas",
+						"description": "Capacitación especializada en rescate vertical, primeros auxilios, HAZMAT, espacios confinados, derrame de hidrocarburos, alertas volcánicas y trabajos en altura.",
+						"serviceType": "Capacitación profesional",
+						"url": `${siteOrigin}/servicios#capacitacion`
+					}
 				},
 				{
 					"@type": "Offer",
-					"itemOffered": { "@type": "Service", "name": "Confección de Prendas Técnicas", "description": "Confección de prendas ignífugas, dieléctricas y antidesgarro con insumos certificados." }
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Confección de Prendas Técnicas",
+						"description": "Confección de prendas ignífugas, dieléctricas, antiabrasivas y antidesgarro con insumos 100% certificados para entornos industriales exigentes.",
+						"serviceType": "Confección industrial",
+						"url": `${siteOrigin}/servicios#mantenimiento`
+					}
 				},
 				{
 					"@type": "Offer",
-					"itemOffered": { "@type": "Service", "name": "Mantenimiento de Equipos", "description": "Mantenimiento especializado de equipos SCBA, pruebas hidrostáticas y recarga de aire respirable." }
+					"itemOffered": {
+						"@type": "Service",
+						"name": "Mantenimiento de Equipos de Protección",
+						"description": "Mantenimiento multimarca de equipos SCBA, pruebas hidrostáticas, recarga de aire respirable Grado D, recarga de extintores PQS/CO2/Púrpura K y reparación de equipos de altura.",
+						"serviceType": "Mantenimiento técnico especializado",
+						"url": `${siteOrigin}/servicios#mantenimiento`
+					}
 				}
 			]
 		}
+	},
+	{
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": "¿Qué tipos de capacitación ofrece PROTON Fire & Rescue?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Ofrecemos capacitación en rescate vertical, formación de brigadas industriales, primeros auxilios, alertas volcánicas y evacuación, derrame y contención de hidrocarburos, gestión de químicos HAZMAT en espacios confinados, y trabajos en altura para industria eléctrica, telecomunicaciones y construcción."
+				}
+			},
+			{
+				"@type": "Question",
+				"name": "¿Qué servicios de mantenimiento realizan?",
+				"acceptedAnswer": {
+					"@type": "Answer",
+					"text": "Realizamos recarga y mantenimiento de extintores PQS, CO2 y Púrpura K; mantenimiento multimarca de equipos SCBA con pruebas hidrostáticas, sanitización y recarga de aire Grado D; reparación de equipos de trabajo en altura; y confección de prendas técnicas ignífugas, dieléctricas y antiabrasivas."
+				}
+			}
+		]
 	},
 	{
 		"@context": "https://schema.org",

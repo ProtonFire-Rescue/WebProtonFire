@@ -81,13 +81,25 @@ try {
     description: productDescription,
     image: productImage,
     url: canonicalUrl,
+    sku: productSlug,
     ...(productBrand && { brand: { '@type': 'Brand', name: productBrand } }),
     ...(productCategory && { category: productCategory }),
+    itemCondition: 'https://schema.org/NewCondition',
     offers: {
       '@type': 'Offer',
+      url: canonicalUrl,
       availability: 'https://schema.org/InStock',
       priceCurrency: 'USD',
-      seller: { '@type': 'Organization', name: 'PROTON Fire & Rescue' }
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@id': `${siteOrigin}/#organization` },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'EC' },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 15, unitCode: 'DAY' }
+        }
+      }
     }
   }
   const breadcrumbSchema = {

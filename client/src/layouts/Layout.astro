@@ -27,47 +27,108 @@ const {
   canonical = Astro.url.href
 } = Astro.props
 
+
+
 const siteOrigin = Astro.url.origin
 const fullImageUrl = image.startsWith('http') ? image : `${siteOrigin}${image}`
 
 // Structured Data base para la organización
 const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'PROTON Fire & Rescue Ecuador',
-  alternateName: 'Proton Fire & Rescue',
+  "@context": "https://schema.org",
+  "@id": `${siteOrigin}/#organization`,
+  "@type": "Organization",
+  name: "PROTON Fire & Rescue Ecuador",
+  alternateName: ["Proton Fire & Rescue", "PROTON Fire", "Proton Ecuador"],
+  description: "Empresa ecuatoriana con más de 2 décadas de trayectoria en la importación y comercialización de equipos de seguridad para bomberos, rescate e industria. Distribuidores autorizados de marcas internacionales certificadas.",
   url: siteOrigin,
-  logo: `${siteOrigin}/logos/proton-logo.png`,
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: '+593992526658',
-    contactType: 'customer service',
-    contactOption: 'HearingImpairedSupported',
-    areaServed: 'EC',
-    availableLanguage: 'es'
+  logo: {
+    "@type": "ImageObject",
+    url: `${siteOrigin}/logos/proton-logo.webp`,
+    width: 300,
+    height: 200
   },
-  sameAs: [
-    'https://www.facebook.com/protonFireRescue',
-    'https://www.instagram.com/proton_fire_/',
-    'https://www.youtube.com/@protonfirerescue2360'
+  image: `${siteOrigin}/images/og/og_home.webp`,
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      telephone: "+593992526658",
+      contactType: "sales",
+      areaServed: "EC",
+      availableLanguage: "es"
+    },
+    {
+      "@type": "ContactPoint",
+      telephone: "+593992526658",
+      contactType: "customer service",
+      areaServed: "EC",
+      availableLanguage: "es"
+    }
   ],
-  areaServed: {
-    '@type': 'Country',
-    name: 'Ecuador'
+  email: "info@protonfire.com",
+  sameAs: [
+    "https://www.facebook.com/protonFireRescue",
+    "https://www.instagram.com/proton_fire_/",
+    "https://www.youtube.com/@protonfirerescue2360"
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Raúl González y Chimborazo Oe2-91",
+    addressLocality: "Quito",
+    addressRegion: "Pichincha",
+    postalCode: "170136",
+    addressCountry: "EC"
   },
-  foundingDate: '2000',
-  slogan: 'Protegiendo vidas, asegurando el futuro'
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -0.20154376685984446,
+    longitude: -78.43466760636124
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "Ecuador"
+  },
+  foundingDate: "2000",
+  slogan: "Protegiendo vidas, asegurando el futuro",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 10,
+    maxValue: 50
+  },
+  knowsAbout: [
+    "Equipos de protección contra incendios",
+    "Equipos de rescate vehicular",
+    "Equipos SCBA",
+    "Trajes estructurales para bomberos",
+    "Trajes forestales",
+    "Herramientas de rescate hidráulicas y eléctricas",
+    "Agente encapsulador F-500 EA",
+    "Realidad virtual para entrenamiento de bomberos FLAIM",
+    "Equipos HAZMAT",
+    "Capacitación y formación de brigadas"
+  ],
+  hasCredential: [
+    { "@type": "EducationalOccupationalCredential", credentialCategory: "Distribuidor Autorizado", name: "Distribuidor Autorizado SICOR" },
+    { "@type": "EducationalOccupationalCredential", credentialCategory: "Distribuidor Autorizado", name: "Distribuidor Autorizado Viking" },
+    { "@type": "EducationalOccupationalCredential", credentialCategory: "Distribuidor Autorizado", name: "Distribuidor Autorizado FLAIM Systems" }
+  ]
 }
 
 // Website schema
 const websiteSchema = {
   '@context': 'https://schema.org',
+  '@id': `${siteOrigin}/#website`,
   '@type': 'WebSite',
   name: 'PROTON Fire & Rescue Ecuador',
+  alternateName: 'PROTON Fire',
   url: siteOrigin,
+  inLanguage: 'es',
+  publisher: { '@id': `${siteOrigin}/#organization` },
   potentialAction: {
     '@type': 'SearchAction',
-    target: `${siteOrigin}/catalogo?categoria={search_term_string}`,
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${siteOrigin}/catalogo/{search_term_string}`
+    },
     'query-input': 'required name=search_term_string'
   }
 }

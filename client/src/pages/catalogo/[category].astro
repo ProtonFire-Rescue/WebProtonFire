@@ -10,25 +10,38 @@ const siteOrigin = Astro.url.origin
 const { category } = Astro.params
 const categoryLabel = category === 'all' ? 'Todos los Productos' : decodeURIComponent(category ?? 'all')
 
+const categoryDescriptions: Record<string, string> = {
+  'all': 'Catálogo completo de equipos de seguridad para bomberos, rescate e industria en Ecuador. Filtra por categoría, marca y precio.',
+  'Estructural': 'Trajes estructurales, cascos, botas, guantes y capuchas para combate de incendios estructurales. Productos certificados NFPA y EN.',
+  'Forestal': 'Trajes y equipos especializados para combate de incendios forestales. Certificados NFPA 1977 y USFS.',
+  'Rescate': 'Herramientas hidráulicas, estabilizadores y equipos de rescate vehicular y en altura. Certificados NFPA 1936.',
+  'HAZMAT': 'Detectores de gases, trajes químicos y equipos para materiales peligrosos y espacios confinados.',
+  'Equipos': 'Cámaras térmicas, bombas contra incendios y compresores de aire respirable.',
+  'Accesorios': 'Linternas, herramientas manuales y accesorios complementarios para operaciones de emergencia.',
+  'Herramientas': 'Herramientas especializadas para operaciones de rescate y emergencia.',
+}
+const categoryDesc = categoryDescriptions[category ?? 'all'] ?? categoryDescriptions['all']
+
 const catalogJsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Catálogo de Productos - PROTON Fire & Rescue',
-    description:
-      'Explora nuestro catálogo completo de equipos de seguridad para bomberos, rescate e industria. Filtra por categoría, marca y precio.',
+    name: `${categoryLabel} - Catálogo PROTON Fire & Rescue`,
+    description: categoryDesc,
     url: `${siteOrigin}/catalogo/${category}`,
-    image: `${siteOrigin}/images/og/og_home.webp`,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'PROTON Fire & Rescue Ecuador',
-      url: siteOrigin
+    image: `${siteOrigin}/images/products.webp`,
+    inLanguage: 'es',
+    isPartOf: { '@id': `${siteOrigin}/#website` },
+    provider: { '@id': `${siteOrigin}/#organization` },
+    about: {
+      '@type': 'Thing',
+      name: categoryLabel,
+      description: categoryDesc
     },
-    provider: {
-      '@type': 'Organization',
-      name: 'PROTON Fire & Rescue',
-      url: siteOrigin
-    }
+    significantLink: [
+      `${siteOrigin}/productos`,
+      `${siteOrigin}/contactanos`,
+    ]
   },
   {
     '@context': 'https://schema.org',

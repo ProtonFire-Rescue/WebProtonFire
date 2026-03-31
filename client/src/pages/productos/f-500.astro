@@ -41,10 +41,18 @@ const f500ProductSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "F-500 EA - Agente Encapsulador",
-  "description": "F-500 EA es un agente encapsulador de última generación para combatir fuegos de clase A, B, C, D y K. Biodegradable, no tóxico y altamente eficaz. Reduce el tiempo de extinción y el consumo de agua.",
+  "description": "F-500 EA es un agente encapsulador de última generación para combatir fuegos de clase A, B, C, D y K. Biodegradable, no tóxico y altamente eficaz. Reduce el tiempo de extinción y el consumo de agua hasta en un 50%. Ideal para cuerpos de bomberos, industria petrolera y minera.",
+  "url": `${siteOrigin}/productos/f-500`,
+  "sku": "F500-EA",
+  "mpn": "F500EA",
   "brand": {
     "@type": "Brand",
-    "name": "F-500"
+    "name": "Hazard Control Technologies (HCT)"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Hazard Control Technologies Inc.",
+    "url": "https://www.hfrr.com/"
   },
   "image": [
     `${siteOrigin}/f-500/product_present.webp`,
@@ -55,35 +63,27 @@ const f500ProductSchema = {
   ],
   "offers": {
     "@type": "Offer",
+    "url": `${siteOrigin}/productos/f-500`,
     "availability": "https://schema.org/InStock",
     "priceCurrency": "USD",
-    "seller": {
-      "@type": "Organization",
-      "name": "PROTON Fire & Rescue"
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": { "@id": `${siteOrigin}/#organization` },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "EC" },
+      "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" } }
     }
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "62"
-  },
+  "countryOfOrigin": { "@type": "Country", "name": "Estados Unidos" },
   "category": "Agentes Extintores",
   "additionalProperty": [
-    {
-      "@type": "PropertyValue",
-      "name": "Tipo",
-      "value": "Agente Encapsulador"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Clases de Fuego",
-      "value": "A, B, C, D, K"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Biodegradable",
-      "value": "Sí"
-    }
+    { "@type": "PropertyValue", "name": "Tipo", "value": "Agente Encapsulador" },
+    { "@type": "PropertyValue", "name": "Clases de Fuego", "value": "A, B, C, D, K" },
+    { "@type": "PropertyValue", "name": "Biodegradable", "value": "Sí" },
+    { "@type": "PropertyValue", "name": "No Tóxico", "value": "Sí" },
+    { "@type": "PropertyValue", "name": "Reducción Consumo de Agua", "value": "Hasta 50%" },
+    { "@type": "PropertyValue", "name": "Prevención Re-ignición", "value": "Sí" },
+    { "@type": "PropertyValue", "name": "Corrosivo", "value": "No" }
   ]
 };
 
