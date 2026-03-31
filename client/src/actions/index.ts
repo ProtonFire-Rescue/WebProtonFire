@@ -3,7 +3,6 @@ import { z } from "zod";
 import { Resend } from "resend";
 import EmailSend from "@/components/react-island/EmailSend";
 
-const email_resend = import.meta.env.EMAIL_RESEND;
 export const server = {
   send: defineAction({
     accept: "form",
@@ -29,7 +28,7 @@ export const server = {
       const resend = new Resend(apiKey);
       const { data, error } = await resend.emails.send({
         from: "ProtonFire <onboarding@mail.protonfire.com>",
-        to: [`${email_resend}`],
+        to: ["info@protonfire.com"],
         subject: asunto,
         react: EmailSend({ name, email, asunto, message, phone }),
       });
