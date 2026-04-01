@@ -14,6 +14,8 @@ export interface Props {
   author?: string
   jsonLd?: object | object[]
   canonical?: string
+  productBrand?: string
+  productAvailability?: string
 }
 
 const {
@@ -24,7 +26,9 @@ const {
   keywords = 'equipos bomberos, equipos rescate, seguridad industrial, PROTON Ecuador, equipos contra incendios, FLAIM, F-500, equipos emergencia',
   author = 'PROTON Fire & Rescue',
   jsonLd,
-  canonical = Astro.url.href
+  canonical = Astro.url.href,
+  productBrand,
+  productAvailability = 'instock'
 } = Astro.props
 
 
@@ -178,6 +182,9 @@ const websiteSchema = {
     <meta property='og:image:alt' content={title} />
     <meta property='og:site_name' content='PROTON Fire & Rescue Ecuador' />
     <meta property='og:locale' content='es_EC' />
+    {type === 'product' && productBrand && <meta property='product:brand' content={productBrand} />}
+    {type === 'product' && <meta property='product:availability' content={productAvailability} />}
+    {type === 'product' && <meta property='product:condition' content='new' />}
 
     <!-- Twitter -->
     <meta name='twitter:card' content='summary_large_image' />

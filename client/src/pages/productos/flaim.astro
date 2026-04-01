@@ -17,7 +17,7 @@ const characteristics =  [
   'Proceso de aprendizaje y retroalimentación.'
 ]
 
-const princial_characteristics = [
+const principal_characteristics = [
   {
     title: 'Entrenamiento inmersivo',
     description: 'Utiliza visores de RV, mangueras y extintores reales, ofreciendo experiencias de entrenamiento que se sienten reales.'
@@ -148,6 +148,7 @@ const faqSchema = {
   type="product"
   keywords="FLAIM FTS, entrenamiento bomberos VR, realidad virtual bomberos, simulador incendios, FLAIM Ecuador, capacitación bomberos, entrenamiento virtual incendios, FLAIM Trainer, equipos bomberos Ecuador"
   jsonLd={[flaimProductSchema, breadcrumbSchema, faqSchema]}
+  productBrand="FLAIM Systems"
 >
   <Menu currentPath={currentPath} />
 
@@ -245,7 +246,7 @@ ahora en Ecuador, ofrece:             </p>
             </h2>
           </div>
           {
-            princial_characteristics.map((char) => (
+            principal_characteristics.map((char) => (
               <div class="space-y-4" data-aos="fade-up">
                 <div class="flex items-center gap-3">
                   <div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">

@@ -22,7 +22,7 @@ let productJsonLd: object | undefined
 
 try {
   const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
-  const seoQuery = 'fields[0]=name&fields[1]=description&fields[2]=slug&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&populate[brand][fields][0]=name&populate[categories][fields][0]=name'
+  const seoQuery = 'fields[0]=name&fields[1]=description&fields[2]=slug&fields[3]=Genero&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&populate[brand][fields][0]=name&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[certifications][fields][0]=name&populate[certifications][fields][1]=description'
 
   // Race: fetch SEO data con timeout de 2s para no bloquear el render
   const seoFetch = getProductBySlugQuery(slug, seoQuery, {
@@ -58,6 +58,9 @@ try {
     : `${productName} - Equipos de seguridad profesional para bomberos y rescate en Ecuador.`
   productBrand = p.brand?.name ?? ''
   productCategory = p.categories?.[0]?.name ?? ''
+  const productModel = p.model?.name ?? ''
+  const productCertifications = (p.certifications ?? []) as Array<{ name: string; description?: string }>
+  const productGender = p.Genero ?? ''
 
   // Validate category slug — redirect to canonical URL if mismatch
   const expectedCatSlug = slugify(productCategory || 'producto')
@@ -65,24 +68,42 @@ try {
     return Astro.redirect(productUrl(productCategory, productSlug), 301)
   }
 
+  const allImages: string[] = []
   if (p.images?.length) {
-    const img = p.images[0]
-    productImage = img.url?.startsWith('http')
-      ? img.url
-      : `${siteOrigin}${img.url}`
+    for (const img of p.images) {
+      const imgUrl = img.url?.startsWith('http') ? img.url : `${siteOrigin}${img.url}`
+      allImages.push(imgUrl)
+    }
+    productImage = allImages[0]
   }
 
   // JSON-LD Product structured data
   const canonicalUrl = `${siteOrigin}${productUrl(productCategory, productSlug)}`
-  const productSchema = {
+  // Build additionalProperty from certifications and other product metadata
+  const additionalProperties: Array<{ '@type': string; name: string; value: string }> = []
+  if (productModel) {
+    additionalProperties.push({ '@type': 'PropertyValue', name: 'Modelo', value: productModel })
+  }
+  if (productGender && productGender !== 'N/A') {
+    additionalProperties.push({ '@type': 'PropertyValue', name: 'Género', value: productGender })
+  }
+  for (const cert of productCertifications) {
+    additionalProperties.push({ '@type': 'PropertyValue', name: 'Certificación', value: cert.name + (cert.description ? ` - ${cert.description}` : '') })
+  }
+
+  const productSchema: Record<string, any> = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: productName,
     description: productDescription,
-    image: productImage,
+    image: allImages.length > 1 ? allImages : productImage,
     url: canonicalUrl,
     sku: productSlug,
-    ...(productBrand && { brand: { '@type': 'Brand', name: productBrand } }),
+    ...(productBrand && {
+      brand: { '@type': 'Brand', name: productBrand },
+      manufacturer: { '@type': 'Organization', name: productBrand }
+    }),
+    ...(productModel && { model: productModel }),
     ...(productCategory && { category: productCategory }),
     itemCondition: 'https://schema.org/NewCondition',
     offers: {
@@ -100,7 +121,15 @@ try {
           handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 15, unitCode: 'DAY' }
         }
       }
-    }
+    },
+    ...(additionalProperties.length > 0 && { additionalProperty: additionalProperties }),
+    ...(productCategory && {
+      isRelatedTo: {
+        '@type': 'CollectionPage',
+        name: productCategory,
+        url: `${siteOrigin}/catalogo/${slugify(productCategory)}`
+      }
+    })
   }
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -137,6 +166,7 @@ const seoKeywords = [
   keywords={seoKeywords}
   type='product'
   jsonLd={productJsonLd}
+  productBrand={productBrand}
 >
   
 
