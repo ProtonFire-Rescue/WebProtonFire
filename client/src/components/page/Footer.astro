@@ -1,84 +1,88 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 
-const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   servicios: [
-    { href: '/servicios', label: 'Todos los servicios' },
-    { href: '/servicios#capacitacion', label: 'Capacitación' },
-    { href: '/servicios#confeccion', label: 'Confección' },
-    { href: '/servicios#mantenimiento', label: 'Mantenimiento' }
+    { href: "/servicios", label: "Todos los servicios" },
+    { href: "/servicios#capacitacion", label: "Capacitación" },
+    { href: "/servicios#confeccion", label: "Confección" },
+    { href: "/servicios#mantenimiento", label: "Mantenimiento" },
   ],
   productos: [
-    { href: '/productos', label: 'Todos los productos' },
-    { href: '/productos/f-500', label: 'F-500' },
-    { href: '/productos/flaim', label: 'FLAIM' },
-    { href: '/catalogo/Forestal', label: 'Línea Fuego' },
-    { href: '/catalogo/Rescate', label: 'Línea Rescate' }
+    { href: "/productos", label: "Todos los productos" },
+    { href: "/productos/f-500", label: "F-500" },
+    { href: "/productos/flaim", label: "FLAIM" },
+    { href: "/catalogo/Forestal", label: "Línea Fuego" },
+    { href: "/catalogo/Rescate", label: "Línea Rescate" },
   ],
   empresa: [
-    { href: '/nosotros', label: 'Sobre Nosotros' },
-    { href: '/contactanos', label: 'Contacto' }
+    { href: "/nosotros", label: "Sobre Nosotros" },
+    { href: "/contactanos", label: "Contacto" },
   ],
   legal: [
-    { href: '/privacidad', label: 'Política de Privacidad' },
-    { href: '/terminos', label: 'Términos y Condiciones' },
-    { href: '/cookies', label: 'Política de Cookies' }
-  ]
-}
+    { href: "/privacidad", label: "Política de Privacidad" },
+    { href: "/terminos", label: "Términos y Condiciones" },
+    { href: "/cookies", label: "Política de Cookies" },
+  ],
+};
 
 const socialLinks = [
   {
-    href: 'https://www.facebook.com/protonFireRescue',
-    label: 'Facebook',
-    icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 640 640"><path d="M576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 440 146.7 540.8 258.2 568.5L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 574.1C477.8 558.8 576 450.9 576 320z"/></svg>`
+    href: "https://www.facebook.com/protonFireRescue",
+    label: "Facebook",
+    icon: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 640 640"><path d="M576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 440 146.7 540.8 258.2 568.5L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 574.1C477.8 558.8 576 450.9 576 320z"/></svg>`,
   },
   {
-    href: 'https://www.instagram.com/proton_fire_/',
-    label: 'Instagram',
-    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`
+    href: "https://www.instagram.com/proton_fire_/",
+    label: "Instagram",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`,
   },
   {
-    href: 'https://www.youtube.com/@protonfirerescue2360',
-    label: 'YouTube',
-    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C19.36 4 12 4 12 4s-7.36 0-8.6.48A2.78 2.78 0 0 0 .46 6.42C0 7.74 0 12 0 12s0 4.26.46 5.58a2.78 2.78 0 0 0 1.94 1.94C4.64 20 12 20 12 20s7.36 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C24 16.26 24 12 24 12s0-4.26-.46-5.58zM10 15V9l5.44 3.06-5.44 3.06z"/></svg>`
+    href: "https://www.youtube.com/@protonfirerescue2360",
+    label: "YouTube",
+    icon: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.94C19.36 4 12 4 12 4s-7.36 0-8.6.48A2.78 2.78 0 0 0 .46 6.42C0 7.74 0 12 0 12s0 4.26.46 5.58a2.78 2.78 0 0 0 1.94 1.94C4.64 20 12 20 12 20s7.36 0 8.6-.48a2.78 2.78 0 0 0 1.94-1.94C24 16.26 24 12 24 12s0-4.26-.46-5.58zM10 15V9l5.44 3.06-5.44 3.06z"/></svg>`,
   },
   {
-    href: 'https://www.tiktok.com/@proton_fire',
-    label: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+    href: "https://www.tiktok.com/@proton_fire",
+    label: 'TikTok',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
     <path d="M24,4H6C4.895,4,4,4.895,4,6v18c0,1.105,0.895,2,2,2h18c1.105,0,2-0.895,2-2V6C26,4.895,25.104,4,24,4z M22.689,13.474 c-0.13,0.012-0.261,0.02-0.393,0.02c-1.495,0-2.809-0.768-3.574-1.931c0,3.049,0,6.519,0,6.577c0,2.685-2.177,4.861-4.861,4.861 C11.177,23,9,20.823,9,18.139c0-2.685,2.177-4.861,4.861-4.861c0.102,0,0.201,0.009,0.3,0.015v2.396c-0.1-0.012-0.197-0.03-0.3-0.03 c-1.37,0-2.481,1.111-2.481,2.481s1.11,2.481,2.481,2.481c1.371,0,2.581-1.08,2.581-2.45c0-0.055,0.024-11.17,0.024-11.17h2.289 c0.215,2.047,1.868,3.663,3.934,3.811V13.474z"></path>
 </svg>`
-  }
-]
+  },
+];
 ---
 
-<footer class='bg-[#2f2f3b] dark:bg-[#08080e] text-white py-25' role='contentinfo'>
-  <div class='max-w-[1232px] mx-auto px-4'>
-    <div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12'>
+<footer
+  class="bg-[#2f2f3b] dark:bg-[#08080e] text-white py-25"
+  role="contentinfo"
+>
+  <div class="max-w-[1232px] mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
       <!-- Brand Section -->
-      <div class='lg:col-span-2'>
+      <div class="lg:col-span-2">
         <Image
-          src='/logos/proton-logo.webp'
-          alt='PROTON Fire & Rescue Logo'
-          class='h-18 w-auto mb-6 brightness-0 invert'
+          src="/logos/proton-logo.webp"
+          alt="PROTON Fire & Rescue Logo"
+          class="h-18 w-auto mb-6 brightness-0 invert"
           loading="lazy"
           width={72}
           height={72}
         />
-        <p class='text-gray-400 mb-6 max-w-sm'>
+        <p class="text-gray-400 mb-6 max-w-sm">
           Nuestra palabra y seriedad son nuestro activo más valioso… permítanos
           contribuir con el éxito de su organización.
         </p>
-        <div class='flex space-x-4'>
+        <div class="flex space-x-4">
           {
             socialLinks.map((social) => (
               <a
                 href={social.href}
-                class='w-10 h-10 bg-[#504aff] rounded-full flex items-center justify-center hover:bg-[#3f3bcc] transition-colors'
+                class="w-10 h-10 bg-[#504aff] rounded-full flex items-center justify-center hover:bg-[#3f3bcc] transition-colors"
                 aria-label={social.label}
-                target='_blank'
-                rel='noopener noreferrer'
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Fragment set:html={social.icon} />
               </a>
@@ -89,14 +93,14 @@ const socialLinks = [
 
       <!-- Servicios -->
       <div>
-        <span class='text-lg font-semibold mb-4'>Servicios</span>
-        <ul class='space-y-2'>
+        <span class="text-lg font-semibold mb-4">Servicios</span>
+        <ul class="space-y-2">
           {
             footerLinks.servicios.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class='text-gray-400 hover:text-white transition-colors text-sm'
+                  class="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   {link.label}
                 </a>
@@ -108,14 +112,14 @@ const socialLinks = [
 
       <!-- Productos -->
       <div>
-        <span class='text-lg font-semibold mb-4'>Productos</span>
-        <ul class='space-y-2'>
+        <span class="text-lg font-semibold mb-4">Productos</span>
+        <ul class="space-y-2">
           {
             footerLinks.productos.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class='text-gray-400 hover:text-white transition-colors text-sm'
+                  class="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   {link.label}
                 </a>
@@ -127,14 +131,14 @@ const socialLinks = [
 
       <!-- Empresa -->
       <div>
-        <span class='text-lg font-semibold mb-4'>Empresa</span>
-        <ul class='space-y-2'>
+        <span class="text-lg font-semibold mb-4">Empresa</span>
+        <ul class="space-y-2">
           {
             footerLinks.empresa.map((link) => (
               <li>
                 <a
                   href={link.href}
-                  class='text-gray-400 hover:text-white transition-colors text-sm'
+                  class="text-gray-400 hover:text-white transition-colors text-sm"
                 >
                   {link.label}
                 </a>
@@ -147,17 +151,17 @@ const socialLinks = [
 
     <!-- Bottom Section -->
     <div
-      class='border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4'
+      class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
     >
-      <p class='text-gray-400 text-sm'>
+      <p class="text-gray-400 text-sm">
         &copy; {currentYear} PROTON Fire & Rescue. Todos los derechos reservados.
       </p>
-      <div class='flex space-x-6'>
+      <div class="flex space-x-6">
         {
           footerLinks.legal.map((link) => (
             <a
               href={link.href}
-              class='text-gray-400 hover:text-white transition-colors text-sm'
+              class="text-gray-400 hover:text-white transition-colors text-sm"
             >
               {link.label}
             </a>
