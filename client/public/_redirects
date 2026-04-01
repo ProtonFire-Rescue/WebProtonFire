@@ -23,8 +23,8 @@
 /epp-trajes/                          /catalogo/Estructural      301
 /i-f-trajes-epp                       /catalogo/Estructural      301
 /i-f-trajes-epp/                      /catalogo/Estructural      301
-/i-f-cascos                           /catalogo/Estructural      301
-/i-f-cascos/                          /catalogo/all?type=Botas       301
+/i-f-cascos                           /catalogo/all?type=Cascos      301
+/i-f-cascos/                          /catalogo/all?type=Cascos       301
 /i-f-botas                            /catalogo/all?type=Botas       301
 /i-f-botas/                           /catalogo/all?type=Botas       301
 /i-f-guantes                          /catalogo/all?type=Guantes     301
