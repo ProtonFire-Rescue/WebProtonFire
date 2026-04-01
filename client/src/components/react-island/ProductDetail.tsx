@@ -154,7 +154,7 @@ export default function ProductDetail({
                   <Check size={12} />
                   {category}
                   <div className='absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white dark:bg-[#1a1a2e] border border-gray-200 dark:border-[#2a2a3e] shadow-lg text-gray-700 dark:text-[#c8c8d8] text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10'>
-                    {`Este producto pertenece a la categoria de productos en "${category}"`}
+                    {`Este producto pertenece a la categoría de productos en "${category}"`}
                     <div className='absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white'></div>
                   </div>
                 </a>

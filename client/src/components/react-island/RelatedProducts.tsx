@@ -125,7 +125,7 @@ export default function RelatedProducts({
               href={`/catalogo/${encodeURIComponent(categoryName)}`}
               className='inline-flex items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 text-sm'
             >
-              Ver todos los productos de la linea "{categoryName}"
+              Ver todos los productos de la línea "{categoryName}"
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='16'

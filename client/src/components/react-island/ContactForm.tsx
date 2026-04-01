@@ -131,7 +131,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           Teléfono *
         </label>
         <input
-          {...register("phone", { required: "Falto tu número telefonico, agregalo para hablar contigo" })}
+          {...register("phone", { required: "Faltó tu número telefónico, agrégalo para poder contactarte" })}
           type="string"
           id="phone"
           className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
@@ -167,7 +167,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         disabled={isSubmitting}
         className="w-full bg-[#504aff] text-white font-semibold py-4 px-8 rounded-full hover:bg-[#3f3bcc] transition-colors shadow-lg shadow-[#504aff]/30 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isSubmitting ? "Enviando..." : "Contactanos"}
+        {isSubmitting ? "Enviando..." : "Contáctanos"}
       </button>
     </form>
   );
