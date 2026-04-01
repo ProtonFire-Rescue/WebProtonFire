@@ -38,7 +38,10 @@ export const GET: APIRoute = async (context) => {
       { path: '/catalogo/all', changefreq: 'monthly', priority: '0.8' },
       { path: '/servicios', changefreq: 'monthly', priority: '0.7', image: `${SITE_URL}/images/services.webp`, imageTitle: 'Servicios PROTON Fire & Rescue' },
       { path: '/nosotros', changefreq: 'monthly', priority: '0.6', image: `${SITE_URL}/images/hero-home.webp`, imageTitle: 'Quiénes Somos - PROTON Fire & Rescue' },
-      { path: '/contactanos', changefreq: 'monthly', priority: '0.6', image: `${SITE_URL}/images/Contactanos.webp`, imageTitle: 'Contáctanos - PROTON Fire & Rescue' }
+      { path: '/contactanos', changefreq: 'monthly', priority: '0.6', image: `${SITE_URL}/images/Contactanos.webp`, imageTitle: 'Contáctanos - PROTON Fire & Rescue' },
+      { path: '/privacidad', changefreq: 'yearly', priority: '0.3' },
+      { path: '/terminos', changefreq: 'yearly', priority: '0.3' },
+      { path: '/cookies', changefreq: 'yearly', priority: '0.3' }
     ]
 
     // Helper: genera tags <image:image> para un array de imágenes Strapi
@@ -107,6 +110,9 @@ ${(categories ?? [])
   <url><loc>${SITE_URL}/servicios</loc><lastmod>${now}</lastmod><priority>0.7</priority></url>
   <url><loc>${SITE_URL}/nosotros</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
   <url><loc>${SITE_URL}/contactanos</loc><lastmod>${now}</lastmod><priority>0.6</priority></url>
+  <url><loc>${SITE_URL}/privacidad</loc><lastmod>${now}</lastmod><priority>0.3</priority></url>
+  <url><loc>${SITE_URL}/terminos</loc><lastmod>${now}</lastmod><priority>0.3</priority></url>
+  <url><loc>${SITE_URL}/cookies</loc><lastmod>${now}</lastmod><priority>0.3</priority></url>
 </urlset>`
     return new Response(fallback, {
       status: 200,

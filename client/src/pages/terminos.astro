@@ -1,0 +1,271 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Menu from "@/components/page/Menu.astro";
+import Footer from "@/components/page/Footer.astro";
+
+const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
+
+const breadcrumbSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+		{ "@type": "ListItem", "position": 2, "name": "Términos y Condiciones", "item": `${siteOrigin}/terminos` }
+	]
+};
+---
+
+<Layout
+	title="Términos y Condiciones | PROTON Fire & Rescue Ecuador"
+	description="Consulta los términos y condiciones de uso del sitio web de PROTON Fire & Rescue Ecuador, incluyendo propiedad intelectual, limitaciones de responsabilidad y legislación aplicable."
+	keywords="términos y condiciones, aviso legal, uso del sitio web, PROTON Fire Rescue, legislación Ecuador"
+	jsonLd={breadcrumbSchema}
+>
+	<Menu currentPath={currentPath} />
+
+	<main class="min-h-screen dark:bg-[#0b0b12]">
+		<!-- Hero Section -->
+		<section class="pt-40 pb-16 bg-linear-to-b from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h1
+					class="text-4xl md:text-5xl lg:text-[52px] font-bold text-[#2f2f3b] dark:text-white leading-tight mb-6"
+					data-aos="fade-up"
+				>
+					Términos y Condiciones
+				</h1>
+				<p
+					class="text-lg text-[#6b7280] dark:text-[#9ca3b8] max-w-2xl mx-auto"
+					data-aos="fade-up"
+					data-aos-delay="100"
+				>
+					Al acceder y utilizar este sitio web, aceptas los siguientes términos y condiciones de uso.
+				</p>
+			</div>
+		</section>
+
+		<!-- Content Section -->
+		<section class="py-16 bg-white dark:bg-[#0b0b12]">
+			<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="prose prose-lg dark:prose-invert max-w-none space-y-12 text-[#6b7280] dark:text-[#9ca3b8]">
+
+					<!-- Identificación -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							1. Identificación del titular
+						</h2>
+						<p class="leading-relaxed">
+							El presente sitio web es propiedad y está operado por <strong class="text-[#2f2f3b] dark:text-white">PROTON Fire & Rescue</strong>, empresa ecuatoriana dedicada a la importación y comercialización de equipos de seguridad para los sectores bomberil, de rescate e industrial.
+						</p>
+						<ul class="mt-4 space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Razón social:</strong> PROTON Fire & Rescue</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Domicilio:</strong> Raúl González y Chimborazo Oe2-91, Quito, Pichincha, Ecuador</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo electrónico:</strong> info@protonfire.com</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
+						</ul>
+					</div>
+
+					<!-- Objeto -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							2. Objeto y ámbito de aplicación
+						</h2>
+						<p class="leading-relaxed mb-4">
+							Los presentes Términos y Condiciones regulan el acceso y uso del sitio web <strong class="text-[#2f2f3b] dark:text-white">protonfire.com</strong> (en adelante, "el Sitio"). Al acceder al Sitio, el usuario acepta quedar vinculado por estos términos. Si no estás de acuerdo con alguno de ellos, te solicitamos que no utilices el Sitio.
+						</p>
+						<p class="leading-relaxed">
+							Estos términos se aplican a todos los visitantes, usuarios y demás personas que accedan o utilicen el Sitio.
+						</p>
+					</div>
+
+					<!-- Uso del sitio -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							3. Uso del sitio web
+						</h2>
+						<p class="leading-relaxed mb-4">
+							El Sitio tiene como finalidad proporcionar información sobre los productos, servicios y actividades de PROTON Fire & Rescue. El usuario se compromete a:
+						</p>
+						<ul class="space-y-2">
+							<li>Utilizar el Sitio de forma lícita y conforme a la legislación ecuatoriana vigente.</li>
+							<li>No realizar actividades que puedan dañar, sobrecargar o deteriorar el funcionamiento del Sitio.</li>
+							<li>No intentar acceder de forma no autorizada a sistemas o redes conectadas al Sitio.</li>
+							<li>No reproducir, duplicar, copiar, vender o explotar cualquier parte del Sitio sin autorización expresa.</li>
+							<li>Proporcionar información veraz y actualizada al utilizar el formulario de contacto.</li>
+						</ul>
+					</div>
+
+					<!-- Propiedad intelectual -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							4. Propiedad intelectual e industrial
+						</h2>
+						<p class="leading-relaxed mb-4">
+							Todos los contenidos del Sitio, incluyendo pero no limitándose a textos, fotografías, gráficos, logotipos, iconos, imágenes, diseños, código fuente y software, son propiedad de <strong class="text-[#2f2f3b] dark:text-white">PROTON Fire & Rescue</strong> o de sus respectivos titulares, y están protegidos por las leyes ecuatorianas de propiedad intelectual y los tratados internacionales aplicables (Decisión 486 de la Comunidad Andina, Código Orgánico de la Economía Social de los Conocimientos - COESCI).
+						</p>
+						<p class="leading-relaxed mb-4">
+							Las marcas comerciales de terceros que aparecen en el Sitio (como FLAIM Systems, Hazard Control Technologies, Sicor, Viking, entre otras) son propiedad de sus respectivos titulares. Su uso en este Sitio es exclusivamente informativo y no implica afiliación ni respaldo más allá de la relación comercial existente.
+						</p>
+						<p class="leading-relaxed">
+							Queda prohibida la reproducción, distribución, comunicación pública, transformación o cualquier otra forma de explotación de los contenidos del Sitio sin la autorización previa y por escrito de PROTON Fire & Rescue.
+						</p>
+					</div>
+
+					<!-- Catálogo y precios -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							5. Catálogo de productos y servicios
+						</h2>
+						<p class="leading-relaxed mb-4">
+							El Sitio presenta un catálogo informativo de productos y servicios. Las imágenes, descripciones y especificaciones son de carácter orientativo y pueden estar sujetas a cambios sin previo aviso.
+						</p>
+						<p class="leading-relaxed mb-4">
+							<strong class="text-[#2f2f3b] dark:text-white">El Sitio no constituye una tienda en línea</strong> y no permite la compra directa de productos. Los precios, disponibilidad y condiciones de venta se gestionan exclusivamente mediante contacto directo con nuestro equipo comercial.
+						</p>
+						<p class="leading-relaxed">
+							PROTON Fire & Rescue se reserva el derecho de modificar, actualizar o descontinuar productos y servicios en cualquier momento, sin que ello genere derecho a compensación alguna.
+						</p>
+					</div>
+
+					<!-- Formulario de contacto -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							6. Formulario de contacto y comunicaciones
+						</h2>
+						<p class="leading-relaxed mb-4">
+							El formulario de contacto disponible en el Sitio permite a los usuarios enviar consultas, solicitudes de información o cotización. Al utilizar este formulario, el usuario:
+						</p>
+						<ul class="space-y-2">
+							<li>Acepta proporcionar datos veraces, actuales y completos.</li>
+							<li>Consiente el tratamiento de sus datos personales conforme a nuestra <a href="/privacidad" class="text-[#504aff] hover:underline">Política de Privacidad</a>.</li>
+							<li>Entiende que el envío del formulario no constituye una relación contractual ni una oferta comercial vinculante.</li>
+						</ul>
+						<p class="mt-4 leading-relaxed">
+							PROTON Fire & Rescue se compromete a responder las consultas en un plazo razonable, sin que ello constituya una obligación de resultado.
+						</p>
+					</div>
+
+					<!-- Enlaces externos -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							7. Enlaces a terceros y servicios externos
+						</h2>
+						<p class="leading-relaxed mb-4">
+							El Sitio puede contener enlaces a sitios web de terceros (WhatsApp, redes sociales, Google Maps, etc.). Estos enlaces se proporcionan únicamente para conveniencia del usuario. PROTON Fire & Rescue:
+						</p>
+						<ul class="space-y-2">
+							<li>No controla ni se responsabiliza del contenido, políticas de privacidad o prácticas de sitios web de terceros.</li>
+							<li>No garantiza la disponibilidad, exactitud o calidad de los servicios ofrecidos por terceros.</li>
+							<li>Recomienda a los usuarios revisar los términos y políticas de cada sitio externo antes de proporcionarles información personal.</li>
+						</ul>
+					</div>
+
+					<!-- Limitación de responsabilidad -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							8. Limitación de responsabilidad
+						</h2>
+						<p class="leading-relaxed mb-4">
+							PROTON Fire & Rescue realiza sus mejores esfuerzos para mantener la información del Sitio actualizada y precisa. Sin embargo:
+						</p>
+						<ul class="space-y-2">
+							<li>El contenido del Sitio se proporciona <strong class="text-[#2f2f3b] dark:text-white">"tal cual"</strong> y <strong class="text-[#2f2f3b] dark:text-white">"según disponibilidad"</strong>, sin garantías de ningún tipo, expresas o implícitas.</li>
+							<li>No garantizamos que el Sitio esté libre de errores, virus o componentes dañinos, ni que funcione de forma ininterrumpida.</li>
+							<li>No seremos responsables de los daños directos, indirectos, incidentales o consecuentes derivados del uso o imposibilidad de uso del Sitio.</li>
+							<li>Las imágenes de productos son referenciales y pueden diferir del producto final.</li>
+						</ul>
+					</div>
+
+					<!-- Disponibilidad -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							9. Disponibilidad del sitio
+						</h2>
+						<p class="leading-relaxed">
+							PROTON Fire & Rescue no garantiza la disponibilidad continua e ininterrumpida del Sitio. Podremos suspender, modificar o descontinuar el Sitio, total o parcialmente, en cualquier momento y sin previo aviso, por razones técnicas, de seguridad, mantenimiento u otras causas justificadas, sin que ello genere responsabilidad alguna.
+						</p>
+					</div>
+
+					<!-- Protección de datos -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							10. Protección de datos personales
+						</h2>
+						<p class="leading-relaxed">
+							El tratamiento de datos personales se rige por nuestra <a href="/privacidad" class="text-[#504aff] hover:underline">Política de Privacidad</a>, elaborada conforme a la <strong class="text-[#2f2f3b] dark:text-white">Ley Orgánica de Protección de Datos Personales del Ecuador</strong> (LOPDP, Registro Oficial Suplemento 459 del 26 de mayo de 2021) y su reglamento de aplicación. El uso de cookies se detalla en nuestra <a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>.
+						</p>
+					</div>
+
+					<!-- Legislación aplicable -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							11. Legislación aplicable y jurisdicción
+						</h2>
+						<p class="leading-relaxed mb-4">
+							Los presentes Términos y Condiciones se rigen e interpretan de conformidad con la legislación de la <strong class="text-[#2f2f3b] dark:text-white">República del Ecuador</strong>, incluyendo pero no limitándose a:
+						</p>
+						<ul class="space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Constitución de la República del Ecuador</strong> (Arts. 66, numeral 19 — protección de datos personales).</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Ley Orgánica de Protección de Datos Personales</strong> (LOPDP, 2021).</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Código Orgánico de la Economía Social de los Conocimientos</strong> (COESCI) — propiedad intelectual.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Ley de Comercio Electrónico, Firmas y Mensajes de Datos</strong> (Ley No. 2002-67).</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Ley Orgánica de Defensa del Consumidor</strong> — derechos del consumidor.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Decisión 486 de la Comunidad Andina</strong> — propiedad industrial.</li>
+						</ul>
+						<p class="mt-4 leading-relaxed">
+							Cualquier controversia derivada del uso del Sitio será sometida a los jueces y tribunales competentes de la ciudad de <strong class="text-[#2f2f3b] dark:text-white">Quito, Ecuador</strong>, renunciando las partes a cualquier otro fuero que pudiera corresponderles.
+						</p>
+					</div>
+
+					<!-- Modificaciones -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							12. Modificaciones
+						</h2>
+						<p class="leading-relaxed">
+							PROTON Fire & Rescue se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor desde su publicación en el Sitio. El uso continuado del Sitio después de dichas modificaciones constituirá la aceptación de los nuevos términos.
+						</p>
+						<p class="mt-4 leading-relaxed">
+							<strong class="text-[#2f2f3b] dark:text-white">Última actualización:</strong> 1 de abril de 2026
+						</p>
+					</div>
+
+					<!-- Contacto -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							13. Contacto
+						</h2>
+						<p class="leading-relaxed">
+							Para cualquier consulta relacionada con estos Términos y Condiciones, puedes contactarnos a través de:
+						</p>
+						<ul class="mt-4 space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Dirección:</strong> Raúl González y Chimborazo Oe2-91, Quito, Ecuador</li>
+						</ul>
+					</div>
+
+					<!-- Documentos relacionados -->
+					<div data-aos="fade-up" class="bg-gray-50 dark:bg-[#12121e] rounded-2xl p-8 border border-gray-200 dark:border-[#2a2a3e]">
+						<h2 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							Documentos relacionados
+						</h2>
+						<ul class="space-y-2">
+							<li>
+								<a href="/privacidad" class="text-[#504aff] hover:underline">Política de Privacidad</a>
+								<span> — Cómo recopilamos, usamos y protegemos tus datos personales.</span>
+							</li>
+							<li>
+								<a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>
+								<span> — Detalle de cookies utilizadas y cómo gestionarlas.</span>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>

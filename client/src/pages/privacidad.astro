@@ -1,0 +1,289 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Menu from "@/components/page/Menu.astro";
+import Footer from "@/components/page/Footer.astro";
+
+const currentPath = Astro.url.pathname;
+const siteOrigin = Astro.url.origin;
+
+const breadcrumbSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteOrigin },
+		{ "@type": "ListItem", "position": 2, "name": "Política de Privacidad", "item": `${siteOrigin}/privacidad` }
+	]
+};
+---
+
+<Layout
+	title="Política de Privacidad | PROTON Fire & Rescue Ecuador"
+	description="Conoce cómo PROTON Fire & Rescue recopila, utiliza y protege tu información personal a través de Google Analytics y nuestro formulario de contacto."
+	keywords="política de privacidad, protección de datos, Google Analytics, formulario contacto, PROTON Fire Rescue"
+	jsonLd={breadcrumbSchema}
+>
+	<Menu currentPath={currentPath} />
+
+	<main class="min-h-screen dark:bg-[#0b0b12]">
+		<!-- Hero Section -->
+		<section class="pt-40 pb-16 bg-linear-to-b from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
+			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
+				<h1
+					class="text-4xl md:text-5xl lg:text-[52px] font-bold text-[#2f2f3b] dark:text-white leading-tight mb-6"
+					data-aos="fade-up"
+				>
+					Política de Privacidad
+				</h1>
+				<p
+					class="text-lg text-[#6b7280] dark:text-[#9ca3b8] max-w-2xl mx-auto"
+					data-aos="fade-up"
+					data-aos-delay="100"
+				>
+					Tu privacidad es importante para nosotros. A continuación, te explicamos cómo recopilamos, utilizamos y protegemos tu información personal.
+				</p>
+			</div>
+		</section>
+
+		<!-- Content Section -->
+		<section class="py-16 bg-white dark:bg-[#0b0b12]">
+			<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="prose prose-lg dark:prose-invert max-w-none space-y-12 text-[#6b7280] dark:text-[#9ca3b8]">
+
+					<!-- Responsable -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							1. Responsable del tratamiento
+						</h2>
+						<p class="leading-relaxed">
+							<strong class="text-[#2f2f3b] dark:text-white">PROTON Fire & Rescue</strong> es el responsable del tratamiento de los datos personales recopilados a través de este sitio web.
+						</p>
+						<ul class="mt-4 space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Dirección:</strong> Raúl González y Chimborazo Oe2-91, Quito, Pichincha, Ecuador</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo electrónico:</strong> info@protonfire.com</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
+						</ul>
+					</div>
+
+					<!-- Datos recopilados -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							2. Datos que recopilamos
+						</h2>
+						<p class="leading-relaxed mb-4">
+							Recopilamos información personal a través de los siguientes medios:
+						</p>
+
+						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3">
+							2.1 Formulario de contacto
+						</h3>
+						<p class="leading-relaxed mb-4">
+							Cuando completas nuestro formulario de contacto, recopilamos los siguientes datos que proporcionas voluntariamente:
+						</p>
+						<ul class="space-y-2 mb-6">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Nombre completo</strong></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo electrónico</strong></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Número de teléfono</strong></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Asunto de la consulta</strong></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Mensaje</strong></li>
+						</ul>
+
+						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3">
+							2.2 Google Analytics
+						</h3>
+						<p class="leading-relaxed">
+							Utilizamos <strong class="text-[#2f2f3b] dark:text-white">Google Analytics 4</strong> (ID de medición: G-4EWT2XHH4X), un servicio de análisis web proporcionado por Google LLC, para comprender cómo los visitantes interactúan con nuestro sitio web. Google Analytics recopila información de forma anónima, incluyendo:
+						</p>
+						<ul class="mt-4 space-y-2">
+							<li>Páginas visitadas y tiempo de permanencia</li>
+							<li>Fuente de tráfico (cómo llegaste a nuestro sitio)</li>
+							<li>Tipo de dispositivo, navegador y sistema operativo</li>
+							<li>Ubicación geográfica aproximada (país/ciudad)</li>
+							<li>Interacciones con el contenido del sitio</li>
+						</ul>
+						<p class="mt-4 leading-relaxed">
+							Google Analytics utiliza <strong class="text-[#2f2f3b] dark:text-white">cookies</strong> para recopilar esta información. Estas cookies no contienen información personal identificable. Para más detalles sobre las cookies que utilizamos, consulta nuestra <a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>. Los datos son procesados por Google conforme a su propia <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad</a>.
+						</p>
+
+						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
+							2.3 Google Maps
+						</h3>
+						<p class="leading-relaxed">
+							En nuestra página de contacto integramos un mapa de <strong class="text-[#2f2f3b] dark:text-white">Google Maps</strong> mediante un iframe para mostrar la ubicación de nuestras instalaciones. Al cargar esta sección, Google puede recopilar datos técnicos como tu dirección IP. Este servicio se rige por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad de Google</a>.
+						</p>
+
+						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
+							2.4 Cloudinary
+						</h3>
+						<p class="leading-relaxed">
+							Utilizamos <strong class="text-[#2f2f3b] dark:text-white">Cloudinary</strong> como red de distribución de contenido (CDN) para optimizar la entrega de imágenes. Al cargar imágenes, Cloudinary puede registrar datos técnicos como tu dirección IP y el tipo de navegador. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad de Cloudinary</a>.
+						</p>
+
+						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
+							2.5 WhatsApp
+						</h3>
+						<p class="leading-relaxed">
+							Nuestro sitio incluye enlaces directos a <strong class="text-[#2f2f3b] dark:text-white">WhatsApp</strong> (servicio de Meta Platforms, Inc.) para facilitar la comunicación. Al hacer clic en estos enlaces, serás redirigido a la aplicación de WhatsApp. No recopilamos datos a través de este canal; la conversación se rige por los <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Términos y Política de Privacidad de WhatsApp</a>.
+						</p>
+					</div>
+
+					<!-- Finalidad -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							3. Finalidad del tratamiento
+						</h2>
+						<p class="leading-relaxed mb-4">
+							Los datos personales que recopilamos se utilizan para las siguientes finalidades:
+						</p>
+						<ul class="space-y-3">
+							<li>
+								<strong class="text-[#2f2f3b] dark:text-white">Formulario de contacto:</strong> Responder a tus consultas, solicitudes de cotización e inquietudes sobre nuestros productos y servicios. Tu información se utilizará exclusivamente para comunicarnos contigo y brindarte la atención solicitada.
+							</li>
+							<li>
+								<strong class="text-[#2f2f3b] dark:text-white">Google Analytics:</strong> Analizar el comportamiento de los visitantes en nuestro sitio web para mejorar la experiencia de usuario, optimizar el contenido y medir la efectividad de nuestras páginas.
+							</li>
+						</ul>
+					</div>
+
+					<!-- Base legal -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							4. Base legal
+						</h2>
+						<p class="leading-relaxed">
+							El tratamiento de tus datos personales se basa en tu <strong class="text-[#2f2f3b] dark:text-white">consentimiento voluntario</strong> al completar el formulario de contacto y al navegar en nuestro sitio web, conforme a la <strong class="text-[#2f2f3b] dark:text-white">Ley Orgánica de Protección de Datos Personales del Ecuador</strong> (LOPDP) vigente desde mayo de 2021.
+						</p>
+					</div>
+
+					<!-- Compartición y transferencia internacional de datos -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							5. Compartición y transferencia internacional de datos
+						</h2>
+						<p class="leading-relaxed mb-4">
+							PROTON Fire & Rescue <strong class="text-[#2f2f3b] dark:text-white">no vende, alquila ni comparte</strong> tu información personal con terceros para fines comerciales o publicitarios.
+						</p>
+						<p class="leading-relaxed mb-4">
+							De conformidad con los artículos 35 a 37 de la <strong class="text-[#2f2f3b] dark:text-white">LOPDP del Ecuador</strong>, informamos que los datos recopilados a través de servicios de terceros pueden ser transferidos y procesados en servidores ubicados fuera de Ecuador, específicamente:
+						</p>
+						<ul class="space-y-3 mb-4">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Google LLC</strong> (Estados Unidos) — Google Analytics y Google Maps. Google cumple con estándares internacionales de protección de datos. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de Google</a>.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Cloudinary Ltd.</strong> (Internacional) — Almacenamiento y distribución de imágenes. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de Cloudinary</a>.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Meta Platforms, Inc.</strong> (Estados Unidos) — WhatsApp, al iniciar una conversación voluntariamente. Consulta la <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de WhatsApp</a>.</li>
+						</ul>
+						<p class="leading-relaxed">
+							Estas transferencias se realizan con base en el consentimiento del usuario y en garantías adecuadas de protección de datos proporcionadas por cada proveedor, según lo establecido en la legislación ecuatoriana vigente.
+						</p>
+					</div>
+
+					<!-- Cookies -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							6. Cookies
+						</h2>
+						<p class="leading-relaxed">
+							Nuestro sitio web utiliza cookies propias y de terceros. Para información detallada sobre qué cookies utilizamos, su finalidad, duración y cómo gestionarlas, consulta nuestra <a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>.
+						</p>
+					</div>
+
+					<!-- Conservación de datos -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							7. Conservación de datos
+						</h2>
+						<p class="leading-relaxed">
+							Los datos personales proporcionados a través del formulario de contacto se conservarán únicamente durante el tiempo necesario para atender tu solicitud y, como máximo, durante <strong class="text-[#2f2f3b] dark:text-white">12 meses</strong> desde la última comunicación, salvo que exista una obligación legal que requiera su conservación por un período mayor. Los datos de análisis recopilados por Google Analytics se retienen conforme a la configuración estándar de Google Analytics 4 (14 meses).
+						</p>
+					</div>
+
+					<!-- Derechos -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							8. Tus derechos
+						</h2>
+						<p class="leading-relaxed mb-4">
+							De acuerdo con la Ley Orgánica de Protección de Datos Personales del Ecuador, tienes derecho a:
+						</p>
+						<ul class="space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Acceso:</strong> Solicitar información sobre los datos personales que tenemos sobre ti.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Rectificación:</strong> Solicitar la corrección de datos inexactos o incompletos.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Eliminación:</strong> Solicitar la eliminación de tus datos personales.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Oposición:</strong> Oponerte al tratamiento de tus datos personales.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Portabilidad:</strong> Solicitar la transferencia de tus datos a otro responsable.</li>
+						</ul>
+						<p class="mt-4 leading-relaxed">
+							Para ejercer cualquiera de estos derechos, puedes contactarnos en <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a>.
+						</p>
+					</div>
+
+					<!-- Seguridad -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							9. Seguridad de los datos
+						</h2>
+						<p class="leading-relaxed">
+							Implementamos medidas técnicas y organizativas apropiadas para proteger tus datos personales contra el acceso no autorizado, la alteración, divulgación o destrucción. Nuestro sitio web utiliza cifrado HTTPS para garantizar la transmisión segura de la información.
+						</p>
+					</div>
+
+					<!-- Menores -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							10. Menores de edad
+						</h2>
+						<p class="leading-relaxed">
+							Este sitio web no está dirigido a menores de 18 años. No recopilamos intencionalmente información personal de menores de edad. Si eres padre o tutor y crees que tu hijo nos ha proporcionado datos personales, contáctanos para proceder con su eliminación.
+						</p>
+					</div>
+
+					<!-- Cambios -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							11. Cambios en esta política
+						</h2>
+						<p class="leading-relaxed">
+							PROTON Fire & Rescue se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Cualquier cambio será publicado en esta página con la fecha de la última actualización. Te recomendamos revisar esta política periódicamente.
+						</p>
+						<p class="mt-4 leading-relaxed">
+							<strong class="text-[#2f2f3b] dark:text-white">Última actualización:</strong> 1 de abril de 2026
+						</p>
+					</div>
+
+					<!-- Contacto -->
+					<div data-aos="fade-up">
+						<h2 class="text-2xl md:text-3xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							12. Contacto
+						</h2>
+						<p class="leading-relaxed">
+							Si tienes preguntas o inquietudes sobre esta Política de Privacidad o sobre el tratamiento de tus datos personales, no dudes en contactarnos:
+						</p>
+						<ul class="mt-4 space-y-2">
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Dirección:</strong> Raúl González y Chimborazo Oe2-91, Quito, Ecuador</li>
+						</ul>
+					</div>
+
+					<!-- Documentos relacionados -->
+					<div data-aos="fade-up" class="bg-gray-50 dark:bg-[#12121e] rounded-2xl p-8 border border-gray-200 dark:border-[#2a2a3e]">
+						<h2 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+							Documentos relacionados
+						</h2>
+						<ul class="space-y-2">
+							<li>
+								<a href="/terminos" class="text-[#504aff] hover:underline">Términos y Condiciones</a>
+								<span> — Condiciones de uso del sitio web.</span>
+							</li>
+							<li>
+								<a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>
+								<span> — Detalle de cookies utilizadas y cómo gestionarlas.</span>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<Footer />
+</Layout>
