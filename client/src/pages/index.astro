@@ -17,14 +17,14 @@ const productCategories = [
 		description:
 			"Equipos especializados para la extinción de incendios y protección contra fuego",
 		image: "/images/linea-fuego.webp",
-		url: "/productos#forestal",
+		url: "/catalogo/Forestal",
 		category: "forestal",
-		products: ["Extintores", "Mangueras", "Trajes"],
+		products: ["Botas", "Cascos", "Trajes"],
 	},
 	{
 		name: "Línea Rescate",
 		category: "rescate",
-		url: "/productos#rescate",
+		url: "/catalogo/Rescate",
 		description:
 			"Equipos para operaciones de rescate y salvamento en emergencias",
 		image: "/images/linea-rescate.webp",
@@ -38,6 +38,22 @@ const productCategories = [
 			"Soluciones tecnológicas avanzadas para entrenamiento y operaciones",
 		image: "/images/linea-tecnologia.webp",
 		products: ["F-500", "FLAIM VR", "Equipos Eléctricos"],
+	},
+	{
+		name: "Accesorios",
+		category: "accesorios",
+		url: "/catalogo/Accesorios",
+		description: "Accesorios para equipos de protección y rescate",
+		image: "/images/accesorios.webp",
+		products: ["Accesorios Complementarios"],
+	},
+	{
+		name: "Equipos",
+		category: "equipos",
+		url: "/catalogo/Rescate?type=Extricación",
+		description: "Equipos para operaciones de emergencia",
+		image: "/images/equipos.webp",
+		products: ["Estabilizadores", "Herramientas de rescate"],
 	},
 ];
 
@@ -178,32 +194,84 @@ const homePageSchema = {
 			{
 				"@type": "OfferCatalog",
 				name: "Línea Fuego",
-				description: "Equipos especializados para la extinción de incendios y protección contra fuego: trajes estructurales, cascos, botas, guantes y SCBA.",
+				description:
+					"Equipos especializados para la extinción de incendios y protección contra fuego: trajes estructurales, cascos, botas, guantes y SCBA.",
 				url: `${siteOrigin}/catalogo/Estructural`,
 				itemListElement: [
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "Trajes estructurales", url: `${siteOrigin}/catalogo/Estructural` } },
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "Cascos de bombero", url: `${siteOrigin}/catalogo/Estructural` } },
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "F-500 EA Agente Encapsulador", url: `${siteOrigin}/productos/f-500` } },
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "Trajes estructurales",
+							url: `${siteOrigin}/catalogo/Estructural`,
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "Cascos de bombero",
+							url: `${siteOrigin}/catalogo/Estructural`,
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "F-500 EA Agente Encapsulador",
+							url: `${siteOrigin}/productos/f-500`,
+						},
+					},
 				],
 			},
 			{
 				"@type": "OfferCatalog",
 				name: "Línea Rescate",
-				description: "Equipos para operaciones de rescate vehicular, en altura y espacios confinados.",
+				description:
+					"Equipos para operaciones de rescate vehicular, en altura y espacios confinados.",
 				url: `${siteOrigin}/catalogo/Rescate`,
 				itemListElement: [
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "Herramientas de rescate hidráulicas", url: `${siteOrigin}/catalogo/Rescate` } },
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "Estabilizadores", url: `${siteOrigin}/catalogo/Rescate` } },
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "Herramientas de rescate hidráulicas",
+							url: `${siteOrigin}/catalogo/Rescate`,
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "Estabilizadores",
+							url: `${siteOrigin}/catalogo/Rescate`,
+						},
+					},
 				],
 			},
 			{
 				"@type": "OfferCatalog",
 				name: "Línea Tecnología",
-				description: "Soluciones tecnológicas avanzadas para entrenamiento y operaciones de emergencia.",
+				description:
+					"Soluciones tecnológicas avanzadas para entrenamiento y operaciones de emergencia.",
 				url: `${siteOrigin}/productos/flaim`,
 				itemListElement: [
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "FLAIM FTS - Entrenamiento VR para Bomberos", url: `${siteOrigin}/productos/flaim` } },
-					{ "@type": "Offer", itemOffered: { "@type": "Product", name: "Cámaras térmicas", url: `${siteOrigin}/catalogo/Equipos` } },
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "FLAIM FTS - Entrenamiento VR para Bomberos",
+							url: `${siteOrigin}/productos/flaim`,
+						},
+					},
+					{
+						"@type": "Offer",
+						itemOffered: {
+							"@type": "Product",
+							name: "Cámaras térmicas",
+							url: `${siteOrigin}/catalogo/Equipos`,
+						},
+					},
 				],
 			},
 		],
@@ -392,6 +460,58 @@ const homePageSchema = {
 							</a>
 						))
 					}
+
+					<a
+						href="/catalogo/all"
+						class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#504aff] to-[#7c3aed] p-6 flex flex-col justify-center items-center h-[413px]"
+						data-aos="fade-up"
+					>
+						<div class="text-center">
+							<div
+								class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="w-8 h-8 text-white"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4 6h16M4 10h16M4 14h16M4 18h16"
+									></path>
+								</svg>
+							</div>
+							<h3 class="text-2xl font-bold text-white mb-2">
+								Ver Catálogo Completo
+							</h3>
+							<p class="text-white/80 mb-4">
+								Explora todos nuestros productos y equipos
+								disponibles
+							</p>
+							<span
+								class="inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all duration-300"
+							>
+								Explorar ahora
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									class="w-5 h-5"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+								</svg>
+							</span>
+						</div>
+					</a>
 				</div>
 			</div>
 		</section>
@@ -419,25 +539,27 @@ const homePageSchema = {
 					data-aos="fade-up"
 					data-aos-delay="200"
 				>
-					<span
+					<a
+						href="/servicios#capacitacion"
 						class="bg-[#504aff] text-white px-6 py-2 rounded-full text-sm font-semibold"
-						>Capacita</span
+						>Capacitación</a
 					>
-					<span
+					<a
+						href="/servicios#mantenimiento"
 						class="bg-[#504aff] text-white px-6 py-2 rounded-full text-sm font-semibold"
-						>Confecciona</span
+						>Confección</a
 					>
-					<span
+					<a
+						href="/servicios#mantenimiento"
 						class="bg-[#504aff] text-white px-6 py-2 rounded-full text-sm font-semibold"
-						>Mantiene</span
+						>Mantenimiento</a
 					>
 				</div>
 
-				<div class="grid md:grid-cols-3 gap-6">
+				<div class="grid md:grid-cols-3 gap-6" data-aos="fade-up">
 					<!-- Capacitación -->
 					<div
 						class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-2xl py-10 px-6 shadow-lg border border-gray-100 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-						data-aos="fade-up"
 						data-aos-delay="100"
 					>
 						<div
@@ -473,7 +595,6 @@ const homePageSchema = {
 					<!-- Confección -->
 					<div
 						class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-2xl py-10 px-6 shadow-lg border border-gray-100 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-						data-aos="fade-up"
 						data-aos-delay="200"
 					>
 						<div
@@ -509,7 +630,6 @@ const homePageSchema = {
 					<!-- Mantenimiento -->
 					<div
 						class="bg-gradient-to-r from-slate-900 to-slate-700 rounded-2xl py-10 px-6 shadow-lg border border-gray-100 dark:border-white/5 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-						data-aos="fade-up"
 						data-aos-delay="300"
 					>
 						<div
