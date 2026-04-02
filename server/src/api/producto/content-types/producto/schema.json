@@ -18,7 +18,8 @@
       "type": "text"
     },
     "slug": {
-      "type": "uid"
+      "type": "uid",
+      "targetField": "name"
     },
     "images": {
       "type": "media",

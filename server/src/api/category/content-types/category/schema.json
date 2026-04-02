@@ -35,6 +35,10 @@
       "relation": "manyToMany",
       "target": "api::producto.producto",
       "inversedBy": "categories"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }

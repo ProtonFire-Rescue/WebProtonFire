@@ -25,6 +25,9 @@
       "relation": "oneToMany",
       "target": "api::category.category",
       "mappedBy": "type"
+    },
+    "slug": {
+      "type": "uid"
     }
   }
 }

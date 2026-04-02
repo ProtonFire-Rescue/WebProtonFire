@@ -25,6 +25,19 @@
     },
     "descripcion": {
       "type": "text"
+    },
+    "url": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
