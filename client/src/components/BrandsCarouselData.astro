@@ -1,0 +1,94 @@
+---
+import { resolveBackendUrl } from '@/utils/server'
+import { Image } from 'astro:assets'
+
+export interface Props {
+	speed?: number
+	direction?: 'left' | 'right'
+	imageClass?: string
+	blur?: boolean
+}
+
+const {
+	speed = 20,
+	direction = 'left',
+	imageClass = 'h-10 md:h-40 lg:h-28 w-auto rounded-md object-contain grayscale hover:grayscale-0 transition-all duration-300',
+	blur = true,
+} = Astro.props
+
+const STRAPI_URL = resolveBackendUrl({ astro: Astro })
+
+let brands: { name: string; url: string; image: string }[] = []
+
+try {
+	const res = await fetch(
+		`${STRAPI_URL}/api/brands?fields[0]=name&fields[1]=url&populate[image][fields][0]=url&pagination[pageSize]=100`,
+		{ headers: { Accept: 'application/json' } }
+	)
+	const { data } = await res.json()
+	brands = (data ?? [])
+		.filter((b: any) => b?.image?.[0]?.url)
+		.map((b: any) => {
+			const url = b.image[0].url
+			return {
+				name: b.name ?? '',
+				url: b.url ?? '#',
+				image: url.startsWith('http') ? url : `${STRAPI_URL}${url}`,
+			}
+		})
+} catch {}
+
+const duplicated = [...brands, ...brands]
+// Escalar duración proporcionalmente: ~1.5s por marca para velocidad consistente
+const dynamicSpeed = Math.max(speed, brands.length * 0.8)
+---
+
+{brands.length > 0 && (
+	<div class={`relative w-full overflow-hidden bg-linear-to-b from-white via-[#0b0b12]/70 to-white dark:from-[#0b0b12] dark:via-white/70 dark:to-[#0b0b12] py-10`}>
+		<div
+			class={`scroll-item flex items-center ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'}`}
+			style={`animation-duration: ${dynamicSpeed}s`}
+		>
+			{duplicated.map((brand) => (
+				<a href={brand.url} class="shrink-0 px-4 hover:drop-shadow-xl transition-all" target="_blank" rel="noopener noreferrer">
+					<Image
+						src={brand.image}
+						alt={brand.name}
+						class={imageClass}
+						loading="lazy"
+						width="100"
+						height="100"
+						decoding="async"
+					/>
+				</a>
+			))}
+		</div>
+
+		{blur && (
+			<>
+				<div class="absolute left-0 top-0 bottom-0 w-80 md:bg-linear-to-r from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
+				<div class="absolute right-0 top-0 bottom-0 w-80 md:bg-linear-to-l from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
+			</>
+		)}
+	</div>
+)}
+
+<style>
+	@keyframes scroll-left {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-50%); }
+	}
+	@keyframes scroll-right {
+		0% { transform: translateX(-50%); }
+		100% { transform: translateX(0); }
+	}
+	.animate-scroll-left {
+		animation: scroll-left linear infinite;
+	}
+	.animate-scroll-right {
+		animation: scroll-right linear infinite;
+	}
+	.flex:hover {
+		animation-play-state: paused;
+	}
+</style>

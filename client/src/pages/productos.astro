@@ -3,31 +3,12 @@ import Layout from '@/layouts/Layout.astro'
 import Menu from '@/components/page/Menu.astro'
 import Footer from '@/components/page/Footer.astro'
 import CTAButton from '@/components/ui/CTAButton.astro'
-import InfiniteCarousel from '@/components/InfiniteCarousel.astro'
+import BrandsCarouselData from '@/components/BrandsCarouselData.astro'
 import ProductsAreaData from '@/components/productos/ProductsAreaData.astro'
 
 const currentPath = Astro.url.pathname
 const siteOrigin = Astro.url.origin
 
-// Marcas para el carousel
-const brandImages = [
-  {
-    src: '/brands/f500.png',
-    alt: 'F500 Agente Encapsulador de Alta Tecnología'
-  },
-  {
-    src: '/brands/sicor.png',
-    alt: 'Sicor marca Italiana líder, equipos de protección'
-  },
-  {
-    src: '/brands/viking.png',
-    alt: 'Viking líder en el sector de seguridad y protección'
-  },
-  {
-    src: '/brands/carbon-x.png',
-    alt: 'Carbon X marca de textiles de alto rendimiento'
-  }
-]
 
 const productosJsonLd = [
   {
@@ -135,13 +116,18 @@ const productosJsonLd = [
     <!-- Brands Carousel Section -->
     <section class='py-16 bg-white dark:bg-[#0b0b12]'>
       <div class='max-w-360 mx-auto px-4'>
-        <InfiniteCarousel
-          images={brandImages}
+        <BrandsCarouselData
           speed={25}
           direction='left'
-          imageClass='h-12 md:h-16 lg:h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300'
-          blur={false}
-        />
+          imageClass='h-8 md:h-10 lg:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300'
+          server:defer
+        >
+          <div slot='fallback' class='flex items-center gap-8 overflow-hidden'>
+            {Array.from({ length: 6 }).map(() => (
+              <div class='shrink-0 w-24 h-16 md:w-32 md:h-20 bg-gray-100 dark:bg-[#1a1a2e] rounded-md animate-pulse' />
+            ))}
+          </div>
+        </BrandsCarouselData>
       </div>
     </section>
 
