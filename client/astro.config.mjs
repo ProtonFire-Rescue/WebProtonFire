@@ -29,6 +29,17 @@ export default defineConfig({
       provider: fontProviders.google(),
       name: 'Questrial',
       cssVariable: '--font-questrial',
-    }]
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Google Sans Flex',
+      cssVariable: '--font-google-sans-flex',
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Poppins',
+      cssVariable: '--font-poppins',
+    }
+  ]
   }
 })

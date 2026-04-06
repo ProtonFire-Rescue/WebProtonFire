@@ -4,7 +4,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-questrial), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-poppins), var(--font-google-sans-flex), system-ui, sans-serif;
 }
 
 /* PROTON Fire & Rescue Theme */
@@ -19,8 +20,8 @@
     /* Neutral Colors */
     --pf-dark: #2f2f3b;
     --pf-gray: #6b7280;
-    --pf-light: #f3f4f6;
-    --pf-white: #ffffff;
+    --pf-light: #1a1a2e;
+    --pf-white: #0b0b12;
 
     /* Surface Colors (light) */
     --pf-bg: #ffffff;
@@ -66,9 +67,10 @@
 /* Font Family */
 @layer base {
   html {
-    font-family: var(--font-questrial), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    font-size: 16px;
   }
   
   body {
@@ -78,6 +80,18 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  /* Headings: Poppins Bold */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-google-sans-flex), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* Paragraphs and body text: Roboto */
+  p, span, a, li, td, th, label, input, textarea, select, button {
+    font-family: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
+  }
+
   .dark {
     color-scheme: dark;
   }
@@ -85,6 +99,12 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
     }
   }
 }
