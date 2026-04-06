@@ -267,17 +267,17 @@ const homePageSchema = {
 	keywords="equipos bomberos Ecuador, equipos rescate Ecuador, PROTON Fire Rescue, equipos seguridad industrial Ecuador, FLAIM Ecuador, F-500 Ecuador, equipos contra incendios, trajes bombero Ecuador, equipos emergencia"
 	jsonLd={homePageSchema}
 >
-	<Menu currentPath={currentPath} />
+	<Menu currentPath={currentPath} transparent={true} />
 
 	<WhatsAppWidget />
 
 	<main class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section - Dark with firefighters background -->
 		<section
-			class="relative min-h-150 md:min-h-175 py-30 md:py-50 overflow-hidden md:mx-5 md:rounded-[55px]"
+			class="relative min-h-150 md:min-h-175 py-30 md:py-50 overflow-hidden"
 		>
 			<!-- Background Image with overlay -->
-			<div class="absolute inset-0">
+			<div class="absolute inset-0 brightness-50">
 				<video
 					src="/videos/home.mp4"
 					class="w-full h-full object-cover"
@@ -285,7 +285,7 @@ const homePageSchema = {
 					muted
 					loop
 					playsinline></video>
-				<div class="absolute inset-0 bg-black/60"></div>
+				<div class="absolute inset-0"></div>
 			</div>
 
 			<div
@@ -303,7 +303,7 @@ const homePageSchema = {
 						+20 años protegiendo vidas en Ecuador
 					</span>
 					<h1
-						class="text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6"
+						class="text-4xl md:text-[80px] lg:text-[70px] font-bold text-white leading-tight mb-6"
 						data-aos="fade-up"
 						data-aos-delay="200"
 					>
@@ -351,7 +351,7 @@ const homePageSchema = {
 						class="text-3xl md:text-4xl lg:text-[52px] font-bold text-[#2f2f3b] dark:text-white text-center mb-8"
 						data-aos="fade-up"
 					>
-						Presencia global
+						Participación global
 					</h2>
 					<p
 						class="text-lg text-[#6b7280] dark:text-[#9ca3b8] text-center max-w-[989px] mx-auto mb-8"
@@ -555,14 +555,14 @@ const homePageSchema = {
 								width={70}
 								height={70}
 							/>
-						</div>
+						</div>|	
 						<h3
-							class="text-lg font-bold text-white mb-4 text-center"
+							class="text-lg font-bold text-white mb-4"
 						>
 							SERVICIOS DE CAPACITACIÓN
 						</h3>
 						<p
-							class="text-zinc-200 text-sm leading-relaxed text-center"
+							class="text-zinc-200 text-sm leading-relaxed"
 						>
 							PROTON Fire & Rescue ofrece capacitación
 							especializada y formación de brigadas en rescate,
@@ -592,12 +592,12 @@ const homePageSchema = {
 							/>
 						</div>
 						<h3
-							class="text-lg font-bold text-white mb-4 text-center"
+							class="text-lg font-bold text-white mb-4"
 						>
 							SERVICIOS DE CONFECCIÓN
 						</h3>
 						<p
-							class="text-zinc-200 text-sm leading-relaxed text-center"
+							class="text-zinc-200 text-sm leading-relaxed"
 						>
 							Confeccionamos prendas técnicas de alta protección
 							(ignífugas, dieléctricas y antidesgarro) utilizando
@@ -627,12 +627,12 @@ const homePageSchema = {
 							/>
 						</div>
 						<h3
-							class="text-lg font-bold text-white mb-4 text-center"
+							class="text-lg font-bold text-white mb-4"
 						>
 							SERVICIOS DE MANTENIMIENTO
 						</h3>
 						<p
-							class="text-zinc-200 text-sm leading-relaxed text-center"
+							class="text-zinc-200 text-sm leading-relaxed"
 						>
 							Ofrecemos un servicio técnico integral y
 							mantenimiento especializado para equipos de

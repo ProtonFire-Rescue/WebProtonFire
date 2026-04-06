@@ -64,12 +64,12 @@ const productosJsonLd = [
   keywords='productos bomberos Ecuador, equipos contra incendios, trajes bombero, SCBA Ecuador, equipos rescate, F-500, FLAIM VR, equipos seguridad industrial'
   jsonLd={productosJsonLd}
 >
-  <Menu currentPath={currentPath} />
+  <Menu currentPath={currentPath} transparent={true} />
 
   <main class="min-h-screen dark:bg-[#0b0b12]">
     <!-- Hero Section - Dark with gradient -->
     <section
-      class='relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-150 md:min-h-175 py-20 md:py-32 overflow-hidden md:mx-5 md:rounded-[55px]'
+      class='relative bg-linear-to-b from-1% from-white to-black md:bg-white min-h-150 md:min-h-175 py-20 md:py-55 overflow-hidden'
     >
       <!-- Large rounded gradient circle background -->
       <div
@@ -82,7 +82,7 @@ const productosJsonLd = [
         </div>
       </div>
       <div
-        class='absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50'
+        class='absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-40'
         style="background-image: url('/images/products.webp'); background-blend-mode: overlay;"
       >
       </div>
@@ -90,7 +90,7 @@ const productosJsonLd = [
         class='relative z-10 max-w-360 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 md:pt-10 pb-20 text-center'
       >
         <h1
-          class='text-4xl md:text-5xl lg:text-[59px] font-bold text-white leading-tight mb-6'
+          class='text-4xl md:text-5xl lg:text-[65px] font-bold text-white leading-tight mb-6'
           data-aos='fade-up'
           data-aos-delay='100'
         >

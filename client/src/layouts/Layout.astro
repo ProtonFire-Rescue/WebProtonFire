@@ -210,8 +210,10 @@ const websiteSchema = {
     <meta name='msapplication-TileColor' content='#504aff' />
     <meta name='msapplication-TileImage' content='/mstile-144x144.png' />
 
-    <!-- Font (self-hosted via Astro Fonts API) -->
+    <!-- Fonts (self-hosted via Astro Fonts API) -->
     <Font cssVariable="--font-questrial" />
+    <Font cssVariable="--font-poppins" />
+    <Font cssVariable="--font-google-sans-flex" />
 
     <!-- Structured Data - Organization -->
     <script
@@ -269,7 +271,7 @@ const websiteSchema = {
     <link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' media='print' onload="this.media='all'" />
     <noscript><link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' /></noscript>
   </head>
-  <body class='relative font-sans antialiased bg-white dark:bg-[#0b0b12] text-[#2f2f3b] dark:text-[#e8e8f0] transition-colors duration-300'>
+  <body id="main-content" class='relative font-sans antialiased bg-white dark:bg-[#0b0b12] text-[#2f2f3b] dark:text-[#e8e8f0] transition-colors duration-300'>
     
 				<ThemeToggle />
     <Toaster client:idle transition:persist richColors={true} />
@@ -278,9 +280,6 @@ const websiteSchema = {
 </html>
 
 <style>
-  * {
-    font-family: var(--font-questrial), system-ui, sans-serif;
-  }
   html,
   body {
     margin: 0;
