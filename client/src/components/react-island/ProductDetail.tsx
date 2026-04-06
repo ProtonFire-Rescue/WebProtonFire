@@ -342,7 +342,7 @@ export default function ProductDetail({
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Shield size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
+                <span className='text-sm text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Certificado
                   <br />
                   internacionalmente
@@ -352,7 +352,7 @@ export default function ProductDetail({
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Truck size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
+                <span className='text-sm text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Envío a<br />
                   todo Ecuador
                 </span>
@@ -361,7 +361,7 @@ export default function ProductDetail({
                 <div className='w-10 h-10 bg-[#504aff]/10 rounded-full flex items-center justify-center'>
                   <Headphones size={18} className='text-[#504aff]' />
                 </div>
-                <span className='text-xs text-gray-600 dark:text-[#9ca3b8] font-medium'>
+                <span className='text-sm text-gray-600 dark:text-[#9ca3b8] font-medium'>
                   Soporte
                   <br />
                   técnico
@@ -388,7 +388,7 @@ export default function ProductDetail({
                   </>
                 )}
               </a>
-              <p className='text-xs text-gray-400 dark:text-[#6b7280] text-center'>
+              <p className='text-sm text-gray-400 dark:text-[#6b7280] text-center'>
                 Te responderemos en menos de 24 horas por WhatsApp
               </p>
             </div>

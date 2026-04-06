@@ -98,16 +98,16 @@ export default function RelatedProducts({
                     className='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
                     loading='lazy'
                   />
-                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
+                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
                     {item.category}
                   </span>
                 </div>
                 <div className='p-4'>
-                  <h3 className='font-semibold text-[#2f2f3b] dark:text-white text-sm mb-1 uppercase tracking-wide group-hover:text-[#504aff] transition-colors'>
+                  <h3 className='font-semibold text-[#2f2f3b] dark:text-white text-base mb-1 uppercase tracking-wide group-hover:text-[#504aff] transition-colors'>
                     {item.name}
                   </h3>
-                  <p className='text-xs text-gray-400 dark:text-[#6b7280] mb-1'>{item.model}</p>
-                  <p className='text-xs text-[#504aff] font-medium'>
+                  <p className='text-sm text-gray-400 dark:text-[#6b7280] mb-1'>{item.model}</p>
+                  <p className='text-sm text-[#504aff] font-medium'>
                     Marca: {item.brand}
                   </p>
                 </div>

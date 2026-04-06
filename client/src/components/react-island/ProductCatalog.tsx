@@ -566,17 +566,19 @@ useEffect(() => {
                     alt={product.name}
                     className='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
                     loading='lazy'
+                    width={300}
+                    height={300}
                   />
-                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
+                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
                     {product.category}
                   </span>
                 </div>
                 <div className='p-4'>
-                  <h4 className='font-semibold text-[#2f2f3b] dark:text-white text-sm mb-1 uppercase tracking-wide'>
+                  <h4 className='font-semibold text-[#2f2f3b] dark:text-white text-base mb-1 uppercase tracking-wide'>
                     {product.name}
                   </h4>
-                  <p className='text-xs text-gray-400 dark:text-[#6b7280] mb-1'>{product.model}</p>
-                  <p className='text-xs text-[#504aff] font-medium mb-3'>
+                  <p className='text-sm text-gray-400 dark:text-[#6b7280] mb-1'>{product.model}</p>
+                  <p className='text-sm text-[#504aff] font-medium mb-3'>
                     Marca: {product.brand}
                   </p>
                   <a
