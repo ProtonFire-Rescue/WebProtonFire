@@ -3,9 +3,10 @@ import { Image } from 'astro:assets';
 
 export interface Props {
 	currentPath?: string;
+	transparent?: boolean;
 }
 
-const { currentPath = '/' } = Astro.props;
+const { currentPath = '/', transparent = false } = Astro.props;
 
 const menuItems = [
 	{ href: '/productos', label: 'Productos', active: currentPath.startsWith('/productos') },
@@ -14,14 +15,20 @@ const menuItems = [
 ];
 ---
 
-<header  class="fixed top-3 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-225 px-3 sm:px-4" role="banner">
+<header class="fixed top-0 left-0 right-0 z-50 w-full border-b border-dotted border-gray-200/60 dark:border-white/10" role="banner">
 	<nav 
 		id="main-nav"
-		class="navigation bg-white/70 dark:bg-[#12121e]/80 backdrop-blur-md backdrop-saturate-150 border border-white/30 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/30 rounded-3xl px-4 sm:px-6 py-2.5 sm:py-3"
+		class:list={[
+			'navigation px-6 sm:px-8 lg:px-30 py-3 md:py-5',
+			transparent
+				? 'bg-transparent border-b border-transparent'
+				: 'bg-white dark:bg-[#0b0b12] border-b border-gray-200/60 dark:border-white/10'
+		]}
+		data-transparent={transparent ? 'true' : 'false'}
 		role="navigation" 
 		aria-label="Menú principal"
 	>
-		<!-- Top bar: logo + desktop links + hamburger -->
+		<!-- Top bar: logo + desktop links + CTA + hamburger -->
 		<div class="flex items-center justify-between">
 			<!-- Logo -->
 			<a href="/" class="flex items-center shrink-0" aria-label="PROTON Fire & Rescue - Inicio">
@@ -30,34 +37,35 @@ const menuItems = [
 					alt="PROTON" 
 					fetchpriority='auto'
 					decoding='async'
-					data-astro-cid-kek7i6am='true'
-					class="h-8 sm:h-10 w-auto"
+					class="h-15 sm:h-15 lg:h-18 w-auto"
 					loading="lazy"
-					width={100}
-					height={100}
+					width={220}
+					height={220}
 				/>
 			</a>
 			
 			<!-- Desktop Menu - Centered -->
-			<div class="hidden md:flex items-center gap-8 mx-auto">
+			<div class="hidden md:flex items-center gap-10 lg:gap-25">
 				{menuItems.map((item) => (
 					<a 
 						href={item.href}
-						class={`text-[14px] font-semibold transition-colors duration-200 ${
+						class:list={[
+							'nav-link text-[15px] font-semibold tracking-wide transition-colors duration-300 relative',
 							item.active 
 								? 'text-[#504aff]' 
-								: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff]'
-						}`}
+								: transparent
+									? 'text-white hover:text-[#504aff]'
+									: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff]'
+						]}
 					>
 						{item.label}
+						{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#504aff] rounded-full" />}
 					</a>
 				))}
-			</div>
-			
-			<!-- CTA Button (Desktop) + Theme Toggle -->
-			<div class="hidden md:flex items-center gap-2 shrink-0">
 				
-				<a 
+			
+			<!-- CTA Button (Desktop) -->
+			<a 
 					href="/contactanos"
 					class="bg-[#504aff] text-white text-[13px] font-semibold px-6 py-2.5 rounded-full hover:bg-[#3f3bcc] transition-all duration-200 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30"
 				>
@@ -68,7 +76,12 @@ const menuItems = [
 			<!-- Mobile Menu Button -->
 			<button 
 				type="button"
-				class="md:hidden p-1.5 text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff] transition-colors"
+				class:list={[
+					'md:hidden p-1.5 hover:text-[#504aff] transition-colors',
+					transparent
+						? 'text-white'
+						: 'text-[#2f2f3b] dark:text-white/80'
+				]}
 				aria-label="Abrir menú móvil"
 				id="mobile-menu-button"
 			>
@@ -89,7 +102,7 @@ const menuItems = [
 				{menuItems.map((item) => (
 					<a 
 						href={item.href}
-						class={`mobile-menu-link block text-[14px] font-semibold py-2.5 px-3 rounded-xl transition-colors ${
+						class={`mobile-menu-link block text-[15px] font-semibold py-2.5 px-3 rounded-xl transition-colors ${
 							item.active 
 								? 'text-[#504aff] bg-[#504aff]/10' 
 								: 'text-[#2f2f3b] dark:text-white/80 hover:bg-[#504aff]/5'
@@ -100,7 +113,7 @@ const menuItems = [
 				))}
 				<a 
 					href="/contactanos"
-					class="mobile-menu-link block bg-[#504aff] text-white text-[14px] font-semibold px-4 py-3 rounded-xl text-center shadow-md mt-2"
+					class="mobile-menu-link block bg-[#504aff] text-white text-[15px] font-semibold px-4 py-3 rounded-xl text-center shadow-md mt-2"
 				>
 					Contáctanos
 				</a>
@@ -111,19 +124,60 @@ const menuItems = [
 
 <style>
 	#main-nav {
-		transition: border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-		            background-color 0.3s ease,
-		            box-shadow 0.3s ease;
+		transition: background-color 0.35s ease,
+		            box-shadow 0.35s ease,
+		            border-color 0.35s ease;
+	}
+
+	/* Scrolled state classes applied by JS */
+	#main-nav.nav-scrolled {
+		background-color: rgba(255, 255, 255, 1);
+		border-bottom-color: rgba(229, 231, 235, 0.6);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	}
+	:global(.dark) #main-nav.nav-scrolled {
+		background-color: rgba(11, 11, 18, 1);
+		border-bottom-color: rgba(255, 255, 255, 0.1);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	}
+	#main-nav.nav-scrolled .nav-link:not(.text-\[\#504aff\]) {
+		color: #2f2f3b;
+	}
+	:global(.dark) #main-nav.nav-scrolled .nav-link:not(.text-\[\#504aff\]) {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	#main-nav.nav-scrolled #mobile-menu-button {
+		color: #2f2f3b;
+	}
+	:global(.dark) #main-nav.nav-scrolled #mobile-menu-button {
+		color: rgba(255, 255, 255, 0.8);
 	}
 </style>
 
 <script>
+	function initScrollEffect() {
+		const nav = document.getElementById('main-nav');
+		if (!nav || nav.dataset.transparent !== 'true') return;
+
+		function onScroll() {
+			if (window.scrollY > 0) {
+				nav!.classList.add('nav-scrolled');
+			} else {
+				nav!.classList.remove('nav-scrolled');
+			}
+		}
+
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+	}
+
 	function initMobileMenu() {
 		const mobileMenuButton = document.getElementById('mobile-menu-button');
 		const mobileMenu = document.getElementById('mobile-menu');
 		const nav = document.getElementById('main-nav');
 		const iconHamburger = document.getElementById('icon-hamburger');
 		const iconClose = document.getElementById('icon-close');
+
 
 		if (!mobileMenuButton || !mobileMenu || !nav || !iconHamburger || !iconClose) return;
 
@@ -143,9 +197,7 @@ const menuItems = [
 		function openMenu() {
 			isOpen = true;
 			newButton.setAttribute('aria-expanded', 'true');
-			// Animate border-radius first
-			navEl.classList.remove('rounded-3xl');
-			navEl.classList.add('rounded-2xl');
+			nav!.classList.add('nav-scrolled');
 			// Slide open: measure content height and animate
 			menu.style.maxHeight = menu.scrollHeight + 'px';
 			menu.style.opacity = '1';
@@ -157,19 +209,15 @@ const menuItems = [
 		function closeMenu() {
 			isOpen = false;
 			newButton.setAttribute('aria-expanded', 'false');
+			if (window.scrollY == 0) {
+				nav!.classList.remove('nav-scrolled');
+			}
 			// Collapse the menu
 			menu.style.maxHeight = '0';
 			menu.style.opacity = '0';
 			// Toggle icons
 			newIconHamburger?.classList.remove('hidden');
 			newIconClose?.classList.add('hidden');
-			// Wait for animation to finish before restoring pill shape
-			setTimeout(() => {
-				if (!isOpen) {
-					navEl.classList.remove('rounded-2xl');
-					navEl.classList.add('rounded-3xl');
-				}
-			}, 350);
 		}
 
 		newButton.addEventListener('click', () => {
@@ -199,8 +247,12 @@ const menuItems = [
 	}
 
 	// Initialize on first load
+	initScrollEffect();
 	initMobileMenu();
 
 	// Re-initialize after view transitions
-	document.addEventListener('astro:page-load', initMobileMenu);
+	document.addEventListener('astro:page-load', () => {
+		initScrollEffect();
+		initMobileMenu();
+	});
 </script>
