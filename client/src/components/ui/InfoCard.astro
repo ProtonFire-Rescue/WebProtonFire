@@ -1,0 +1,39 @@
+---
+import { ChevronRight } from "lucide-react";
+
+const { title, list, link } = Astro.props;
+---
+
+<div
+  class="group relative px-6 pt-8 pb-24 bg-gradient-to-br from-white via-blue-50/50 to-purple-50/30 dark:from-[#1a1a2e] dark:via-[#16162a] dark:to-[#12121e] rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-800/50 overflow-hidden"
+  data-aos="fade-up"
+  data-aos-delay="100"
+>
+  <!-- Decorative gradient accent -->
+  <div class="absolute top-0 left-0 w-full h-1 bg-[#504aff]"></div>
+  
+  <h3 class="text-2xl font-bold text-[#2f2f3b] dark:text-white py-4 mb-2">
+    {title}
+  </h3>
+  
+  <ul class="space-y-3 text-gray-600 dark:text-[#9ca3b8] text-base leading-relaxed">
+    {
+      list.map((item: string) => (
+        <li class="flex items-start gap-3">
+          <div class="w-2 h-2 rounded-full bg-[#504aff] mt-2 shrink-0"></div>
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+  
+  <div class="absolute bottom-6 right-6">
+    <a
+      href={link}
+      class="flex items-center justify-center w-12 h-12 bg-[#504aff] rounded-full shadow-md shadow-[#504aff]/25 hover:bg-[#3f3bcc] hover:shadow-lg hover:shadow-[#504aff]/30 hover:translate-x-1 transition-all duration-300"
+      aria-label="Ver más"
+    >
+      <ChevronRight className="w-5 h-5 text-white" />
+    </a>
+  </div>
+</div>

@@ -4,8 +4,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --font-sans: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
-  --font-heading: var(--font-poppins), var(--font-google-sans-flex), system-ui, sans-serif;
+  --font-sans: var(--font-google-sans), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-poppins), var(--font-google-sans), system-ui, sans-serif;
 }
 
 /* PROTON Fire & Rescue Theme */
@@ -67,7 +67,7 @@
 /* Font Family */
 @layer base {
   html {
-    font-family: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-google-sans), system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden;
     font-size: 16px;
@@ -82,14 +82,14 @@
 
   /* Headings: Poppins Bold */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-google-sans-flex), system-ui, sans-serif;
+    font-family: var(--font-google-sans), system-ui, sans-serif;
     font-weight: 700;
     line-height: 1.2;
   }
 
   /* Paragraphs and body text: Roboto */
   p, span, a, li, td, th, label, input, textarea, select, button {
-    font-family: var(--font-google-sans-flex), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-google-sans), system-ui, -apple-system, sans-serif;
   }
 
   .dark {

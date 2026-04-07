@@ -22,7 +22,7 @@ export default function Destacados() {
     const [selectedProduct, setSelectedProduct] = useState(0);
     
     return (
-        <section className="flex flex-col gap-0 md:gap-10 items-start justify-between w-full md:w-350 mx-auto h-auto md:h-full">
+        <section className="flex flex-col gap-0 md:gap-10 items-start justify-between w-full lg:w-auto mx-auto h-auto md:h-full">
             {/*CTA change destacados*/}
             <div className="flex gap-2 p-2 bg-gray-100 rounded-full justify-center items-center mx-auto">
                 {destacados.map((item, index) => (
@@ -39,11 +39,11 @@ export default function Destacados() {
                     </button>
                 ))}
             </div>
-            <div className="flex flex-col-reverse justify-center items-center md:flex-row gap-9 p-5 my-10 w-auto md:w-250 lg:w-350 md:h-87.5 mx-auto">
+            <div className="flex flex-col-reverse justify-center items-center md:flex-row gap-9 p-5 my-10 w-auto md:h-87.5 mx-auto">
                 {/* Description */}
                 <div className="flex flex-col gap-9 justify-center">
                     <h2 className="text-3xl font-bold text-[#2f2f3b] dark:text-white">{destacados[selectedProduct].title}</h2>
-                    <p className="w-75 md:w-125 lg:w-150 text-gray-600 dark:text-gray-300 leading-relaxed">{destacados[selectedProduct].description}</p>
+                    <p className="w-75 md:w-125 lg:w-140 text-gray-600 dark:text-gray-300 leading-relaxed">{destacados[selectedProduct].description}</p>
                     <div>
                         <a className="btn border-0 inline-flex w-full md:w-auto h-13.75 text-[15px] items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[30px] hover:bg-[#3f3bcc] justify-center shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 transition-all duration-300 shrink-0" href={`/productos/${destacados[selectedProduct].name.toLowerCase()}`}>
                             <div className="flex items-center justify-center text-[15px]">

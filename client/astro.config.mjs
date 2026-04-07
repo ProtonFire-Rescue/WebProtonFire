@@ -32,8 +32,8 @@ export default defineConfig({
     },
     {
       provider: fontProviders.google(),
-      name: 'Google Sans Flex',
-      cssVariable: '--font-google-sans-flex',
+      name: 'Google Sans',
+      cssVariable: '--font-google-sans',
     },
     {
       provider: fontProviders.google(),
