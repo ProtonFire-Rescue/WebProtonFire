@@ -65,7 +65,7 @@ const totalCount = cards.length
         return (
           <div class='mb-16' id={groupName.toLowerCase()}>
             <h3 class='text-xl font-semibold text-[#2f2f3b] dark:text-white mb-8 flex items-center gap-2'>
-              <span class='w-2 h-2 bg-[#504aff] rounded-full' />
+              <span class='w-2 h-2 bg-[#155DFC] rounded-full' />
               {groupName}
             </h3>
 
@@ -101,7 +101,7 @@ const totalCount = cards.length
                           <a
                             href={productUrl(groupName, product.slug)}
                             data-astro-prefetch='hover'
-                            class='w-full inline-flex justify-center bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#504aff] transition-colors'
+                            class='w-full inline-flex justify-center bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#155DFC] transition-colors'
                           >
                             Ver más
                           </a>
@@ -114,7 +114,7 @@ const totalCount = cards.length
                   <div class='flex justify-center mt-8'>
                     <a
                       href={`/catalogo/${encodeURIComponent(groupName)}`}
-                      class='inline-flex items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 text-sm'
+                      class='inline-flex items-center gap-2 bg-[#155DFC] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#114ACA] transition-all duration-300 shadow-md shadow-[#155DFC]/20 hover:shadow-lg hover:shadow-[#155DFC]/30 hover:-translate-y-0.5 text-sm'
                     >
                       Ver todos los productos de {groupName}
                       <svg

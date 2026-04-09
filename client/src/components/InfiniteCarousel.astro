@@ -90,4 +90,12 @@ const duplicatedImages = [...images, ...images];
 	.flex:hover {
 		animation-play-state: paused;
 	}
+
+	/* Respetar preferencia de reducción de movimiento */
+	@media (prefers-reduced-motion: reduce) {
+		.animate-scroll-left,
+		.animate-scroll-right {
+			animation: none;
+		}
+	}
 </style>

@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import SearchModal from '@/components/react-island/SearchModal';
 
 export interface Props {
 	currentPath?: string;
@@ -15,7 +16,7 @@ const menuItems = [
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 w-full border-b border-dotted border-gray-200/60 dark:border-white/10" role="banner">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full border-b border-dotted border-gray-200/60 dark:border-white/10" role="banner">
 	<nav 
 		id="main-nav"
 		class:list={[
@@ -52,39 +53,44 @@ const menuItems = [
 						class:list={[
 							'nav-link text-[16px] font-semibold tracking-wide transition-colors duration-300 relative',
 							item.active 
-								? 'text-[#504aff]' 
+								? 'text-[#155DFC]' 
 								: transparent
-									? 'text-white hover:text-[#504aff]'
-									: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#504aff]'
+									? 'text-white hover:text-[#155DFC]'
+									: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#155DFC]'
 						]}
 					>
 						{item.label}
-						{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#504aff] rounded-full" />}
+						{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#155DFC] rounded-full" />}
 					</a>
 				))}
 				
 			
+			<!-- Search (Desktop) -->
+			<SearchModal client:load />
+
 			<!-- CTA Button (Desktop) -->
-			<a 
+			<a
 					href="/contactanos"
-					class="bg-[#504aff] text-white text-[14px] font-semibold px-6 py-2.5 rounded-full hover:bg-[#3f3bcc] transition-all duration-200 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30"
+					class="bg-[#155DFC] text-white text-[14px] font-semibold px-6 py-2.5 rounded-full hover:bg-[#114ACA] transition-all duration-200 shadow-md shadow-[#155DFC]/20 hover:shadow-lg hover:shadow-[#155DFC]/30"
 				>
 					Contáctanos
 				</a>
 			</div>
-			
-			<!-- Mobile Menu Button -->
-			<button 
-				type="button"
-				class:list={[
-					'md:hidden p-1.5 hover:text-[#504aff] transition-colors',
-					transparent
-						? 'text-white'
-						: 'text-[#2f2f3b] dark:text-white/80'
-				]}
-				aria-label="Abrir menú móvil"
-				id="mobile-menu-button"
-			>
+
+			<!-- Search (Mobile) + Mobile Menu Button -->
+			<div class="flex md:hidden items-center gap-1">
+				<SearchModal client:load />
+				<button
+					type="button"
+					class:list={[
+						'p-1.5 hover:text-[#155DFC] transition-colors',
+						transparent
+							? 'text-white'
+							: 'text-[#2f2f3b] dark:text-white/80'
+					]}
+					aria-label="Abrir menú móvil"
+					id="mobile-menu-button"
+				>
 				<!-- Hamburger icon -->
 				<svg id="icon-hamburger" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -94,6 +100,7 @@ const menuItems = [
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 				</svg>
 			</button>
+			</div>
 		</div>
 
 		<!-- Mobile Menu (inside nav, animated with max-height) -->
@@ -104,8 +111,8 @@ const menuItems = [
 						href={item.href}
 						class={`mobile-menu-link block text-[15px] font-semibold py-2.5 px-3 rounded-xl transition-colors ${
 							item.active 
-								? 'text-[#504aff] bg-[#504aff]/10' 
-								: 'text-[#2f2f3b] dark:text-white/80 hover:bg-[#504aff]/5'
+								? 'text-[#155DFC] bg-[#155DFC]/10' 
+								: 'text-[#2f2f3b] dark:text-white/80 hover:bg-[#155DFC]/5'
 						}`}
 					>
 						{item.label}
@@ -113,7 +120,7 @@ const menuItems = [
 				))}
 				<a 
 					href="/contactanos"
-					class="mobile-menu-link block bg-[#504aff] text-white text-[15px] font-semibold px-4 py-3 rounded-xl text-center shadow-md mt-2"
+					class="mobile-menu-link block bg-[#155DFC] text-white text-[15px] font-semibold px-4 py-3 rounded-xl text-center shadow-md mt-2"
 				>
 					Contáctanos
 				</a>
@@ -123,6 +130,12 @@ const menuItems = [
 </header>
 
 <style>
+	#site-header {
+		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	#site-header.header-hidden {
+		transform: translateY(-100%);
+	}
 	#main-nav {
 		transition: background-color 0.35s ease,
 		            box-shadow 0.35s ease,
@@ -140,10 +153,10 @@ const menuItems = [
 		border-bottom-color: rgba(255, 255, 255, 0.1);
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 	}
-	#main-nav.nav-scrolled .nav-link:not(.text-\[\#504aff\]) {
+	#main-nav.nav-scrolled .nav-link:not(.text-\[\#155DFC\]) {
 		color: #2f2f3b;
 	}
-	:global(.dark) #main-nav.nav-scrolled .nav-link:not(.text-\[\#504aff\]) {
+	:global(.dark) #main-nav.nav-scrolled .nav-link:not(.text-\[\#155DFC\]) {
 		color: rgba(255, 255, 255, 0.8);
 	}
 	#main-nav.nav-scrolled #mobile-menu-button {
@@ -198,6 +211,8 @@ const menuItems = [
 			isOpen = true;
 			newButton.setAttribute('aria-expanded', 'true');
 			nav!.classList.add('nav-scrolled');
+			// Ensure header is visible when mobile menu opens
+			document.getElementById('site-header')?.classList.remove('header-hidden');
 			// Slide open: measure content height and animate
 			menu.style.maxHeight = menu.scrollHeight + 'px';
 			menu.style.opacity = '1';
@@ -246,13 +261,58 @@ const menuItems = [
 		menu.style.opacity = '0';
 	}
 
+	function initHideOnScroll() {
+		const header = document.getElementById('site-header');
+		if (!header) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let inactivityTimer: ReturnType<typeof setTimeout> | null = null;
+
+		function showHeader() {
+			header.classList.remove('header-hidden');
+		}
+
+		function resetInactivityTimer() {
+			if (inactivityTimer) clearTimeout(inactivityTimer);
+			inactivityTimer = setTimeout(showHeader, 2000);
+		}
+
+		function update() {
+			const currentScrollY = window.scrollY;
+			const mobileBtn = document.getElementById('mobile-menu-button');
+			const isMobileMenuOpen = mobileBtn?.getAttribute('aria-expanded') === 'true';
+
+			if (!isMobileMenuOpen) {
+				if (currentScrollY > lastScrollY && currentScrollY > 80) {
+					header.classList.add('header-hidden');
+				} else if (currentScrollY < lastScrollY) {
+					showHeader();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+			ticking = false;
+		}
+
+		window.addEventListener('scroll', () => {
+			if (!ticking) {
+				requestAnimationFrame(update);
+				ticking = true;
+			}
+			resetInactivityTimer();
+		}, { passive: true });
+	}
+
 	// Initialize on first load
 	initScrollEffect();
 	initMobileMenu();
+	initHideOnScroll();
 
 	// Re-initialize after view transitions
 	document.addEventListener('astro:page-load', () => {
 		initScrollEffect();
 		initMobileMenu();
+		initHideOnScroll();
 	});
 </script>

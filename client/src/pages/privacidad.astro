@@ -14,17 +14,31 @@ const breadcrumbSchema = {
 		{ "@type": "ListItem", "position": 2, "name": "Política de Privacidad", "item": `${siteOrigin}/privacidad` }
 	]
 };
+
+const webPageSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"@id": `${siteOrigin}/privacidad`,
+	"url": `${siteOrigin}/privacidad`,
+	"name": "Política de Privacidad | PROTON Fire & Rescue Ecuador",
+	"description": "Conoce cómo PROTON Fire & Rescue recopila, utiliza y protege tu información personal a través de Google Analytics y nuestro formulario de contacto.",
+	"inLanguage": "es",
+	"isPartOf": { "@id": `${siteOrigin}/#website` },
+	"publisher": { "@id": `${siteOrigin}/#organization` },
+	"datePublished": "2024-01-01",
+	"dateModified": "2026-04-01"
+};
 ---
 
 <Layout
 	title="Política de Privacidad | PROTON Fire & Rescue Ecuador"
 	description="Conoce cómo PROTON Fire & Rescue recopila, utiliza y protege tu información personal a través de Google Analytics y nuestro formulario de contacto."
 	keywords="política de privacidad, protección de datos, Google Analytics, formulario contacto, PROTON Fire Rescue"
-	jsonLd={breadcrumbSchema}
+	jsonLd={[breadcrumbSchema, webPageSchema]}
 >
 	<Menu currentPath={currentPath} />
 
-	<main class="min-h-screen dark:bg-[#0b0b12]">
+	<main id="main-content" class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section -->
 		<section class="pt-40 pb-16 bg-linear-to-b from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -101,28 +115,28 @@ const breadcrumbSchema = {
 							<li>Interacciones con el contenido del sitio</li>
 						</ul>
 						<p class="mt-4 leading-relaxed">
-							Google Analytics utiliza <strong class="text-[#2f2f3b] dark:text-white">cookies</strong> para recopilar esta información. Estas cookies no contienen información personal identificable. Para más detalles sobre las cookies que utilizamos, consulta nuestra <a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>. Los datos son procesados por Google conforme a su propia <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad</a>.
+							Google Analytics utiliza <strong class="text-[#2f2f3b] dark:text-white">cookies</strong> para recopilar esta información. Estas cookies no contienen información personal identificable. Para más detalles sobre las cookies que utilizamos, consulta nuestra <a href="/cookies" class="text-[#155DFC] hover:underline">Política de Cookies</a>. Los datos son procesados por Google conforme a su propia <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Política de Privacidad</a>.
 						</p>
 
 						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
 							2.3 Google Maps
 						</h3>
 						<p class="leading-relaxed">
-							En nuestra página de contacto integramos un mapa de <strong class="text-[#2f2f3b] dark:text-white">Google Maps</strong> mediante un iframe para mostrar la ubicación de nuestras instalaciones. Al cargar esta sección, Google puede recopilar datos técnicos como tu dirección IP. Este servicio se rige por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad de Google</a>.
+							En nuestra página de contacto integramos un mapa de <strong class="text-[#2f2f3b] dark:text-white">Google Maps</strong> mediante un iframe para mostrar la ubicación de nuestras instalaciones. Al cargar esta sección, Google puede recopilar datos técnicos como tu dirección IP. Este servicio se rige por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Política de Privacidad de Google</a>.
 						</p>
 
 						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
 							2.4 Cloudinary
 						</h3>
 						<p class="leading-relaxed">
-							Utilizamos <strong class="text-[#2f2f3b] dark:text-white">Cloudinary</strong> como red de distribución de contenido (CDN) para optimizar la entrega de imágenes. Al cargar imágenes, Cloudinary puede registrar datos técnicos como tu dirección IP y el tipo de navegador. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Política de Privacidad de Cloudinary</a>.
+							Utilizamos <strong class="text-[#2f2f3b] dark:text-white">Cloudinary</strong> como red de distribución de contenido (CDN) para optimizar la entrega de imágenes. Al cargar imágenes, Cloudinary puede registrar datos técnicos como tu dirección IP y el tipo de navegador. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Política de Privacidad de Cloudinary</a>.
 						</p>
 
 						<h3 class="text-xl font-bold text-[#2f2f3b] dark:text-white mb-3 mt-6">
 							2.5 WhatsApp
 						</h3>
 						<p class="leading-relaxed">
-							Nuestro sitio incluye enlaces directos a <strong class="text-[#2f2f3b] dark:text-white">WhatsApp</strong> (servicio de Meta Platforms, Inc.) para facilitar la comunicación. Al hacer clic en estos enlaces, serás redirigido a la aplicación de WhatsApp. No recopilamos datos a través de este canal; la conversación se rige por los <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Términos y Política de Privacidad de WhatsApp</a>.
+							Nuestro sitio incluye enlaces directos a <strong class="text-[#2f2f3b] dark:text-white">WhatsApp</strong> (servicio de Meta Platforms, Inc.) para facilitar la comunicación. Al hacer clic en estos enlaces, serás redirigido a la aplicación de WhatsApp. No recopilamos datos a través de este canal; la conversación se rige por los <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Términos y Política de Privacidad de WhatsApp</a>.
 						</p>
 					</div>
 
@@ -166,9 +180,9 @@ const breadcrumbSchema = {
 							De conformidad con los artículos 35 a 37 de la <strong class="text-[#2f2f3b] dark:text-white">LOPDP del Ecuador</strong>, informamos que los datos recopilados a través de servicios de terceros pueden ser transferidos y procesados en servidores ubicados fuera de Ecuador, específicamente:
 						</p>
 						<ul class="space-y-3 mb-4">
-							<li><strong class="text-[#2f2f3b] dark:text-white">Google LLC</strong> (Estados Unidos) — Google Analytics y Google Maps. Google cumple con estándares internacionales de protección de datos. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de Google</a>.</li>
-							<li><strong class="text-[#2f2f3b] dark:text-white">Cloudinary Ltd.</strong> (Internacional) — Almacenamiento y distribución de imágenes. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de Cloudinary</a>.</li>
-							<li><strong class="text-[#2f2f3b] dark:text-white">Meta Platforms, Inc.</strong> (Estados Unidos) — WhatsApp, al iniciar una conversación voluntariamente. Consulta la <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">política de privacidad de WhatsApp</a>.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Google LLC</strong> (Estados Unidos) — Google Analytics y Google Maps. Google cumple con estándares internacionales de protección de datos. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">política de privacidad de Google</a>.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Cloudinary Ltd.</strong> (Internacional) — Almacenamiento y distribución de imágenes. Consulta la <a href="https://cloudinary.com/privacy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">política de privacidad de Cloudinary</a>.</li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Meta Platforms, Inc.</strong> (Estados Unidos) — WhatsApp, al iniciar una conversación voluntariamente. Consulta la <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">política de privacidad de WhatsApp</a>.</li>
 						</ul>
 						<p class="leading-relaxed">
 							Estas transferencias se realizan con base en el consentimiento del usuario y en garantías adecuadas de protección de datos proporcionadas por cada proveedor, según lo establecido en la legislación ecuatoriana vigente.
@@ -181,7 +195,7 @@ const breadcrumbSchema = {
 							6. Cookies
 						</h2>
 						<p class="leading-relaxed">
-							Nuestro sitio web utiliza cookies propias y de terceros. Para información detallada sobre qué cookies utilizamos, su finalidad, duración y cómo gestionarlas, consulta nuestra <a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>.
+							Nuestro sitio web utiliza cookies propias y de terceros. Para información detallada sobre qué cookies utilizamos, su finalidad, duración y cómo gestionarlas, consulta nuestra <a href="/cookies" class="text-[#155DFC] hover:underline">Política de Cookies</a>.
 						</p>
 					</div>
 
@@ -211,7 +225,7 @@ const breadcrumbSchema = {
 							<li><strong class="text-[#2f2f3b] dark:text-white">Portabilidad:</strong> Solicitar la transferencia de tus datos a otro responsable.</li>
 						</ul>
 						<p class="mt-4 leading-relaxed">
-							Para ejercer cualquiera de estos derechos, puedes contactarnos en <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a>.
+							Para ejercer cualquiera de estos derechos, puedes contactarnos en <a href="mailto:info@protonfire.com" class="text-[#155DFC] hover:underline">info@protonfire.com</a>.
 						</p>
 					</div>
 
@@ -257,7 +271,7 @@ const breadcrumbSchema = {
 							Si tienes preguntas o inquietudes sobre esta Política de Privacidad o sobre el tratamiento de tus datos personales, no dudes en contactarnos:
 						</p>
 						<ul class="mt-4 space-y-2">
-							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#155DFC] hover:underline">info@protonfire.com</a></li>
 							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
 							<li><strong class="text-[#2f2f3b] dark:text-white">Dirección:</strong> Raúl González y Chimborazo Oe2-91, Quito, Ecuador</li>
 						</ul>
@@ -270,11 +284,11 @@ const breadcrumbSchema = {
 						</h2>
 						<ul class="space-y-2">
 							<li>
-								<a href="/terminos" class="text-[#504aff] hover:underline">Términos y Condiciones</a>
+								<a href="/terminos" class="text-[#155DFC] hover:underline">Términos y Condiciones</a>
 								<span> — Condiciones de uso del sitio web.</span>
 							</li>
 							<li>
-								<a href="/cookies" class="text-[#504aff] hover:underline">Política de Cookies</a>
+								<a href="/cookies" class="text-[#155DFC] hover:underline">Política de Cookies</a>
 								<span> — Detalle de cookies utilizadas y cómo gestionarlas.</span>
 							</li>
 						</ul>

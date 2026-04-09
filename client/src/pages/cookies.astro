@@ -14,17 +14,31 @@ const breadcrumbSchema = {
 		{ "@type": "ListItem", "position": 2, "name": "Política de Cookies", "item": `${siteOrigin}/cookies` }
 	]
 };
+
+const webPageSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"@id": `${siteOrigin}/cookies`,
+	"url": `${siteOrigin}/cookies`,
+	"name": "Política de Cookies | PROTON Fire & Rescue Ecuador",
+	"description": "Conoce qué cookies utiliza el sitio web de PROTON Fire & Rescue, su finalidad, duración y cómo puedes gestionarlas o desactivarlas.",
+	"inLanguage": "es",
+	"isPartOf": { "@id": `${siteOrigin}/#website` },
+	"publisher": { "@id": `${siteOrigin}/#organization` },
+	"datePublished": "2024-01-01",
+	"dateModified": "2026-04-01"
+};
 ---
 
 <Layout
 	title="Política de Cookies | PROTON Fire & Rescue Ecuador"
 	description="Conoce qué cookies utiliza el sitio web de PROTON Fire & Rescue, su finalidad, duración y cómo puedes gestionarlas o desactivarlas."
 	keywords="política de cookies, cookies Google Analytics, gestión de cookies, PROTON Fire Rescue, privacidad web"
-	jsonLd={breadcrumbSchema}
+	jsonLd={[breadcrumbSchema, webPageSchema]}
 >
 	<Menu currentPath={currentPath} />
 
-	<main class="min-h-screen dark:bg-[#0b0b12]">
+	<main id="main-content" class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section -->
 		<section class="pt-40 pb-16 bg-linear-to-b from-purple-50 via-white to-blue-50 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]">
 			<div class="max-w-360 mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -170,19 +184,19 @@ const breadcrumbSchema = {
 						</p>
 						<ul class="space-y-3">
 							<li>
-								<a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline font-semibold">Google Chrome</a>
+								<a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline font-semibold">Google Chrome</a>
 								<span> — Configuración → Privacidad y seguridad → Cookies y otros datos de sitios</span>
 							</li>
 							<li>
-								<a href="https://support.mozilla.org/es/kb/cookies-informacion-que-los-sitios-web-guardan-en-" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline font-semibold">Mozilla Firefox</a>
+								<a href="https://support.mozilla.org/es/kb/cookies-informacion-que-los-sitios-web-guardan-en-" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline font-semibold">Mozilla Firefox</a>
 								<span> — Configuración → Privacidad y seguridad → Cookies y datos del sitio</span>
 							</li>
 							<li>
-								<a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline font-semibold">Safari</a>
+								<a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline font-semibold">Safari</a>
 								<span> — Preferencias → Privacidad → Gestionar datos de sitios web</span>
 							</li>
 							<li>
-								<a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline font-semibold">Microsoft Edge</a>
+								<a href="https://support.microsoft.com/es-es/microsoft-edge/eliminar-cookies-en-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline font-semibold">Microsoft Edge</a>
 								<span> — Configuración → Cookies y permisos del sitio → Administrar y eliminar cookies</span>
 							</li>
 						</ul>
@@ -194,7 +208,7 @@ const breadcrumbSchema = {
 							Desactivar Google Analytics
 						</h3>
 						<p class="leading-relaxed">
-							Si deseas específicamente impedir que Google Analytics recopile datos de tu navegación, puedes instalar el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">complemento de inhabilitación de Google Analytics</a>, disponible para los principales navegadores.
+							Si deseas específicamente impedir que Google Analytics recopile datos de tu navegación, puedes instalar el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">complemento de inhabilitación de Google Analytics</a>, disponible para los principales navegadores.
 						</p>
 					</div>
 
@@ -209,11 +223,11 @@ const breadcrumbSchema = {
 						<ul class="space-y-3">
 							<li>
 								<strong class="text-[#2f2f3b] dark:text-white">Google Analytics</strong> (Google LLC, Estados Unidos) — Servicio de análisis web.
-								<a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline ml-1">Política de cookies de Google</a>
+								<a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline ml-1">Política de cookies de Google</a>
 							</li>
 							<li>
 								<strong class="text-[#2f2f3b] dark:text-white">Google Maps</strong> (Google LLC, Estados Unidos) — Mapa interactivo en la página de contacto.
-								<a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline ml-1">Política de cookies de Google</a>
+								<a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline ml-1">Política de cookies de Google</a>
 							</li>
 						</ul>
 						<p class="mt-4 leading-relaxed">
@@ -227,7 +241,7 @@ const breadcrumbSchema = {
 							7. Transferencia internacional de datos
 						</h2>
 						<p class="leading-relaxed">
-							La información recopilada por las cookies analíticas de Google Analytics puede ser transferida y almacenada en servidores de <strong class="text-[#2f2f3b] dark:text-white">Google LLC</strong> ubicados en Estados Unidos u otros países. Estas transferencias se realizan conforme a los artículos 35 a 37 de la <strong class="text-[#2f2f3b] dark:text-white">LOPDP del Ecuador</strong>, con base en las garantías de protección de datos proporcionadas por Google. Para más detalles, consulta nuestra <a href="/privacidad" class="text-[#504aff] hover:underline">Política de Privacidad</a>.
+							La información recopilada por las cookies analíticas de Google Analytics puede ser transferida y almacenada en servidores de <strong class="text-[#2f2f3b] dark:text-white">Google LLC</strong> ubicados en Estados Unidos u otros países. Estas transferencias se realizan conforme a los artículos 35 a 37 de la <strong class="text-[#2f2f3b] dark:text-white">LOPDP del Ecuador</strong>, con base en las garantías de protección de datos proporcionadas por Google. Para más detalles, consulta nuestra <a href="/privacidad" class="text-[#155DFC] hover:underline">Política de Privacidad</a>.
 						</p>
 					</div>
 
@@ -253,7 +267,7 @@ const breadcrumbSchema = {
 							Si tienes preguntas sobre nuestra Política de Cookies o sobre el tratamiento de tus datos, puedes contactarnos:
 						</p>
 						<ul class="mt-4 space-y-2">
-							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#504aff] hover:underline">info@protonfire.com</a></li>
+							<li><strong class="text-[#2f2f3b] dark:text-white">Correo:</strong> <a href="mailto:info@protonfire.com" class="text-[#155DFC] hover:underline">info@protonfire.com</a></li>
 							<li><strong class="text-[#2f2f3b] dark:text-white">Teléfono:</strong> +593 99 252 6658</li>
 							<li><strong class="text-[#2f2f3b] dark:text-white">Dirección:</strong> Raúl González y Chimborazo Oe2-91, Quito, Ecuador</li>
 						</ul>
@@ -266,11 +280,11 @@ const breadcrumbSchema = {
 						</h2>
 						<ul class="space-y-2">
 							<li>
-								<a href="/privacidad" class="text-[#504aff] hover:underline">Política de Privacidad</a>
+								<a href="/privacidad" class="text-[#155DFC] hover:underline">Política de Privacidad</a>
 								<span> — Cómo recopilamos, usamos y protegemos tus datos personales.</span>
 							</li>
 							<li>
-								<a href="/terminos" class="text-[#504aff] hover:underline">Términos y Condiciones</a>
+								<a href="/terminos" class="text-[#155DFC] hover:underline">Términos y Condiciones</a>
 								<span> — Condiciones de uso del sitio web.</span>
 							</li>
 						</ul>

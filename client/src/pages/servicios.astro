@@ -185,7 +185,7 @@ const serviciosJsonLd = [
 >
 	<Menu currentPath={currentPath}/>
 
-	<main class="min-h-screen dark:bg-[#0b0b12]">
+	<main id="main-content" class="min-h-screen dark:bg-[#0b0b12]">
 		<!-- Hero Section - Dark with gradient like index -->
 		<section
 			class="relative min-h-150 md:min-h-170 py-30 md:py-80 overflow-hidden"
@@ -245,7 +245,7 @@ const serviciosJsonLd = [
 								trainingServices.map((item) => (
 									<div class="border-b border-gray-200 dark:border-[#2a2a3e] pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
-											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+											<div class="w-6 h-6 rounded-full bg-[#155DFC] flex items-center justify-center shrink-0 mt-1">
 												<svg
 													class="w-4 h-4 text-white"
 													fill="none"
@@ -260,14 +260,14 @@ const serviciosJsonLd = [
 													/>
 												</svg>
 											</div>
-											<h2 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
+											<h3 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
 												{item.name}
-											</h2>
+											</h3>
 										</div>
 										<p class="text-[#6b7280] dark:text-[#9ca3b8]">
 											{item.description}
 										</p>
-										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Solicitar</a>
+										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Solicitar</a>
 									</div>
 								))
 							}
@@ -291,7 +291,7 @@ const serviciosJsonLd = [
 								maintenanceServices.map((item) => (
 									<div class="border-b border-gray-200 dark:border-[#2a2a3e] pb-4 last:border-0" data-aos="fade-up">
 										<div class="flex items-start gap-3">
-											<div class="w-6 h-6 rounded-full bg-[#504aff] flex items-center justify-center shrink-0 mt-1">
+											<div class="w-6 h-6 rounded-full bg-[#155DFC] flex items-center justify-center shrink-0 mt-1">
 												<svg
 													class="w-4 h-4 text-white"
 													fill="none"
@@ -306,14 +306,14 @@ const serviciosJsonLd = [
 													/>
 												</svg>
 											</div>
-											<h2 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
+											<h3 class=" text-xl font-bold text-[#2f2f3b] dark:text-white mb-1">
 												{item.name}
-											</h2>
+											</h3>
 										</div>
 										<p class="text-[#6b7280] dark:text-[#9ca3b8]">
 											{item.description}
 										</p>
-										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#504aff] hover:underline">Solicitar</a>
+										<a href={`https://wa.me/593992526658?text=Hola, me gustaría saber información acerca del servicio de *${item.name}*`} target="_blank" rel="noopener noreferrer" class="text-[#155DFC] hover:underline">Solicitar</a>
 									</div>
 								))
 							}

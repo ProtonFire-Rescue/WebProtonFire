@@ -206,8 +206,8 @@ const websiteSchema = {
     <meta name='apple-mobile-web-app-title' content='PROTON Fire' />
 
     <!-- Theme Color -->
-    <meta name='theme-color' content='#504aff' />
-    <meta name='msapplication-TileColor' content='#504aff' />
+    <meta name='theme-color' content='#155DFC' />
+    <meta name='msapplication-TileColor' content='#155DFC' />
     <meta name='msapplication-TileImage' content='/mstile-144x144.png' />
 
     <!-- Fonts (self-hosted via Astro Fonts API) -->
@@ -271,9 +271,11 @@ const websiteSchema = {
     <link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' media='print' onload="this.media='all'" />
     <noscript><link rel='stylesheet' href='https://unpkg.com/aos@2.3.4/dist/aos.css' /></noscript>
   </head>
-  <body id="main-content" class='relative font-sans antialiased bg-white dark:bg-[#0b0b12] text-[#2f2f3b] dark:text-[#e8e8f0] transition-colors duration-300'>
-    
-				<ThemeToggle />
+  <body class='relative font-sans antialiased bg-white dark:bg-[#0b0b12] text-[#2f2f3b] dark:text-[#e8e8f0] transition-colors duration-300'>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#155DFC] focus:text-white focus:rounded-lg focus:font-semibold focus:shadow-lg">
+      Saltar al contenido principal
+    </a>
+    <ThemeToggle />
     <Toaster client:idle transition:persist richColors={true} />
     <slot />
   </body>

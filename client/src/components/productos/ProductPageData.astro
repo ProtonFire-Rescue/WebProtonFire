@@ -1,22 +1,32 @@
 ---
-import ProductDetail from '@/components/react-island/ProductDetail'
-import RelatedProducts from '@/components/react-island/RelatedProducts'
-import { BACKEND_URL } from '@/utils/constants'
-import { getProductBySlugQuery, resolveBackendUrl } from '@/utils/server'
-import type { ProductView, StrapiProduct } from '@/types/types'
+import ProductShareCTA from "@/components/react-island/ProductShareCTA";
+import RelatedProducts from "@/components/react-island/RelatedProducts";
+import { BACKEND_URL } from "@/utils/constants";
+import { getProductBySlugQuery, resolveBackendUrl } from "@/utils/server";
+import type { ProductView, StrapiProduct } from "@/types/types";
+import {
+  Award,
+  Check,
+  ChevronRight,
+  Headphones,
+  Shield,
+  Truck,
+  User,
+} from "lucide-react";
+import { ImageCarrousel } from "../react-island/DetailComponent/ImageCarrousel";
 
-const { slug } = Astro.props
+const { slug } = Astro.props;
 
-const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
-const publicBackendUrl = strapiBaseUrl || BACKEND_URL
+const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
+const publicBackendUrl = strapiBaseUrl || BACKEND_URL;
 const { data: product } = await getProductBySlugQuery(
   slug,
-  'fields[0]=name&fields[1]=description&fields[2]=Genero&fields[3]=slug&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&populate[certifications][fields][0]=name&populate[certifications][fields][1]=description',
-  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
-)
+  "fields[0]=name&fields[1]=description&fields[2]=Genero&fields[3]=slug&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&populate[certifications][fields][0]=name&populate[certifications][fields][1]=description",
+  { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro },
+);
 
 if (!product?.length) {
-  return Astro.redirect('/catalogo')
+  return Astro.redirect("/catalogo");
 }
 
 const toProductView = (p: StrapiProduct): ProductView => ({
@@ -27,31 +37,203 @@ const toProductView = (p: StrapiProduct): ProductView => ({
   images: (p.images ?? []).map((image) => ({
     id: image.id,
     url: image.url,
-    alt: image.alternativeText ?? ''
+    alt: image.alternativeText ?? "",
   })),
-  category: p.categories?.[0]?.name ?? '',
+  category: p.categories?.[0]?.name ?? "",
   categories: p.categories?.map((category) => category.name) ?? [],
-  brand: p.brand?.name ?? '',
-  model: p.model?.name ?? '',
+  brand: p.brand?.name ?? "",
+  model: p.model?.name ?? "",
   description: p.description,
-  genero: p.Genero ?? 'N/A',
+  genero: p.Genero ?? "N/A",
   certifications: (p.certifications ?? []).map((cert) => ({
     id: cert.id,
     name: cert.name,
-    description: cert.description
-  }))
-})
+    description: cert.description,
+  })),
+});
 
-const productFilter = toProductView(product[0])
-const categoryName = product[0].categories?.[0]?.name ?? ''
+const productFilter = toProductView(product[0]);
+const categoryName = product[0].categories?.[0]?.name ?? "";
 ---
 
-<ProductDetail product={productFilter} client:idle />
-<RelatedProducts
-  categoryName={categoryName}
-  excludeId={product[0].documentId}
-  backendUrl={publicBackendUrl}
-  client:idle
-/>
+<section aria-label="Detalle del producto">
 
-<!-- Meta tags SEO se manejan server-side en producto/[id].astro -->
+  {/* Breadcrumb */}
+  <nav
+    aria-label="Breadcrumb"
+    class="max-w-7xl mx-auto pt-30 px-4 sm:px-6 lg:px-8 py-4"
+  >
+    <ol class="flex items-center gap-1 text-sm text-gray-400 dark:text-[#6b7280] flex-wrap">
+      <li>
+        <a href="/" class="hover:text-[#155DFC] transition-colors">Inicio</a>
+      </li>
+      <li aria-hidden="true">
+        <ChevronRight size={14} className="mx-1" />
+      </li>
+      <li>
+        <a href="/catalogo/all" class="hover:text-[#155DFC] transition-colors">
+          Catálogo
+        </a>
+      </li>
+      <li aria-hidden="true">
+        <ChevronRight size={14} className="mx-1" />
+      </li>
+      <li
+        aria-current="page"
+        class="text-[#2f2f3b] dark:text-white font-medium truncate max-w-[200px]"
+      >
+        {productFilter.name}
+      </li>
+    </ol>
+  </nav>
+
+  {/* Main Product Grid */}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+      {/* Left — Image Gallery */}
+      <div class="lg:sticky lg:top-24">
+        <ImageCarrousel images={productFilter.images} name={productFilter.name} client:load/>
+      </div>
+
+      {/* Right — Product Info */}
+      <div class="space-y-6 min-w-0">
+
+        {/* Category badges */}
+        <div class="flex flex-wrap gap-2">
+          {
+            productFilter.categories.map((category) => (
+              <a
+                href={`/catalogo/${category}`}
+                class="group relative inline-flex items-center gap-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-200 dark:border-green-800"
+              >
+                <Check size={12} />
+                {category}
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white dark:bg-[#1a1a2e] border border-gray-200 dark:border-[#2a2a3e] shadow-lg text-gray-700 dark:text-[#c8c8d8] text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10">
+                  {`Este producto pertenece a la categoría de productos en "${category}"`}
+                  <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white" />
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        {/* Title & Metadata */}
+        <header>
+          <h1 class="text-3xl md:text-4xl font-bold text-[#2f2f3b] dark:text-white mb-4">
+            {productFilter.name}
+          </h1>
+          <div class="flex items-center gap-3 text-sm flex-wrap">
+            <span class="text-gray-500 dark:text-[#9ca3b8]">
+              Marca:{" "}
+              <span class="text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full">
+                {productFilter.brand}
+              </span>
+            </span>
+            <span class="text-gray-300 dark:text-[#2a2a3e]" aria-hidden="true">|</span>
+            <span class="text-gray-500 dark:text-[#9ca3b8]">
+              Modelo:{" "}
+              <span class="text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full">
+                {productFilter.model}
+              </span>
+            </span>
+            {
+              productFilter.genero && productFilter.genero !== "N/A" && (
+                <>
+                  <span class="text-gray-300 dark:text-[#2a2a3e]" aria-hidden="true">|</span>
+                  <span class="inline-flex items-center gap-1 text-gray-500 dark:text-[#9ca3b8]">
+                    <User size={13} />
+                    <span class="text-[#2f2f3b] dark:text-white font-medium bg-blue-50 dark:bg-[#1a1a2e] px-2 py-1 rounded-full">
+                      {productFilter.genero}
+                    </span>
+                  </span>
+                </>
+              )
+            }
+          </div>
+        </header>
+
+        {/* Description */}
+        <article class="border-t border-gray-100 dark:border-[#2a2a3e] pt-6">
+          <h2 class="text-lg font-bold text-[#2f2f3b] dark:text-white mb-3">
+            Descripción del producto
+          </h2>
+          <p class="text-gray-600 dark:text-[#9ca3b8] leading-relaxed">
+            {productFilter.description}
+          </p>
+        </article>
+
+        {/* Certifications */}
+        {
+          productFilter.certifications.length > 0 && (
+            <article class="border-t border-gray-100 dark:border-[#2a2a3e] pt-6">
+              <h2 class="text-lg font-bold text-[#2f2f3b] dark:text-white mb-3 flex items-center gap-2">
+                <Award size={20} className="text-[#155DFC]" />
+                Certificaciones
+              </h2>
+              <div class="flex flex-wrap gap-2">
+                {productFilter.certifications.map((cert) => (
+                  <div
+                    class="group relative inline-flex items-center gap-1.5 bg-[#155DFC]/5 text-[#155DFC] text-sm font-semibold px-4 py-2 rounded-full border border-[#155DFC]/20 hover:bg-[#155DFC]/10 transition-colors cursor-pointer"
+                  >
+                    <Shield size={14} />
+                    {cert.name}
+                    {cert.description && (
+                      <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-60 bg-white dark:bg-[#1a1a2e] border border-gray-200 dark:border-[#2a2a3e] shadow-lg text-gray-700 dark:text-[#c8c8d8] text-xs font-normal p-3 rounded-lg opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible transition-all duration-200 z-10">
+                        {cert.description}
+                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-white" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </article>
+          )
+        }
+
+        {/* Trust indicators */}
+        <div
+          class="grid grid-cols-3 gap-3 py-5 border-t border-b border-gray-100 dark:border-[#2a2a3e]"
+          aria-label="Garantías del servicio"
+        >
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 bg-[#155DFC]/10 rounded-full flex items-center justify-center">
+              <Shield size={18} className="text-[#155DFC]" />
+            </div>
+            <span class="text-sm text-gray-600 dark:text-[#9ca3b8] font-medium">
+              Certificado<br />internacionalmente
+            </span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 bg-[#155DFC]/10 rounded-full flex items-center justify-center">
+              <Truck size={18} className="text-[#155DFC]" />
+            </div>
+            <span class="text-sm text-gray-600 dark:text-[#9ca3b8] font-medium">
+              Envío a<br />todo Ecuador
+            </span>
+          </div>
+          <div class="flex flex-col items-center text-center gap-2">
+            <div class="w-10 h-10 bg-[#155DFC]/10 rounded-full flex items-center justify-center">
+              <Headphones size={18} className="text-[#155DFC]" />
+            </div>
+            <span class="text-sm text-gray-600 dark:text-[#9ca3b8] font-medium">
+              Soporte<br />técnico
+            </span>
+          </div>
+        </div>
+
+        {/* CTA — Cotizar y Compartir */}
+        <ProductShareCTA product={productFilter} client:load />
+
+      </div>
+    </div>
+  </div>
+
+  <RelatedProducts
+    categoryName={categoryName}
+    excludeId={product[0].documentId}
+    backendUrl={publicBackendUrl}
+    client:idle
+  />
+
+</section>
