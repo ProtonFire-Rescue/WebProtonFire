@@ -98,16 +98,16 @@ export default function RelatedProducts({
                     className='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
                     loading='lazy'
                   />
-                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
+                  <span className='absolute top-3 left-3 bg-[#155DFC]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
                     {item.category}
                   </span>
                 </div>
                 <div className='p-4'>
-                  <h3 className='font-semibold text-[#2f2f3b] dark:text-white text-base mb-1 uppercase tracking-wide group-hover:text-[#504aff] transition-colors'>
+                  <h3 className='font-semibold text-[#2f2f3b] dark:text-white text-base mb-1 uppercase tracking-wide group-hover:text-[#155DFC] transition-colors'>
                     {item.name}
                   </h3>
                   <p className='text-sm text-gray-400 dark:text-[#6b7280] mb-1'>{item.model}</p>
-                  <p className='text-sm text-[#504aff] font-medium'>
+                  <p className='text-sm text-[#155DFC] font-medium'>
                     Marca: {item.brand}
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export default function RelatedProducts({
           <div className='flex justify-center mt-10'>
             <a
               href={`/catalogo/${encodeURIComponent(categoryName)}`}
-              className='inline-flex items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#3f3bcc] transition-all duration-300 shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 text-sm'
+              className='inline-flex items-center gap-2 bg-[#155DFC] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#114ACA] transition-all duration-300 shadow-md shadow-[#155DFC]/20 hover:shadow-lg hover:shadow-[#155DFC]/30 hover:-translate-y-0.5 text-sm'
             >
               Ver todos los productos de la línea "{categoryName}"
               <svg

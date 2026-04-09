@@ -38,8 +38,6 @@ export default function ProductCatalog({
   const [priceSort, setPriceSort] = useState<'none' | 'asc' | 'desc'>('none')
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [categoriesList, setCategoriesList] = useState<string[]>(['Todos'])
-  const [brandList, setBrandList] = useState<string[]>(['Todos'])
-  const [typeList, setTypeList] = useState<string[]>(['Todos'])
 
 // Get type from URL params on mount
 useEffect(() => {
@@ -53,8 +51,6 @@ useEffect(() => {
 
   useEffect(() => {
     setCategoriesList(['Todos', ...(categories || [])])
-    setBrandList(['Todos', ...(brands || [])])
-    setTypeList(['Todos', ...(types || [])])
   }, [categories, brands, types])
 
   // Compute products filtered only by category (to derive available brands/types)
@@ -86,10 +82,11 @@ useEffect(() => {
     const brandsSet =
       selectedType === 'Todos'
         ? new Set(productsByCategory.map((p) => p.brand).filter(Boolean))
-        : new Set(productsByType.map((p) => p.brand).filter(Boolean))
+        : new Set(productsByType.filter((p) => p.categories.includes(selectedCategory)).map((p) => p.brand).filter(Boolean))
+      
 
     return ['Todos', ...Array.from(brandsSet).sort()]
-  }, [productsByCategory, productsByType, selectedType])
+  }, [productsByCategory, productsByType, selectedType, selectedCategory])
 
   // Reset dependent filters when they become unavailable after a category change
   useEffect(() => {
@@ -198,7 +195,7 @@ useEffect(() => {
       {/* ── Fixed Floating Filter Button ── */}
       <button
         onClick={() => setDrawerOpen(true)}
-        className='fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-[#504aff] text-white pl-5 pr-6 py-3.5 rounded-full shadow-xl shadow-[#504aff]/30 hover:bg-[#3f3bcc] hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm'
+        className='fixed bottom-6 right-6 z-40 flex items-center gap-2 bg-[#155DFC] text-white pl-5 pr-6 py-3.5 rounded-full shadow-xl shadow-[#155DFC]/30 hover:bg-[#114ACA] hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300 font-semibold text-sm'
         aria-label='Abrir filtros'
       >
         <svg
@@ -270,7 +267,7 @@ useEffect(() => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder='Buscar producto...'
-                className='w-full px-4 py-2.5 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-sm bg-white dark:bg-[#0b0b12] dark:text-white dark:placeholder-[#6b7280]'
+                className='w-full px-4 py-2.5 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all text-sm bg-white dark:bg-[#0b0b12] dark:text-white dark:placeholder-[#6b7280]'
               />
             </div>
 
@@ -286,8 +283,8 @@ useEffect(() => {
                     onClick={() => setSelectedCategory(cat)}
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedCategory === cat
-                        ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
+                        ? 'bg-[#155DFC] text-white border-[#155DFC]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#155DFC] hover:text-[#155DFC]'
                     }`}
                   >
                     {cat}
@@ -306,8 +303,8 @@ useEffect(() => {
                     onClick={() => setSelectedType(type)}
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedType === type
-                        ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
+                        ? 'bg-[#155DFC] text-white border-[#155DFC]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#155DFC] hover:text-[#155DFC]'
                     }`}
                   >
                     {type}
@@ -326,8 +323,8 @@ useEffect(() => {
                     onClick={() => setSelectedBrand(brand)}
                     className={`px-4 py-2 text-sm border rounded-full transition-colors ${
                       selectedBrand === brand
-                        ? 'bg-[#504aff] text-white border-[#504aff]'
-                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#504aff] hover:text-[#504aff]'
+                        ? 'bg-[#155DFC] text-white border-[#155DFC]'
+                        : 'border-gray-200 dark:border-[#2a2a3e] text-gray-600 dark:text-[#9ca3b8] hover:border-[#155DFC] hover:text-[#155DFC]'
                     }`}
                   >
                     {brand}
@@ -344,8 +341,8 @@ useEffect(() => {
                 <button
                   onClick={() => setPriceSort(priceSort === 'desc' ? 'none' : 'desc')}
                   className={`flex-1 px-4 py-2 text-sm rounded-full transition-colors ${priceSort === 'desc'
-                      ? 'bg-[#504aff] text-white'
-                      : 'bg-[#2f2f3b] text-white hover:bg-[#504aff]'
+                      ? 'bg-[#155DFC] text-white'
+                      : 'bg-[#2f2f3b] text-white hover:bg-[#155DFC]'
                     }`}
                 >
                   Caro
@@ -353,8 +350,8 @@ useEffect(() => {
                 <button
                   onClick={() => setPriceSort(priceSort === 'asc' ? 'none' : 'asc')}
                   className={`flex-1 px-4 py-2 text-sm rounded-full transition-colors ${priceSort === 'asc'
-                      ? 'bg-[#504aff] text-white'
-                      : 'bg-[#2f2f3b] text-white hover:bg-[#504aff]'
+                      ? 'bg-[#155DFC] text-white'
+                      : 'bg-[#2f2f3b] text-white hover:bg-[#155DFC]'
                     }`}
                 >
                   Más barato
@@ -375,7 +372,7 @@ useEffect(() => {
             )}
             <button
               onClick={() => setDrawerOpen(false)}
-              className='text-center block w-full px-4 py-3 text-sm bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors font-semibold shadow-md shadow-[#504aff]/20'
+              className='text-center block w-full px-4 py-3 text-sm bg-[#155DFC] text-white rounded-full hover:bg-[#114ACA] transition-colors font-semibold shadow-md shadow-[#155DFC]/20'
             >
               Ver {filteredProducts.length} productos
             </button>
@@ -388,14 +385,17 @@ useEffect(() => {
         {/* Search Bar */}
         <div className='max-w-xl mb-6'>
           <div className='relative'>
+            <label htmlFor='product-search' className='sr-only'>Buscar producto</label>
             <input
-              type='text'
+              id='product-search'
+              type='search'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder='Buscar producto...'
-              className='w-full px-4 py-3 pr-12 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all text-gray-600 dark:text-white bg-white dark:bg-[#12121e] dark:placeholder-[#6b7280]'
+              aria-label='Buscar producto en el catálogo'
+              className='w-full px-4 py-3 pr-12 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all text-gray-600 dark:text-white bg-white dark:bg-[#12121e] dark:placeholder-[#6b7280]'
             />
-            <button className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 dark:bg-[#1a1a2e] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#2a2a3e] transition-colors'>
+            <button aria-label='Buscar' className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 dark:bg-[#1a1a2e] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#2a2a3e] transition-colors'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='16'
@@ -422,7 +422,7 @@ useEffect(() => {
               Filtros activos:
             </span>
             {selectedCategory !== 'Todos' && (
-              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#155DFC]/10 text-[#155DFC] text-xs font-medium rounded-full'>
                 {selectedCategory}
                 <button
                   onClick={() => setSelectedCategory('Todos')}
@@ -447,7 +447,7 @@ useEffect(() => {
               </span>
             )}
             {selectedType !== 'Todos' && (
-              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#155DFC]/10 text-[#155DFC] text-xs font-medium rounded-full'>
                 {selectedType}
                 <button
                   onClick={() => setSelectedType('Todos')}
@@ -472,7 +472,7 @@ useEffect(() => {
               </span>
             )}
             {selectedBrand !== 'Todos' && (
-              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#155DFC]/10 text-[#155DFC] text-xs font-medium rounded-full'>
                 {selectedBrand}
                 <button
                   onClick={() => setSelectedBrand('Todos')}
@@ -497,7 +497,7 @@ useEffect(() => {
               </span>
             )}
             {priceSort !== 'none' && (
-              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#504aff]/10 text-[#504aff] text-xs font-medium rounded-full'>
+              <span className='inline-flex items-center gap-1 px-3 py-1 bg-[#155DFC]/10 text-[#155DFC] text-xs font-medium rounded-full'>
                 Precio:{' '}
                 {priceSort === 'asc' ? 'Menor a mayor' : 'Mayor a menor'}
                 <button
@@ -548,17 +548,18 @@ useEffect(() => {
             </p>
             <button
               onClick={resetFilters}
-              className='px-6 py-2 bg-[#504aff] text-white rounded-full hover:bg-[#3f3bcc] transition-colors'
+              className='px-6 py-2 bg-[#155DFC] text-white rounded-full hover:bg-[#114ACA] transition-colors'
             >
               Limpiar filtros
             </button>
           </div>
         ) : (
-          <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6'>
             {filteredProducts.map((product) => (
-              <div
+              <a
+                href={productUrl(product.category, product.slug)}
                 key={product.id}
-                className='group bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] overflow-hidden hover:shadow-xl dark:hover:shadow-black/30 transition-all duration-300 cursor-pointer'
+                className='group bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] hover:border-[#155DFC] overflow-hidden hover:shadow-xl dark:hover:shadow-black/30 transition-all duration-300 cursor-pointer'
               >
                 <div className='relative aspect-3/4 overflow-hidden bg-gray-50 dark:bg-[#12121e] p-4'>
                   <img
@@ -569,7 +570,7 @@ useEffect(() => {
                     width={300}
                     height={300}
                   />
-                  <span className='absolute top-3 left-3 bg-[#504aff]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
+                  <span className='absolute top-3 left-3 bg-[#155DFC]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
                     {product.category}
                   </span>
                 </div>
@@ -578,17 +579,11 @@ useEffect(() => {
                     {product.name}
                   </h4>
                   <p className='text-sm text-gray-400 dark:text-[#6b7280] mb-1'>{product.model}</p>
-                  <p className='text-sm text-[#504aff] font-medium mb-3'>
+                  <p className='text-sm text-[#155DFC] font-medium'>
                     Marca: {product.brand}
                   </p>
-                  <a
-                    href={productUrl(product.category, product.slug)}
-                    className='block text-center w-full bg-[#2f2f3b] text-white text-sm font-medium py-2.5 rounded-lg hover:bg-[#504aff] transition-colors'
-                  >
-                    Ver más
-                  </a>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}

@@ -119,7 +119,7 @@ const container = {
 };
 
 const h1 = {
-  color: "#504aff",
+  color: "#155DFC",
   fontSize: "24px",
   fontWeight: "600",
   lineHeight: "1.4",

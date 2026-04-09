@@ -30,8 +30,8 @@ export default function Destacados() {
                         key={item.name}
                         className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-300 ${
                             selectedProduct === index
-                                ? 'bg-[#504aff] text-white shadow-md shadow-[#504aff]/20'
-                                : 'text-gray-600 hover:text-[#504aff] hover:bg-white'
+                                ? 'bg-[#155DFC] text-white shadow-md shadow-[#155DFC]/20'
+                                : 'text-gray-600 hover:text-[#155DFC] hover:bg-white'
                         }`}
                         onClick={() => setSelectedProduct(index)}
                     >
@@ -45,7 +45,7 @@ export default function Destacados() {
                     <h2 className="text-3xl font-bold text-[#2f2f3b] dark:text-white">{destacados[selectedProduct].title}</h2>
                     <p className="w-75 md:w-125 lg:w-140 text-gray-600 dark:text-gray-300 leading-relaxed">{destacados[selectedProduct].description}</p>
                     <div>
-                        <a className="btn border-0 inline-flex w-full md:w-auto h-13.75 text-[15px] items-center gap-2 bg-[#504aff] text-white font-semibold px-8 py-4 rounded-[30px] hover:bg-[#3f3bcc] justify-center shadow-md shadow-[#504aff]/20 hover:shadow-lg hover:shadow-[#504aff]/30 hover:-translate-y-0.5 transition-all duration-300 shrink-0" href={`/productos/${destacados[selectedProduct].name.toLowerCase()}`}>
+                        <a className="btn border-0 inline-flex w-full md:w-auto h-13.75 text-[15px] items-center gap-2 bg-[#155DFC] text-white font-semibold px-8 py-4 rounded-[30px] hover:bg-[#114ACA] justify-center shadow-md shadow-[#155DFC]/20 hover:shadow-lg hover:shadow-[#155DFC]/30 hover:-translate-y-0.5 transition-all duration-300 shrink-0" href={`/productos/${destacados[selectedProduct].name.toLowerCase()}`}>
                             <div className="flex items-center justify-center text-[15px]">
                                 <span>Explora más</span><ChevronRight width={20}/>
                             </div>

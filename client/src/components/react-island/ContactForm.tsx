@@ -75,7 +75,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           {...register("name", { required: "El nombre es obligatorio" })}
           type="text"
           id="name"
-          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+          autoComplete="name"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
             errors.name ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Nombres y apellidos..."
@@ -99,7 +100,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           })}
           type="email"
           id="email"
-          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+          autoComplete="email"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
             errors.email ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Email..."
@@ -117,7 +119,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           {...register("asunto", { required: "El asunto es obligatorio" })}
           type="text"
           id="asunto"
-          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
             errors.asunto ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Asunto..."
@@ -131,10 +133,17 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           Teléfono *
         </label>
         <input
-          {...register("phone", { required: "Faltó tu número telefónico, agrégalo para poder contactarte" })}
-          type="string"
+          {...register("phone", {
+            required: "Faltó tu número telefónico, agrégalo para poder contactarte",
+            pattern: {
+              value: /^[+]?[\d\s\-().]{7,20}$/,
+              message: "Número de teléfono inválido",
+            },
+          })}
+          type="tel"
           id="phone"
-          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
+          autoComplete="tel"
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all dark:text-white dark:placeholder-[#6b7280] ${
             errors.phone ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="0922211..."
@@ -152,7 +161,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           {...register("message", { required: "El mensaje es obligatorio" })}
           id="message"
           rows={4}
-          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#504aff] focus:border-transparent transition-all resize-none dark:text-white dark:placeholder-[#6b7280] ${
+          className={`w-full px-4 py-3 bg-white dark:bg-[#12121e] border rounded-xl focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all resize-none dark:text-white dark:placeholder-[#6b7280] ${
             errors.message ? "border-red-500 focus:ring-red-200" : "border-gray-200 dark:border-[#2a2a3e]"
           }`}
           placeholder="Tu mensaje..."
@@ -165,7 +174,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#504aff] text-white font-semibold py-4 px-8 rounded-full hover:bg-[#3f3bcc] transition-colors shadow-lg shadow-[#504aff]/30 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-[#155DFC] text-white font-semibold py-4 px-8 rounded-full hover:bg-[#114ACA] transition-colors shadow-lg shadow-[#155DFC]/30 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Enviando..." : "Contáctanos"}
       </button>

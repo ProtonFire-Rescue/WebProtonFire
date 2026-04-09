@@ -31,7 +31,7 @@ const WelcomeEmail = ({
         <Container style={container}>
           
           <Section style={headerSection}>
-            <Text style={logoText}>PROTON<span style={{color: '#504aff'}}>FIRE</span></Text>
+            <Text style={logoText}>PROTON<span style={{color: '#155DFC'}}>FIRE</span></Text>
           </Section>
 
           <Heading style={heading}>
