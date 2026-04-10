@@ -5,7 +5,7 @@ import { Image } from 'astro:assets'
 const strapiBaseUrl = resolveBackendUrl({ astro: Astro })
 
 const { data } = await getProductsQuery(
-  'fields[0]=name&fields[1]=slug&populate[type][fields][0]=name&populate[model][fields][0]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&pagination[pageSize]=100&sort[0]=createdAt:desc',
+  'fields[0]=name&fields[1]=slug&populate[type][fields][0]=name&populate[model][fields][0]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[brand][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
   { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
 )
 
@@ -17,6 +17,7 @@ type Card = {
   image: string
   category: string
   model: string
+  brand: string
 }
 
 const cards: Card[] = (data ?? []).flatMap((p: any) => {
@@ -30,7 +31,8 @@ const cards: Card[] = (data ?? []).flatMap((p: any) => {
         slug: p.slug,
         image: p.images?.[0]?.url ?? '',
         category: 'Otros',
-        model: p.model?.name ?? ''
+        model: p.model?.name ?? '',
+        brand: p.brand?.name ?? ''
       }
     ]
   }
@@ -41,7 +43,8 @@ const cards: Card[] = (data ?? []).flatMap((p: any) => {
     name: p.name,
     image: p.images?.[0]?.url ?? '',
     category: cat.name,
-    model: p.model?.name ?? ''
+    model: p.model?.name ?? '',
+    brand: p.brand?.name ?? ''
   }))
 })
 
@@ -73,49 +76,43 @@ const totalCount = cards.length
               <p class='text-sm text-gray-500 dark:text-[#9ca3b8]'>No hay productos disponibles</p>
             ) : (
               <div>
-                <div class='grid grid-cols-1 md:grid-cols-4 gap-6'>
-                  {items.slice(0, 4).map((product) => (
-                    <div class='group' key={product.id}>
-                      <div class='bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] overflow-hidden hover:shadow-xl dark:hover:shadow-black/30 transition-all duration-300'>
-                        <div class='relative aspect-[3/4] overflow-hidden bg-gray-50 dark:bg-[#12121e] p-4'>
-                          {product.image ? (
-                            <Image
-                              src={product.image}
-                              alt={product.name}
-                              class='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
-                              loading='lazy'
-                              width={200}
-                              height={200}
-                            />
-                          ) : (
-                            <div class='w-full h-full bg-gray-100' />
-                          )}
-                        </div>
-                        <div class='p-4'>
-                          <h4 class='font-semibold text-[#2f2f3b] dark:text-white text-sm mb-1'>
-                            {product.name}
-                          </h4>
-                          <p class='text-xs text-[#6b7280] dark:text-[#9ca3b8] mb-3'>
-                            Modelo: {product.model}
-                          </p>
-                          <a
-                            href={productUrl(groupName, product.slug)}
-                            data-astro-prefetch='hover'
-                            class='w-full inline-flex justify-center bg-[#2f2f3b] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#155DFC] transition-colors'
-                          >
-                            Ver más
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                 <div class='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6'>
+            {items.slice(0, 5).map((product) => (
+              <a
+                href={productUrl(product.category, product.slug)}
+                class='group bg-white dark:bg-[#1a1a2e] rounded-2xl border border-gray-100 dark:border-[#2a2a3e] hover:border-[#155DFC] overflow-hidden hover:shadow-xl dark:hover:shadow-black/30 transition-all duration-300 cursor-pointer'
+              >
+                <div class='relative aspect-3/4 overflow-hidden bg-gray-50 dark:bg-[#12121e] p-4'>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    class='w-full h-full object-contain group-hover:scale-105 transition-transform duration-500'
+                    loading='lazy'
+                    width={300}
+                    height={300}
+                  />
+                  <span class='absolute top-3 left-3 bg-[#155DFC]/90 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider'>
+                    {product.category}
+                  </span>
                 </div>
+                <div class='p-4'>
+                  <h4 class='font-semibold text-[#2f2f3b] dark:text-white text-base mb-1 uppercase tracking-wide'>
+                    {product.name}
+                  </h4>
+                  <p class='text-sm text-gray-400 dark:text-[#6b7280] mb-1'>{product.model}</p>
+                  <p class='text-sm text-[#155DFC] font-medium'>
+                    Marca: {product.brand}
+                  </p>
+                </div>
+              </a>
+            ))}
+            </div>
                 {items.length > 4 && (
                   <div class='flex justify-center mt-8'>
                     <a
                       href={`/catalogo/${encodeURIComponent(groupName)}`}
                       class='inline-flex items-center gap-2 bg-[#155DFC] text-white font-semibold px-8 py-3 rounded-full hover:bg-[#114ACA] transition-all duration-300 shadow-md shadow-[#155DFC]/20 hover:shadow-lg hover:shadow-[#155DFC]/30 hover:-translate-y-0.5 text-sm'
-                    >
+                    > 
                       Ver todos los productos de {groupName}
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
