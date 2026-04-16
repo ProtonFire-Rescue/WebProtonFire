@@ -16,10 +16,9 @@ export interface Props {
 const {
 	images,
 	speed = 20,
-	contentClass = "relative w-full overflow-hidden bg-transparent",
-	imageClass = "h-10 md:h-40 lg:h-28 w-auto rounded-md object-contain md:grayscale hover:grayscale-0 transition-all duration-300",
+	contentClass = "relative w-full overflow-hidden",
+	imageClass = "h-10 md:h-40 lg:h-28 w-auto rounded-md object-contain transition-all duration-300",
 	direction = "left",
-	blur = true,
 } = Astro.props;
 
 // Duplicar imágenes para efecto infinito
@@ -48,15 +47,6 @@ const duplicatedImages = [...images, ...images];
 		}
 	</div>
 
-	<!-- Gradientes para efecto de desvanecimiento -->
-	{
-		blur && (
-			<>
-				<div class="absolute left-0 top-0 bottom-0 w-110 md:bg-linear-to-r from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
-				<div class="absolute right-0 top-0 bottom-0 w-110 md:bg-linear-to-l from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
-			</>
-		)
-	}
 </div>
 
 <style>

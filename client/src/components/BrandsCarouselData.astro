@@ -44,7 +44,7 @@ const dynamicSpeed = Math.max(speed, brands.length * 0.8)
 ---
 
 {brands.length > 0 && (
-	<div class={`relative w-full overflow-hidden bg-linear-to-b from-white via-[#0b0b12]/70 to-white dark:from-[#0b0b12] dark:via-white/70 dark:to-[#0b0b12] py-10`}>
+	<div class={`relative w-full overflow-hidden `}>
 		<div
 			class={`scroll-item flex items-center ${direction === 'left' ? 'animate-scroll-left' : 'animate-scroll-right'}`}
 			style={`animation-duration: ${dynamicSpeed}s`}
@@ -63,13 +63,6 @@ const dynamicSpeed = Math.max(speed, brands.length * 0.8)
 				</a>
 			))}
 		</div>
-
-		{blur && (
-			<>
-				<div class="absolute left-0 top-0 bottom-0 w-80 md:bg-linear-to-r from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
-				<div class="absolute right-0 top-0 bottom-0 w-80 md:bg-linear-to-l from-white dark:from-[#0b0b12] via-white/80 dark:via-[#0b0b12]/80 to-transparent pointer-events-none" />
-			</>
-		)}
 	</div>
 )}
 
