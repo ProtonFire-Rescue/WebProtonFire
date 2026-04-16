@@ -115,7 +115,7 @@ export default function SearchModal() {
         onClick={open}
         aria-label='Buscar productos'
         title='Buscar productos'
-        className='flex items-center justify-center w-9 h-9 rounded-full text-[#2f2f3b] dark:text-white/80 hover:text-[#155DFC] dark:hover:text-[#155DFC] hover:bg-[#155DFC]/10 transition-all duration-200'
+        className='flex items-center justify-center w-9 h-9 rounded-full text-[#afafaf] dark:text-white/80 hover:text-[#155DFC] dark:hover:text-[#155DFC] hover:bg-[#155DFC]/10 transition-all duration-200'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'

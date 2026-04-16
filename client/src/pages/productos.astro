@@ -113,31 +113,9 @@ const productosJsonLd = [
       </div>
     </section>
 
-    <!-- Brands Carousel Section -->
-    <section class='py-16 bg-white dark:bg-[#0b0b12]'>
-      <div class='max-w-360 mx-auto px-4'>
-        <BrandsCarouselData
-          speed={25}
-          direction='left'
-          imageClass='h-8 md:h-10 lg:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300'
-          server:defer
-        >
-          <div slot='fallback' class='flex items-center gap-8 overflow-hidden'>
-            {Array.from({ length: 6 }).map(() => (
-              <div class='shrink-0 w-24 h-16 md:w-32 md:h-20 bg-gray-100 dark:bg-[#1a1a2e] rounded-md animate-pulse' />
-            ))}
-          </div>
-        </BrandsCarouselData>
-      </div>
-    </section>
-
-    <!-- Products Area Section -->
-    <section
-      id='productos'
-      class='py-20 bg-linear-180 from-orange-50 via-white to-blue-100 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]'
-    >
-      <div class='max-w-360 mx-auto px-4 sm:px-6 lg:px-8'>
-        <div class='text-center mb-16'>
+    <section>
+      <div class='max-w-full'>
+        <div class='text-center px-4 sm:px-6 lg:px-8 py-40'>
           <h2
             class='text-3xl md:text-4xl lg:text-[48px] font-bold text-[#2f2f3b] dark:text-white mb-4'
             data-aos='fade-up'
@@ -154,6 +132,33 @@ const productosJsonLd = [
             en equipos de protección contra incendios.
           </p>
         </div>
+        
+
+    <!-- Brands Carousel Section -->
+    <div class='py-4 bg-[#155DFC]'>
+      <div class='max-w-full'>
+        <BrandsCarouselData
+          speed={25}
+          direction='left'
+          imageClass='h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-300 filter grayscale hover:grayscale-0'
+          server:defer
+        >
+          <div slot='fallback' class='flex items-center gap-8 overflow-hidden'>
+            {Array.from({ length: 6 }).map(() => (
+              <div class='shrink-0 w-24 h-16 md:w-32 md:h-20 bg-gray-100 dark:bg-[#1a1a2e] rounded-md animate-pulse' />
+            ))}
+          </div>
+        </BrandsCarouselData>
+      </div>
+    </div>
+    </section>
+
+    <!-- Products Area Section -->
+    <section
+      id='productos'
+      class='pb-10 bg-linear-180 from-orange-50 via-white to-blue-100 dark:from-[#0b0b12] dark:via-[#12121e] dark:to-[#0b0b12]'
+    >
+      
 
         <ProductsAreaData server:defer>
           <div slot='fallback'>

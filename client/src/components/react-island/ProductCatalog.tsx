@@ -382,10 +382,26 @@ useEffect(() => {
 
       {/* ── Main Content ── */}
       <div>
-        {/* Search Bar */}
-        <div className='max-w-xl mb-6'>
-          <div className='relative'>
-            <label htmlFor='product-search' className='sr-only'>Buscar producto</label>
+        {/* Header Section */}
+        <section className='pt-25 pb-8 bg-white dark:bg-[#0b0b12]'>
+          <div className='relative w-full min-h-105 sm:min-h-120 md:min-h-140 rounded-3xl md:rounded-[40px]'>
+            <div
+              className='absolute inset-0 bg-fixed bg-center bg-cover bg-no-repeat brightness-50 rounded-3xl md:rounded-[40px]'
+              style={{ backgroundImage: "url('/images/products.webp')", backgroundBlendMode: 'overlay' }}
+            >
+            </div>
+            <div className='absolute inset-0 flex flex-col items-center justify-center p-8 sm:p-12 md:p-16'>
+              <h1
+                className='text-3xl md:text-4xl lg:text-[40px] font-bold text-white mb-3'
+          >
+            Busca el producto de tu interés
+          </h1>
+          <p className='text-white max-w-xl mx-auto text-center'>
+            Explora nuestro catálogo completo y encuentra el equipo perfecto
+            para tus necesidades
+          </p>
+          <div className='w-full my-10 flex justify-center'>
+          <div className='relative w-150'>
             <input
               id='product-search'
               type='search'
@@ -393,7 +409,7 @@ useEffect(() => {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder='Buscar producto...'
               aria-label='Buscar producto en el catálogo'
-              className='w-full px-4 py-3 pr-12 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-2 focus:ring-[#155DFC] focus:border-transparent transition-all text-gray-600 dark:text-white bg-white dark:bg-[#12121e] dark:placeholder-[#6b7280]'
+              className='w-full px-4 py-3 pr-12 border border-gray-200 dark:border-[#2a2a3e] rounded-full focus:ring-3 focus:ring-[#155DFC] focus:border-transparent transition-all text-gray-600 dark:text-white bg-white dark:bg-[#12121e] dark:placeholder-[#6b7280]'
             />
             <button aria-label='Buscar' className='absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-gray-100 dark:bg-[#1a1a2e] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-[#2a2a3e] transition-colors'>
               <svg
@@ -414,6 +430,13 @@ useEffect(() => {
             </button>
           </div>
         </div>
+        </div>
+        
+        
+      </div>
+      
+    </section>
+        
 
         {/* Active Filters Pills */}
         {hasActiveFilters && (
