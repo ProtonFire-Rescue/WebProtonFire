@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import SearchModal from '@/components/react-island/SearchModal';
+import { getProductsQuery, resolveBackendUrl } from '@/utils/server';
+import { productUrl } from '@/utils/slugify';
 
 export interface Props {
 	currentPath?: string;
@@ -14,13 +16,50 @@ const menuItems = [
 	{ href: '/servicios', label: 'Servicios', active: currentPath === '/servicios' },
 	{ href: '/nosotros', label: 'Nosotros', active: currentPath === '/nosotros' }
 ];
+
+// Fetch products for mega menu
+const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
+let megaMenuCategories: { name: string; products: { name: string; slug: string; image: string; category: string }[]; types: string[] }[] = [];
+
+try {
+	const { data } = await getProductsQuery(
+		'fields[0]=name&fields[1]=slug&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&pagination[pageSize]=100&sort[0]=createdAt:desc',
+		{ cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
+	);
+
+	const categoryMap = new Map<string, { products: { name: string; slug: string; image: string; category: string }[]; types: Set<string> }>();
+
+	for (const p of data ?? []) {
+		const cats = (p.categories ?? []).map((c: any) => c.name).filter(Boolean);
+		const typeName = p.type?.name ?? '';
+		const imgUrl = p.images?.[0]?.url ?? '';
+		const image = imgUrl.startsWith('http') ? imgUrl : imgUrl ? `${strapiBaseUrl}${imgUrl}` : '';
+
+		for (const cat of cats) {
+			if (!categoryMap.has(cat)) {
+				categoryMap.set(cat, { products: [], types: new Set() });
+			}
+			const entry = categoryMap.get(cat)!;
+			if (entry.products.length < 5) {
+				entry.products.push({ name: p.name, slug: p.slug, image, category: cat });
+			}
+			if (typeName) entry.types.add(typeName);
+		}
+	}
+
+	megaMenuCategories = Array.from(categoryMap.entries()).map(([name, val]) => ({
+		name,
+		products: val.products,
+		types: Array.from(val.types).sort(),
+	}));
+} catch {}
 ---
 
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full " role="banner">
 	<nav 
 		id="main-nav"
 		class:list={[
-			'navigation px-6 sm:px-8 lg:px-20 py-3 md:py-1 bg-[#23232a] dark:bg-[#0b0b12]',
+			'relative navigation px-6 sm:px-8 lg:px-20 py-3 md:py-1 bg-[#23232a] dark:bg-[#0b0b12]',
 			
 		]}
 		data-transparent={transparent ? 'true' : 'false'}
@@ -44,23 +83,44 @@ const menuItems = [
 			</a>
 			
 			<!-- Desktop Menu - Centered -->
-			<div class="hidden md:flex items-center gap-10 lg:gap-20">
-				{menuItems.map((item) => (
-					<a 
-						href={item.href}
-						class:list={[
-							'nav-link text-[16px] font-semibold tracking-wide transition-colors duration-300 relative',
-							item.active 
-								? 'text-[#155DFC]' 
-								: transparent
-									? 'text-white hover:text-[#155DFC]'
-									: 'text-[#cacaca] dark:text-white/80 hover:text-[#155DFC]'
-						]}
-					>
-						{item.label}
-						{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#155DFC] rounded-full" />}
-					</a>
-				))}
+			<div class="hidden md:flex items-center gap-10 lg:gap-20" >
+				{menuItems.map((item) => {
+					const isProductos = item.label === 'Productos';
+					return isProductos ? (
+						<div id="mega-menu-trigger">
+							<a 
+								href={item.href}
+								class:list={[
+									'nav-link text-[16px] font-semibold tracking-wide transition-colors duration-300 relative inline-flex items-center gap-1 py-2',
+									item.active 
+										? 'text-[#155DFC]' 
+										: transparent
+											? 'text-white hover:text-[#155DFC]'
+											: 'text-[#cacaca] dark:text-white/80 hover:text-[#155DFC]'
+								]}
+							>
+								{item.label}
+								<svg class="w-3.5 h-3.5 transition-transform duration-200 mega-chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg>
+								{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#155DFC] rounded-full" />}
+							</a>
+						</div>
+					) : (
+						<a 
+							href={item.href}
+							class:list={[
+								'nav-link text-[16px] font-semibold tracking-wide transition-colors duration-300 relative',
+								item.active 
+									? 'text-[#155DFC]' 
+									: transparent
+										? 'text-white hover:text-[#155DFC]'
+										: 'text-[#cacaca] dark:text-white/80 hover:text-[#155DFC]'
+							]}
+						>
+							{item.label}
+							{item.active && <span class="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#155DFC] rounded-full" />}
+						</a>
+					);
+				})}
 				
 			
 			<!-- Search (Desktop) -->
@@ -101,6 +161,83 @@ const menuItems = [
 			</div>
 		</div>
 
+		{/* Mega Menu Dropdown — full-width, positioned relative to nav */}
+		<div id="mega-menu-dropdown" class="hidden md:block absolute left-0 right-0 top-full opacity-0 invisible pointer-events-none transition-all duration-200 px-4 sm:px-6 lg:px-20 pt-2">
+			<div class="bg-white dark:bg-[#141420] rounded-2xl shadow-2xl shadow-black/15 dark:shadow-black/40 border border-gray-200/60 dark:border-white/10 w-full overflow-hidden">
+				<div class="flex">
+					{/* Left: Category tabs */}
+					<div class="w-50 bg-gray-50 dark:bg-[#0e0e1a] border-r border-gray-100 dark:border-white/5 py-3 shrink-0">
+						<p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 px-4 mb-2">Categorías</p>
+						{megaMenuCategories.map((cat, idx) => (
+							<button
+								type="button"
+								class:list={[
+									'mega-cat-tab w-full text-left px-4 py-2 text-sm font-medium transition-colors duration-150 cursor-pointer',
+									idx === 0
+										? 'text-[#155DFC] bg-white dark:bg-[#141420]'
+										: 'text-gray-600 dark:text-gray-400 hover:text-[#155DFC] hover:bg-white dark:hover:bg-[#141420]'
+								]}
+								data-cat-index={idx}
+							>
+								{cat.name}
+							</button>
+						))}
+						<div class="border-t border-gray-100 dark:border-white/5 mt-2 pt-2 px-4">
+							<a href="/catalogo/all" class="text-sm font-semibold text-[#155DFC] hover:underline">Ver todo el catálogo →</a>
+						</div>
+					</div>
+
+					{/* Center: Products for active category */}
+					<div class="flex-1 py-3 px-5 min-h-80">
+						{megaMenuCategories.map((cat, idx) => (
+							<div class:list={['mega-cat-panel', idx === 0 ? '' : 'hidden']} data-cat-panel={idx}>
+								<p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Productos destacados</p>
+								<div class="grid gap-2">
+									{cat.products.map((product) => (
+										<a
+											href={productUrl(product.category, product.slug)}
+											class="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group/item"
+										>
+											<div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-white/5 overflow-hidden shrink-0 flex items-center justify-center">
+												{product.image ? (
+													<img src={product.image} alt={product.name} class="w-full h-full object-contain p-1" loading="lazy" />
+												) : (
+													<svg class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
+												)}
+											</div>
+											<span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover/item:text-[#155DFC] transition-colors truncate">{product.name}</span>
+										</a>
+									))}
+								</div>
+								<a href={`/catalogo/${cat.name}`} class="inline-flex items-center gap-1 text-sm font-semibold text-[#155DFC] mt-3 hover:underline">
+									Ver todos en {cat.name}
+									<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7" /></svg>
+								</a>
+							</div>
+						))}
+					</div>
+
+					{/* Right: Types by category */}
+					<div class="w-55 bg-gray-50 dark:bg-[#0e0e1a] border-l border-gray-100 dark:border-white/5 py-3 px-4 overflow-y-auto max-h-95 shrink-0">
+						<p class="text-[11px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Tipos de producto</p>
+						{megaMenuCategories.filter(c => c.types.length > 0).map((cat) => (
+							<div class="mb-4">
+								<p class="text-xs font-bold text-[#155DFC] dark:text-[#155DFC] uppercase tracking-wide mb-1.5">{cat.name}</p>
+								{cat.types.map((type) => (
+									<a
+										href={`/catalogo/${cat.name}?type=${encodeURIComponent(type)}`}
+										class="block text-sm text-gray-600 dark:text-gray-400 hover:text-[#155DFC] dark:hover:text-[#155DFC] py-1 transition-colors"
+									>
+										{type}
+									</a>
+								))}
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Mobile Menu (inside nav, animated with max-height) -->
 		<div id="mobile-menu" class="md:hidden overflow-hidden max-h-0 opacity-0" style="transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;">
 			<div class="border-t border-gray-200/50 dark:border-white/10 mt-3 pt-3 pb-1 space-y-1">
@@ -138,6 +275,16 @@ const menuItems = [
 		transition: background-color 0.35s ease,
 		            box-shadow 0.35s ease,
 		            border-color 0.35s ease;
+	}
+
+	/* Mega menu open state (toggled by JS) */
+	#mega-menu-dropdown.mega-open {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+	#mega-menu-trigger.mega-open .mega-chevron {
+		transform: rotate(180deg);
 	}
 
 	/* Scrolled state classes applied by JS */
@@ -302,15 +449,63 @@ const menuItems = [
 		}, { passive: true });
 	}
 
+	function initMegaMenu() {
+		const trigger = document.getElementById('mega-menu-trigger');
+		const dropdown = document.getElementById('mega-menu-dropdown');
+		if (!trigger || !dropdown) return;
+
+		let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+		function openMega() {
+			if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+			dropdown!.classList.add('mega-open');
+			trigger!.classList.add('mega-open');
+		}
+
+		function scheduleMegaClose() {
+			closeTimer = setTimeout(() => {
+				dropdown!.classList.remove('mega-open');
+				trigger!.classList.remove('mega-open');
+			}, 150);
+		}
+
+		trigger.addEventListener('mouseenter', openMega);
+		trigger.addEventListener('mouseleave', scheduleMegaClose);
+		dropdown.addEventListener('mouseenter', openMega);
+		dropdown.addEventListener('mouseleave', scheduleMegaClose);
+
+		// Category tab switching
+		const tabs = document.querySelectorAll<HTMLElement>('.mega-cat-tab');
+		const panels = document.querySelectorAll<HTMLElement>('.mega-cat-panel');
+		if (!tabs.length || !panels.length) return;
+
+		tabs.forEach((tab) => {
+			tab.addEventListener('mouseenter', () => {
+				const idx = tab.dataset.catIndex;
+				tabs.forEach((t) => {
+					t.classList.remove('text-[#155DFC]', 'bg-white', 'dark:bg-[#141420]');
+					t.classList.add('text-gray-600', 'dark:text-gray-400');
+				});
+				tab.classList.remove('text-gray-600', 'dark:text-gray-400');
+				tab.classList.add('text-[#155DFC]', 'bg-white', 'dark:bg-[#141420]');
+				panels.forEach((p) => {
+					p.classList.toggle('hidden', p.dataset.catPanel !== idx);
+				});
+			});
+		});
+	}
+
 	// Initialize on first load
 	initScrollEffect();
 	initMobileMenu();
 	initHideOnScroll();
+	initMegaMenu();
 
 	// Re-initialize after view transitions
 	document.addEventListener('astro:page-load', () => {
 		initScrollEffect();
 		initMobileMenu();
 		initHideOnScroll();
+		initMegaMenu();
 	});
 </script>
