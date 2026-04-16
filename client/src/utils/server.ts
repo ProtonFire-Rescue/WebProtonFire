@@ -100,3 +100,9 @@ export const getProductBySlugQuery = async (slug: string | undefined, query: str
   return fetchWithCache(`${STRAPI_URL}/api/productos?filters[slug][$eq]=${encodeURIComponent(slug)}&${q}`, `product-slug-${slug}-${q}`);
 };
 
+export const getCategoriesQuery = async (query: string, opts?: { cacheTtlMs?: number; baseUrl?: string; astro?: any; context?: any }) => {
+  const q = query.startsWith('?') ? query.slice(1) : query;
+  const STRAPI_URL = resolveBackendUrl(opts);
+  return fetchWithCache(`${STRAPI_URL}/api/categories?${q}`, `categories-${q}`);
+};
+
