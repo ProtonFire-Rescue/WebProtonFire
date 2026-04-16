@@ -16,14 +16,12 @@ const menuItems = [
 ];
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full border-b border-dotted border-gray-200/60 dark:border-white/10" role="banner">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 w-full " role="banner">
 	<nav 
 		id="main-nav"
 		class:list={[
-			'navigation px-6 sm:px-8 lg:px-20 py-3 md:py-1',
-			transparent
-				? 'bg-transparent border-b border-transparent'
-				: 'bg-white dark:bg-[#0b0b12] border-b border-gray-200/60 dark:border-white/10'
+			'navigation px-6 sm:px-8 lg:px-20 py-3 md:py-1 bg-[#23232a] dark:bg-[#0b0b12]',
+			
 		]}
 		data-transparent={transparent ? 'true' : 'false'}
 		role="navigation" 
@@ -56,7 +54,7 @@ const menuItems = [
 								? 'text-[#155DFC]' 
 								: transparent
 									? 'text-white hover:text-[#155DFC]'
-									: 'text-[#2f2f3b] dark:text-white/80 hover:text-[#155DFC]'
+									: 'text-[#cacaca] dark:text-white/80 hover:text-[#155DFC]'
 						]}
 					>
 						{item.label}
