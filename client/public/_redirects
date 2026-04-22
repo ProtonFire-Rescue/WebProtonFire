@@ -78,9 +78,9 @@
 # Accessories & Tools
 /varios                               /catalogo/Accesorios       301
 /varios/                              /catalogo/Accesorios       301
-/herramientas                         /catalogo/Herramientas     301
-/herramientas/                        /catalogo/Herramientas     301
-/vehicular/                           /catalogo/Rescate?type=Extricación          301
+/herramientas                         /catalogo/Rescate     301
+/herramientas/                        /catalogo/Rescate?type=Herramientas     301
+/vehicular/                           /catalogo/Forestal?type=Herramientas          301
 /rescate/                             /catalogo/Rescate          301
 /linternas/                           /catalogo/all?type=Iluminación          301  
 /incendios-estructurales/             /catalogo/Forestal         301
