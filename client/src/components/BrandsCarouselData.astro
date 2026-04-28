@@ -22,7 +22,7 @@ let brands: { name: string; url: string; image: string }[] = []
 
 try {
 	const res = await fetch(
-		`${STRAPI_URL}/api/brands?fields[0]=name&fields[1]=url&populate[image][fields][0]=url`,
+		`${STRAPI_URL}/api/brands?fields[0]=name&fields[1]=url&populate[image][fields][0]=url&pagination[pageSize]=1000`,
 		{ headers: { Accept: 'application/json' } }
 	)
 	const { data } = await res.json()

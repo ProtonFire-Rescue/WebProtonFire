@@ -20,10 +20,19 @@ export const GET: APIRoute = async (context) => {
   const now = new Date().toISOString()
 
   try {
-    const response = await fetch(
-      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&fields[2]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText`
-    )
-    const { data } = await response.json()
+    const PAGE_SIZE = 100
+    let page = 1
+    let data: any[] = []
+    while (true) {
+      const response = await fetch(
+        `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&fields[2]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`
+      )
+      const json = await response.json()
+      data = data.concat(json.data ?? [])
+      const pageCount = json.meta?.pagination?.pageCount ?? 1
+      if (page >= pageCount) break
+      page++
+    }
 
     const categoriesResponse = await fetch(
       `${STRAPI_URL}/api/categories?fields[0]=name`

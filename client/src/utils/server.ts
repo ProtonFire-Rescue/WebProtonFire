@@ -86,6 +86,34 @@ export const getProductsQuery = async (query: string, opts?: { cacheTtlMs?: numb
   return fetchWithCache(`${STRAPI_URL}/api/productos?${q}`, `products-${q}`);
 };
 
+/** Fetch ALL products by paginating through every page automatically. */
+export const getAllProducts = async (query: string, opts?: { cacheTtlMs?: number; baseUrl?: string; astro?: any; context?: any }) => {
+  const q = query.startsWith('?') ? query.slice(1) : query;
+  const cacheKey = `all-products-${q}`;
+  const cached = getCachedData(cacheKey);
+  if (cached) return cached;
+
+  const STRAPI_URL = resolveBackendUrl(opts);
+  const PAGE_SIZE = 100;
+  let page = 1;
+  let allData: any[] = [];
+
+  while (true) {
+    const url = `${STRAPI_URL}/api/productos?${q}&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`;
+    const res = await fetchWithCache(url, `products-page-${page}-${q}`);
+    const items = res.data ?? [];
+    allData = allData.concat(items);
+
+    const pageCount = res.meta?.pagination?.pageCount ?? 1;
+    if (page >= pageCount) break;
+    page++;
+  }
+
+  const result = { data: allData };
+  setCachedData(cacheKey, result);
+  return result;
+};
+
 export const getProductByIdQuery = async (id: string | undefined, query: string, opts?: { cacheTtlMs?: number; baseUrl?: string; astro?: any; context?: any }) => {
   if (!id) throw new Error('Missing id');
   const q = query.startsWith('?') ? query.slice(1) : query;

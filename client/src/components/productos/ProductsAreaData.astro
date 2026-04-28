@@ -1,13 +1,13 @@
 ---
 import {
-  getProductsQuery,
+  getAllProducts,
   getCategoriesQuery,
   resolveBackendUrl,
 } from "@/utils/server";
 import { productUrl } from "@/utils/slugify";
 const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
 
-const { data } = await getProductsQuery(
+const { data } = await getAllProducts(
   "fields[0]=name&fields[1]=slug&populate[type][fields][0]=name&populate[model][fields][0]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[brand][fields][0]=name&sort[0]=createdAt:desc",
   { cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro },
 );

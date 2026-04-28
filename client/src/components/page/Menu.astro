@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import SearchModal from '@/components/react-island/SearchModal';
-import { getProductsQuery, resolveBackendUrl } from '@/utils/server';
+import { getAllProducts, resolveBackendUrl } from '@/utils/server';
 import { productUrl } from '@/utils/slugify';
 
 export interface Props {
@@ -22,7 +22,7 @@ const strapiBaseUrl = resolveBackendUrl({ astro: Astro });
 let megaMenuCategories: { name: string; products: { name: string; slug: string; image: string; category: string }[]; types: string[] }[] = [];
 
 try {
-	const { data } = await getProductsQuery(
+	const { data } = await getAllProducts(
 		'fields[0]=name&fields[1]=slug&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[type][fields][0]=name&sort[0]=createdAt:desc',
 		{ cacheTtlMs: 15000, baseUrl: strapiBaseUrl, astro: Astro }
 	);
