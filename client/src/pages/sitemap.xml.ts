@@ -21,12 +21,12 @@ export const GET: APIRoute = async (context) => {
 
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&fields[2]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/productos?fields[0]=updatedAt&fields[1]=slug&fields[2]=name&populate[categories][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText`
     )
     const { data } = await response.json()
 
     const categoriesResponse = await fetch(
-      `${STRAPI_URL}/api/categories?fields[0]=name&pagination[pageSize]=200`
+      `${STRAPI_URL}/api/categories?fields[0]=name`
     )
     const { data: categories } = await categoriesResponse.json()
 

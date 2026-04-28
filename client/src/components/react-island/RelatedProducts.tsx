@@ -24,7 +24,7 @@ export default function RelatedProducts({
       }
 
       try {
-        const query = `fields[0]=name&fields[1]=slug&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&pagination[pageSize]=12&sort[0]=createdAt:desc`
+        const query = `fields[0]=name&fields[1]=slug&populate[categories][fields][0]=name&populate[model][fields][0]=name&populate[brand][fields][0]=name&populate[images][fields][0]=url&populate[images][fields][1]=alternativeText&sort[0]=createdAt:desc`
         const response = await fetch(
           `${backendUrl}/api/productos?filters[categories][name][$eq]=${encodeURIComponent(categoryName)}&${query}`
         )

@@ -21,7 +21,7 @@ const SEARCH_QUERY =
   '&populate[brand][fields][0]=name' +
   '&populate[model][fields][0]=name' +
   '&populate[images][fields][0]=url' +
-  '&pagination[pageSize]=200&sort[0]=createdAt:desc'
+  '&sort[0]=createdAt:desc'
 
 export default function SearchModal() {
   const [isOpen, setIsOpen] = useState(false)
