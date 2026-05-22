@@ -14,6 +14,16 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
         uploadStream: {},
         delete: {},
       },
+      sizeLimit: 10 * 1024 * 1024, // 10MB
+      security: {
+        allowedTypes: ['image/*', 'video/*', 'application/pdf'],
+        deniedTypes: [
+          'application/x-sh',
+          'application/x-dosexec',
+          'application/x-msdownload',
+          'application/x-msdos-program',
+        ],
+      },
     },
   },
 });

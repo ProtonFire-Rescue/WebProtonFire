@@ -525,6 +525,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
       true
     >;
     name: Schema.Attribute.String;
+    personal_brands: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::peronal-brand.peronal-brand'
+    >;
     products: Schema.Attribute.Relation<'manyToMany', 'api::producto.producto'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
@@ -594,6 +598,40 @@ export interface ApiModelModel extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPeronalBrandPeronalBrand
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'peronal_brands';
+  info: {
+    displayName: 'Personal_Brand';
+    pluralName: 'peronal-brands';
+    singularName: 'peronal-brand';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category.category'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::peronal-brand.peronal-brand'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::producto.producto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
   collectionName: 'productos';
   info: {
@@ -633,6 +671,10 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     model: Schema.Attribute.Relation<'oneToOne', 'api::model.model'>;
     name: Schema.Attribute.String;
+    peronal_brands: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::peronal-brand.peronal-brand'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
     type: Schema.Attribute.Relation<'manyToOne', 'api::type.type'>;
@@ -1189,6 +1231,7 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::certification.certification': ApiCertificationCertification;
       'api::model.model': ApiModelModel;
+      'api::peronal-brand.peronal-brand': ApiPeronalBrandPeronalBrand;
       'api::producto.producto': ApiProductoProducto;
       'api::type.type': ApiTypeType;
       'plugin::content-releases.release': PluginContentReleasesRelease;

@@ -39,6 +39,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "personal_brands": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::peronal-brand.peronal-brand",
+      "inversedBy": "categories"
     }
   }
 }

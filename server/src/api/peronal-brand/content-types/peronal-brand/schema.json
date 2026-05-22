@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "peronal_brands",
+  "info": {
+    "singularName": "peronal-brand",
+    "pluralName": "peronal-brands",
+    "displayName": "Personal_Brand"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::producto.producto",
+      "inversedBy": "peronal_brands"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "personal_brands"
+    }
+  }
+}
