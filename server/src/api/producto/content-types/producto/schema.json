@@ -70,7 +70,7 @@
       "target": "api::certification.certification",
       "mappedBy": "products"
     },
-    "peronal_brands": {
+    "personal_brands": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::peronal-brand.peronal-brand",

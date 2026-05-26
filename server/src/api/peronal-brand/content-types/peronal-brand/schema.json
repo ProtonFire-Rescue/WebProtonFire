@@ -18,13 +18,19 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::producto.producto",
-      "inversedBy": "peronal_brands"
+      "inversedBy": "personal_brands"
     },
     "categories": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "personal_brands"
+    },
+    "types": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::type.type",
+      "inversedBy": "personal_brands"
     }
   }
 }

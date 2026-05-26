@@ -28,6 +28,12 @@
     },
     "slug": {
       "type": "uid"
+    },
+    "personal_brands": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::peronal-brand.peronal-brand",
+      "mappedBy": "types"
     }
   }
 }

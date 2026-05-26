@@ -626,6 +626,7 @@ export interface ApiPeronalBrandPeronalBrand
     nombre: Schema.Attribute.String;
     products: Schema.Attribute.Relation<'manyToMany', 'api::producto.producto'>;
     publishedAt: Schema.Attribute.DateTime;
+    types: Schema.Attribute.Relation<'manyToMany', 'api::type.type'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -671,7 +672,7 @@ export interface ApiProductoProducto extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     model: Schema.Attribute.Relation<'oneToOne', 'api::model.model'>;
     name: Schema.Attribute.String;
-    peronal_brands: Schema.Attribute.Relation<
+    personal_brands: Schema.Attribute.Relation<
       'manyToMany',
       'api::peronal-brand.peronal-brand'
     >;
@@ -706,6 +707,10 @@ export interface ApiTypeType extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::type.type'> &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    personal_brands: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::peronal-brand.peronal-brand'
+    >;
     products: Schema.Attribute.Relation<'oneToMany', 'api::producto.producto'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
