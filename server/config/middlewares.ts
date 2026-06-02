@@ -43,6 +43,8 @@ const config: Core.Config.Middlewares = [
         'http://localhost:3000',
         'https://webprotonfire-production.up.railway.app', // Tu Strapi en Railway
         'https://protonfire.com',                          // Tu frontend en Cloudflare
+        'https://profireservice.com.ec',                   // Tu frontend en Cloudflare
+        'https://profire-web.pages.dev',                   // Tu frontend en Cloudflare
       ],
     },
   },
