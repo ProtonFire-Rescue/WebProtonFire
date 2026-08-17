@@ -23,9 +23,6 @@
       "target": "api::producto.producto",
       "mappedBy": "brand"
     },
-    "descripcion": {
-      "type": "text"
-    },
     "url": {
       "type": "text"
     },

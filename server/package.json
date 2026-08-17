@@ -16,10 +16,10 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.39.0",
-    "@strapi/plugin-users-permissions": "5.39.0",
-    "@strapi/provider-upload-cloudinary": "^5.40.0",
-    "@strapi/strapi": "5.39.0",
+    "@strapi/plugin-cloud": "5.52.0",
+    "@strapi/plugin-users-permissions": "5.52.0",
+    "@strapi/provider-upload-cloudinary": "5.52.0",
+    "@strapi/strapi": "5.52.0",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
     "pg": "8.8.0",
